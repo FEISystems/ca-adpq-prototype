@@ -16,12 +16,12 @@ namespace ca_service.Services
             using (var db = new Connection(string.Empty))
             {
                 var cmd = db.connection.CreateCommand();
-                cmd.CommandText = "Select Id, Name, Password from users";
+                cmd.CommandText = "Select UserId, Name, Password from users";
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        users.Add(new User((int)reader["Id"])
+                        users.Add(new User((int)reader["UserId"])
                         {
                             Name = reader["Name"].ToString(),
                             Password = reader["Password"].ToString()
