@@ -13,7 +13,7 @@ namespace ca_service.Services
         public List<User> GetUsers()
         {
             var users = new List<User>();
-            using (var db = new Connection())
+            using (var db = new Connection(string.Empty))
             {
                 var cmd = db.connection.CreateCommand();
                 cmd.CommandText = "Select Id, Name, Password from users";

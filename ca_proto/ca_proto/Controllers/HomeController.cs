@@ -6,6 +6,8 @@ using ca_proto.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using ca_service.Interfaces;
 using ca_service.Entities;
+using Microsoft.Extensions.Configuration;
+
 namespace ca_proto.Controllers
 {
     /// <summary>
@@ -15,13 +17,17 @@ namespace ca_proto.Controllers
     public class HomeController : Controller
     {
         public IUserService userService;
-        public HomeController(IUserService userService)
+        private readonly IConfiguration _configuration;
+
+        public HomeController(IUserService userService, IConfiguration configuration)
         {
             this.userService = userService;
+            _configuration = configuration;
         }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_configuration.GetSection("connectionString"));
         }
 
         public IActionResult About()
