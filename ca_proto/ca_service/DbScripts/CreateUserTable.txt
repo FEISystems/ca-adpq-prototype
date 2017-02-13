@@ -1,0 +1,5 @@
+﻿CREATE TABLE `ca`.`users` (
+            `UserId` INT NOT NULL,
+            `Name` VARCHAR(45) NULL,
+            `Password` VARCHAR(45) NULL,
+            PRIMARY KEY (`UserId`));
