@@ -18,7 +18,8 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "ca_service": "1.0.0-*",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0"
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Configuration": "1.1.0"
   },
 
   "tools": {

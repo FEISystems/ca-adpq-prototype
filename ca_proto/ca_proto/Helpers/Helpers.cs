@@ -8,6 +8,7 @@ namespace ca_proto.Helpers
 {
     public static class Helpers
     {
+        public static string AuthToken = "AuthToken";
         public static ContentResult GetContentResult(object result, string message)
         {
             var actualResult = result as ContentResult;
