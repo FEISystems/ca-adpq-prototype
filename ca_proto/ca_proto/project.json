@@ -1,23 +1,26 @@
 {
   "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
+    },
     "MySqlConnector": "0.*",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "ca_service": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Configuration": "1.1.0",
-    "Swashbuckle.AspNetCore": "1.0.0-rc1",
-    "Microsoft.AspNetCore.Diagnostics": "1.1.0",
-    "Microsoft.AspNetCore.Mvc": "1.1.1",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
-    "Microsoft.AspNetCore.StaticFiles": "1.1.0",
-    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
-    "Microsoft.Extensions.Configuration.Json": "1.1.0",
-    "Microsoft.Extensions.Logging.Console": "1.1.0",
-    "Microsoft.NETCore.App": "1.1.0",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0"
+    "Swashbuckle.AspNetCore": "1.0.0-rc1"
   },
 
   "tools": {
