@@ -11,6 +11,7 @@ using ca_service.Services;
 using ca_service.Entities;
 using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.Swagger;
+using ca_service.Repositories;
 
 namespace ca_proto
 {
@@ -47,6 +48,7 @@ namespace ca_proto
             services.AddMvc();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IInventoryService, InventoryService>();
+            services.AddTransient<IInventoryRepository, InventoryRepository>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();
             // Register the Swagger generator, defining one or more Swagger documents

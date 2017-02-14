@@ -17,14 +17,17 @@ namespace ca_proto.Controllers
     public class HomeController : Controller
     {
         public IUserService userService;
+        public IInventoryService inventoryService;
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService, IInventoryService inventoryService)
         {
             this.userService = userService;
+            this.inventoryService = inventoryService;
         }
 
         public IActionResult Index()
         {
+            var products = inventoryService.QuickSearch(new[] { "test" });
             return View();
         }
 

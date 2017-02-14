@@ -10,17 +10,17 @@ namespace ca_service.Services
 {
     public class InventoryService: IInventoryService, IDisposable
     {
-        private readonly Connection db;
+        private readonly IInventoryRepository inventoryRepository;
 
-        public InventoryService(IConfiguration configuration)
+        public InventoryService(IInventoryRepository inventoryRepository)
         {
-            db = new Connection(configuration);
+            this.inventoryRepository = inventoryRepository;
         }
 
         public void Dispose()
         {
-            if (db != null)
-                db.Dispose();
+            if (inventoryRepository != null)
+                inventoryRepository.Dispose();
         }
 
         public IEnumerable<Product> QuickSearch(string[] searchTerms)
@@ -28,29 +28,7 @@ namespace ca_service.Services
             if (searchTerms == null || searchTerms.Length == 0)
                 return null;
 
-            var result = new List<Product>();
-
-            string sql = @"
-SELECT Id, Name
-FROM Products
-WHERE Name = @Name
-";
-            //todo: add more columns, etc
-            var cmd = db.connection.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.Parameters.Add(new MySqlParameter() { ParameterName = "@Name", Value = searchTerms[0] });
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var product = new Product((int)reader["Id"])
-                    {
-                        Name = reader["Name"].ToString(),
-                    };
-
-                    result.Add(product);
-                }
-            }
+            var result = inventoryRepository.QuickSearch(searchTerms);
 
             return result;
         }
