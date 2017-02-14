@@ -8,6 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ca_service.Interfaces;
 using ca_service.Services;
+using ca_service.Entities;
+using Microsoft.Extensions.Configuration;
+using Swashbuckle.AspNetCore.Swagger;
+using ca_service.Repositories;
+
 namespace ca_proto
 {
     public class Startup
@@ -24,6 +29,18 @@ namespace ca_proto
             host.Run();
         }
 
+        public IConfigurationRoot Configuration { get; }
+
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appSettings.json");
+
+            Configuration = builder.Build();
+
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -31,6 +48,14 @@ namespace ca_proto
             services.AddMvc();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IInventoryService, InventoryService>();
+            services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddMemoryCache();
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Ca Proto", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +72,14 @@ namespace ca_proto
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUi(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ca Proto");
+            });
         }
     }
 }

@@ -7,6 +7,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ca_proto", "ca_proto\ca_pro
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ca_service", "ca_service\ca_service.xproj", "{78981ABB-A5B9-4792-A091-10E24C51D811}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ca_proto_tests", "ca_proto_tests\ca_proto_tests.xproj", "{1FADA801-EC8E-491F-85F8-69CBD72AE25D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{78981ABB-A5B9-4792-A091-10E24C51D811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78981ABB-A5B9-4792-A091-10E24C51D811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78981ABB-A5B9-4792-A091-10E24C51D811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FADA801-EC8E-491F-85F8-69CBD72AE25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FADA801-EC8E-491F-85F8-69CBD72AE25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FADA801-EC8E-491F-85F8-69CBD72AE25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FADA801-EC8E-491F-85F8-69CBD72AE25D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
