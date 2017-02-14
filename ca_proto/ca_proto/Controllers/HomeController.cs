@@ -17,17 +17,15 @@ namespace ca_proto.Controllers
     public class HomeController : Controller
     {
         public IUserService userService;
-        private readonly IConfiguration _configuration;
 
-        public HomeController(IUserService userService, IConfiguration configuration)
+        public HomeController(IUserService userService)
         {
             this.userService = userService;
-            _configuration = configuration;
         }
 
         public IActionResult Index()
         {
-            return View(_configuration.GetSection("connectionString"));
+            return View();
         }
 
         public IActionResult About()
