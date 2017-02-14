@@ -10,6 +10,7 @@ using ca_service.Interfaces;
 using ca_service.Services;
 using ca_service.Entities;
 using Microsoft.Extensions.Configuration;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ca_proto
 {
@@ -48,6 +49,11 @@ namespace ca_proto
             services.AddTransient<IInventoryService, InventoryService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Ca Proto", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +70,14 @@ namespace ca_proto
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUi(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ca Proto");
+            });
         }
     }
 }

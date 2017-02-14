@@ -6,7 +6,11 @@ window.hijack = {
         $.ajax({
             type: "POST",
             url: '/api/authentication',
-            data: {username: username, password: password},
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+                 "username": username, "password": password 
+            }),
             success: function (result) {
                 console.log(result);
             }
@@ -37,8 +41,12 @@ window.hijack = {
     createUser: function (username, password) {
         $.ajax({
             type: "POST",
-            url: '/api/authentication/create',
-            data: { username: username, password: password },
+            url: '/api/authentication',
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+                username: username, password: password
+            }),
             success: function (result) {
                 console.log(result);
             }

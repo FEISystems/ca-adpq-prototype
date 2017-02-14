@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using ca_service.Interfaces;
-
+using ca_proto.Helpers;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ca_proto.Controllers
@@ -18,9 +18,9 @@ namespace ca_proto.Controllers
         {
             this.userservice = userservice;
         }
-        
+
         // GET api/values/5
-        [HttpGet]
+        [HttpGet("{token}")]
         public string Get(string token)
         {
             return this.userservice.IsAuthenticated(token).ToString();
@@ -28,9 +28,9 @@ namespace ca_proto.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post(string username, string password)
+        public IActionResult Post([FromBody] Models.Credentials credentials)
         {
-            var login = this.userservice.Authenticate(username, password);
+            var login = this.userservice.Authenticate(credentials.username, credentials.password);
             if (!string.IsNullOrEmpty(login.Token))
             {
                 CookieOptions options = new CookieOptions();
@@ -41,11 +41,11 @@ namespace ca_proto.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(string username, string password)
+        public IActionResult Create([FromBody] Models.Credentials credentials)
         {
-            return Json(this.userservice.CreateUser(username, password));
+            return Json(this.userservice.CreateUser(credentials.username, credentials.password));
         }
-       
+
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
