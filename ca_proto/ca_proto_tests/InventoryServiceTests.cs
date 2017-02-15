@@ -15,7 +15,7 @@ namespace ca_proto_tests
         [Fact]
         public void Foo()
         {
-
+            Assert.Equal(3, 3);
         }
     }
 }
