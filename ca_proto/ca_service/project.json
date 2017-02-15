@@ -2,8 +2,10 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "Microsoft.Extensions.Caching.Abstractions": "1.1.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
     "MySqlConnector": "0.12.0",
-    "NETStandard.Library": "1.6.0"
+    "NETStandard.Library": "1.6.1"
   },
 
   "frameworks": {

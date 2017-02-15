@@ -10,5 +10,7 @@ namespace ca_service.Entities
         public User(int id) : base(id) { }
         public string Name { get; set; }
         public string Password { get; set; }
+
+        public int TimeZoneOffset { get; set; }
     }
 }
