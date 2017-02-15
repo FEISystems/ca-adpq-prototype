@@ -34,6 +34,7 @@
   },
 
   "buildOptions": {
+    "debugType": "portable",
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
@@ -48,7 +49,9 @@
     "include": [
       "wwwroot",
       "Views",
+      "**/*.cshtml",
       "web.config"
+      
     ]
   },
 
