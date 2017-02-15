@@ -8,5 +8,7 @@ CREATE TABLE `ca`.products` (
             'ProductType' int NOT NULL,
             'ValidParentProductIds', VARCHAR(500) NULL,
             'Category', VARCHAR(100) NOT NULL,
+            'ListPrice', DECIMAL(12,4),
+            'ContractPrice', DECIMAL(12,4),
             PRIMARY KEY (`Id`)
 );
