@@ -2,4 +2,5 @@
             `Id` INT NOT NULL AUTO_INCREMENT,
             `Name` VARCHAR(45) NULL,
             `Password` VARCHAR(45) NULL,
-            PRIMARY KEY (`UserId`));
+            PRIMARY KEY (`UserId`)
+);

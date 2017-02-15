@@ -22,7 +22,8 @@ namespace ca_service.Entities
 
         public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal ListPrice { get; set; }
+        public decimal ContractPrice { get; set; }
 
         public int ContractId { get; set; }
 
@@ -35,6 +36,8 @@ namespace ca_service.Entities
         public ProductType ProductType { get; set; }
 
         public List<int> ValidAsAddOnForParentProductIds { get; set; }
+
+        public string Category { get; set; } //todo: is a string sufficient here?
     }
 
     public enum ProductType
