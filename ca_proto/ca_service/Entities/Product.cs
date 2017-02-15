@@ -57,6 +57,8 @@ namespace ca_service.Entities
         public List<OrderDetail> Details { get; set; }
 
         public OrderStatus Status { get; set; }
+
+        public DateTime OrderDateUtc { get; set; }
     }
 
     public enum OrderStatus
@@ -78,5 +80,19 @@ namespace ca_service.Entities
         public int ProductId { get; set; }
 
         public int Quantity { get; set; }
+    }
+
+    public class ShoppingCart
+    {
+        //todo: expand
+        public int UserId { get; set; } //todo: how do we track an non-logged in user's cart
+    }
+
+    public class ShoppingCartItem
+    {
+        public int ProductId { get; set; }
+        public decimal PriceAtTimeOfAdd { get; set; }
+        public int Quantity { get; set; }
+        public int ShoppingCartId { get; set; }
     }
 }

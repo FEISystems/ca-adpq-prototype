@@ -49,6 +49,7 @@ namespace ca_proto
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IInventoryService, InventoryService>();
             services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();
             // Register the Swagger generator, defining one or more Swagger documents
