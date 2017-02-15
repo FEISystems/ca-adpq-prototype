@@ -1,6 +1,28 @@
-﻿CREATE TABLE `ca`.`users` (
-            `Id` INT NOT NULL AUTO_INCREMENT,
-            `Name` VARCHAR(45) NULL,
-            `Password` VARCHAR(45) NULL,
-            PRIMARY KEY (`UserId`)
+﻿use ca;
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(45) DEFAULT NULL,
+  `Password` varchar(45) DEFAULT NULL,
+  `TimeZoneOffset` int(11) DEFAULT NULL,
+  `IsAdmin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
 );
+
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Consumer1','C0nSumer1', 0, 4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Consumer2','C0nSumer2', 0, 4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Consumer3','C0nSumer3', 0, 4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Admin1','@dMin1', 1, 4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Admin2','@dMin2', 1, 4);

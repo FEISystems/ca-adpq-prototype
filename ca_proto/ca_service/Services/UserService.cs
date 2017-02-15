@@ -10,14 +10,15 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace ca_service.Services
 {
-    public class UserService : IUserService, IDisposable
+    public class UserService : IUserService
     {
-        private readonly Connection db;
+        
         private readonly IMemoryCache memoryCache;
-        public UserService(IConfiguration configuration, IMemoryCache memoryCache)
+        private readonly IUserRepository userRepository;
+        public UserService(IUserRepository userRepository, IMemoryCache memoryCache)
         {
-            db = new Connection(configuration);
             this.memoryCache = memoryCache;
+            this.userRepository = userRepository;
         }
 
         public bool IsAuthenticated(string token)
@@ -29,15 +30,26 @@ namespace ca_service.Services
             return true;
         }
 
+        public bool IsAuthenticatedAdmin(string token)
+        {
+            Login login;
+            var success = this.memoryCache.TryGetValue(token, out login);
+            if (!success || login == null)
+                return false;
+            return login.IsAdmin;
+        }
+
+
         public Login Authenticate(string username, string password)
         {
             Login login = new Login();
 
-            User user = GetUser(username);
+            User user = userRepository.GetUser(username);
             if (user != null && user.Password == password)
             {
                 login.Token = Guid.NewGuid().ToString();
                 login.Message = "Success";
+                login.IsAdmin = user.IsAdmin;
                 this.memoryCache.Set(login.Token, login);
             }
             
@@ -48,62 +60,14 @@ namespace ca_service.Services
             return login;
         }
 
-        public void Dispose()
-        {
-            db.Dispose();
-        }
-
-        public User GetUser(string username)
-        {
-            User user = null;
-            var cmd = db.connection.CreateCommand();
-            cmd.CommandText = $"Select Id, Name, Password from users where Name='{username}'";
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    user = new User((int)reader["Id"])
-                    {
-                        Name = reader["Name"].ToString(),
-                        Password = reader["Password"].ToString()
-
-                    };
-                }
-            }
-            return user;
-        }
-
         public List<User> GetUsers()
         {
-            var users = new List<User>();
-
-            var cmd = db.connection.CreateCommand();
-            cmd.CommandText = "Select Id, Name, Password from users";
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    users.Add(new User((int)reader["Id"])
-                    {
-                        Name = reader["Name"].ToString(),
-                        Password = reader["Password"].ToString()
-
-                    });
-                }
-            }
-
-            return users;
+            return userRepository.GetUsers();
         }
 
-        public User CreateUser(string username, string password)
+        public User CreateUser(string username, string password, int timeZoneOffset, bool isAdmin)
         {
-            var currentUser = GetUser(username);
-            if (currentUser != null)
-                return currentUser;
-            var cmd = db.connection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO ca.users (Name, Password ) VALUES ('{username}','{password}' );";
-            cmd.ExecuteNonQuery();
-            return GetUser(username);
+            return userRepository.CreateUser(username, password, timeZoneOffset, isAdmin);
         }
     }
 

@@ -27,8 +27,9 @@ namespace ca_proto.Controllers
 
         public IActionResult Index()
         {
-            var products = inventoryService.QuickSearch(new[] { "test" });
-            return View(products?.Count() ?? 0);
+            //var products = inventoryService.QuickSearch(new[] { "test" });
+            //return View(products?.Count() ?? 0);
+            return View();
         }
 
         public IActionResult About()

@@ -47,6 +47,7 @@ namespace ca_proto
             // Add framework services.
             services.AddMvc();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IInventoryService, InventoryService>();
             services.AddTransient<IInventoryRepository, InventoryRepository>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();

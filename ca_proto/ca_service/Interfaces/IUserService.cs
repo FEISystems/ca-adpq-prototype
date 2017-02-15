@@ -10,6 +10,7 @@ namespace ca_service.Interfaces
         List<User> GetUsers();
         Login Authenticate(string username, string password);
         bool IsAuthenticated(string token);
-        User CreateUser(string username, string password);
+        bool IsAuthenticatedAdmin(string token);
+        User CreateUser(string username, string password, int timeZoneOffset, bool isAdmin);
     }
 }
