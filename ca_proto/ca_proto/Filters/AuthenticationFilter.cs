@@ -12,6 +12,7 @@ namespace ca_proto.Filters
         {
             public void OnActionExecuting(ActionExecutingContext context)
             {
+                //implement bool IsAuthenticated(string token)
                 if (context.ActionDescriptor.DisplayName == "FiltersSample.Controllers.HomeController.Hello")
                 {
                     // Manipulating action arguments...
@@ -24,11 +25,7 @@ namespace ca_proto.Filters
 
             public void OnActionExecuted(ActionExecutedContext context)
             {
-                if (context.ActionDescriptor.DisplayName == "FiltersSample.Controllers.HomeController.Hello")
-                {
-                    // Manipulating action result...
-                    context.Result = ca_proto.Helpers.Helpers.GetContentResult(context.Result, "FIRST: ");
-                }
+                
             }
         }
     }

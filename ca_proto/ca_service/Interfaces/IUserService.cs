@@ -8,5 +8,8 @@ namespace ca_service.Interfaces
     public interface IUserService
     {
         List<User> GetUsers();
+        Login Authenticate(string username, string password);
+        bool IsAuthenticated(string token);
+        User CreateUser(string username, string password);
     }
 }
