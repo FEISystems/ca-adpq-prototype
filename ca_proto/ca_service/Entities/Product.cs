@@ -13,6 +13,16 @@ namespace ca_service.Entities
         }
     }
 
+    public class Category : Entity
+    {
+        public Category(int id) : base(id)
+        {
+
+        }
+
+        public string Name { get; set; }
+    }
+
     public class Product : Entity
     {
         public Product(int id) : base(id)
@@ -35,9 +45,9 @@ namespace ca_service.Entities
 
         public ProductType ProductType { get; set; }
 
-        public List<int> ValidAsAddOnForParentProductIds { get; set; }
+        public List<int> ValidAsAddOnForParentCategories { get; set; }
 
-        public string Category { get; set; } //todo: is a string sufficient here?
+        public int CategoryId { get; set; }
     }
 
     public enum ProductType

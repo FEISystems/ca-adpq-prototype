@@ -13,16 +13,16 @@ CREATE TABLE `users` (
 
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Consumer1','C0nSumer1', 0, 4);
+VALUES ('Consumer1','C0nSumer1', 0, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Consumer2','C0nSumer2', 0, 4);
+VALUES ('Consumer2','C0nSumer2', 0, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Consumer3','C0nSumer3', 0, 4);
+VALUES ('Consumer3','C0nSumer3', 0, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Admin1','@dMin1', 1, 4);
+VALUES ('Admin1','@dMin1', 1, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Admin2','@dMin2', 1, 4);
+VALUES ('Admin2','@dMin2', 1, -4);
