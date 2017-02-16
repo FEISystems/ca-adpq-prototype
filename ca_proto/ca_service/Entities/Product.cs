@@ -14,6 +14,7 @@ namespace ca_service.Entities
         }
     }
 
+    [DbTable("ca.categories")]
     public class Category : Entity
     {
         public Category(int id) : base(id)
@@ -21,6 +22,7 @@ namespace ca_service.Entities
 
         }
 
+        [DbColumn(System.Data.DbType.String)]
         public string Name { get; set; }
     }
 

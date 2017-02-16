@@ -14,5 +14,6 @@ namespace ca_service.Interfaces
         void Import(string fileContent);
         Product Get(int id);
         void Delete(int id);
+        List<Product> Fetch();
     }
 }

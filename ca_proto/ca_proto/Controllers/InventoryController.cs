@@ -71,5 +71,11 @@ namespace ca_proto.Controllers
             }
             return new EmptyResult();
         }
+
+        [HttpGet("Fetch")]
+        public Product[] Fetch()
+        {
+            return inventoryService.Fetch().ToArray();
+        }
     }
 }

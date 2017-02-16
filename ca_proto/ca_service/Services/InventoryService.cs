@@ -64,5 +64,10 @@ namespace ca_service.Services
             inventoryRepository.Delete(id);
         }
 
+        public IEnumerable<Product> Fetch()
+        {
+            return inventoryRepository.Fetch();
+        }
+
     }
 }

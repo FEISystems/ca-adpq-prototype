@@ -174,6 +174,24 @@ namespace ca_service.Repositories
             }
         }
 
+        //todo: include filtering and paging
+        public List<EntityType> Fetch()
+        {
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                cmd.CommandText = "select * from " + TableName;
+                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                {
+                    List<EntityType> result = new List<EntityType>();
+                    while (reader.Read())
+                    {
+                        result.Add(ReadEntity(reader));
+                    }
+                    return result;
+                }
+            }
+        }
+
         /// <summary>
         /// override in sub-classes to convert properties if necessary
         /// </summary>
@@ -183,21 +201,27 @@ namespace ca_service.Repositories
         {
             using (var cmd = db.connection.CreateCommand() as MySqlCommand)
             {
-                cmd.CommandText = "select * from " + TableName;
+                cmd.CommandText = string.Format("select * from {0} where Id = {1}", TableName, id);
                 using (var reader = cmd.ExecuteReader() as MySqlDataReader)
                 {
                     if (reader.Read())
                     {
-                        EntityType result = Activator.CreateInstance(typeof(EntityType), id) as EntityType;
-                        foreach (var column in Columns)
-                        {
-                            column.Property.SetValue(result, reader[column.ColumnName]);
-                        }
+                        EntityType result = ReadEntity(reader);
+                        return result;
                     }
                 }
             }
             return null;
         }
 
+        protected virtual EntityType ReadEntity(MySqlDataReader reader)
+        {
+            EntityType result = Activator.CreateInstance(typeof(EntityType), reader["Id"]) as EntityType;
+            foreach (var column in Columns)
+            {
+                column.Property.SetValue(result, reader[column.ColumnName]);
+            }
+            return result;
+        }
     }
 }
