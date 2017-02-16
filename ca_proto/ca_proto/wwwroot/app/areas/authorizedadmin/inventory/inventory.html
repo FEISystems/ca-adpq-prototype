@@ -1,0 +1,8 @@
+﻿<standard-layout>
+    <h1>{{model.title}}</h1>
+    <h3>Import</h3>
+    <form name="fileImportForm" id="fileImportForm">
+        <input type="file" id="selectedfile" name="selectedfile"/><br />
+        <button class="btn" type="button" ng-click="model.importFile()">Import CSV Inventory File</button>
+    </form>
+</standard-layout>

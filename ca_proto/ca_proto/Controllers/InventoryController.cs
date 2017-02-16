@@ -1,4 +1,5 @@
-﻿using ca_service.Entities;
+﻿using ca_proto.Models;
+using ca_service.Entities;
 using ca_service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -60,21 +61,32 @@ namespace ca_proto.Controllers
         }
 
         [HttpPost("Import")]
-        public ActionResult Import([FromBody] IFormFile file)
+        public ActionResult Import([FromBody] ImportFile file)
         {
-            if (null != file &&  file.Length > 0)
+            if (null != file)
             {
-                using (var stream = file.OpenReadStream())
+                if (!string.IsNullOrWhiteSpace(file.content))
                 {
-                    using (var reader = new System.IO.StreamReader(stream))
-                    {
-                        string s = reader.ReadToEnd();
-                        inventoryService.Import(s);
-                    }
+                    inventoryService.Import(file.content);
                 }
             }
             return new EmptyResult();
         }
+        //public ActionResult Import([FromBody] IFormFile file)
+        //{
+        //    if (null != file &&  file.Length > 0)
+        //    {
+        //        using (var stream = file.OpenReadStream())
+        //        {
+        //            using (var reader = new System.IO.StreamReader(stream))
+        //            {
+        //                string s = reader.ReadToEnd();
+        //                inventoryService.Import(s);
+        //            }
+        //        }
+        //    }
+        //    return new EmptyResult();
+        //}
 
         [HttpGet("Fetch")]
         public Product[] Fetch()

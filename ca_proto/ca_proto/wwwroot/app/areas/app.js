@@ -23,6 +23,7 @@
         $routeConfig: [
             { path: '/home', component: 'home', name: 'Home' },
             { path: '/adminlogin', component: 'adminLogin', name: 'Admin Login' },
+            { path: '/admininventory', component: 'adminInventory', name: 'Admin Inventory' },
             { path: '/aboutus', component: 'aboutUs', name: 'About Us' },
             { path: '/help', component: 'help', name: 'Help' },
             { path: '/cart', component: 'cart', name: 'Cart' },
