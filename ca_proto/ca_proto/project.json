@@ -53,7 +53,9 @@
     "include": [
       "wwwroot",
       "Views",
+      "**/*.cshtml",
       "web.config"
+      
     ]
   },
 
