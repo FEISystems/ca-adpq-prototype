@@ -4,11 +4,14 @@
 
     var controller = function ($scope, $location, messageService, inventoryService) {
         var model = this;
+        model.product = {};
         model.provider = {};
         model.title = "Admin Product Management";
+
         model.addProduct = function () {
-            inventoryService.addProduct();
+            inventoryService.addProduct(model.product);
         };
+
         model.importFile = function () {
             var fileinfo = document.getElementById("selectedfile").files[0];
             if (fileinfo == undefined)
@@ -30,6 +33,7 @@
 
         messageService.subscribe('addProductSuccess', function (response) {
             alert('Add Product Success');
+            model.product = {};
         })
 
         messageService.subscribe('addProductFailure', function (response) {

@@ -1,8 +1,14 @@
 ﻿(function () {
 
     var inventoryService = function (messageService, $http) {
-        var addProduct = function () {
-            alert("add product");
+        var addProduct = function (product) {
+            $http.post("/api/inventory/add", product)
+                .success(function (response) {
+                    messageService.publish('addProductSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('addProductFailure', response);
+                });
         };
 
         var importFile = function (fileinfo) {

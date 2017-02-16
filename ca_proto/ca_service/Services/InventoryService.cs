@@ -36,7 +36,7 @@ namespace ca_service.Services
         public void Add(Product product)
         {
             if (null == product)
-                return;
+                throw new Exception("A product must be provided");
             inventoryRepository.Add(product);
         }
 

@@ -84,5 +84,12 @@ namespace ca_proto.Controllers
         {
             return inventoryService.Get(id);
         }
+
+        [HttpPost("Add")]
+        public ActionResult Add([FromBody] Product product)
+        {
+            inventoryService.Add(product);
+            return new EmptyResult();
+        }
     }
 }
