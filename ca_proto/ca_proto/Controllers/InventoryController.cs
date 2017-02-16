@@ -72,21 +72,6 @@ namespace ca_proto.Controllers
             }
             return new EmptyResult();
         }
-        //public ActionResult Import([FromBody] IFormFile file)
-        //{
-        //    if (null != file &&  file.Length > 0)
-        //    {
-        //        using (var stream = file.OpenReadStream())
-        //        {
-        //            using (var reader = new System.IO.StreamReader(stream))
-        //            {
-        //                string s = reader.ReadToEnd();
-        //                inventoryService.Import(s);
-        //            }
-        //        }
-        //    }
-        //    return new EmptyResult();
-        //}
 
         [HttpGet("Fetch")]
         public Product[] Fetch()
