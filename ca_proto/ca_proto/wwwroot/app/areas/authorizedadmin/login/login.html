@@ -1,9 +1,11 @@
 ﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+    <h1>{{model.title}}</h1>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="model.loginAdminClick()">Admin Login</button>
         <button class="btn" type="button" ng-click="model.loginConsumerClick()">Consumer Login</button>
         <button class="btn" type="button" ng-click="model.isLoggedInClick()">Check if Logged In</button>
         <button class="btn" type="button" ng-click="model.logOutClick()">Log out</button>
-    </div>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#loginModal">Open Modal</button>
+    </div>    
+
 </standard-layout>

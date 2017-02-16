@@ -4,7 +4,7 @@
     window.document.title = 'CA Prototype';
     module.value("$routerRootComponent", "caWebApp");
 
-    var controller = function (roleService) {
+    var controller = function () {
         var model = this;
         model.$onInit = function () {
             //Do Something
@@ -18,6 +18,7 @@
         },
         template: '<master-layout>' +
                         '<ng-outlet style="display: block"></ng-outlet>' +
+                        '<modal></modal>' +
                     '</master-layout>'
             ,
         $routeConfig: [

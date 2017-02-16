@@ -13,8 +13,7 @@
                 });
         };
         
-        var isLoggedIn = function(){
-            function readCookie(name) {
+        var readCookie = function(name) {
                 var nameEQ = name + "=";
                 var ca = document.cookie.split(';');
                 for (var i = 0; i < ca.length; i++) {
@@ -23,7 +22,15 @@
                     if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
                 }
                 return null;
-            }
+        }
+
+        var hasAuthenticationCookie = function(){
+            return readCookie("AuthToken") != null;
+        }
+
+
+        var isLoggedIn = function(){
+            
 
 
 
@@ -38,6 +45,8 @@
         
         }
         
+        
+
         var logout = function () {
             //TODO
         }
@@ -45,7 +54,8 @@
         return {
             login: login,
             isLoggedIn: isLoggedIn,
-            logout: logout
+            logout: logout,
+            hasAuthenticationCookie: hasAuthenticationCookie
         };
     }
 

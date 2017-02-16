@@ -2,37 +2,30 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function() {
+    var controller = function(messageService, $http, loginService) {
         var model = this;
-        model.showModal = true;
+        model.showModal = false;//!loginService.hasAuthenticationCookie();
 
         model.loginInfo = {
-            maNumber: null,
-            LastName: null
+            username: null,
+            password: null
         };
 
 
-        var authenticate = function(messageService, $http) {
-            model.loading = true;
-            $http.post("/Authenticate/Create", model.loginInfo)
-                .success(function(data) {
-                    //$uibModalInstance.close(data);
-                    model.showModal = false;
-                })
-                .finally(function() {
-
-                });
-        }
-
         model.okClick = function() {
-            authenticate();
+            model.loading = true;
+            loginService.login(model.loginInfo.username, model.loginInfo.password);
         }
+
+        messageService.subscribe('loginSuccess', function (response) {
+            model.showModal = false;
+        })
     };
 
     module.component('modal', {
         templateUrl: 'app/views/shared/components/modal/modal.component.html',
         controllerAs: 'model',
-        controller : ['messageService', '$http', controller]
+        controller : ['messageService', '$http', 'loginService', controller]
     });
 
 }())
