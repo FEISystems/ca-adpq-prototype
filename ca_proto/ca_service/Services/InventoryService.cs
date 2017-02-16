@@ -32,5 +32,26 @@ namespace ca_service.Services
 
             return result;
         }
+
+        public void Add(Product product)
+        {
+            if (null == product)
+                return;
+            inventoryRepository.Add(product);
+        }
+
+        public void Update(Product product)
+        {
+            if (null == product)
+                return;
+            inventoryRepository.Update(product);
+        }
+
+        public void Import(string fileContent)
+        {
+            if (string.IsNullOrWhiteSpace(fileContent))
+                return;
+            inventoryRepository.Import(fileContent);
+        }
     }
 }

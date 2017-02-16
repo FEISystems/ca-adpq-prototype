@@ -19,3 +19,9 @@
 @section Scripts {
     @*Insert any script tags for this page here*@
 }
+
+<form method="post" asp-action="Import" asp-controller="api/inventory" enctype="multipart/form-data">
+    Select file to import:
+    <input type="file" name="file"/><br/>
+    <input type="submit" value="Import"/>
+</form>

@@ -9,5 +9,8 @@ namespace ca_service.Interfaces
     public interface IInventoryRepository : IDisposable
     {
         List<Product> QuickSearch(string[] searchTerms);
+        void Add(Product product);
+        void Update(Product product);
+        void Import(string fileContent);
     }
 }
