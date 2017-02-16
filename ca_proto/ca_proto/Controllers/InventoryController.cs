@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ca_proto.Controllers
@@ -22,7 +23,7 @@ namespace ca_proto.Controllers
         [HttpGet("Test")]
         public string Test()
         {
-
+            StringBuilder result = new StringBuilder();
             Product product = new Product(0)
             {
                 CategoryId = 1,
@@ -38,16 +39,19 @@ namespace ca_proto.Controllers
             };
             try
             {
-
+                result.AppendLine("Beginning test");
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch().Count()));
                 inventoryService.Add(product);
-
+                result.AppendLine("Added product: " + product.Id);
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch().Count()));
                 product.Name += " - updated";
-
                 inventoryService.Update(product);
-
+                result.AppendLine("Updated product: " + product.Id);
                 inventoryService.Delete(product.Id);
-
-                return "test success: " + product.Id.ToString();
+                result.AppendLine("Deleted product: " + product.Id);
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch().Count()));
+                result.AppendLine("test success: " + product.Id.ToString());
+                return result.ToString();
             }
             catch (Exception x)
             {
@@ -76,6 +80,12 @@ namespace ca_proto.Controllers
         public Product[] Fetch()
         {
             return inventoryService.Fetch().ToArray();
+        }
+
+        [HttpGet("{id}")]
+        public Product Get(int id)
+        {
+            return inventoryService.Get(id);
         }
     }
 }

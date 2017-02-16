@@ -44,7 +44,18 @@ namespace ca_proto.Controllers
             {
                 return x.Message;
             }
+        }
 
+        [HttpGet("Fetch")]
+        public Category[] Fetch()
+        {
+            return categoryService.Fetch().ToArray();
+        }
+
+        [HttpGet("{id}")]
+        public Category Get(int id)
+        {
+            return categoryService.Get(id);
         }
     }
 }
