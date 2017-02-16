@@ -1,7 +1,5 @@
 ﻿(function() {
-
     var messageService = function($rootScope, $log) {
-
         var publish = function(event, data) {
             $log.info("pubished " + event);
             $rootScope.$broadcast(event, data);

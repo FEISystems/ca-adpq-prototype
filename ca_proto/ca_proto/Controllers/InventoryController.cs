@@ -60,7 +60,7 @@ namespace ca_proto.Controllers
         }
 
         [HttpPost("Import")]
-        public ActionResult Import(IFormFile file)
+        public ActionResult Import([FromBody] IFormFile file)
         {
             if (null != file &&  file.Length > 0)
             {
