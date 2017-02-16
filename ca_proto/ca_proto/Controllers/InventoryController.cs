@@ -25,7 +25,7 @@ namespace ca_proto.Controllers
 
             Product product = new Product(0)
             {
-                Category = "cat1",
+                CategoryId = 1,
                 ContractId = 1,
                 ContractPrice = 100.0m,
                 ListPrice = 150.0m,
@@ -34,7 +34,7 @@ namespace ca_proto.Controllers
                 Name = "product 1",
                 ProductType = ProductType.Hardware,
                 SKU = "sku 1",
-                ValidAsAddOnForParentProductIds = new List<int>()
+                ValidAsAddOnForParentCategories = new List<int>()
             };
             try
             {
