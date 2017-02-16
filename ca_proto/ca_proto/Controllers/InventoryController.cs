@@ -38,11 +38,14 @@ namespace ca_proto.Controllers
             };
             try
             {
+
                 inventoryService.Add(product);
 
                 product.Name += " - updated";
 
                 inventoryService.Update(product);
+
+                inventoryService.Delete(product.Id);
 
                 return "test success: " + product.Id.ToString();
             }

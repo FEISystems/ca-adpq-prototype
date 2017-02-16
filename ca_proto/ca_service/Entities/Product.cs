@@ -57,6 +57,7 @@ namespace ca_service.Entities
         public ProductType ProductType { get; set; }
 
         public List<int> ValidAsAddOnForParentCategories { get; set; }
+
         [DbColumn(System.Data.DbType.Int32)]
         public int CategoryId { get; set; }
     }

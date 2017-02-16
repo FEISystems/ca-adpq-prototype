@@ -53,5 +53,16 @@ namespace ca_service.Services
                 return;
             inventoryRepository.Import(fileContent);
         }
+
+        public Product Get(int id)
+        {
+            return inventoryRepository.Get(id);
+        }
+
+        public void Delete(int id)
+        {
+            inventoryRepository.Delete(id);
+        }
+
     }
 }

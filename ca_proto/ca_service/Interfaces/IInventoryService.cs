@@ -13,5 +13,7 @@ namespace ca_service.Interfaces
 
         void Update(Product product);
         void Import(string fileContent);
+        Product Get(int id);
+        void Delete(int id);
     }
 }

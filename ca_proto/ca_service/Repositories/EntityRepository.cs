@@ -164,6 +164,16 @@ namespace ca_service.Repositories
             }
         }
 
+        public void Delete(int id)
+        {
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                cmd.CommandText = string.Format("delete from {0} where id = @id", TableName);
+                cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = id;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         /// <summary>
         /// override in sub-classes to convert properties if necessary
         /// </summary>
@@ -188,5 +198,6 @@ namespace ca_service.Repositories
             }
             return null;
         }
+
     }
 }
