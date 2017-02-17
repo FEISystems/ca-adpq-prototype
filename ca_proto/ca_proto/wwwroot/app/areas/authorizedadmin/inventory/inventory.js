@@ -24,6 +24,11 @@
             uploadData.CategoryId = uploadData.CategoryId.id;
             uploadData.ProductType = uploadData.ProductType.id;
             uploadData.ContractId = uploadData.ContractId.id;
+            if (uploadData.validAsAddOnForParentCategories) {
+                for (var i = 0; i < uploadData.ValidAsAddOnForParentCategories.length; i++) {
+                    uploadData.ValidAsAddOnForParentCategories[i] = uploadData.ValidAsAddOnForParentCategories[i].id;
+                }
+            }
             if (uploadData.Id)
                 inventoryService.editProduct(uploadData);
             else
@@ -78,6 +83,18 @@
             result.SKU = item.sku;
             result.ProductType = model.FindLookup(model.productTypes, item.productType);
             result.CategoryId = model.FindLookup(model.categories, item.categoryId);
+            if (item.validAsAddOnForParentCategories && item.validAsAddOnForParentCategories.length)
+            {
+                result.ValidAsAddOnForParentCategories = JSON.parse(JSON.stringify(item.validAsAddOnForParentCategories));
+                for (var i = 0; i < result.ValidAsAddOnForParentCategories.length; i++)
+                {
+                    result.ValidAsAddOnForParentCategories[i] = model.FindLookup(model.categories, result.ValidAsAddOnForParentCategories[i]);
+                }
+            }
+            else
+            {
+                result.ValidAsAddOnForParentCategories = [];
+            }
             return result;
         };
 

@@ -140,12 +140,24 @@ namespace ca_service.Repositories
             using (var cmd = db.connection.CreateCommand() as MySqlCommand)
             {
                 cmd.CommandText = InsertCommandText;
-                foreach (var column in Columns)
+                BuildCommonParameters(cmd, entity);
+                var id = (ulong)cmd.ExecuteScalar();
+                entity.Id = (int)id;
+            }
+        }
+
+        private void BuildCommonParameters(MySqlCommand cmd, EntityType entity)
+        {
+            foreach (var column in Columns)
+            {
+                if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
+                {
+                    column.BuildParameter(cmd).Value = string.Join(",", ((List<int>)column.Property.GetValue(entity)).Select(item => item.ToString()).ToArray());
+                }
+                else
                 {
                     column.BuildParameter(cmd).Value = column.Property.GetValue(entity);
                 }
-                var id = (ulong)cmd.ExecuteScalar();
-                entity.Id = (int)id;
             }
         }
 
@@ -156,10 +168,7 @@ namespace ca_service.Repositories
             using (var cmd = db.connection.CreateCommand() as MySqlCommand)
             {
                 cmd.CommandText = EditCommandText;
-                foreach (var column in Columns)
-                {
-                    column.BuildParameter(cmd).Value = column.Property.GetValue(entity);
-                }
+                BuildCommonParameters(cmd, entity);
                 cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = entity.Id;
                 cmd.ExecuteNonQuery();
             }
@@ -235,7 +244,23 @@ namespace ca_service.Repositories
             EntityType result = Activator.CreateInstance(typeof(EntityType), reader["Id"]) as EntityType;
             foreach (var column in Columns)
             {
-                column.Property.SetValue(result, reader[column.ColumnName]);
+                if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
+                {
+                    var values = reader[column.ColumnName] as string;
+                    if (null == values)
+                    {
+                        column.Property.SetValue(result, new List<int>(0));
+                    }
+                    else
+                    {
+                        var list = new List<int>(values.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
+                        column.Property.SetValue(result, list);
+                    }
+                }
+                else
+                {
+                    column.Property.SetValue(result, reader[column.ColumnName]);
+                }
             }
             return result;
         }

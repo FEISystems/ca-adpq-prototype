@@ -38,6 +38,7 @@ namespace ca_service.Entities
         [DbColumn(System.Data.DbType.Int32)]
         public ProductType ProductType { get; set; }
 
+        [DbColumn(System.Data.DbType.String)]
         public List<int> ValidAsAddOnForParentCategories { get; set; }
 
         [DbColumn(System.Data.DbType.Int32)]
