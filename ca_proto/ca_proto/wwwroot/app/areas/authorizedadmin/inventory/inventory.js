@@ -13,9 +13,14 @@
         model.contracts = [];
 
         model.addProduct = function () {
-            alert(JSON.stringify(model.product));
-            return;
-            inventoryService.addProduct(model.product);
+            //preserve the model.product in case the add operation fails
+            var uploadData = JSON.parse(JSON.stringify(model.product));
+            alert(JSON.stringify(uploadData));
+            uploadData.CategoryId = uploadData.CategoryId.id;
+            uploadData.ProductType = uploadData.ProductType.id;
+            uploadData.ContractId = uploadData.ContractId.id;
+            alert(JSON.stringify(uploadData));
+            inventoryService.addProduct(uploadData);
         };
 
         model.importFile = function () {
