@@ -17,12 +17,8 @@
                 <td><!--
                     need to query for these    
                     -->
-                    <select ng-model="model.product.ContractId" required>
+                    <select ng-model="model.product.ContractId" ng-options="contract as contract.text for contract in model.contracts" required>
                         <option value="">Select Contract</option>
-                        <option value="1">Contract A</option>
-                        <option value="2">Contract B</option>
-                        <option value="3">Contract C</option>
-                        <option value="4">Contract D</option>
                     </select>
                 </td>
             </tr>
@@ -39,12 +35,8 @@
                 <td><!--
                     need to query for these    
                     -->
-                    <select ng-model="model.product.ProductType" required>
+                    <select ng-model="model.product.ProductType" ng-options="prod as prod.text for prod in model.productTypes" required>
                         <option value="">Select Product Type</option>
-                        <option value="1">Hardware</option>
-                        <option value="2">Software</option>
-                        <option value="3">Service</option>
-                        <option value="4">Add-on</option>
                     </select>
                 </td>
             </tr>
@@ -59,12 +51,8 @@
                     <!--
             need to query for these
             -->
-                    <select ng-model="model.product.CategoryId" required>
+                    <select ng-model="model.product.CategoryId" ng-options="categories as categories.text for categories in model.categories" required>
                         <option value="">Select Category</option>
-                        <option value="1">Cat 1</option>
-                        <option value="2">Cat 2</option>
-                        <option value="3">Cat 3</option>
-                        <option value="4">Cat 4</option>
                     </select>
                 </td>
             </tr>
