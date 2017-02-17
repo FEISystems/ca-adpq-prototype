@@ -105,7 +105,7 @@ namespace ca_proto.Controllers
         [HttpGet("ProductTypes")]
         public ActionResult ProductTypes()
         {
-            return Json(SelectItem.FromEnum<ProductType>());
+            return Json(SelectItem.FromEnum<ProductType>().ToArray());
         }
 
     }

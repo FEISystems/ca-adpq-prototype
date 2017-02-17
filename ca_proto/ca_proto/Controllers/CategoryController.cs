@@ -1,4 +1,5 @@
-﻿using ca_service.Entities;
+﻿using ca_proto.Models;
+using ca_service.Entities;
 using ca_service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -47,15 +48,25 @@ namespace ca_proto.Controllers
         }
 
         [HttpGet("Fetch")]
-        public Category[] Fetch()
+        public IActionResult Fetch()
         {
-            return categoryService.Fetch().ToArray();
+            return Json(categoryService.Fetch());
         }
 
         [HttpGet("{id}")]
-        public Category Get(int id)
+        public IActionResult Get(int id)
         {
-            return categoryService.Get(id);
+            return Json(categoryService.Get(id));
+        }
+
+        [HttpGet("Lookups")]
+        public IActionResult Lookups()
+        {
+            return Json(categoryService.Fetch().Select(item => new SelectItem
+            {
+                Id = item.Id,
+                Text = item.Name
+            }));
         }
     }
 }

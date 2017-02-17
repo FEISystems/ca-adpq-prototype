@@ -8,7 +8,13 @@
         model.provider = {};
         model.title = "Admin Product Management";
 
+        model.productTypes = [];
+        model.categories = [];
+        model.contracts = [];
+
         model.addProduct = function () {
+            alert(JSON.stringify(model.product));
+            return;
             inventoryService.addProduct(model.product);
         };
 
@@ -39,6 +45,34 @@
         messageService.subscribe('addProductFailure', function (response) {
             alert('Add Product Failure');
         })
+
+        messageService.subscribe('retrievedProductTypes', function (response) {
+            model.productTypes = response;
+        })
+
+        messageService.subscribe('retrievedProductTypesFail', function (response) {
+            model.productTypes = [];
+        })
+
+        messageService.subscribe('retrievedCategories', function (response) {
+            model.categories = response;
+        })
+
+        messageService.subscribe('retrievedCategoriesFail', function (response) {
+            model.categories = [];
+        })
+
+        messageService.subscribe('retrievedContracts', function (response) {
+            model.contracts = response;
+        })
+
+        messageService.subscribe('retrievedContractsFail', function (response) {
+            model.contracts = [];
+        })
+
+        inventoryService.fetchProductTypes();
+        inventoryService.fetchCategories();
+        inventoryService.fetchContracts();
     };
 
     module.component("adminInventory", {

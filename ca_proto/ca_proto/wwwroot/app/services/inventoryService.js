@@ -27,9 +27,42 @@
             r.readAsText(fileinfo);
         };
 
+        var fetchProductTypes = function () {
+            $http.get("/api/inventory/productTypes")
+                .success(function (response) {
+                    messageService.publish('retrievedProductTypes', response);
+                })
+                .error(function (response) {
+                    messageService.publish('retrievedProductTypesFail', response);
+                });
+        };
+
+        var fetchCategories = function () {
+            $http.get("/api/category/lookups")
+                .success(function (response) {
+                    messageService.publish('retrievedCategories', response);
+                })
+                .error(function (response) {
+                    messageService.publish('retrievedCategoriesFail', response);
+                });
+        };
+
+        var fetchContracts = function () {
+            $http.get("/api/contract/lookups")
+                .success(function (response) {
+                    messageService.publish('retrievedContracts', response);
+                })
+                .error(function (response) {
+                    messageService.publish('retrievedContractsFail', response);
+                });
+        };
+
         return {
             addProduct: addProduct,
-            importFile: importFile
+            importFile: importFile,
+            fetchProductTypes: fetchProductTypes,
+            fetchCategories: fetchCategories,
+            fetchContracts: fetchContracts,
         };
     }
 
