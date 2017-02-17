@@ -12,5 +12,6 @@ namespace ca_service.Interfaces
         bool IsAuthenticated(string token);
         bool IsAuthenticatedAdmin(string token);
         User CreateUser(string username, string password, int timeZoneOffset, bool isAdmin);
+        void LogOut(string token);
     }
 }

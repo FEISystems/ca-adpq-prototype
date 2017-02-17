@@ -4,7 +4,7 @@
 
     var controller = function(messageService, $http, loginService) {
         var model = this;
-        model.showModal = false;//!loginService.hasAuthenticationCookie();
+        model.showModal = !loginService.hasAuthenticationCookie();
 
         model.loginInfo = {
             username: null,

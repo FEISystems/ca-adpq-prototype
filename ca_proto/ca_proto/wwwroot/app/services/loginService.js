@@ -5,8 +5,14 @@
         var login = function (username, password) {
             var creds = {username: username, password: password };
             $http.post("/api/authentication", creds)
-                .success(function(response) {
-                    messageService.publish('loginSuccess', response);
+                .success(function (response) {
+                    if (!response.token || !response.token.length) {
+                        messageService.publish('loginFailure', response);
+                        messageService.publish('showError', 'Login Failed')
+                    }
+                    else {
+                        messageService.publish('loginSuccess', response);
+                    }
                 })
                 .error(function (response) {
                     messageService.publish('loginFailure', response);
@@ -48,7 +54,13 @@
         
 
         var logout = function () {
-            //TODO
+            $http.delete("/api/authentication/")
+                .success(function (response) {
+                    messageService.publish('logoutSuccess', response);
+                })
+            .error(function (response) {
+                messageService.publish('logoutFailure', response);
+            });
         }
 
         return {

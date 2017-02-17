@@ -69,6 +69,11 @@ namespace ca_service.Services
         {
             return userRepository.CreateUser(username, password, timeZoneOffset, isAdmin);
         }
+
+        public void LogOut(string token)
+        {
+            this.memoryCache.Remove(token);
+        }
     }
 
     

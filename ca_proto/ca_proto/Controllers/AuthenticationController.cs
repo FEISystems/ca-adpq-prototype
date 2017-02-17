@@ -49,10 +49,14 @@ namespace ca_proto.Controllers
         }
 
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete()
         {
+            if (!Request.Cookies.Any(x => x.Key == Helpers.Helpers.AuthToken))
+                return;
+            var cookie = Request.Cookies.First(x => x.Key == Helpers.Helpers.AuthToken);
+            this.userservice.LogOut(cookie.Value.ToString());
+            Response.Cookies.Delete(Helpers.Helpers.AuthToken);
         }
     }
 }

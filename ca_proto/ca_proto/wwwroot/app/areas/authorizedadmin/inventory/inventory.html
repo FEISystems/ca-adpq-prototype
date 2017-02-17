@@ -5,4 +5,81 @@
         <input type="file" id="selectedfile" name="selectedfile"/><br />
         <button class="btn" type="button" ng-click="model.importFile()">Import CSV Inventory File</button>
     </form>
+    <h3>or</h3>
+    <h3>Add New Product</h3>
+    <form name="addProductForm" id="addProductForm" novalidate
+          ng-submit="addProductForm.$valid && model.addProduct()">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" ng-model="model.product.Name" required/></td>
+                <td>Contract Id</td>
+                <td><!--
+                    need to query for these    
+                    -->
+                    <select ng-model="model.product.ContractId" required>
+                        <option value="">Select Contract</option>
+                        <option value="1">Contract A</option>
+                        <option value="2">Contract B</option>
+                        <option value="3">Contract C</option>
+                        <option value="4">Contract D</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Manufacturer</td>
+                <td><input type="text" ng-model="model.product.Manufacturer" required /></td>
+                <td>ManufacturerPartNumber</td>
+                <td><input type="text" ng-model="model.product.ManufacturerPartNumber" required /></td>
+            </tr>
+            <tr>
+                <td>SKU</td>
+                <td><input type="text" ng-model="model.product.SKU" required /></td>
+                <td>Product Type</td>
+                <td><!--
+                    need to query for these    
+                    -->
+                    <select ng-model="model.product.ProductType" required>
+                        <option value="">Select Product Type</option>
+                        <option value="1">Hardware</option>
+                        <option value="2">Software</option>
+                        <option value="3">Service</option>
+                        <option value="4">Add-on</option>
+                    </select>
+                </td>
+            </tr>
+            <!--
+            need to include selection list for parent categories    
+            -->
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Category Id</td>
+                <td>
+                    <!--
+            need to query for these
+            -->
+                    <select ng-model="model.product.CategoryId" required>
+                        <option value="">Select Category</option>
+                        <option value="1">Cat 1</option>
+                        <option value="2">Cat 2</option>
+                        <option value="3">Cat 3</option>
+                        <option value="4">Cat 4</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>List Price</td>
+                <td><input type="text" ng-model="model.product.ListPrice" required /></td>
+                <td>Contract Price</td>
+                <td><input type="text" ng-model="model.product.ContractPrice" required /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input type="hidden" ng-model="model.product.Id" /></td>
+                <td><input type="submit" value="Add Product" ng-disabled="!addProductForm.$valid" /></td>
+            </tr>
+        </table>
+    </form>
 </standard-layout>
