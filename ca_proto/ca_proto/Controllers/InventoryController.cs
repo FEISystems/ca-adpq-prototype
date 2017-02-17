@@ -74,9 +74,9 @@ namespace ca_proto.Controllers
         }
 
         [HttpGet("Fetch")]
-        public Product[] Fetch()
+        public ActionResult Fetch()
         {
-            return inventoryService.Fetch(0, int.MaxValue).ToArray();
+            return Json(inventoryService.Fetch(0, int.MaxValue));
         }
 
         [HttpPost("Query")]
@@ -90,15 +90,22 @@ namespace ca_proto.Controllers
         }
 
         [HttpGet("{id}")]
-        public Product Get(int id)
+        public IActionResult Get(int id)
         {
-            return inventoryService.Get(id);
+            return Json(inventoryService.Get(id));
         }
 
         [HttpPost("Add")]
         public ActionResult Add([FromBody] Product product)
         {
             inventoryService.Add(product);
+            return new EmptyResult();
+        }
+
+        [HttpPost("Update")]
+        public ActionResult Update([FromBody] Product product)
+        {
+            inventoryService.Update(product);
             return new EmptyResult();
         }
 

@@ -11,6 +11,16 @@
                 });
         };
 
+        var editProduct = function (product) {
+            $http.post("/api/inventory/update", product)
+                .success(function (response) {
+                    messageService.publish('updateProductSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('updateProductFailure', response);
+                });
+        };
+
         var importFile = function (fileinfo) {
             var r = new FileReader();
             r.onloadend = function (e) {
@@ -57,12 +67,25 @@
                 });
         };
 
+        var fetchProducts = function (start, count, orderByColumn, orderAscending) {
+            var postData = { start: start, count: count, orderByColumn: orderByColumn, orderAscending: orderAscending };
+            $http.post("/api/inventory/query", postData)
+                .success(function (response) {
+                    messageService.publish('querySuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('queryFailure', response);
+                });
+        }
+
         return {
             addProduct: addProduct,
             importFile: importFile,
             fetchProductTypes: fetchProductTypes,
             fetchCategories: fetchCategories,
             fetchContracts: fetchContracts,
+            fetchProducts: fetchProducts,
+            editProduct: editProduct,
         };
     }
 
