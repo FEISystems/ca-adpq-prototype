@@ -51,6 +51,11 @@
             }
         };
 
+        model.delete = function (id) {
+            if (confirm("This will delete the selected item!"))
+                inventoryService.deleteProduct(id);
+        };
+
         model.fetchProducts = function () {
             inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
         };
@@ -142,6 +147,15 @@
 
         messageService.subscribe('queryFailure', function (response) {
             model.products = [];
+        })
+
+        messageService.subscribe('deleteSuccess', function (response) {
+            alert('Delete Product Success');
+            model.newProduct();
+        })
+
+        messageService.subscribe('deleteFailure', function (response) {
+            alert('Delete Product Failure');
         })
 
         inventoryService.fetchProductTypes();

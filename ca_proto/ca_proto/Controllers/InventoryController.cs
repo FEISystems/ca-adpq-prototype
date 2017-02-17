@@ -115,5 +115,11 @@ namespace ca_proto.Controllers
             return Json(SelectItem.FromEnum<ProductType>().ToArray());
         }
 
+        [HttpPost("Delete")]
+        public ActionResult Delete([FromBody]int id)
+        {
+            inventoryService.Delete(id);
+            return new EmptyResult();
+        }
     }
 }

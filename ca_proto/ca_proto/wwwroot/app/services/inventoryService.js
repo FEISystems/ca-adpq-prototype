@@ -21,6 +21,16 @@
                 });
         };
 
+        var deleteProduct = function (id) {
+            $http.post("/api/inventory/delete", id)
+                .success(function (response) {
+                    messageService.publish('deleteSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('deleteFailure', response);
+                });
+        };
+
         var importFile = function (fileinfo) {
             var r = new FileReader();
             r.onloadend = function (e) {
@@ -86,6 +96,7 @@
             fetchContracts: fetchContracts,
             fetchProducts: fetchProducts,
             editProduct: editProduct,
+            deleteProduct: deleteProduct,
         };
     }
 
