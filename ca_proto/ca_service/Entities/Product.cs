@@ -6,26 +6,6 @@ using ca_service.Database;
 
 namespace ca_service.Entities
 {
-    public class Contract : Entity
-    {
-        public Contract(int id) : base(id)
-        {
-
-        }
-    }
-
-    [DbTable("ca.categories")]
-    public class Category : Entity
-    {
-        public Category(int id) : base(id)
-        {
-
-        }
-
-        [DbColumn(System.Data.DbType.String)]
-        public string Name { get; set; }
-    }
-
     [DbTable("ca.products")]
     public class Product : Entity
     {

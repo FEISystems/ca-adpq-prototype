@@ -50,8 +50,10 @@ namespace ca_proto
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IInventoryService, InventoryService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IContractService, ContractService>();
             services.AddTransient<IInventoryRepository, InventoryRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IContractRepository, ContractRepository>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();

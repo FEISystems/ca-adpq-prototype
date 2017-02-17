@@ -20,6 +20,9 @@
         messageService.subscribe('loginSuccess', function (response) {
             model.showModal = false;
         })
+        messageService.subscribe('logoutSuccess', function (response) {
+            model.showModal = true;
+        })
     };
 
     module.component('modal', {

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace ca_proto.Controllers
 {
     [Route("api/[controller]")]
-    public class InventoryController: Controller
+    public class InventoryController : Controller
     {
         private readonly IInventoryService inventoryService;
 
@@ -101,5 +101,12 @@ namespace ca_proto.Controllers
             inventoryService.Add(product);
             return new EmptyResult();
         }
+
+        [HttpGet("ProductTypes")]
+        public ActionResult ProductTypes()
+        {
+            return Json(SelectItem.FromEnum<ProductType>());
+        }
+
     }
 }
