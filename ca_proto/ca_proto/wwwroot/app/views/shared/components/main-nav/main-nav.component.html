@@ -1,13 +1,19 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/main-nav/main-nav.component.css" />
 
-<header id="main-nav">
-    <ul class="usa-unstyled-list">
-        <li><a ng-link="['Admin Login']">Admin Login</a></li>
-        <li><a ng-link="['Admin Inventory']">Admin Inventory</a></li>
-        <!--<li><a ng-link="['Login Register']">Login/Register</a></li>-->
-        <li><a ng-link="['About Us']">About Us</a></li>
-        <li><a ng-link="['Help']">Help Desk</a></li>
-        <li><a ng-link="['Cart']">Cart</a></li>
-        <li><a ng-link="['Compare List']">Compare List</a></li>
-    </ul>
-</header>
+<div id="main-nav" role="navigation" class="usa-grid">
+    <div class="usa-width-two-thirds">
+        <ul class="usa-unstyled-list">
+            <li><a ng-link="['Admin Login']">Admin Login</a></li>
+            <li><a ng-link="['Admin Inventory']">Admin Inventory</a></li>
+            <!--<li><a ng-link="['Login Register']">Login/Register</a></li>-->
+            <li><a ng-link="['About Us']">About Us</a></li>
+            <li><a ng-link="['Help']">Help Desk</a></li>
+        </ul>
+    </div>
+    <div class="usa-width-one-third">
+        <ul class="usa-unstyled-list text-right">            
+            <li><a ng-link="['Cart']">Cart</a></li>
+            <li><a ng-link="['Compare List']">Compare List</a></li>
+        </ul>
+    </div>
+</div>
