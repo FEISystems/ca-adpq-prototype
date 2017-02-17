@@ -17,8 +17,8 @@
             userRole: "@"
         },
         template: '<master-layout>' +
-                        '<ng-outlet style="display: block"></ng-outlet>' +
                         '<modal></modal>' +
+                        '<ng-outlet style="display: block"></ng-outlet>' +                        
                     '</master-layout>'
             ,
         $routeConfig: [
