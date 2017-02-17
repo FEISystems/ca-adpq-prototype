@@ -1,0 +1,17 @@
+product-card {
+  display: inline-block !important;
+  border: 1px solid gray;
+}
+product-card .usa-grid {
+  padding: 10px;
+}
+product-card .price {
+  font-size: 150%;
+}
+product-card .button_wrapper {
+  text-align: center;
+}
+product-card .button_wrapper button {
+  margin: 0;
+  width: 100%;
+}

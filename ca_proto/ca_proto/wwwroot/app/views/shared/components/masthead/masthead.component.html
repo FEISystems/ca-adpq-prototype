@@ -1,0 +1,22 @@
+﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/masthead/masthead.component.css" />
+
+<!-- Fixed navbar -->
+<div id="masthead" role="banner" class="usa-grid">
+    <div class="usa-width-one-half">
+        <a ng-link="['Home']" class="logo"><img src="img/abc-store-logo.svg" alt="{{model.brandName}}"></a>
+    </div>
+    <div class="usa-width-one-half text-right">
+        <div class="usa-width-two-thirds" style="float: none; display: inline-block">            
+            <form class="usa-search usa-search-medium">
+                <div role="search">
+                    <label class="usa-sr-only" for="main-search">Search</label>
+                    <input id="main-search" type="search" name="search">
+                    <button type="submit">
+                        <span class="usa-search-submit-text">Search</span>
+                    </button>
+                </div>
+            </form>
+        </div>        
+        <a ng-link="['Advanced Search']">Advanced</a>
+    </div>
+</div>

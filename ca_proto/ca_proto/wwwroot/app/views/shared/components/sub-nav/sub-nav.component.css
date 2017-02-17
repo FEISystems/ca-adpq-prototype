@@ -1,0 +1,13 @@
+sub-nav {
+  min-height: 40px;
+}
+sub-nav ul li {
+  display: inline-block;
+  margin-right: 60px;
+}
+sub-nav ul li a {
+  text-transform: uppercase;
+  color: black;
+  font-size: 129.412%;
+  text-decoration: none;
+}

@@ -46,8 +46,8 @@
         //}
     }
 
-    module.component("navbarHeader", {
-        templateUrl: "app/views/shared/components/navbar-header/navbar-header.component.html",
+    module.component("masthead", {
+        templateUrl: "app/views/shared/components/masthead/masthead.component.html",
         controllerAs: "model",
         controller  : ["$scope", "messageService","roleService", "$location", controller]
     });

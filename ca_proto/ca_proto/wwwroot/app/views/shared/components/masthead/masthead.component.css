@@ -1,0 +1,17 @@
+header a,
+header a:link,
+header a:hover,
+header a:active,
+header a:visited {
+  color: black;
+}
+header masthead {
+  min-height: 160px;
+  padding: 60px 0px 0px 0px;
+}
+header masthead .logo {
+  height: 120px;
+  width: 120px;
+  margin-top: -45px !important;
+  display: inline-block;
+}
