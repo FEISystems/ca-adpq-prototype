@@ -15,6 +15,7 @@ namespace ca_service.Repositories
         protected EntityRepository(IConfiguration configuration)
         {
             this.db = new Connection(configuration);
+            this.OrderAscending = true;
         }
 
         public void Dispose()
@@ -175,11 +176,26 @@ namespace ca_service.Repositories
         }
 
         //todo: include filtering and paging
-        public List<EntityType> Fetch()
+        private string orderColumnName = "Id";
+        public string OrderColumnName
         {
+            get { return orderColumnName; }
+            set
+            {
+                if (null == value || !Columns.Exists(item => value.Equals(item.ColumnName, StringComparison.OrdinalIgnoreCase)))
+                    orderColumnName = "Id";
+                orderColumnName = value;
+            }
+        }
+
+        public bool OrderAscending { get; set; }
+
+        public List<EntityType> Fetch(int start, int count)
+        {
+            //SELECT * FROM ca.categories order by id desc LIMIT 0, 1000
             using (var cmd = db.connection.CreateCommand() as MySqlCommand)
             {
-                cmd.CommandText = "select * from " + TableName;
+                cmd.CommandText = string.Format("select * from {0} order by {1} {2} limit {3}, {4}", TableName, OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
                 using (var reader = cmd.ExecuteReader() as MySqlDataReader)
                 {
                     List<EntityType> result = new List<EntityType>();

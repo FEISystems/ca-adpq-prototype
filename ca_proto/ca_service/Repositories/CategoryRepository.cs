@@ -14,5 +14,10 @@ namespace ca_service.Repositories
             : base(configuration)
         {
         }
+
+        public List<Category> Fetch()
+        {
+            return base.Fetch(0, int.MaxValue);
+        }
     }
 }

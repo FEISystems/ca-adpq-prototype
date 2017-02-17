@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace ca_service.Services
 {
-    public class InventoryService: IInventoryService, IDisposable
+    public class InventoryService : IInventoryService, IDisposable
     {
         private readonly IInventoryRepository inventoryRepository;
 
@@ -64,10 +64,20 @@ namespace ca_service.Services
             inventoryRepository.Delete(id);
         }
 
-        public IEnumerable<Product> Fetch()
+        public IEnumerable<Product> Fetch(int start, int count)
         {
-            return inventoryRepository.Fetch();
+            return inventoryRepository.Fetch(start, count);
+        }
+        public string OrderColumnName
+        {
+            get { return inventoryRepository.OrderColumnName; }
+            set { inventoryRepository.OrderColumnName = value; }
         }
 
+        public bool OrderAscending
+        {
+            get { return inventoryRepository.OrderAscending; }
+            set { inventoryRepository.OrderAscending = value; }
+        }
     }
 }
