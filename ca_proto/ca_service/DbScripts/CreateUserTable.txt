@@ -13,13 +13,13 @@ CREATE TABLE `users` (
 
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Consumer1','C0nSumer1', 0, -4);
+VALUES ('AuthorizedUser1','AuthorizedU$er1', 0, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Consumer2','C0nSumer2', 0, -4);
+VALUES ('AuthorizedUser2','AuthorizedU$er2', 0, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
-VALUES ('Consumer3','C0nSumer3', 0, -4);
+VALUES ('AuthorizedUser3','AuthorizedU$er3', 0, -4);
 
 INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
 VALUES ('Admin1','@dMin1', 1, -4);
