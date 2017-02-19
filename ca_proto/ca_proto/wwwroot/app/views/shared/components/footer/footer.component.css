@@ -1,0 +1,16 @@
+.ca-footer {
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+.ca-footer .ca-footer-menu {
+  background-color: #f1f1f1;
+  padding: 20px 0;
+}
+.ca-footer .ca-footer-menu .ca-footer-menu-header {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.ca-footer .ca-footer-info {
+  background-color: #D6D7D9;
+  padding: 10px 0;
+}

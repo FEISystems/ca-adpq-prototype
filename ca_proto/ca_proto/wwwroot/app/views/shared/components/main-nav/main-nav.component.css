@@ -1,7 +1,14 @@
 main-nav {
   min-height: 50px;
-  border-bottom: 2px solid #c6c6c6;
+  border-bottom: 1px solid #aeb0b5;
   padding: 11px 0px;
+}
+main-nav a,
+main-nav a:link,
+main-nav a:hover,
+main-nav a:active,
+main-nav a:visited {
+  color: black;
 }
 main-nav ul li {
   display: inline-block;
