@@ -2,9 +2,10 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, messageService, roleService, $location) {
+    var controller = function ($scope, messageService, roleService, $location, inventoryService) {
         var model = this;
         model.data = {};
+        model.quickSearch = '';
         model.brandName = 'CA Prototype';
         model.showNavMenu = true;
         model.$onInit = function(){
@@ -30,6 +31,8 @@
         ];
 
 
+
+
         var oldPath = $location.path(),
             newPathArray = oldPath.split('/'),
             newPath = newPathArray[1];
@@ -44,12 +47,17 @@
 
     //    return
         //}
+
+        model.doQuickSearch = function () {
+            var searchTerms = model.quickSearch;
+            inventoryService.quickSearch(searchTerms);
+        }
     }
 
     module.component("masthead", {
         templateUrl: "app/views/shared/components/masthead/masthead.component.html",
         controllerAs: "model",
-        controller  : ["$scope", "messageService","roleService", "$location", controller]
+        controller  : ["$scope", "messageService","roleService", "$location", "inventoryService", controller]
     });
 
 }())
