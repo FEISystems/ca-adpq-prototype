@@ -18,17 +18,17 @@
         model.page = 0;
         model.pageCount = 20;
 
+        model.clone = function (item) {
+            return JSON.parse(JSON.stringify(item));
+        };
+
         model.addProduct = function () {
             //preserve the model.product in case the add operation fails
-            var uploadData = JSON.parse(JSON.stringify(model.product));
-            uploadData.CategoryId = uploadData.CategoryId.id;
-            uploadData.ProductType = uploadData.ProductType.id;
-            uploadData.ContractId = uploadData.ContractId.id;
-            if (uploadData.validAsAddOnForParentCategories) {
-                for (var i = 0; i < uploadData.ValidAsAddOnForParentCategories.length; i++) {
-                    uploadData.ValidAsAddOnForParentCategories[i] = uploadData.ValidAsAddOnForParentCategories[i].id;
-                }
-            }
+            var uploadData = model.clone(model.product);
+            //only store ids for lookups
+            uploadData.CategoryId = uploadData.CategoryId.Id;
+            uploadData.ProductType = uploadData.ProductType.Id;
+            uploadData.ContractId = uploadData.ContractId.Id;
             if (uploadData.Id)
                 inventoryService.editProduct(uploadData);
             else
@@ -36,19 +36,26 @@
         };
 
         model.importFile = function () {
-            var fileinfo = document.getElementById("selectedfile").files[0];
-            if (fileinfo == undefined)
+            try
             {
-                alert("Please select a file.");
-                return;
+                var fileinfo = document.getElementById("selectedfile").files[0];
+                if (fileinfo == undefined)
+                {
+                    alert("Please select a file.");
+                    return;
+                }
+                inventoryService.importFile(fileinfo);
             }
-            inventoryService.importFile(fileinfo);
+            catch (error)
+            {
+                alert (error);
+            }
         };
 
         model.edit = function (id) {
             for (var i = 0; i < model.products.length; i++) {
                 var item = model.products[i];
-                if (item.id == id) {
+                if (item.Id == id) {
                     model.product = model.buildProduct(item);
                     model.editing = true;
                     return;
@@ -72,36 +79,22 @@
         };
 
         model.buildProduct = function (item) {
-            var result = {};
-            result.Id = item.id;
-            result.Name = item.name;
-            result.ListPrice = item.listPrice;
-            result.ContractPrice = item.contractPrice;
-            result.ContractId = model.FindLookup(model.contracts, item.contractId);
-            result.Manufacturer = item.manufacturer;
-            result.ManufacturerPartNumber = item.manufacturerPartNumber;
-            result.SKU = item.sku;
-            result.ProductType = model.FindLookup(model.productTypes, item.productType);
-            result.CategoryId = model.FindLookup(model.categories, item.categoryId);
-            if (item.validAsAddOnForParentCategories && item.validAsAddOnForParentCategories.length)
-            {
-                result.ValidAsAddOnForParentCategories = JSON.parse(JSON.stringify(item.validAsAddOnForParentCategories));
-                for (var i = 0; i < result.ValidAsAddOnForParentCategories.length; i++)
-                {
-                    result.ValidAsAddOnForParentCategories[i] = model.FindLookup(model.categories, result.ValidAsAddOnForParentCategories[i]);
-                }
-            }
-            else
-            {
-                result.ValidAsAddOnForParentCategories = [];
-            }
+            var result = model.clone(item);
+            //associate lookup items based on ids
+            result.ContractId = model.FindLookup(model.contracts, item.ContractId);
+            result.ProductType = model.FindLookup(model.productTypes, item.ProductType);
+            result.CategoryId = model.FindLookup(model.categories, item.CategoryId);
             return result;
         };
+
+        model.debugAlert = function (data) {
+            alert(JSON.stringify(data));
+        }
 
         model.FindLookup = function (list, id) {
             for (var i=0; i<list.length; i++)
             {
-                if (list[i].id == id)
+                if (list[i].Id == id)
                     return list[i];
             }
             return {};
