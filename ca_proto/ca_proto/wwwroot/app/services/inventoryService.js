@@ -88,6 +88,19 @@
                 });
         }
 
+        var quickSearch = function (terms) {
+            
+            var postData = { SearchTerm: terms };
+            $http.post("/api/inventory/quicksearch", postData)
+                .success(function (response) {
+                    //at this point we'd want to load a new component that represents the search results page
+                    messageService.publish('quicksearchSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('quicksearchFailure', response);
+                });
+        }
+
         return {
             addProduct: addProduct,
             importFile: importFile,
@@ -97,6 +110,7 @@
             fetchProducts: fetchProducts,
             editProduct: editProduct,
             deleteProduct: deleteProduct,
+            quickSearch: quickSearch
         };
     }
 

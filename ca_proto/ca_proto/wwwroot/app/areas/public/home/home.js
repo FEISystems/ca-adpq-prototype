@@ -2,10 +2,20 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location) {
+    var controller = function ($scope, $location, sampleInventoryService) {
         var model = this;
         model.provider = {};
         model.title = "Home";
+        
+        // sampleInventoryService.getInventory().get().$promise.then(
+        //     function( data ) {
+        //         model.products = data;
+        //     },
+        //     function( error ) {
+        //         alert( "Something went wrong!" );
+
+        //     }
+        // );
 
         model.$onInit = function() {
 
@@ -23,7 +33,7 @@
     module.component("home", {
         templateUrl: "app/areas/public/home/home.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", controller]
+        controller: ["$scope", "$location", "sampleInventoryService", controller]
 
     });
 }())

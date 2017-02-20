@@ -70,8 +70,7 @@ namespace ca_service.Entities
     {
         Hardware = 1,
         Software = 2,
-        Service = 3,
-        Addon = 4
+        Service = 3
     }
 
     public class Order : Entity
