@@ -1,0 +1,16 @@
+﻿use ca;
+DROP TABLE IF EXISTS `manufacturers`;
+
+CREATE TABLE `manufacturers` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
+
+INSERT INTO manufacturers (Name) VALUES ('Manufacturer 1');
+
+INSERT INTO manufacturers (Name) VALUES ('Manufacturer 2');
+
+INSERT INTO manufacturers (Name) VALUES ('Manufacturer 3');
+
+INSERT INTO manufacturers (Name) VALUES ('Manufacturer 4');

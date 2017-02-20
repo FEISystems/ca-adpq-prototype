@@ -1,5 +1,5 @@
 use ca;
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `categories`;
 
 CREATE TABLE `categories` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
