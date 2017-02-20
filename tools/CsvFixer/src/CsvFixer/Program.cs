@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CsvFixer
 {
@@ -15,9 +13,9 @@ namespace CsvFixer
                 csvPath = @"Data Set_ADPQ_v5.csv",
                 categoriesOutput = @"categories.txt";
 
-            var categories = new HashSet<string>();
+            var categories = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            using (var fs = new FileStream(System.IO.Path.Combine(rootPath, csvPath), System.IO.FileMode.Open))
+            using (var fs = new FileStream(Path.Combine(rootPath, csvPath), FileMode.Open))
             {
                 using (var reader = new StreamReader(fs))
                 {
@@ -45,7 +43,7 @@ namespace CsvFixer
                 sb2.AppendLine(c);
             }
 
-            File.WriteAllText(Path.Combine(rootPath, categoriesOutput), sb2.ToString());
+            //File.WriteAllText(Path.Combine(rootPath, categoriesOutput), sb2.ToString());
 
             Console.WriteLine("Categories Finished.");
 
