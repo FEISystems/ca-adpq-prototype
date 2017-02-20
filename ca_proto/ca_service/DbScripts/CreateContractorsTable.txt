@@ -5,12 +5,4 @@ CREATE TABLE `contractors` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
-
-INSERT INTO contractors (Name) VALUES ('Contractor 1');
-
-INSERT INTO contractors (Name) VALUES ('Contractor 2');
-
-INSERT INTO contractors (Name) VALUES ('Contractor 3');
-
-INSERT INTO contractors (Name) VALUES ('Contractor 4');
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

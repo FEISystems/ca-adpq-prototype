@@ -5,13 +5,7 @@ DROP TABLE IF EXISTS `contracts`;
 CREATE TABLE `contracts` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) DEFAULT NULL,
+  `ExpirationDate` date NOT NULL,
+  `ContractorId` int NOT NULL
   PRIMARY KEY (`Id`)
 );
-
-INSERT INTO contracts (Name) VALUES ('Contract 1');
-
-INSERT INTO contracts (Name) VALUES ('Contract 2');
-
-INSERT INTO contracts (Name) VALUES ('Contract 3');
-
-INSERT INTO contracts (Name) VALUES ('Contract 4');

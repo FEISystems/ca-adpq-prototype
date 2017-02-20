@@ -1,0 +1,1359 @@
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard-Dell Optiplex 3040 SFF � Core i5-6500', 1, 'DELL', '210-AFXK', '210-AFXK', 1, 1, 1013.71, 446.03, '100d', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard-Dell Optiplex 3040 MT � Core i5-6500', 1, 'DELL', '210-AFXL', '210-AFXL', 1, 1, 1013.71, 446.03, '102d', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard-Dell Optiplex 3040 Micro � Core i5-6500T', 1, 'DELL', '210-AFXJ', '210-AFXJ', 1, 1, 930.43, 409.39, '106a', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power-Dell Optiplex 5040 SFF - Core i7-6700', 1, 'DELL', '210-AFIF', '210-AFIF', 1, 2, 1295.86, 570.18, '200c', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power-Dell Optiplex 5040 MT - Core i7-6700', 1, 'DELL', '210-AFID', '210-AFID', 1, 1, 1315.86, 578.98, '202c', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power-Dell Optiplex 7040 Micro - Core i7-6700T', 1, 'DELL', '210-AFGG', '210-AFGG', 1, 2, 1237.29, 544.41, '203a', '', 'Each', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Workstation - Dell Precision T5810 - Four Core E5-1607 v3 (4C', 1, 'DELL', '210-ACQM', '210-ACQM', 1, 3, 2803.33, 1233.47, '300c', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Thin Client - Dell Wyse Z90D7 - Dual Core 1.65GHz', 1, 'DELL', '909686-51L', '909686-51L', 1, 4, 679.00, 298.76, '400a', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power-Dell Optiplex 7040 SFF - Core i7-6700', 1, 'DELL', '210-AFGK', '210-AFGK', 1, 2, 1354.43, 595.95, '430a', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('All-in-One - Dell Optiplex 7440 AIO - Core i5-6500 3.2GHz', 1, 'DELL', '210-AFLX, 575-BHQ', '210-AFLX', 1, 5, 1722.29, 757.81, '500d', '', 'EACH', '1', 0.56)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB (1x8GB) 1600MHz DDR3L Memory', 1, 'DELL', '370-ACLY', '370-ACLY', 1, 6, 130.00, 88.40, '1002c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R5 340X (2GB DP/DVI-I)', 1, 'DELL', '490-BCYL', '490-BCYL', 1, 6, 110.00, 74.80, '1003c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('3.5 1TB 7200rpm HDD', 1, 'DELL', '400-AIOY', '400-AIOY', 1, 6, 130.00, 88.40, '1005b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Dual Band Wireless 8260 (802.11ac) + Bluetooth', 1, 'DELL', '470-ABLQ, 555- BCMT', '470-ABLQ, 555- BCMT', 1, 6, 53.00, 36.04, '1006b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8x DVD-ROM 9.5mm Optical Disk Drive', 1, 'DELL', '429-AAVN', '429-AAVN', 1, 6, 40.00, 27.20, '1007b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Comfort wave  Ergonomic keyboard', 1, 'DELL', 'A4051228', 'A4051228', 1, 6, 79.99, 54.39, '1008a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Performance Ergonomic mouse mx', 1, 'DELL', 'A7055994', 'A7055994', 1, 6, 99.99, 67.99, '1009b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('K360 wireless keyboard', 1, 'DELL', 'A6107465', 'A6107465', 1, 6, 29.99, 20.39, '1010a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Wireless mouse M525', 1, 'DELL', 'A6024088', 'A6024088', 1, 6, 39.99, 27.19, '1011b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Jabra UC Voice 150 USB Duo. Headband INL', 1, 'DELL', 'A5950984', 'A5950984', 1, 6, 33.99, 23.11, '1012b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AX210 USB Stereo Speakers WW', 1, 'DELL', '313-7362', '313-7362', 1, 6, 19.99, 13.59, '1013a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('H110 2 Stereo Headset', 1, 'DELL', 'A3881047', 'A3881047', 1, 6, 14.99, 10.19, '1014c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('6 ft DVI-D Single Link Digital Video Monitor Cable w/ Audio', 1, 'DELL', 'A3793590', 'A3793590', 1, 6, 12.99, 8.83, '1015a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DisplayPort 1.1 Male to DVI-D Male Black Cable - 6.5 ft', 1, 'DELL', '470-AANH', '470-AANH', 1, 6, 24.99, 16.99, '1016b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DiplayPort to DVI (Dual-Link)', 1, 'DELL', '470-AANW', '470-AANW', 1, 6, 139.99, 95.19, '1017b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8GB) 1600MHz DDR3L Memory (5040)', 1, 'DELL', '370-ACMQ', '370-ACMQ', 1, 7, 260.00, 176.80, '1019c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R5 340X (2GB DP/DVI-I)', 1, 'DELL', '490-BCPG', '490-BCPG', 1, 7, 110.00, 74.80, '1020c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R7 350X', 1, 'DELL', '490-BCPF', '490-BCPF', 1, 7, 180.00, 122.40, '1021c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('3.5 inch 1TB 7200rpm Hard Disk Drive', 1, 'DELL', '400-AIOY', '400-AIOY', 1, 7, 130.00, 88.40, '1022c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('128GB SATA Solid State Drive', 1, 'DELL', '400-AIRX', '400-AIRX', 1, 7, 200.00, 136.00, '1023c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB PCIe Solid State Drive', 1, 'DELL', '400-AIRY', '400-AIRY', 1, 7, 400.00, 272.00, '1024c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Dual Band Wireless 8260 (802.11ac) + Bluetooth', 1, 'DELL', '470-ABLQ, 555- BCMT', '470-ABLQ, 555- BCMT', 1, 7, 53.00, 36.04, '1026d', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade to Intel Standard Manageability', 1, 'DELL', '631-AASS', '631-AASS', 1, 7, 15.00, 10.20, '1027d', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8x DVD-ROM 9.5mm Optical Disk Drive', 1, 'DELL', '429-AAVN', '429-AAVN', 1, 7, 40.00, 27.20, '1028d', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Xeon� Processor E5-1620 v3 (Quad Core HT', 1, 'DELL', '338-BFJW', '338-BFJW', 1, 8, 340.00, 231.20, '1030b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Xeon� Processor E5-1660 v3 (Six Core HT', 1, 'DELL', '338-BFJV', '338-BFJV', 1, 8, 1820.00, 1237.60, '1031b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB (4x8GB) 1866MHz DDR3 ECC RDIMM', 1, 'DELL', '370-ABUP', '370-ABUP', 1, 8, 1040.00, 707.20, '1033b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA� Quadro� K4200 4GB (2 DP', 1, 'DELL', '490-BCCO', '490-BCCO', 1, 8, 2200.00, 1496.00, '1034b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('900GB 2.5inch SAS (10.000 Rpm) Hard Drive', 1, 'DELL', '400-AETZ', '400-AETZ', 1, 8, 370.33, 251.82, '1035b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2x900GB 2.5inch SAS (10.000 Rpm) Hard Drive', 1, 'DELL', '400-AETZ, 401- AALE', '400-AETZ, 401- AALE', 1, 8, 729.00, 495.72, '1037b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB 2.5inch Serial ATA Solid State Drive', 1, 'DELL', '400-AECP', '400-AECP', 1, 8, 477.00, 324.36, '1040b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB 2.5inch Serial ATA Solid State Drive', 1, 'DELL', '400-AECQ', '400-AECQ', 1, 8, 810.33, 551.02, '1041b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� X540-T2 10GbE NIC', 1, 'DELL', '540-BBHC', '540-BBHC', 1, 8, 450.00, 306.00, '1042b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Wireless 1540 802.11 a/g/n PCIe', 1, 'DELL', '555-BBGR', '555-BBGR', 1, 8, 49.00, 33.32, '1043b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8x Slimline DVD-ROM Drive', 1, 'DELL', '429-AAPD', '429-AAPD', 1, 8, 30.00, 20.40, '1044b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell External USB Slim DVD+/-RW Optical Drive', 1, 'DELL', '429-AAUX', '429-AAUX', 1, 9, 59.99, 40.79, '1045B', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('KINGSTON DATATRAVELER G4 - USB-FLASHSTAS', 1, 'DELL', 'A4049069', 'A7287839', 1, 9, 10.99, 7.47, '1047', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('WYSE Displayport (M) TO DVI-D (F) adapter', 1, 'DELL', 'A6188150', 'A6188150', 1, 9, 27.55, 18.73, '1048b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i5-6600 Processor (Quad Core', 1, 'DELL', '338-BHUG', '338-BHUG', 1, 10, 235.00, 159.80, '1049c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6700 Processor (Quad Core', 1, 'DELL', '338-BHUH', '338-BHUH', 1, 10, 340.00, 231.20, '1050c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB (2x4G) 2133MHz DDR4 Memory', 1, 'DELL', '370-ACHX', '370-ACHX', 1, 10, 130.00, 88.40, '1051c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('M.2 128GB SATA Solid State Drive', 1, 'DELL', '400-AMPC', '400-AMPC', 1, 10, 200.00, 136.00, '1054c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� vPro Technology Enabled', 1, 'DELL', '631-AAUF', '631-AAUF', 1, 10, 40.00, 27.20, '1055c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8x DVD-ROM 9.5mm Optical Disk Drive', 1, 'DELL', '429-AAWE', '429-AAWE', 1, 10, 40.00, 27.20, '1056c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('MS - Display cable - DVI-D M - DVI-D M - 6.6 ft ( included in the 22" widescreen monitor)', 1, 'DELL', 'A3793590', 'A3793590', 1, 11, 12.99, 8.83, '1057a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('C2G 2M Displayport CBL W/ latches', 1, 'DELL', 'A7639742', 'A7639742', 1, 11, 15.99, 10.87, '1058b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell OptiPlex Micro AIO Stand', 1, 'DELL', '575-BBHE', '575-BBHE', 1, 12, 92.86, 63.14, '1059a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Opti Micro VESA Mount', 1, 'DELL', '575-BBHC', '575-BBHC', 1, 12, 28.57, 19.43, '1060a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Opti Micro Dual VESA Mount', 1, 'DELL', '575-BBHF', '575-BBHF', 1, 12, 35.71, 24.28, '1061a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Dual Monitor Stand', 1, 'DELL', '332-1236', '332-1236', 1, 12, 169.99, 115.59, '1062a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Opti Micro Console', 1, 'DELL', '575-BBHH', '575-BBHH', 1, 12, 121.43, 82.57, '1063a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2nd Display Port (Only 7040 Micro)', 1, 'DELL', '382-BBDP', '382-BBDP', 1, 12, 13.00, 8.84, '1064a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6700T Processor (Quad Core', 1, 'DELL', '338-BHUU', '338-BHUU', 1, 13, 340.00, 231.20, '1065', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8GB) 1600MHz DDR3 Non-ECC(3040MFF)', 1, 'DELL', '370-AAMU', '370-AAMU', 1, 13, 260.00, 176.80, '1066', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB (2x4GB) 1600MHz DDR3L Memory(3040MFF)', 1, 'DELL', '370-AAML', '370-AAML', 1, 13, 130.00, 88.40, '1067', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2.5inch 128GB SSD(3040MFF)', 1, 'DELL', '400-AJKT', '400-AJKT', 1, 13, 200.00, 136.00, '1068', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6700 Processor (Quad Core', 1, 'DELL', '338-BHUH', '338-BHUH', 1, 6, 340.00, 231.20, '1069', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8GB) 1600MHz DDR3L Memory', 1, 'DELL', '370-ACMQ', '370-ACMQ', 1, 6, 260.00, 176.80, '1070', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2.5 128GB SSD', 1, 'DELL', '400-AJKS', '400-AJKS', 1, 6, 200.00, 136.00, '1071', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB Solid State Drive', 1, 'DELL', '400-AJCK', '400-AJCK', 1, 6, 400.00, 272.00, '1072', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R7 350X', 1, 'DELL', '490-BCYM', '490-BCYM', 1, 6, 180.00, 122.40, '1073', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R5 340X (2GB DP/DVI-I)', 1, 'DELL', '490-BCYL', '490-BCYL', 1, 6, 110.00, 74.80, '1074', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DDPE Enterprise Edition License + ProSupport for Software 3 Year', 1, 'DELL', '421-9983, 954-3463', '421-9983, 954-3463', 2, 6, 104.00, 70.72, '1075', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2.5 inch 1TB 7200rpm Hard Disk Drive (7040 Micro)', 1, 'DELL', '400-AHZI', '400-AHZI', 1, 7, 130.00, 88.40, '1076', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add 8GB', 1, 'DELL', '370-ACMR', '370-ACMR', 1, 7, 260.00, 176.80, '1077', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i5-6500 Processor (Quad Core', 1, 'DELL', '338-BHUF', '338-BHUF', 1, 7, 205.00, 139.40, '1078', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i5-6500T Processor (Quad Core', 1, 'DELL', '338-BHUS', '338-BHUS', 1, 7, 205.00, 139.40, '1079', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8G) 2133MHz DDR4 Memory (7040)', 1, 'DELL', '370-ACKD', '370-ACKD', 1, 7, 260.00, 176.80, '1080', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB (4x8G) 2133MHz DDR4 Memory', 1, 'DELL', '370-ACKC', '370-ACKC', 1, 7, 570.00, 387.60, '1081', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2.5 inch 500GB 7200rpm OPAL 2.0 FIPS Self Encrypting Hard Disk Drive', 1, 'DELL', '400-AIRW', '400-AIRW', 1, 7, 160.00, 108.80, '1082', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB PCIe Solid State Drive', 1, 'DELL', '400-AJCL', '400-AJCL', 1, 7, 900.00, 612.00, '1083', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD R5 340X 2GB (DP', 1, 'DELL', '490-BCQT', '490-BCQT', 1, 7, 110.00, 74.80, '1084', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Secure Cable Cover', 1, 'DELL', '325-BBQT', '325-BBQT', 1, 7, 25.33, 17.22, '1085', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Secure Cable Cover', 1, 'DELL', '325-BBTM', '325-BBTM', 1, 7, 28.57, 19.43, '1086', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB (2x4G) 2133MHz DDR4 Memory', 1, 'DELL', '370-ACHX', '370-ACHX', 1, 10, 130.00, 88.40, '1087', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8G) 2133MHz DDR4 Memory (7440 AIO)', 1, 'DELL', '370-ACHW', '370-ACHW', 1, 10, 260.00, 176.80, '1088', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB PCIe Solid State Drive', 1, 'DELL', '400-AKYB', '400-AKYB', 1, 10, 400.00, 272.00, '1089', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2.5 inch 512GB SATA Solid State Drive', 1, 'DELL', '400-AHIF', '400-AHIF', 1, 10, 900.00, 612.00, '1090', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2.5 inch 500GB 7200rpm FIPS Certified Self-Encrypting Hard Drive', 1, 'DELL', '400-AHZH', '400-AHZH', 1, 10, 160.00, 108.80, '1091', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4K TOUCH LCD', 1, 'DELL', '391-BCNF, 490- BCTH', '391-BCNF, 490- BCTH', 1, 10, 685.00, 465.80, '1092', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P2016 19.5" WideScreen Monitor', 1, 'DELL', '858-BBCU', '858-BBCU', 1, 14, 189.99, 129.20, '1800b', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('22" Touchscreen monitor', 1, 'VIEWSONIC', 'TD2220', 'TD2220', 1, 14, 445.00, 302.60, '1801a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P2213 22" Widescreen Monitor', 1, 'DELL', '320-9704', '320-9704', 1, 14, 219.99, 149.59, '1802a', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P2414H 24" Widescreen  Monitor', 1, 'DELL', '320-9794', '320-9794', 1, 14, 299.99, 204.00, '1803c', '', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Basic Hardware Service with 4 Year NBD on-site', 1, 'DELL', '997-8533, 997-8536', '997-8533, 997-8536', 3, 15, 188.00, 101.52, '2000b', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Basic Hardware Service with NBD on-site', 1, 'DELL', '997-8538, 997-8533', '997-8538, 997-8533', 3, 15, 228.00, 123.12, '2001b', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 1, 'DELL', '984-0092', '984-0092', 3, 16, 20.00, 10.80, '2002b', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 1, 'DELL', '981-3953', '981-3953', 3, 16, 25.00, 13.50, '2003a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 1, 'DELL', '980-7554', '980-7554', 3, 16, 30.00, 16.20, '2004a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 4 Year Warranty Exchange Replacement', 1, 'DELL', '983-7873, 986-4872', '983-7873, 986-4872', 3, 17, 39.00, 21.06, '2005a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 5 Year Warranty Exchange Replacement', 1, 'DELL', '983-1324', '983-1324', 3, 17, 49.00, 26.46, '2006a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Basic Hardware Service with 4 Year NBD Limited Onsite Service After Remote Diagnosis', 1, 'DELL', '997-7166, 997-7163', '997-7166, 997-7163', 3, 8, 372.00, 200.88, '2007b', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Basic Hardware Service with 5 Year NBD Limited Onsite Service After Remote Diagnosis', 1, 'DELL', '997-7163, 997-7168', '997-7163, 997-7168', 3, 8, 472.00, 254.88, '2008b', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 1, 'DELL', '984-1772', '984-1772', 3, 8, 20.00, 10.80, '2009a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 1, 'DELL', '981-5573', '981-5573', 3, 8, 25.00, 13.50, '2010a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 1, 'DELL', '980-9194', '980-9194', 3, 8, 30.00, 16.20, '2011a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Basic Hardware Service with NBD on-site', 1, 'DELL', '803-8591, 803-8583', '803-8591, 803-8583', 3, 16, 178.00, 96.12, '2012c', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Basic Hardware Service with 4 Year NBD on-site', 1, 'DELL', '803-8583, 803-8593', '803-8583, 803-8593', 3, 16, 208.00, 112.32, '2013c', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('VL 1 Year Silverchoice Renewal for Z-Class (same as 4 year Basic)', 1, 'DELL', 'A6047259', 'A6047259', 3, 18, 49.00, 26.46, '2014a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('(2) VL 1 Year Silverchoice Renewal for Z-Class (same as a 5 year basic - but order quantity of 2)', 1, 'DELL', 'A6047260', 'A6047260', 3, 18, 49.00, 26.46, '2015a', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Hardware Service with Onsite/In-Home Service After Remote Diagnosis', 1, 'DELL', '997-6870, 997-6873', '997-6870, 997-6873', 3, 19, 322.00, 173.88, '2016c', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Hardware Service with Onsite/In-Home Service After Remote Diagnosis', 1, 'DELL', '997-6870, 997-6875', '997-6870, 997-6875', 3, 19, 342.00, 184.68, '2017d', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Basic Hardware Service with 4 Year NBD on-site', 1, 'DELL', '997-6870, 997-6873', '997-6870, 997-6873', 3, 20, 322.00, 173.88, '2018', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Basic Hardware Service with 5 Year NBD on-site', 1, 'DELL', '997-6870, 997-6875', '997-6870, 997-6875', 3, 20, 342.00, 184.68, '2019', '', 'EACH', '1', 0.46)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Installation Services', 1, 'TIG', 'TIG-INS-CPU', 'TIG-INS-CPU', 3, 21, 40.00, 30.80, '3000a', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset Tagging Services - Customer Provided Tags', 1, 'TIG', 'TIG-ATG-CPU', 'TIG-ATG-CPU', 3, 21, 10.00, 7.70, '3001a', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset Information via Internet', 1, 'TIG', 'TIG-AIN-CPU', 'TIG-AIN-CPU', 3, 21, 0, 0, '3002', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Imaging', 1, 'TIG', 'TIG-IMG-CPU', 'TIG-IMG-CPU', 3, 21, 27.00, 20.79, '3003a', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Self-Warranty Certification', 1, 'TIG', 'TIG-SWC-CPU', 'TIG-SWC-CPU', 3, 21, 0, 0, '3004', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Take-Back Services', 1, 'TIG', 'TIG-DIS-CPU', 'TIG-DIS-CPU', 3, 21, 10.00, 7.70, '3005', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Deployments & Logistics Services', 1, 'TIG', 'TIG-DLG-CPU', 'TIG-DLG-CPU', 3, 21, 46.00, 35.42, 'Non-Core*', '', 'HOUR', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Emergency Services ( 4 hour response)', 1, 'TIG', 'TIG-EMG-CPU', 'TIG-EMG-CPU', 3, 21, 58.00, 44.66, '3007a', '', 'HOUR', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Absolute Computrace Complete 3YR License', 1, 'DELL', '365-1245, 365-1401', '365-1245, 365-1401', 2, 21, 174.95, 134.71, '3008', '', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard - Dell Latitude E5470 - i5-6200U', 2, 'DELL', '210-AFTZ', '210-AFTZ', 1, 22, 1624.09, 730.84, '100d', '43211500', 'EACH', '1', 0.55)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard - Dell Latitude E5570 - i5-6300U', 2, 'DELL', '210-AFUD', '210-AFUD', 1, 22, 1664.09, 748.84, '100e', '43211500', 'EACH', '1', 0.55)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power - Dell Latitude E5470 - i5-6200U', 2, 'DELL', '210-AFTZP', '210-AFTZP', 1, 23, 1699.09, 764.59, '200d', '43211500', 'EACH', '1', 0.55)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight - Dell Latitude E7270 - i5-6200U', 2, 'DELL', '210-AFTT', '210-AFTT', 1, 24, 1947.80, 876.51, '300d', '43211500', 'EACH', '1', 0.55)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight - Dell Latitude E7470 - i5-6200U', 2, 'DELL', '210-AFQD', '210-AFQD', 1, 24, 1920.23, 864.10, '300e', '43211500', 'EACH', '1', 0.55)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Mobile Workstation - Dell Mobile Precision 7510 - i7-6820HQ 2.7GHz Quad Core', 2, 'DELL', '210-AFXM', '210-AFXM', 1, 25, 2230.06, 1003.53, '400d', '43211500', 'EACH', '1', 0.55)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('6 Cell (91 Whr) Long Life Cycle Lithium Polymer  battery', 2, 'DELL', '451-BBUV', '451-BBUV', 1, 26, 212.86, 138.36, '1005b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('USB Powered External Speakers', 2, 'DELL', '313-7362', '313-7362', 1, 27, 19.99, 12.99, '1007', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('USB External DVD+/-RW Drive', 2, 'DELL', '429-AAUX', '429-AAUX', 1, 28, 59.99, 38.99, '1008c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6600U (Dual Core', 2, 'DELL', '379-BCFY, 391-BCDQ', '379-BCFY, 391-BCDQ', 1, 29, 500.00, 325.00, '1009c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Microphone (INCLUDED IN BASE)', 2, 'DELL', 'NA', 'NA', 1, 29, 0, 0, '1010a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Microphone (INCLUDED IN BASE)', 2, 'DELL', 'NA', 'NA', 1, 30, 0, 0, '1011a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Fingerprint Reader/Smartcard Reader', 2, 'DELL', '346-BBPV', '346-BBPV', 1, 31, 30.00, 19.50, '1012c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Microphone', 2, 'DELL', '319-BBDT, 320-BBQV, 391- BCFG', '319-BBDT, 320-BBQV, 391- BCFG', 1, 26, 212.86, 138.36, '1014b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Included in Base', 2, 'DELL', 'NA', 'N/A', 1, 26, 0, 0, '1015a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add 4Gb (8GB Total) 2x4GB', 2, 'DELL', '370-ACDE', '370-ACDE', 1, 31, 180.00, 117.00, '1016c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6920HQ (Quad Core 2.90GHz', 2, 'DELL', '338-BIFC', '338-BIFC', 1, 26, 741.43, 481.93, '1017c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add 16GB (Total 32.0GB)', 2, 'DELL', '370-ACEB', '370-ACEB', 1, 26, 588.57, 382.57, '1018b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6600U (Dual Core', 2, 'DELL', '379-BCFY, 391-BCDQ', '379-BCFY, 391-BCDQ', 1, 30, 500.00, 325.00, '1020c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6600U (Dual Core', 2, 'DELL', '379-BCFY', '379-BCFY', 1, 31, 400.00, 260.00, '1021b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add 8GB (16GB Total)', 2, 'DELL', '370-ACDF', '370-ACDF', 1, 29, 330.00, 214.50, '1022a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Webcam', 2, 'DELL', '391-BCFM', '391-BCFM', 1, 31, 30.00, 19.50, '1023b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Microphone (Remove Webcam)', 2, 'DELL', '319-BBCW', '319-BBCW', 1, 31, 0, 0, '1024a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add USB optical mouse', 2, 'DELL', '330-9456', '330-9456', 1, 27, 19.99, 12.99, '1026', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add USB keyboard', 2, 'DELL', '331-9653', '331-9653', 1, 27, 29.99, 19.49, '1027a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade to Intel vPro Technology', 2, 'DELL', '631-AARN', '631-AARN', 1, 29, 30.00, 19.50, '1028a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Fingerprint Reader/Smartcard Reader', 2, 'DELL', '346-BBRJ', '346-BBRJ', 1, 29, 30.00, 19.50, '1029c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade Intel vPro� Technology�s Advanced Management Features', 2, 'DELL', '631-AARD', '631-AARD', 1, 31, 30.00, 19.50, '1030b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add fingerprint reader/Smartcard Reader', 2, 'DELL', '346-BBRE', '346-BBRE', 1, 26, 70.00, 45.50, '1031b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel vPro Technology Enabled', 2, 'DELL', '631-AAQU', '631-AAQU', 1, 26, 27.14, 17.64, '1032b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Docking Station with A/C adapter', 2, 'DELL', '331-6304', '331-6304', 1, 26, 219.99, 142.99, '1033a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell 90-Watt Auto-Air DC Adapter for Select Dell Systems(Car Charger)', 2, 'DELL', '469-4546', '469-4546', 1, 32, 99.99, 64.99, '1034a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Wireless Mouse-WM126 - Black', 2, 'DELL', '570-AALK', '570-AALK', 1, 27, 19.99, 12.99, '1035a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB Solid State Drive', 2, 'DELL', '400-AHCC', '400-AHCC', 1, 31, 320.00, 208.00, '1036c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB  Solid State Drive', 2, 'DELL', '400-AJBG', '400-AJBG', 1, 26, 284.29, 184.79, '1038b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('500G 7200 OPAL', 2, 'DELL', '400-AJBO', '400-AJBO', 1, 26, 84.29, 54.79, '1041b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Webcam', 2, 'DELL', '391-BCDP', '391-BCDP', 1, 33, 30.00, 19.50, '1043c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell E-Port Replicator Docking Station with USB  3.0', 2, 'DELL', '331-6307', '331-6307', 1, 32, 169.00, 109.85, '1044b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 2, 'DELL', '980-5714', '980-5714', 1, 26, 30.00, 19.50, '1045', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 2, 'DELL', '980-9314', '980-9314', 1, 32, 30.00, 19.50, '1046', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 2, 'DELL', '981-2233', '981-2233', 1, 26, 25.00, 16.25, '1047', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 2, 'DELL', '981-5693', '981-5693', 1, 34, 25.00, 16.25, '1048', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 2, 'DELL', '983-8332', '983-8332', 1, 26, 20.00, 13.00, '1049', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Keep Your Hard Drive', 2, 'DELL', '984-1892', '984-1892', 1, 34, 20.00, 13.00, '1050', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Targus 16-inch Corporate Traveler Vertical Rolling Laptop  Case', 2, 'DELL', 'A1475677', 'A1475677', 1, 27, 52.99, 34.44, '1051b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('LOGITECH WIRELESS HEADSET H600', 2, 'DELL', 'A5468037', 'A5468037', 1, 27, 69.99, 45.49, '1052a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add wireless keyboard', 2, 'DELL', 'A6107465', 'A6107465', 1, 27, 29.99, 19.49, '1053', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Professional Topload Carrying Case - 14�', 2, 'DELL', '460-BBRC', '460-BBRC', 1, 27, 59.99, 38.99, '1054c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB (2x4GB) 2133MHz DDR4 Memory', 2, 'DELL', '370-ACDE', '370-ACDE', 1, 30, 180.00, 117.00, '1055c', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Kensington Combination Lock', 2, 'DELL', '365-0521, 374-4751', '365-0521, 374-4751', 1, 27, 39.85, 25.90, '1056b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB Solid State Drive', 2, 'DELL', '400-AHCC', '400-AHCC', 1, 29, 320.00, 208.00, '1057b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('14" Touch FHD LCD with camera', 2, 'DELL', '391-BCDN', '391-BCDN', 1, 30, 280.00, 182.00, '1059b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('12.5� FHD Touch with Corning� Gorilla� Glass NBT (1920 x 10800) LCD with camera', 2, 'DELL', '391-BCEV, 451-BBPK', '391-BCEV, 451-BBPK', 1, 31, 379.00, 246.35, '1060b', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Backlit Keyboard', 2, 'DELL', '580-ACKL', '580-ACKL', 1, 30, 50.00, 32.50, '1062a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('15" Touch FHD LCD with Camera', 2, 'DELL', '391-BCDH', '391-BCDH', 1, 30, 280.00, 182.00, '1063a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('14" Touch FHD LCD with Camera', 2, 'DELL', '391-BCFN', '391-BCFN', 1, 31, 480.00, 312.00, '1064a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i7-6600U (Dual Core', 2, 'DELL', '379-BCFY', '379-BCFY', 1, 31, 400.00, 260.00, '1065a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('PS4SW', 2, 'DELL', '954-3471,', '954-3471, 421-9983', 1, 27, 129.00, 83.85, '1066', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8GB) DDR4', 2, 'DELL', '370-ACDF', '370-ACDF', 1, 27, 330.00, 214.50, '1067a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Dual-Band Wireless-AC 8260 Wi-Fi + BT 4.1 Wireless Card (2x2)', 2, 'DELL', '555-BCMT', '555-BCMT', 1, 27, 25.00, 16.25, '1069a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DELL Premier Backpack', 2, 'DELL', '460-BBNE', '460-BBNE', 1, 27, 99.99, 64.99, '1070', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DELL AC Adapter', 2, 'DELL', '331-9053', '331-9053', 1, 27, 139.99, 90.99, '1071a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Smart Card Reader', 2, 'DELL', '346-BBPV', '346-BBPV', 1, 31, 30.00, 19.50, '1072a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade to Intel vPro Technology', 2, 'DELL', '631-AARN', '631-AARN', 1, 30, 30.00, 19.50, '1073a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dual Pointing palmrest With Smart Card and Fingerprint  Reader', 2, 'DELL', '346-BBRJ', '346-BBRJ', 1, 30, 30.00, 19.50, '1074a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Adapter Mini Displayport to VGA', 2, 'DELL', '332-2270', '332-2270', 1, 27, 34.99, 22.74, '1075', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Displayport to Displayport 6ft Cable M/M', 2, 'DELL', 'A7639742', 'A7639742', 1, 27, 15.99, 10.39, '1076', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Portable Power Companion (18000mAh)', 2, 'DELL', '451-BBKV', '451-BBKV', 1, 27, 139.99, 90.99, '1077', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('128GB SSD', 2, 'DELL', '400-AHHX', '400-AHHX', 1, 35, 180.00, 117.00, '1078a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB (1x16GB) 2133MHz DDR4 Memory', 2, 'DELL', '370-ACDD', '370-ACDD', 1, 35, 180.00, 117.00, '1079a', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Add Integrated Webcam', 2, 'DELL', '319-BBDS, 320-BBQV, 391 BCFG', '319-BBDS, 320-BBQV, 391 BCFG', 1, 26, 227.14, 147.64, '1080', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('M.2 512GB SATA Class 20 Solid State Drive', 2, 'DELL', '400-AHHV', '400-AHHV', 1, 27, 580.00, 377.00, '1081', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DDPE Enterprise Edition License + ProSupport for Software 3 Year', 2, 'DELL', '[421-9983][954-3463][391- BCDQ]', '[421-9983][954-3463][391- BCDQ]', 2, 27, 204.00, 132.60, '1082', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('E-Port Plus', 2, 'DELL', '[452-BBLQ]', '[452-BBLQ]', 1, 30, 219.00, 142.35, '1083', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R7 M370', 2, 'DELL', '338-BHOZ', '338-BHOZ', 1, 30, 129.00, 83.85, '1084', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('90 Watt AC Adaptor', 2, 'DELL', '450-AAYU', '450-AAYU', 1, 30, 5.00, 3.25, '1085', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dual Pointing palmrest With Smart Card and Fingerprint  Reader', 2, 'DELL', '346-BBSG', '346-BBSG', 1, 30, 30.00, 19.50, '1086', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel vPro� Technology�s Advanced Management Features', 2, 'DELL', '631-AARO', '631-AARO', 1, 30, 30.00, 19.50, '1087', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('15.6" FHD (1920 x 1080) Anti Glare LCD', 2, 'DELL', '391-BCDL', '391-BCDL', 1, 30, 110.00, 71.50, '1088', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon� R7 M360', 2, 'DELL', '338-BHLO', '338-BHLO', 1, 30, 129.00, 83.85, '1089', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('I7-6820HQ Intel� Core� i7-6820HQ (Quad Core', 2, 'DELL', '379-BCGD', '379-BCGD', 1, 30, 460.00, 299.00, '1090', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('INTEL VPRO - ME IN', 2, 'DELL', '631-AARQ', '631-AARQ', 1, 30, 30.00, 19.50, '1091', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('14.0� FHD (1920 x 1080) Anti Glare LCD', 2, 'DELL', '391-BCFO', '391-BCFO', 1, 31, 110.00, 71.50, '1092', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel vPro� Technology�s Advanced Management Features', 2, 'DELL', '631-AARG', '631-AARG', 1, 31, 30.00, 19.50, '1093', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Smart Card', 2, 'DELL', '346-BBUY', '346-BBUY', 1, 31, 30.00, 19.50, '1094', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('82 Key Internal Backlight English  Keyboard', 2, 'DELL', '583-BCUS', '583-BCUS', 1, 31, 50.00, 32.50, '1095', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell Adapter - Mini DisplayPort to VGA', 2, 'DELL', '492-BBFM', '492-BBFM', 1, 31, 37.49, 24.37, '1096', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('12.5� FHD (1920 x 1080) Anti Glare LCD with Camera and mic', 2, 'DELL', '391-BCFB', '391-BCFB', 1, 31, 110.00, 71.50, '1097', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Core� i5-6300U (Dual Core', 2, 'DELL', '379-BCFX', '379-BCFX', 1, 31, 220.00, 143.00, '1098', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel vPro� Technology�s Advanced Management Features', 2, 'DELL', '631-AARD', '631-AARD', 1, 31, 30.00, 19.50, '1099', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('82 Key Internal Backlight English  Keyboard', 2, 'DELL', '583-BCUH', '583-BCUH', 1, 31, 50.00, 32.50, '1100', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel� Tri-Band Wireless-AC 18260 WiGig + Wi-Fi + BT4.1 Wireless  C', 2, 'DELL', '555-BCMV', '555-BCMV', 1, 31, 25.00, 16.25, '1101', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Nvidia� Quadro� M2000M w/4GB GDDR5', 2, 'DELL', '490-BCPK, 490-BCQJ', '490-BCPK, 490-BCQJ', 1, 26, 614.29, 399.29, '1102', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB SSD', 2, 'DELL', '400-AFGV', '400-AFGV', 1, 26, 498.57, 324.07, '1103', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Core i7-6920HQ (quad Core 2.90 Ghz', 2, 'DELL', '338-BIFC', '338-BIFC', 1, 26, 741.43, 481.93, '1104', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('15.6" UltraSharp� FHD IPS (1920x1080) Wide View Anti-Glare  LED-b', 2, 'DELL', '319-BBDS, 320-BBQV, 391 BCFF', '319-BBDS, 320-BBQV, 391 BCFF', 1, 26, 270.00, 175.50, '1105', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB (2x16GB) 2133MHz DDR4 SDRAM', 2, 'DELL', '370-ACSV', '370-ACSV', 1, 26, 588.57, 382.57, '1106', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Internal Dual Pointing Backlit Keyboard', 2, 'DELL', '580-ACLF', '580-ACLF', 1, 26, 50.00, 32.50, '1107', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Smart card Thunderbolt', 2, 'DELL', '338-BHRI', '338-BHRI', 1, 26, 42.86, 27.86, '1108', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Secondary drive 1TB 2.5 inch 7200 rpm SATA Hard  Drive', 2, 'DELL', '401-AAPS', '401-AAPS', 1, 26, 198.57, 129.07, '1109', '43211500', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Basic Hardware Service with 4 Year NBD Onsite Service', 2, 'DELL', '997-1022,997-1024, 935-8283', '997-1022,997-1024, 935-8283', 3, 36, 577.66, 398.59, '2000b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Basic Hardware Service with 5 Year NBD Onsite Service', 2, 'DELL', '997-1022,997-1025, 933-9854', '997-1022,997-1025, 933-9854', 3, 36, 823.23, 568.03, '2001b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Basic Hardware Service with NBD Onsite Service', 2, 'DELL', '997-8317, 997-8328, 997-8334, 935-8283', '997-8317, 997-8328, 997-8334, 935-8283', 3, 37, 475.66, 328.21, '2002b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Basic Hardware Service with  NBD Onsite Service', 2, 'DELL', '997-8317, 997-8328, 997-8335,933-9854', '997-8317, 997-8328, 997-8335,933-9854', 3, 37, 588.23, 405.88, '2003b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Hardware Service with In-Home/Onsite Service After Remote Diagnosis', 2, 'DELL', '804-2167, 804-2169, 935-8283', '804-2167, 804-2169, 935-8283', 3, 38, 516.66, 356.50, '2004d', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Hardware Service with In-Home/Onsite Service After Remote Diagnosis', 2, 'DELL', '804-2167, 804-2170,933-9854', '804-2167, 804-2170,933-9854', 3, 38, 619.23, 427.27, '2005d', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Years Hardware Service with In-Home/Onsite Service After Remote Diagnosis', 2, 'DELL', '997-8317, 997-8328, 997-8334, 935-8283', '997-8317, 997-8328, 997-8334, 935-8283', 3, 39, 475.66, 328.21, '2006d', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Years Hardware Service with In-Home/Onsite Service After Remote Diagnosis', 2, 'DELL', '997-8317, 997-8328, 997-8335,933-9854', '997-8317, 997-8328, 997-8335,933-9854', 3, 39, 588.23, 405.88, '2007d', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight 14" 4 Year Hardware Service with Onsite Service After Remote Diagnosis', 2, 'DELL', '804-2238, 804-2240,935-8283', '804-2238, 804-2240,935-8283', 3, 38, 475.66, 328.21, '2008b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight 14" 5 Year Hardware Service with Onsite Service After Remote Diagnosis', 2, 'DELL', '804-2238, 804-2241,933-9854', '804-2238, 804-2241,933-9854', 3, 38, 588.23, 405.88, '2009b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('2 Years Extended Battery Service for Years 2 and 3 of System  Life', 2, 'DELL', '988-5542', '988-5542', 3, 40, 89.00, 61.41, '2010', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('3 Years ProSupport Plus with Next Business Day Onsite  Service', 2, 'DELL', '997-8380, 997-8381, 997-8382, 997-8383, 997-8317, 997-8366', '997-8380, 997-8381, 997-8382, 997-8383, 997-8317, 997-8366', 3, 39, 541.00, 351.65, '2011', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight 12" 3 Year ProSupport Plus with Next Business Day Onsite  S', 2, 'DELL', '998-0538, 998-0547, 998-0548,998-0549,998-0550', '998-0538, 998,0547, 998-0548,998-0549,998-0550', 3, 38, 612.00, 397.80, '2012', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight 14" 3 Year Prosupport warranty', 2, 'DELL', '804-2238, 804-2244', '804-2238, 804-2244', 3, 38, 427.00, 277.55, '2013', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight 14" 3 Year ProSupport Plus with Next Business Day Onsite Service', 2, 'DELL', '804-2238, 804-2256, 804-2257, 804-2258, 804-2259', '804-2238, 804-2256, 804-2257, 804-2258, 804-2259', 3, 38, 541.00, 351.65, '2014', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Ultralight 14" 4 Year ProSupport Plus with Next Business Day Onsite Service', 2, 'DELL', '804-2238, 804-2264, 804-2265, 804-2266, 804-2267', '804-2238, 804-2264, 804-2265, 804-2266, 804-2267', 3, 38, 702.00, 456.30, '2015', '81110000', 'EACH', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Computrace 3 Year', 2, 'DELL', '365-1245,365-1401', '365-1245,365-1401', 3, 41, 174.95, 134.71, '3000a', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset Information via Internet', 2, 'TIG', 'TIG-AIN-NBK', 'TIG-AIN-NBK', 3, 41, 0, 0, '3001', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset Tagging Services - Customer Provided Tags', 2, 'TIG', 'TIG-ATG-NBK', 'TIG-ATG-NBK', 3, 41, 10.00, 7.70, '3002', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Take-Back Services', 2, 'TIG', 'TIG-DIS-NBK', 'TIG-DIS-NBK', 3, 41, 10.00, 7.70, '3003', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Deployments & Logistics Services', 2, 'TIG', 'TIG-DLG-NBK', 'TIG-DLG-NBK', 3, 41, 46.00, 35.42, '*Non-Core', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Emergency Services ( 4 hour response)', 2, 'TIG', 'TIG-EMG-NBK', 'TIG-EMG-NBK', 3, 41, 58.00, 44.66, '3005', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Imaging', 2, 'TIG', 'TIG-IMG-NBK', 'TIG-IMG-NBK', 3, 41, 27.00, 20.79, '3006', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Installation Services', 2, 'TIG', 'TIG-INS-NBK', 'TIG-INS-NBK', 3, 41, 40.00, 30.80, '3007', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Self-Warranty Certification', 2, 'TIG', 'TIG-SWC-NBK', 'TIG-SWC-NBK', 3, 41, 0, 0, '3008', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP ProDesk 600 G2 SFF Business PC', 3, 'HP', 'T6V32UP', 'T6V32UP', 1, 42, 901.00, 450.50, '100-C', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard Desktop 800G2 SFF', 3, 'HP', 'W3U92UP', 'W3U92UP', 1, 42, 983.00, 491.50, '102-B', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDesk STANDARD DT 600G2 CMT', 3, 'HP', 'T6V33UP', 'T6V33UP', 1, 42, 952.00, 476.00, '101-C', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Standard Desktop 800G2 CMT', 3, 'HP', 'W3U93UP', 'W3U93UP', 1, 42, 1019.00, 509.50, '103-B', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDesk PWR DT 800G2 DM i5', 3, 'HP', 'T6V05UP', 'T6V05UP', 1, 42, 1085.00, 542.50, '105-A', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDesk PWR DT 800G2 DM i7', 3, 'HP', 'T6V04UP', 'T6V04UP', 1, 42, 1234.00, 617.00, '106-A', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power Desktop 800G2 SFF', 3, 'HP', 'T6U97UP', 'T6U97UP', 1, 43, 1234.00, 617.00, '200-C', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power Desktop 800G2 CMT', 3, 'HP', 'T6U98UP', 'T6U98UP', 1, 43, 1271.00, 635.50, '201-C', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Z640 Workstation', 3, 'HP', 'K5Y37UP', 'K5Y37UP', 1, 44, 3325.00, 1662.50, '300-B', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP t620 Flexible Series AMD Thin Client WES7E', 3, 'HP', 'F5A53AA#ABA', 'F5A53AA#ABA', 1, 45, 720.00, 360.00, '400-B', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('800G2 All In One Desktop', 3, 'HP', 'T6V34UP', 'T6V34UP', 1, 46, 1661.00, 830.50, '500-C', '43211507', 'each', '1', 0.5)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon R9 350 2GB DH PCIe x16 GFX', 3, 'HP', 'L1G56AV', 'L1G56AV', 1, 47, 159.00, 63.60, '1004-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel 8260 802.11ac PCIe-CL BT VPro', 3, 'HP', 'N1T21AV', 'N1T21AV', 1, 47, 150.00, 60.00, '1007-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Slim Desktop DVD-ROM ODD', 3, 'HP', 'L1Z45AV', 'L1Z45AV', 1, 47, 28.00, 11.20, '1009-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Core i5-6600 3.3G 6M 2133 4C CPU', 3, 'HP', 'N8G29AV', 'N8G29AV', 1, 48, 835.00, 334.00, '1010-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB DDR4-2133 DIMM (2x4GB) RAM', 3, 'HP', 'L1Q07AV', 'L1Q07AV', 1, 48, 215.00, 86.00, '1011-B', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('AMD Radeon R9 350 2GB DH PCIe x16 GFX', 3, 'HP', 'L1P96AV', 'L1P96AV', 1, 48, 220.00, 88.00, '1012-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel 7265 802.11AC PCIe BT nVPr', 3, 'HP', 'L1Q19AV', 'L1Q19AV', 1, 48, 81.00, 32.40, '1013-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Slim Desktop DVD-ROM ODD', 3, 'HP', 'L2B27AV', 'L2B27AV', 1, 48, 75.00, 30.00, '1014-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB DDR4-2133 DIMM (2x8GB) RAM', 3, 'HP', 'L1G54AV', 'L1G54AV', 1, 47, 520.00, 208.00, '1015-B', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1TB 7200 RPM SATA 6G HDD', 3, 'HP', 'L1Z12AV', 'L1Z12AV', 1, 47, 175.00, 70.00, '1018-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB SATA 2.5 3D SSD', 3, 'HP', 'L1Z20AV', 'L1Z20AV', 1, 47, 575.00, 230.00, '1019-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('180GB SATA 2.5 Non-SED SSD', 3, 'HP', 'M9S33AV', 'M9S33AV', 1, 47, 297.00, 118.80, '1020', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP DisplayPort To DVI-D Adapter', 3, 'HP', 'L1P73AV', 'L1P73AV', 1, 47, 12.00, 4.80, '1023-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8GB DDR4-2133 SODIMM (2x4GB) RAM', 3, 'HP', 'L4K62AV', 'L4K62AV', 1, 49, 192.00, 76.80, '1025-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('128GB SATA 2.5 SSD', 3, 'HP', 'L4K07AV', 'L4K07AV', 1, 50, 160.00, 64.00, '1026-C', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Recline Stand', 3, 'HP', 'N1U53AV', 'N1U53AV', 1, 51, 175.00, 70.00, '1028-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Display port cable kit', 3, 'HP', 'VN567AA', 'VN567AA', 1, 52, 25.00, 10.00, '1030', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB DDR4-2133 SODIMM (2x8GB) RAM', 3, 'HP', 'L1W03AV', 'L1W03AV', 1, 53, 400.00, 160.00, '1032-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel 8260 802.11ac M.2 BT VPro', 3, 'HP', 'N8G54AV', 'N8G54AV', 1, 53, 75.00, 30.00, '1034-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('120GB SATA 2.5 Opal2 SED SSD', 3, 'HP', 'N8G38AV', 'N8G38AV', 1, 53, 275.00, 110.00, '1035-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('180GB SATA 2.5 Non-SED SSD', 3, 'HP', 'N8G41AV', 'N8G41AV', 1, 53, 350.00, 140.00, '1037-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('180GB SATA 2.5 Opal2 SED SSD', 3, 'HP', 'N8G42AV', 'N8G42AV', 1, 53, 350.00, 140.00, '1038-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1TB SATA 6G 2.5 8G SSHD', 3, 'HP', 'L2A59AV', 'L2A59AV', 1, 53, 175.00, 70.00, '1039-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB SATA 2.5 Opal2 SED SSD', 3, 'HP', 'L2A62AV', 'L2A62AV', 1, 53, 500.00, 200.00, '1040-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteOne 800 G2 23-in Non-Touch AiO', 3, 'HP', 'L3N90AV', 'L3N90AV', 1, 50, 2075.00, 830.00, '1041-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Business Speakers', 3, 'HP', 'D9J19AA', 'D9J19AA', 1, 52, 50.00, 20.00, '1042', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP DVI Cable Kit', 3, 'HP', 'DC198A', 'DC198A', 1, 52, 30.00, 12.00, '1043', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP DisplayPort To VGA Adapter', 3, 'HP', 'AS615AA', 'AS615AA', 1, 52, 50.00, 20.00, '1044', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('DMS-59 to Dual DVI Cable Kit', 3, 'HP', 'DL139A', 'DL139A', 1, 52, 40.00, 16.00, '1045', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP USB Graphics Adapter', 3, 'HP', 'NL571AA', 'NL571AA', 1, 52, 73.00, 29.20, '1046', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Mobile USB DVDRW Drive', 3, 'HP', 'BU516AA', 'BU516AA', 1, 52, 125.00, 50.00, '1047', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP DMS-59 to dual DisplayPort Adapter', 3, 'HP', 'XP688AA', 'XP688AA', 1, 52, 40.00, 16.00, '1048', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP DMS 59 to Dual VGA Cable Kit', 3, 'HP', 'GS567AA', 'GS567AA', 1, 52, 30.00, 12.00, '1049', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP LCD Speaker Bar', 3, 'HP', 'NQ576AA', 'NQ576AA', 1, 52, 42.50, 17.00, '1050', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel 6205 802.11 a/b/g/n PCIe x1 WLAN', 3, 'HP', 'E0X93AA', 'E0X93AA', 1, 52, 85.00, 34.00, '1051', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Mobile USB nLS DVDRW Drive', 3, 'HP', 'A2U57AA', 'A2U57AA', 1, 52, 170.00, 68.00, '1052', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('300GB 10K RPM SAS SFF 1st HDD', 3, 'HP', 'J3J88AV', 'J3J88AV', 1, 54, 405.00, 162.00, '1053', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1.2TB 10K RPM SAS SFF 1st HDD', 3, 'HP', 'J3J90AV', 'J3J90AV', 1, 54, 1010.00, 404.00, '1054', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA Quadro K420 1GB DL-DVI(I)+DP 1st No cables included Graphics', 3, 'HP', 'J1P92AV', 'J1P92AV', 1, 54, 258.00, 103.20, '1055', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA Quadro K4200 4GB DL-DVI(I)+2xDP 1st No cables included Graphics', 3, 'HP', 'J1P95AV', 'J1P95AV', 1, 54, 1618.00, 647.20, '1056', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA Quadro K5200 8GB DL-DVI(I)+DL-DVI(D)+2xDP 1st No cables included Graphics', 3, 'HP', 'J1P96AV', 'J1P96AV', 1, 54, 3556.00, 1422.40, '1057', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA Quadro K620 2GB DL-DVI(I)+DP 1st No cables included Graphics', 3, 'HP', 'J1P93AV', 'J1P93AV', 1, 54, 324.00, 129.60, '1058', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-1607v3 3.10GHz 10MB 1866 4C CPU', 3, 'HP', 'J6F21AV', 'J6F21AV', 1, 54, 663.00, 265.20, '1059', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-1620v3 3.50GHz 10MB 2133 4C CPU', 3, 'HP', 'J6F20AV', 'J6F20AV', 1, 54, 970.00, 388.00, '1060', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-1630v3 3.70GHz 10MB 2133 4C CPU', 3, 'HP', 'J6F19AV', 'J6F19AV', 1, 54, 1293.00, 517.20, '1061', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-1650v3 3.50GHz 15MB 2133 6C CPU', 3, 'HP', 'J6F18AV', 'J6F18AV', 1, 54, 1956.00, 782.40, '1062', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-1660v3 3.00GHz 20MB 2133 8C CPU', 3, 'HP', 'J6F17AV', 'J6F17AV', 1, 54, 3395.00, 1358.00, '1063', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-1680v3 3.20GHz 20MB 2133 8C CPU', 3, 'HP', 'J6F16AV', 'J6F16AV', 1, 54, 5335.00, 2134.00, '1064', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Xeon E5-2630v3 2.40GHz 20MB 1866 8C CPU', 3, 'HP', 'J6F36AV', 'J6F36AV', 1, 54, 2102.00, 840.80, '1065', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB DDR4-2133 (4x8GB) 1CPU RegRAM', 3, 'HP', 'G8X31AV', 'G8X31AV', 1, 54, 1940.00, 776.00, '1066', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB DDR4-2133 (4x8GB) 2CPU RegRAM', 3, 'HP', 'G8X38AV', 'G8X38AV', 1, 54, 1940.00, 776.00, '1067', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('64GB DDR4-2133 (4x16GB) 1CPU RegRAM', 3, 'HP', 'G8X33AV', 'G8X33AV', 1, 54, 3716.00, 1486.40, '1068', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('64GB DDR4-2133 (4x16GB) 2CPU RegRAM', 3, 'HP', 'K6D86AV', 'K6D86AV', 1, 54, 3716.00, 1486.40, '1069', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB DDR4-2133 (4x4GB) 2CPU RegRAM', 3, 'HP', 'G8X36AV', 'G8X36AV', 1, 54, 1618.00, 647.20, '1070', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB SATA 1st SSD', 3, 'HP', 'J3J82AV', 'J3J82AV', 1, 54, 578.00, 231.20, '1071', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB SATA 1st SSD', 3, 'HP', 'J3J83AV', 'J3J83AV', 1, 54, 1103.00, 441.20, '1072', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Intel Core i7-6700 3.4G 8M 2133 4C CPU', 3, 'HP', 'N2Q44AV', 'N2Q44AV', 1, 50, 649.00, 259.60, '1073', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Tri-Mode Wireless Charging Stand', 3, 'HP', 'T3N35AV', 'T3N35AV', 1, 50, 450.00, 180.00, '1074', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDisplay E202 Monitor US', 3, 'HP', 'M1F41AA#ABA', 'M1F41AA#ABA', 1, 55, 315.00, 126.00, '1800-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDisplay E220t Touch MNT US', 3, 'HP', 'L4Q76AA#ABA', 'L4Q76AA#ABA', 1, 56, 565.00, 226.00, '1801-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDisplay E232 Monitor US', 3, 'HP', 'M1N98AA#ABA', 'M1N98AA#ABA', 1, 57, 400.00, 160.00, '1802-A', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP EliteDisplay E242 Monitor US', 3, 'HP', 'M1P02AA#ABA', 'M1P02AA#ABA', 1, 58, 565.00, 226.00, '1804-a', '43211902', 'each', '1', 0.6)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 3y NextBusDay Onsite/DMR DT Only SVC', 3, 'HP', 'UE332E', 'UE332E', 3, 59, 21.00, 16.80, '3006', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 4y NextBusDay Onsite/DMR DT Only SVC', 3, 'HP', 'UE333E', 'UE333E', 3, 59, 115.00, 92.00, '3007', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 5y NextBusDay Onsite/DMR DT Only SVC', 3, 'HP', 'UE334E', 'UE334E', 3, 59, 199.00, 159.20, '3008', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 3y Nbd Onsite/DMR Workstation Service', 3, 'HP', 'UE342E', 'UE342E', 3, 60, 19.00, 15.20, '3009', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 4y Nbd Onsite/DMR Workstation Service', 3, 'HP', 'UE343E', 'UE343E', 3, 60, 91.00, 72.80, '3010', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 5y Nbd Onsite/DMR Workstation Service', 3, 'HP', 'UE344E', 'UE344E', 3, 60, 166.00, 132.80, '3011', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 3y NextBusDay Exchange TC Only SVC', 3, 'HP', 'U4847E', 'U4847E', 3, 61, 69.00, 55.20, '3400', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 4y NextBusDayExch ThinClient Only SVC', 3, 'HP', 'U7927E', 'U7927E', 3, 61, 120.00, 96.00, '3401', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 5y NextBusDayExch ThinClient Only SVC', 3, 'HP', 'U7929E', 'U7929E', 3, 61, 172.00, 137.60, '3402', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 4y Nbd Adv Exchange Standard Monitor Servic', 3, 'HP', 'U0J10E', 'U0J10E', 3, 62, 31.00, 24.80, '3500', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 5y Nbd Adv Exchange Standard Monitor Servic', 3, 'HP', 'U0J11E', 'U0J11E', 3, 62, 67.00, 53.60, '3501', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 4y Nbd Adv Exchange Large Monitor Service', 3, 'HP', 'U0J12E', 'U0J12E', 3, 62, 41.00, 32.80, '3502', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 5y Nbd Adv Exchange Large Monitor Service', 3, 'HP', 'U0J13E', 'U0J13E', 3, 62, 70.00, 56.00, '3503', '432001404', 'each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Installation', 3, 'NWN', '999-5023', '999-5023', 3, 63, 43.00, 35.69, '4000', '81110000', 'each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Asset Tagging', 3, 'NWN', '999-2001', '999-2001', 3, 64, 11.00, 9.13, '4001', '81110000', 'each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Imaging', 3, 'NWN', '999-0003', '999-0003', 3, 65, 26.00, 21.58, '4002', '81110000', 'each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Disposition/Disposal Services', 3, 'NWN', '999-0024', '999-0024', 3, 66, 11.00, 9.13, '4003', '81110000', 'each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Deployment & Logistics', 3, 'NWN', '999-5033', '999-5033', 3, 67, 49.00, 40.67, 'Non-Core *', '81110000', 'each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Emergency Services', 3, 'NWN', '999-5201', '999-5201', 3, 68, 79.00, 65.57, '4005', '81110000', 'each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP IDS UMA HM76 noWWAN 640 G2 BNBPC', 4, 'HP', 'W8E24UP', 'W8E24UP', 1, 69, 1325.00, 689.00, '101', '43211500', 'Each', '', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power Laptop 640 G2', 4, 'HP', 'W8E25UP', 'W8E25UP', 1, 70, 1395.00, 725.40, '202', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Power Laptop 640 G2 i7', 4, 'HP', 'X1W81UP', 'X1W81UP', 1, 70, 1715.00, 891.80, '203', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP ProBook 650G2 i5', 4, 'HP', 'X1D03UP', 'X1D03UP', 1, 70, 1850.00, 962.00, '204', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP IDS UMA i7-6600U fWWAN 650 G2 BNBPC', 4, 'HP', 'X1W80UP', 'X1W80UP', 1, 70, 2250.00, 1170.00, '205', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP IDS UMA 810 G3 BNBPC', 4, 'HP', 'L6N36UP', 'L6N36UP', 1, 71, 3595.00, 1869.40, '301-B', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Powerbook 820 G3 I5', 4, 'HP', 'W8E26UP', 'W8E26UP', 1, 71, 1698.00, 882.96, '302', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Powerbook 820 G3 I5', 4, 'HP', 'W8E26UP', 'W8E26UP', 1, 71, 1698.00, 882.96, '302', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Powerbook 820 G3 i7', 4, 'HP', 'W8E27UP', 'W8E27UP', 1, 71, 2475.00, 1287.00, '303', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('ZBook15 Studio Mobile Workstation Z15 G3', 4, 'HP', 'X1U91UP', 'X1U91UP', 1, 72, 2985.00, 1552.20, '401', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP IDS i7-6820HQ 15 G3 Base NB PC', 4, 'HP', 'Y2P60UP', 'Y2P60UP', 1, 72, 3075.00, 1599.00, '402', '43211500', 'each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Zbook 17 Mobile Workstation', 4, 'HP', 'Y0C86UP', 'Y0C86UP', 1, 72, 3727.00, 1938.04, '403', '43211500', 'Each', '1', 0.48)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('External USB DVD+/-RW Drive', 4, 'HP', 'F2B56AA', 'F2B56AA', 1, 73, 171.00, 111.15, '1006', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP SB03XL Notebook Battery', 4, 'HP', 'E7U25AA', 'E7U25AA', 1, 73, 146.00, 94.90, '1007', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP UltraSlim Docking Station', 4, 'HP', 'D9Y32AA#ABA', 'D9Y32AA#ABA', 1, 73, 220.00, 143.00, '1014', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Business Top Load Case', 4, 'HP', 'H5M92AA', 'H5M92AA', 1, 74, 39.00, 25.35, '1032-A', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('USB Powered External Speakers Logitech: 980-000028-CA', 4, 'Logitech', 'A896056', 'A896056', 1, 75, 25.00, 16.25, '1056', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Wireless keyboard Logitech: 920-004088-CA', 4, 'Logitech', 'A896060', 'A896060', 1, 76, 60.00, 39.00, '1058', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Logitech Headset/Headphone', 4, 'Logitech', 'A896059', 'A896059', 1, 76, 30.00, 19.50, '1059', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('USB Ergonomic Keyboard', 4, 'HP', 'A896049', 'A896049', 1, 76, 35.00, 22.75, '1061-A', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Targus USB optical mouse', 4, 'HP', 'A896051', 'A896051', 1, 76, 40.00, 26.00, '1062', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Master Keyed Cable Lock 10mm', 4, 'HP', 'T1A63AA', 'T1A63AA', 1, 74, 41.00, 26.65, '1083', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('8 GB 2133 DDR4 (1D)', 4, 'HP', 'L3L45AV', 'L3L45AV', 1, 77, 123.00, 79.95, '1084', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16 GB 2133 DDR4 (2D)', 4, 'HP', 'L3M18AV', 'L3M18AV', 1, 77, 515.00, 334.75, '1085', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('180 GB M2 SATA-3 SED OPAL2 MLC SSD', 4, 'HP', 'L3L49AV', 'L3L49AV', 1, 77, 250.00, 162.50, '1086', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('240 GB M2 SATA-3 MLC SSD', 4, 'HP', 'M7S15AV', 'M7S15AV', 1, 77, 485.00, 315.25, '1087', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256 GB PCIe NVMe SSD', 4, 'HP', 'N4P36AV', 'N4P36AV', 1, 77, 510.00, 331.50, '1088', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Integrated HD Webcam', 4, 'HP', 'L9U53AV', 'L9U53AV', 1, 77, 20.00, 13.00, '1089', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('12.5" LED HD SVA Anti-Glare enabled for Webcam (1366x768)', 4, 'HP', 'L3L39AV', 'L3L39AV', 1, 77, 178.00, 115.70, '1090', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Integrated Fingerprint Reader', 4, 'HP', 'M2K50AV', 'M2K50AV', 1, 78, 7.00, 4.55, '1091', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Integrated HD Webcam', 4, 'HP', 'L8X75AV', 'L8X75AV', 1, 78, 10.00, 6.50, '1092', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('14 LED HD SVA Anti-Glare enabled for Webcam flat (1366x768)', 4, 'HP', 'L8U82AV', 'L8U82AV', 1, 78, 72.00, 46.80, '1093', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP UltraSlim Docking Station', 4, 'HP', 'D9Y32AA#ABA', 'D9Y32AA#ABA', 1, 78, 220.00, 143.00, '1094', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1TB 5400RPM 640', 4, 'HP', 'L8Z30AV', 'L8Z30AV', 1, 78, 174.00, 113.10, '1095', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('180 GB M2 SATA-3 SED OPAL2 MLC SSD', 4, 'HP', 'L8Z39AV', 'L8Z39AV', 1, 78, 214.00, 139.10, '1096', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Blu-ray ROM DVD+/-RW SuperMulti DL Drive', 4, 'HP', 'L8Z96AV', 'L8Z96AV', 1, 78, 119.00, 77.35, '1097', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('240 GB M2 SATA-3 MLC SSD', 4, 'HP', 'T5D77AV', 'T5D77AV', 1, 78, 341.00, 221.65, '1098', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP CA06XL Long Life Battery', 4, 'HP', 'E7U21AA', 'E7U21AA', 1, 78, 146.00, 94.90, '1099', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP Comfort Grip Wireless Mobile Mouse', 4, 'HP', 'H2L63AA', 'H2L63AA', 1, 78, 31.00, 20.15, '1100', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16 GB 2133 DDR4 (2D)', 4, 'HP', 'M3X50AV', 'M3X50AV', 1, 79, 287.00, 186.55, '1101', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('15.6" LED HD SVA Anti-Glare enabled for WWAN enabled for Webcam flat', 4, 'HP', 'L8U71AV', 'L8U71AV', 1, 79, 78.00, 50.70, '1102', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Integrated HD Webcam', 4, 'HP', 'L8X77AV', 'L8X77AV', 1, 79, 10.00, 6.50, '1103', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('180 GB M2 SATA-3 SED OPAL2 MLC SSD', 4, 'HP', 'L9Q39AV', 'L9Q39AV', 1, 79, 214.00, 139.10, '1104', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('240 GB M2 SATA-3 MLC SSD', 4, 'HP', 'T5D78AV', 'T5D78AV', 1, 79, 341.00, 221.65, '1105', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512 GB M2 SATA-3 TLC SSD', 4, 'HP', 'L9Q44AV', 'L9Q44AV', 1, 79, 486.00, 315.90, '1106', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Blu-ray ROM DVD+/-RW SuperMulti DL Drive', 4, 'HP', 'L9Q53AV', 'L9Q53AV', 1, 79, 119.00, 77.35, '1107', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB Z Turbo Drive PCIe Solid State Drive', 4, 'HP', 'M6W14AV', 'M6W14AV', 1, 80, 524.00, 340.60, '1108', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1TB Z Turbo Drive PCIe Solid State Drive', 4, 'HP', 'P2D08AV', 'P2D08AV', 1, 80, 839.00, 545.35, '1109', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('15.6 inch LED FHD UWVA Anti-Glare enabled for Webcam (1920x1080)', 4, 'HP', 'M6V92AV', 'M6V92AV', 1, 80, 320.00, 208.00, '1110', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB (2x16GB) 2133 DDR4', 4, 'HP', 'M6W04AV', 'M6W04AV', 1, 80, 840.00, 546.00, '1111', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Fingerprint Reader', 4, 'HP', 'M6W23AV', 'M6W23AV', 1, 80, 27.00, 17.55, '1112', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP ZBook 150W TB3 Dock', 4, 'HP', 'P5Q58AA#ABA', 'P5Q58AA#ABA', 1, 80, 314.00, 204.10, '1113', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP ZBook 200W TB3 Dock', 4, 'HP', 'P5Q61AA#ABA', 'P5Q61AA#ABA', 1, 80, 335.00, 217.75, '1114', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('WEBCAM Integrated 720p HD', 4, 'HP', 'M6V97AV', 'M6V97AV', 1, 80, 34.00, 22.10, '1115', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('USB Numeric Keypad', 4, 'HP', 'A936061', 'A936061', 1, 80, 21.00, 13.65, '1116', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('WEBCAM Integrated 720p HD', 4, 'HP', 'M9R83AV', 'M9R83AV', 1, 81, 21.00, 13.65, '1117', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('15.6 inch LED FHD UWVA Anti-Glare enabled for Webcam slim (1920x1080)', 4, 'HP', 'M9R78AV', 'M9R78AV', 1, 81, 210.00, 136.50, '1118', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA Quadro M2000M Graphics', 4, 'HP', 'M9R72AV', 'M9R72AV', 1, 81, 378.00, 245.70, '1119', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB (2x16GB) 2133MHz DDR4', 4, 'HP', 'M9R91AV', 'M9R91AV', 1, 81, 504.00, 327.60, '1120', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('64GB (4x16GB) 2133MHz DDR4', 4, 'HP', 'M9R93AV', 'M9R93AV', 1, 81, 1008.00, 655.20, '1121', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB SATA-3 Self Encrypted OPAL2 MLC Solid State Drive', 4, 'HP', 'T9T62AV', 'T9T62AV', 1, 81, 419.00, 272.35, '1122', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1TB Z Turbo Drive PCIe Solid State Drive', 4, 'HP', 'T0P65AV', 'T0P65AV', 1, 81, 839.00, 545.35, '1123', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP ZBook 150W TB3 Dock', 4, 'HP', 'P5Q58AA', 'P5Q58AA', 1, 81, 314.00, 204.10, '1124', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP ZBook 200W TB3 Dock', 4, 'HP', 'P5Q61AA#ABA', 'P5Q61AA#ABA', 1, 81, 335.00, 217.75, '1125', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('WEBCAM Integrated 720p HD 17', 4, 'HP', 'M9M10AV', 'M9M10AV', 1, 82, 21.00, 13.65, '1126', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('17.3 LED HD+ SVA AG f/CAM flat 17', 4, 'HP', 'M9M07AV', 'M9M07AV', 1, 82, 158.00, 102.70, '1127', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('16GB (2x8GB) 2133 DDR4', 4, 'HP', 'M9M16AV', 'M9M16AV', 1, 82, 231.00, 150.15, '1128', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('1TB 7200RPM 17', 4, 'HP', 'M9M38AV', 'M9M38AV', 1, 82, 147.00, 95.55, '1129', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('256GB SATA-3 Self Encrypted OPAL2 Solid State Drive', 4, 'HP', 'M9M28AV', 'M9M28AV', 1, 82, 262.00, 170.30, '1130', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('512GB Z Turbo Drive PCIe Solid State Drive', 4, 'HP', 'M9M30AV', 'M9M30AV', 1, 82, 524.00, 340.60, '1131', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('NVIDIA Quadro M5000M Graphics', 4, 'HP', 'M9M04AV', 'M9M04AV', 1, 82, 1679.00, 1091.35, '1132', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('32GB (2x16GB) 2133MHz DDR4', 4, 'HP', 'M9M18AV', 'M9M18AV', 1, 82, 504.00, 327.60, '1133', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('64GB (4x16GB) 2133MHz DDR4', 4, 'HP', 'M9M20AV', 'M9M20AV', 1, 82, 1008.00, 655.20, '1134', '43211500', 'Each', '1', 0.35)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Warranty', 4, 'HP', 'U7860E', 'U7860E', 3, 83, 220.00, 176.00, '2000', '43211500', 'Each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Warranty', 4, 'HP', 'U7861E', 'U7861E', 3, 83, 314.00, 251.20, '2001', '43211500', 'Each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('4 Year Warranty', 4, 'HP', 'UF633E', 'UF633E', 3, 84, 136.00, 108.80, '2002', '43211500', 'Each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('5 Year Warranty', 4, 'HP', 'UF635E', 'UF635E', 3, 84, 272.00, 217.60, '2003', '43211500', 'Each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('HP 4y NextBusDay Onsite/DMR NB', 4, 'HP', 'UG841E', 'UG841E', 3, 84, 167.00, 133.60, '2004', '43211500', 'Each', '1', 0.2)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Installation', 4, 'NWN', '999-5023', '999-5023', 3, 63, 43.00, 35.69, '3000', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Asset Tagging', 4, 'NWN', '999-2001', '999-2001', 3, 85, 11.00, 9.13, '3001', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset information via internet', 4, 'NWN', 'Included', 'Included', 3, 86, 0, 0, '3002', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Self-Warranty Certification', 4, 'NWN', 'Included', 'Included', 3, 87, 0, 0, '3003', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Imaging', 4, 'NWN', '999-0003', '999-0003', 3, 88, 26.00, 21.58, '3004', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Disposition/Disposal Services', 4, 'NWN', '999-0024', '999-0024', 3, 89, 11.00, 9.13, '3005', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Deployment & Logistics', 4, 'NWN', '999-5033', '999-5033', 3, 90, 49.00, 40.67, '*Non Core', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Basic Emergency Services', 4, 'NWN', '999-5201', '999-5201', 3, 91, 79.00, 65.57, '3007', '81110000', 'Each', '1', 0.17)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P1917s 19" Standard Monitor', 5, 'DELL', '210-AIIJ , 806-2763', '210-AIIJ , 806-2763', 1, 92, 249.99, 169.99, '100c', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P2016 19.5" WideScreen Monitor', 5, 'DELL', '858-BBCU', '858-BBCU', 1, 93, 189.99, 129.20, '101b', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('22" Touchscreen Monitor', 5, 'VIEWSONIC', 'TD2220', 'TD2220', 1, 94, 445.00, 302.60, '102a', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P2217 22" Widescreen Monitor', 5, 'DELL', '210-AIIC, 806-2763', '210-AIIC, 806-2763', 1, 95, 219.99, 149.59, '103b', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('P2417H 24" Widescreen Monitor', 5, 'DELL', '320-9794, 806-2763', '210-AIIM, 806-2763', 1, 96, 299.99, 203.99, '104c', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('28" Widescreen Monitor', 5, 'VIEWSONIC', 'VG2847SMH', 'VG2847SMH', 1, 97, 552.00, 375.36, '105b', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('UP3017 30" Widescreen Monitor', 5, 'DELL', '210-AJGT, 810-6396', '210-AJGT, 810-6396', 1, 98, 1399.99, 951.99, '106d', '43211900', 'EACH', '1', 0.32)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('MS - Display cable - DVI-D M - DVI-D M - 6.6 ft  ( included in the 22" widescreen monitor)', 5, 'DELL', 'A3793590', 'A3793590', 1, 52, 12.99, 8.96, '200a', '43211900', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('6FT C2G DISPLAYPORT CABLE M/M BLK', 5, 'DELL', 'A7639742', 'A7639742', 1, 52, 15.99, 11.04, '201b', '43211900', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell USB Monitor Soundbar AC511', 5, 'DELL', '318-2885', '318-2885', 1, 52, 34.99, 24.14, '202', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell MSA14 Single Monitor Arm Stand', 5, 'DELL', '332-1235', '332-1235', 1, 52, 129.99, 89.69, '203', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell MDS14 Dual Monitor Stand', 5, 'DELL', '332-1236', '332-1236', 1, 52, 169.99, 117.29, '204', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Dell MDA17 Dual Monitor Stand', 5, 'DELL', '855-BBBN', '855-BBBN', 1, 52, 249.99, 172.50, '205', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 4 Year Warranty Exchange Replacement', 5, 'DELL', '983-7873, 986-4872', '983-7873, 986-4872', 3, 99, 39.00, 26.91, '300a', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 5 Year Warranty Exchange Replacement', 5, 'DELL', '983-1324', '983-1324', 3, 99, 49.00, 33.81, '301a', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 4 Year Warranty Exchange Replacement', 5, 'DELL', '810-6398', '810-6398', 3, 100, 100.00, 69.00, '302b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 5 Year Warranty Exchange Replacement', 5, 'DELL', '810-6399', '810-6399', 3, 100, 150.00, 103.50, '303b', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 4 Year Warranty Exchange Replacement', 5, 'VIEWSONIC', 'LCD-EEEW-27-01', 'LCD-EEEW-27-01', 3, 99, 72.00, 49.68, '304', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 5 Year Warranty Exchange Replacement', 5, 'VIEWSONIC', 'LCD-EEEW-27-02', 'LCD-EEEW-27-02', 3, 99, 121.00, 83.49, '305', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 4 Year Warranty Exchange Replacement', 5, 'DELL', '806-2756', '806-2756', 3, 101, 19.00, 13.11, '306', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Upgrade 5 Year Warranty Exchange Replacement', 5, 'DELL', '806-2757', '806-2757', 3, 101, 29.00, 20.01, '307', '81110000', 'EACH', '1', 0.31)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Installation Services', 5, 'TIG', 'TIG-INS-MON', 'TIG-INS-MON', 3, 102, 37.00, 28.49, '400a', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset Tagging-Services- Customer provided tags', 5, 'TIG', 'TIG-ATG-MON', 'TIG-ATG-MON', 3, 102, 10.00, 7.70, '401a', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Asset Information via Internet', 5, 'TIG', 'TIG-AIN-MON', 'TIG-AIN-MON', 3, 102, 0, 0, '402', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Self-Warranty Certification', 5, 'TIG', 'TIG-SWC-MON', 'TIG-SWC-MON', 3, 102, 0, 0, '403', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Take-Back Services', 5, 'TIG', 'TIG-DIS-MON', 'TIG-DIS-MON', 3, 102, 10.00, 7.70, '404a', '81110000', 'EACH', '1', 0.23)
+
+INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)
+VALUES ('Deployment & Logistics Services', 5, 'TIG', 'TIG-DLG-MON', 'TIG-DLG-MON', 3, 102, 46.00, 35.42, '*Non-Core', '81110000', 'HOUR', '1', 0.23)
+
