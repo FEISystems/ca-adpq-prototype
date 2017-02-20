@@ -1,5 +1,16 @@
-CREATE TABLE 'ca'.'category' (
-            'Id' INT NOT NULL AUTO_INCREMENT,
-            'Name' VARCHAR(250) NOT NULL,
-            PRIMARY KEY (`Id`)
-);
+use ca;
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `categories` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
+
+INSERT INTO categories (Name) VALUES ('Category 1');
+
+INSERT INTO categories (Name) VALUES ('Category 2');
+
+INSERT INTO categories (Name) VALUES ('Category 3');
+
+INSERT INTO categories (Name) VALUES ('Category 4');

@@ -62,6 +62,12 @@ namespace ca_proto
             {
                 c.SwaggerDoc("v1", new Info { Title = "Ca Proto", Version = "v1" });
             });
+
+            services.AddMvc()
+               .AddJsonOptions(options =>
+               {
+                   options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

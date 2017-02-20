@@ -1,14 +1,22 @@
-CREATE TABLE 'ca'.products' (
-            'Id' INT NOT NULL AUTO_INCREMENT,
-            'Name' VARCHAR(250) NOT NULL,
-            'ContractId' INT NOT NULL,
-            'Manufacturer' VARCHAR(250) NOT NULL,
-            'ManufacturerPartNumber' VARCHAR(250) NOT NULL,
-            'SKU' VARCHAR(50) NOT NULL,
-            'ProductType' int NOT NULL,
-            'ValidParentProductIds', VARCHAR(500) NULL,
-            'Category', VARCHAR(100) NOT NULL,
-            'ListPrice', DECIMAL(12,4),
-            'ContractPrice', DECIMAL(12,4),
-            PRIMARY KEY ('Id')
-);
+use ca;
+DROP TABLE IF EXISTS `products`;
+
+CREATE TABLE `products` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(250) NOT NULL,
+  `ContractId` int(11) NOT NULL,
+  `Manufacturer` varchar(250) NOT NULL,
+  `ManufacturerPartNumber` varchar(250) NOT NULL,
+  `SKU` varchar(50) NOT NULL,
+  `ProductType` int(11) NOT NULL,
+  `ValidAsAddOnForParentCategories` varchar(500) DEFAULT NULL,
+  `CategoryId` int(11) NOT NULL,
+  `ListPrice` decimal(12,4) DEFAULT NULL,
+  `ContractPrice` decimal(12,4) DEFAULT NULL,
+  `CLIN` varchar(45) DEFAULT NULL,
+  `UNSPSC` varchar(45) DEFAULT NULL,
+  `UnitOfMeasure` varchar(10) DEFAULT NULL,
+  `Quantity` varchar(20) DEFAULT NULL,
+  `ConractDiscount` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
