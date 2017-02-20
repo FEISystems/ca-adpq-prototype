@@ -15,7 +15,7 @@
                 <td><input type="text" ng-model="model.product.Name" required/></td>
                 <td>Contract Id</td>
                 <td>
-                    <select ng-model="model.product.ContractId" ng-options="contract as contract.text for contract in model.contracts" required>
+                    <select ng-model="model.product.ContractId" ng-options="contract as contract.Text for contract in model.contracts" required>
                         <option value="">Select Contract</option>
                     </select>
                 </td>
@@ -31,7 +31,7 @@
                 <td><input type="text" ng-model="model.product.SKU" required /></td>
                 <td>Product Type</td>
                 <td>
-                    <select ng-model="model.product.ProductType" ng-options="prod as prod.text for prod in model.productTypes" required>
+                    <select ng-model="model.product.ProductType" ng-options="prod as prod.Text for prod in model.productTypes" required>
                         <option value="">Select Product Type</option>
                     </select>
                 </td>
@@ -45,7 +45,7 @@
                 <td><input type="text" ng-model="model.product.ListPrice" required /></td>
                 <td>Category Id</td>
                 <td>
-                    <select ng-model="model.product.CategoryId" ng-options="categories as categories.text for categories in model.categories" required>
+                    <select ng-model="model.product.CategoryId" ng-options="categories as categories.Text for categories in model.categories" required>
                         <option value="">Select Category</option>
                     </select>
                 </td>
