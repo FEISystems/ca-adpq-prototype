@@ -21,7 +21,7 @@ namespace ca_service.Repositories
 
         public List<Product> QuickSearch(string[] searchTerms)
         {
-            if (searchTerms == null || !searchTerms.Any())
+            if (searchTerms == null || searchTerms.Length == 0)
                 return null;
 
             string baseSql = @"

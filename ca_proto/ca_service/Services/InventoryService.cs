@@ -1,8 +1,5 @@
-﻿using ca_service.Database;
-using ca_service.Entities;
+﻿using ca_service.Entities;
 using ca_service.Interfaces;
-using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
@@ -23,7 +20,7 @@ namespace ca_service.Services
                 inventoryRepository.Dispose();
         }
 
-        public IEnumerable<Product> QuickSearch(string[] searchTerms)
+        public List<Product> QuickSearch(string[] searchTerms)
         {
             if (searchTerms == null || searchTerms.Length == 0)
                 return null;
