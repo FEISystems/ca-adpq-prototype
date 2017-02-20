@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
+using System.Text;
 
 namespace ca_service.Repositories
 {
@@ -20,16 +21,41 @@ namespace ca_service.Repositories
 
         public List<Product> QuickSearch(string[] searchTerms)
         {
-            string sql = @"
-SELECT Id, Name
-FROM Products
-WHERE Name = @Name
+            if (searchTerms == null || !searchTerms.Any())
+                return null;
+
+            string baseSql = @"
+SELECT C.Name AS CategoryName, P.Id, P.Name, P.Manufacturer, P.ManufacturerPartNumber, P.SKU
+FROM Products P
+JOIN Categories C ON P.CategoryId = C.Id
+WHERE";
+
+            string whereClause = @"
+    (P.Name LIKE {0} OR Manufacturer LIKE {0} OR ManufacturerPartNumber LIKE {0} OR SKU LIKE {0} OR C.Name LIKE {0})
 ";
-            //todo: add more columns, etc
+
             var cmd = db.connection.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.Parameters.Add(new MySqlParameter() { ParameterName = "@Name", Value = searchTerms[0] });
+
+            Func<string, string> toSqlParameterValue = v => $"%{v}%";
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(baseSql);
+
+            for (int i = 0; i < searchTerms.Length; ++i)
+            {
+                var paramName = $"@P{i}";
+                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = toSqlParameterValue(searchTerms[i]) });
+                sb.AppendFormat(whereClause, paramName);
+                if(i < searchTerms.Length - 1)
+                {
+                    sb.AppendLine(@"
+    OR");
+                }
+            }
+
             var result = new List<Product>();
+
+            cmd.CommandText = sb.ToString();
 
             using (var reader = cmd.ExecuteReader())
             {
@@ -38,6 +64,9 @@ WHERE Name = @Name
                     var product = new Product((int)reader["Id"])
                     {
                         Name = reader["Name"].ToString(),
+                        Manufacturer = reader["Manufacturer"].ToString(),
+                        ManufacturerPartNumber = reader["ManufacturerPartNumber"].ToString(),
+                        SKU = reader["SKU"].ToString(),
                     };
 
                     result.Add(product);
