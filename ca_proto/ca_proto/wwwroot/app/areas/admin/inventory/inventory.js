@@ -38,7 +38,9 @@
         model.importFile = function () {
             try
             {
+
                 var fileinfo = document.getElementById("selectedfile").files[0];
+                //model.debugAlert(fileinfo);
                 if (fileinfo == undefined)
                 {
                     alert("Please select a file.");

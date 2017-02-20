@@ -27,16 +27,40 @@ namespace ca_proto.Controllers
             StringBuilder result = new StringBuilder();
             Product product = new Product(0)
             {
-                CategoryId = 1,
-                ContractId = 1,
-                ContractPrice = 100.0m,
+                //CLIN 
+                //UNSPSC
+                //Description 
+                //UnitOfMeasure 
+                //QuantityPerUnitOfMeasure 
+                //ContractDiscount 
+                //ContractNumber 
+                //Contractor
+                //ContractExpiration 
+                //Title 
+                //ListPrice 
+                //ContractPrice 
+                //Manufacturer
+                //ManufacturerPartNumber 
+                //SKU 
+                //ProductType 
+                //Category 
+                CLIN = "clin001",
+                UNSPSC = "unspsc01",
+                Description = "This is a long description. Parts of it will be extracted to be used as the title. This is done by a person, not by the system.",
+                UnitOfMeasure = "EACH",
+                QuantityPerUnitOfMeasure = "UnitOfMeasure",
+                ContractDiscount = "50%",
+                ContractNumber = "Contract111222",
+                Contractor = "Contractor A",
+                ContractExpiration = DateTime.Now.AddYears(1),
+                Title = "This is a long description.",
                 ListPrice = 150.0m,
+                ContractPrice = 100.0m,
                 Manufacturer = "mfg 1",
                 ManufacturerPartNumber = "mpn 1",
-                Name = "product 1",
-                ProductType = ProductType.Hardware,
                 SKU = "sku 1",
-                ValidAsAddOnForParentCategories = new List<int>()
+                ProductType = ProductType.Hardware.ToString(),
+                Category = "Category 1",
             };
             try
             {
@@ -45,7 +69,7 @@ namespace ca_proto.Controllers
                 inventoryService.Add(product);
                 result.AppendLine("Added product: " + product.Id);
                 result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
-                product.Name += " - updated";
+                product.Title += " - updated";
                 inventoryService.Update(product);
                 result.AppendLine("Updated product: " + product.Id);
                 inventoryService.Delete(product.Id);

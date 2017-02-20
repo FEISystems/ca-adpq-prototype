@@ -15,16 +15,40 @@ namespace ca_service.Entities
         }
 
         [DbColumn(System.Data.DbType.String)]
-        public string Name { get; set; }
+        public string CLIN { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string UNSPSC { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string Description { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string UnitOfMeasure { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string QuantityPerUnitOfMeasure { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string ContractDiscount { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string ContractNumber { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string Contractor { get; set; }
+
+        [DbColumn(System.Data.DbType.DateTime)]
+        public DateTime ContractExpiration { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string Title { get; set; }
 
         [DbColumn(System.Data.DbType.Currency)]
         public decimal ListPrice { get; set; }
 
         [DbColumn(System.Data.DbType.Currency)]
         public decimal ContractPrice { get; set; }
-
-        [DbColumn(System.Data.DbType.Int32)]
-        public int ContractId { get; set; }
 
         [DbColumn(System.Data.DbType.String)]
         public string Manufacturer { get; set; }
@@ -35,14 +59,11 @@ namespace ca_service.Entities
         [DbColumn(System.Data.DbType.String)]
         public string SKU { get; set; }
 
-        [DbColumn(System.Data.DbType.Int32)]
-        public ProductType ProductType { get; set; }
+        [DbColumn(System.Data.DbType.String)]
+        public string ProductType { get; set; }
 
         [DbColumn(System.Data.DbType.String)]
-        public List<int> ValidAsAddOnForParentCategories { get; set; }
-
-        [DbColumn(System.Data.DbType.Int32)]
-        public int CategoryId { get; set; }
+        public string Category { get; set; }
     }
 
     public enum ProductType

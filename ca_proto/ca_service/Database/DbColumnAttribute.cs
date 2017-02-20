@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Data;
 
 namespace ca_service.Database
 {
@@ -60,5 +61,30 @@ namespace ca_service.Database
                 }
             }
         }
+
+        public static object GetValue(string[] values, int colIndex, DbType dbType)
+        {
+            string value = values[colIndex];
+            if (dbType == DbType.Int32)
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    return 0;
+                return int.Parse(value);
+            }
+            else if (dbType == DbType.Currency)
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    return 0.0m;
+                return decimal.Parse(value, System.Globalization.NumberStyles.Currency);
+            }
+            else if (dbType == DbType.DateTime)
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    return DateTime.MinValue;
+                return DateTime.Parse(value);
+            }
+            return value;
+        }
+
     }
 }
