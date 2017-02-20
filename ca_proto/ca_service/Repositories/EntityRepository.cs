@@ -152,7 +152,11 @@ namespace ca_service.Repositories
             {
                 if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
                 {
-                    column.BuildParameter(cmd).Value = string.Join(",", ((List<int>)column.Property.GetValue(entity)).Select(item => item.ToString()).ToArray());
+                    var o = column.Property.GetValue(entity);
+                    if (null == o)
+                        column.BuildParameter(cmd).Value = "";
+                    else
+                        column.BuildParameter(cmd).Value = string.Join(",", ((List<int>)o).Select(item => item.ToString()).ToArray());
                 }
                 else
                 {
