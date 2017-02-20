@@ -7,7 +7,7 @@ CREATE TABLE `products` (
   `ContractId` int(11) NOT NULL,
   `Manufacturer` varchar(250) NOT NULL,
   `ManufacturerPartNumber` varchar(250) NOT NULL,
-  `SKU` varchar(50) NOT NULL,
+  `SKU` varchar(100) NOT NULL,
   `ProductType` int(11) NOT NULL,
   `ValidAsAddOnForParentCategories` varchar(500) DEFAULT NULL,
   `CategoryId` int(11) NOT NULL,
@@ -17,6 +17,6 @@ CREATE TABLE `products` (
   `UNSPSC` varchar(45) DEFAULT NULL,
   `UnitOfMeasure` varchar(10) DEFAULT NULL,
   `Quantity` varchar(20) DEFAULT NULL,
-  `ConractDiscount` varchar(10) DEFAULT NULL,
+  `ContractDiscount` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -252,7 +252,7 @@ namespace CsvFixer
                 var contractId = contractLookups[p.ContractNumber];
 
                 sb.AppendLine($"INSERT INTO products (Name, ContractId, Manufacturer, ManufacturerPartNumber, SKU, ProductType, CategoryId, ListPrice, ContractPrice, CLIN, UNSPSC, UnitOfMeasure, Quantity, ContractDiscount)");
-                sb.AppendLine($"VALUES ('{p.ProductTitle.ToSqlString()}', {contractId}, '{p.Manufacturer.ToSqlString()}', '{p.ManufacturerPartNumber.ToSqlString()}', '{p.SKU.ToSqlString()}', {(int)p.ActualProductType}, {categoryId}, {p.ListPrice}, {p.ContractPrice}, '{p.CLIN.ToSqlString()}', '{p.UNSPSC.ToSqlString()}', '{p.UnitOfMeasure.ToSqlString()}', '{p.Quantity.ToSqlString()}', {p.ContractDiscount/100m})");
+                sb.AppendLine($"VALUES ('{p.ProductTitle.ToSqlString()}', {contractId}, '{p.Manufacturer.ToSqlString()}', '{p.ManufacturerPartNumber.ToSqlString()}', '{p.SKU.ToSqlString()}', {(int)p.ActualProductType}, {categoryId}, {p.ListPrice}, {p.ContractPrice}, '{p.CLIN.ToSqlString()}', '{p.UNSPSC.ToSqlString()}', '{p.UnitOfMeasure.ToSqlString()}', '{p.Quantity.ToSqlString()}', {p.ContractDiscount/100m});");
                 sb.AppendLine();
             }
 
