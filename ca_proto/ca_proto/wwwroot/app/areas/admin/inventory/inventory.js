@@ -181,8 +181,8 @@
         model.fetchProducts();
     };
 
-    module.component("adminInventory", {
-        templateUrl: "app/areas/authorizedadmin/inventory/inventory.html",
+    module.component("inventory", {
+        templateUrl: "app/areas/admin/inventory/inventory.html",
         controllerAs: "model",
         controller: ["$scope", "$location", "messageService", "inventoryService", controller]
 

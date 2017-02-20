@@ -23,18 +23,18 @@
             ,
         $routeConfig: [
 
-            { path: '/home', component: 'home', name: 'Home' },
 
-            // Main Navigation
-            { path: '/adminlogin', component: 'adminLogin', name: 'Admin Login' },
-            { path: '/admininventory', component: 'adminInventory', name: 'Admin Inventory' },
+            // Public
             { path: '/aboutus', component: 'aboutUs', name: 'About Us' },
-            { path: '/help', component: 'help', name: 'Help' },
-            { path: '/cart', component: 'cart', name: 'Cart' },
-            { path: '/compare', component: 'compareList', name: 'Compare List' },
             { path: '/advancedsearch', component: 'advancedSearch', name: 'Advanced Search' },
+            { path: '/compare', component: 'compareList', name: 'Compare List' },
+            { path: '/contactus', component: 'contactUs', name: 'Contact Us' },
+            { path: '/faq', component: 'faq', name: 'FAQ' },
+            { path: '/help', component: 'help', name: 'Help' },
+            { path: '/home', component: 'home', name: 'Home' },
+            { path: '/product/details', component: 'productDetails', name: 'Product Details'},
 
-            // Sub Navigation
+            // Categories
             // // Software
             { path: '/categories/software/allsoftware', component: 'allSoftware', name: 'All Software' },   
 
@@ -58,8 +58,29 @@
             { path: '/categories/hardware/laptopsaccessories', component: 'laptopAccessories', name: 'Laptop Accessories' }, 
             { path: '/categories/hardware/miscellaneous', component: 'miscellaneous', name: 'Miscellaneous' },  
 
-                 
-            { path: '/product/details', component: 'productDetails', name: 'Product Details'},
+            
+            // Admin
+            { path: '/admin/home', component: 'adminHome', name: 'Admin Home' },
+            { path: '/admin/login', component: 'adminLogin', name: 'Admin Login'}, //Login Testing Only
+            { path: '/admin/adminuser', component: 'adminUser', name: 'Admin User'},
+            { path: '/admin/adminusers', component: 'adminUsers', name: 'Admin Users'},
+            { path: '/admin/authorizeduser', component: 'authorizedUser', name: 'Authorized User'},
+            { path: '/admin/authorizedusers', component: 'authorizedUsers', name: 'Authorized Users'},
+            { path: '/admin/inventory', component: 'inventory', name: 'Inventory'},
+            { path: '/admin/vendor', component: 'vendor', name: 'Vendor'},
+            { path: '/admin/vendors', component: 'vendors', name: 'Vendors'},
+
+            
+            // Authorized Users
+            { path: '/user/cancelorder', component: 'cancelOrder', name: 'Cancel Order'},
+            { path: '/user/cart', component: 'cart', name: 'Cart'},
+            { path: '/user/checkout', component: 'checkout', name: 'Checkout'},
+            { path: '/user/myaccount', component: 'myAccount', name: 'My Account'},
+            { path: '/user/orderconfirmation', component: 'orderConfirmation', name: 'Order Confirmation'},
+            { path: '/user/orderdetails', component: 'orderDetails', name: 'Order Details'},
+            { path: '/user/orderhistory', component: 'orderHistory', name: 'Order History'},
+            { path: '/user/revieworder', component: 'reviewOrder', name: 'Review Order'},
+
 
             { path: '/**', redirectTo: ['Home'] }
     ]

@@ -39,7 +39,7 @@
     };
 
     module.component("adminLogin", {
-        templateUrl: "app/areas/authorizedadmin/login/login.html",
+        templateUrl: "app/areas/admin/login/login.html",
         controllerAs: "model",
         controller: ["$scope", "$location", "messageService", "loginService", controller]
 

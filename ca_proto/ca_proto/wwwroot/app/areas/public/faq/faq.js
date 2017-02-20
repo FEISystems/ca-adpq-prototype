@@ -5,12 +5,12 @@
     var controller = function ($scope, $location) {
         var model = this;
         model.provider = {};
-        model.title = "Order Details";
+        model.title = "FAQ";
 
     };
 
-    module.component("orderDetails", {
-        templateUrl: "app/areas/registereduser/orderdetails/orderdetails.html",
+    module.component("faq", {
+        templateUrl: "app/areas/public/faq/faq.html",
         controllerAs: "model",
         controller: ["$scope", "$location", controller]
 

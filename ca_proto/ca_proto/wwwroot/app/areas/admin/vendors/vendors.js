@@ -1,16 +1,16 @@
-﻿(function () {
+(function () {
     "use strict";
     var module = angular.module("caWebApp");
 
     var controller = function ($scope, $location) {
         var model = this;
         model.provider = {};
-        model.title = "Checkout";
+        model.title = "All Vendors";
 
     };
 
-    module.component("checkout", {
-        templateUrl: "app/areas/registereduser/checkout/checkout.html",
+    module.component("vendors", {
+        templateUrl: "app/areas/admin/vendors/vendors.html",
         controllerAs: "model",
         controller: ["$scope", "$location", controller]
 
