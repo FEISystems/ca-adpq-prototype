@@ -121,5 +121,17 @@ namespace ca_proto.Controllers
             inventoryService.Delete(id);
             return new EmptyResult();
         }
+
+        [HttpPost("quicksearch")]
+        public ActionResult QuickSearch([FromBody]QuickSearch searchTerms)
+        {
+            //search terms can be comma delimited, turn them into a comma-separated list
+            var terms = (searchTerms?.SearchTerm ?? "").Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            var results = inventoryService.QuickSearch(terms);
+
+            //todo: create a DTO for products for the UI side
+            return Json(results);
+        }
     }
 }
