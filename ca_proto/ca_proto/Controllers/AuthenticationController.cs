@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using ca_service.Interfaces;
 using ca_proto.Helpers;
+using ca_proto.Filters;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ca_proto.Controllers
@@ -41,16 +42,21 @@ namespace ca_proto.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create([FromBody] Models.Credentials credentials)
+        [AdministratorFilter]
+        public IActionResult Create([FromBody] ca_service.Entities.User user)
         {
-            return Json(this.userservice.CreateUser(credentials.username, credentials.password));
+            return Json(this.userservice.CreateUser(user.UserName, user.Password, user.TimeZoneOffset, user.IsAdmin));
         }
 
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete()
         {
+            if (!Request.Cookies.Any(x => x.Key == Helpers.Helpers.AuthToken))
+                return;
+            var cookie = Request.Cookies.First(x => x.Key == Helpers.Helpers.AuthToken);
+            this.userservice.LogOut(cookie.Value.ToString());
+            Response.Cookies.Delete(Helpers.Helpers.AuthToken);
         }
     }
 }

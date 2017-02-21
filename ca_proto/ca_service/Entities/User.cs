@@ -8,9 +8,9 @@ namespace ca_service.Entities
     public class User: Entity
     {
         public User(int id) : base(id) { }
-        public string Name { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
-
         public int TimeZoneOffset { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

@@ -25,6 +25,7 @@
     <script src="js/vendor/bootstrap-datepicker/bootstrap-datepicker.js"></script>
     <script src="js/vendor/lodash/lodash.js"></script>
     <script src="js/vendor/uswds-0.14.0/js/uswds.js"></script>
+    <script src="js/vendor/swiper-3.4.1/js/swiper.min.js"></script>
 
     <!-- AREAS -->
     <script src="app/areas/app.js"></script>
@@ -34,22 +35,57 @@
     <script src="app/areas/public/advancedsearch/advancedsearch.js"></script>
     <script src="app/areas/public/comparelist/comparelist.js"></script>
     <script src="app/areas/public/contactus/contactus.js"></script>
+    <script src="app/areas/public/faq/faq.js"></script>
     <script src="app/areas/public/help/help.js"></script>
     <script src="app/areas/public/home/home.js"></script>
 
     
-    <!-- AREA: Registered User Components -->
-    <script src="app/areas/registereduser/accountinformation/accountinformation.js"></script>
-    <script src="app/areas/registereduser/cart/cart.js"></script>
-    <script src="app/areas/registereduser/checkout/checkout.js"></script>
-    <script src="app/areas/registereduser/orderconfirmation/orderconfirmation.js"></script>
-    <script src="app/areas/registereduser/orderdetails/orderdetails.js"></script>
-    <script src="app/areas/registereduser/orderhistory/orderhistory.js"></script>
-    <script src="app/areas/registereduser/revieworder/revieworder.js"></script>
+    <!-- AREA: Categories - Hardware - Accessories-->    
+    <script src="app/areas/public/categories/hardware/accessories/allaccessories/allaccessories.js"></script>
+    <script src="app/areas/public/categories/hardware/accessories/desktopaccessories/desktopaccessories.js"></script>
+    <script src="app/areas/public/categories/hardware/accessories/laptopaccessories/laptopaccessories.js"></script>
+    <script src="app/areas/public/categories/hardware/accessories/miscellaneous/miscellaneous.js"></script>
+    <!-- AREA: Categories - Hardware - Desktops-->
+    <script src="app/areas/public/categories/hardware/desktops/alldesktops/alldesktops.js"></script>
+    <script src="app/areas/public/categories/hardware/desktops/allinonedesktops/allinonedesktops.js"></script>
+    <script src="app/areas/public/categories/hardware/desktops/powerdesktops/powerdesktops.js"></script>
+    <script src="app/areas/public/categories/hardware/desktops/standarddesktops/standarddesktops.js"></script>
+    <script src="app/areas/public/categories/hardware/desktops/thinclientdesktops/thinclientdesktops.js"></script>
+    <script src="app/areas/public/categories/hardware/desktops/workstations/workstations.js"></script>
+    <!-- AREA: Categories - Hardware - Laptops-->
+    <script src="app/areas/public/categories/hardware/laptops/alllaptops/alllaptops.js"></script>
+    <script src="app/areas/public/categories/hardware/laptops/mobileworkstations/mobileworkstations.js"></script>
+    <script src="app/areas/public/categories/hardware/laptops/powerlaptops/powerlaptops.js"></script>
+    <script src="app/areas/public/categories/hardware/laptops/standardlaptops/standardlaptops.js"></script>
+    <script src="app/areas/public/categories/hardware/laptops/ultralightlaptops/ultralightlaptops.js"></script>
+    <!-- AREA: Categories - Software -->
+    <script src="app/areas/public/categories/software/allsoftware/allsoftware.js"></script>
+    
+    <!-- AREA: Public/Categories Components -->
+    <script src="app/areas/public/productdetails/productdetails.js"></script>
 
     
-    <!-- AREA: Authorized Admin Components -->
-    <script src="app/areas/authorizedadmin/login/login.js"></script>
+    <!-- AREA: Authorized User Components -->
+    <script src="app/areas/authorizeduser/cancelorder/cancelorder.js"></script>
+    <script src="app/areas/authorizeduser/cart/cart.js"></script>
+    <script src="app/areas/authorizeduser/checkout/checkout.js"></script>
+    <script src="app/areas/authorizeduser/myaccount/myaccount.js"></script>
+    <script src="app/areas/authorizeduser/orderconfirmation/orderconfirmation.js"></script>
+    <script src="app/areas/authorizeduser/orderdetails/orderdetails.js"></script>
+    <script src="app/areas/authorizeduser/orderhistory/orderhistory.js"></script>
+    <script src="app/areas/authorizeduser/revieworder/revieworder.js"></script>
+
+    
+    <!-- AREA: Admin Components -->
+    <script src="app/areas/admin/adminhome/adminhome.js"></script>
+    <script src="app/areas/admin/adminuser/adminuser.js"></script>
+    <script src="app/areas/admin/adminusers/adminusers.js"></script>
+    <script src="app/areas/admin/authorizeduser/authorizeduser.js"></script>
+    <script src="app/areas/admin/authorizedusers/authorizedusers.js"></script>
+    <script src="app/areas/admin/inventory/inventory.js"></script>
+    <script src="app/areas/admin/login/login.js"></script>
+    <script src="app/areas/admin/vendor/vendor.js"></script>
+    <script src="app/areas/admin/vendors/vendors.js"></script>
 
 
     <!-- SHARED -->
@@ -58,8 +94,10 @@
     <script src="app/views/shared/components/loading/loading.component.js"></script>
     <script src="app/views/shared/components/modal/modal.component.js"></script>
     <script src="app/views/shared/components/main-nav/main-nav.component.js"></script>
-    <script src="app/views/shared/components/navbar-header/navbar-header.component.js"></script>
+    <script src="app/views/shared/components/masthead/masthead.component.js"></script>
     <script src="app/views/shared/components/sub-nav/sub-nav.component.js"></script>
+    <script src="app/views/shared/components/product-card/product-card.component.js"></script>
+    <script src="app/views/shared/components/footer/footer.component.js"></script>
 
     <!-- SHARED: Layouts -->
     <script src="app/views/shared/layouts/left-navbar-layout/left-navbar.layout.js"></script>
@@ -68,6 +106,8 @@
     <script src="app/views/shared/layouts/standard-layout/standard.layout.js"></script>
 
     <!-- SERVICES -->
+    <script src="app/services/loginService.js"></script>
+    <script src="app/services/inventoryService.js"></script>
     <script src="app/services/clientService.js"></script>
     <script src="app/services/messageService.js"></script>
     <script src="app/services/roleService.js"></script>
@@ -86,7 +126,8 @@
     <link href="js/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet"/>
     <link href="fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet"/>
     <link href="js/vendor/uswds-0.14.0/css/uswds.css" rel="stylesheet"/>
-    <link href="css/app/app.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="js/vendor/swiper-3.4.1/css/swiper.min.css">
+    <link href="css/app.css" rel="stylesheet"/>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

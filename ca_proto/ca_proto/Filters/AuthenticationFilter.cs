@@ -4,30 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ca_proto.Helpers;
+using ca_service.Interfaces;
+
 namespace ca_proto.Filters
 {
-    public class AuthenticationFilter
+    public class AuthenticationFilter: ActionFilterAttribute
     {
-        public class SampleGlobalActionFilter : IActionFilter
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            public void OnActionExecuting(ActionExecutingContext context)
+            IUserService userService = (IUserService)context.HttpContext.RequestServices.GetService(typeof(IUserService));
+            var request = context.HttpContext.Request;
+            if (request.Cookies.Any(x => x.Key == Helpers.Helpers.AuthToken))
             {
-                //implement bool IsAuthenticated(string token)
-                if (context.ActionDescriptor.DisplayName == "FiltersSample.Controllers.HomeController.Hello")
-                {
-                    // Manipulating action arguments...
-                    if (!context.ActionArguments.ContainsKey("name"))
-                    {
-                        context.ActionArguments["name"] = "Steve";
-                    }
-                }
+                var token = request.Cookies.First(x => x.Key == Helpers.Helpers.AuthToken).Value.ToString();
+                if (userService.IsAuthenticated(token))
+                    return;
+                throw new UnauthorizedAccessException();
             }
-
-            public void OnActionExecuted(ActionExecutedContext context)
-            {
-                
-            }
+            throw new UnauthorizedAccessException();
         }
+        
     }
 
 

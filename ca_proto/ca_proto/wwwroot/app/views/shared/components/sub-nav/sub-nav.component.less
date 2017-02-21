@@ -1,0 +1,28 @@
+sub-nav {
+    min-height: 40px;
+    ul {
+        .usa-nav-link {
+            text-transform: uppercase;
+            font-size: 2rem !important;
+            text-decoration: none;
+            font-weight: normal !important;
+            &:not([aria-expanded=true]) {
+                color: black !important;
+            }
+        }
+        li {
+            margin-right: 60px;
+        }
+    }
+    .usa-nav {
+        background-color: transparent;
+        border: none !important;
+        .ca-megamenu-header {
+            color: white;
+            display: block;
+            border-bottom: 2px solid white;
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+    }
+}

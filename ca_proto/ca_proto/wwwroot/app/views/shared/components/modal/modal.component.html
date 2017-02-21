@@ -1,4 +1,5 @@
-﻿<div class="modal fade in" aria-hidden="false" style="display: block;" ng-show="model.showModal">
+﻿
+<div class="modal fade in" aria-hidden="false" style="display: block; z-index: 9999999;" ng-show="model.showModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,10 +7,10 @@
             </div>
             <div class="modal-body">
                 <form class="form-signin">
-                    <label for="maNumber" class="sr-only">Medicaid Number</label>
-                    <input type="text" style="margin-bottom: 10px;" id="maNumber" class="form-control" placeholder="Medicaid Number" required autofocus ng-model="model.maNumber">
-                    <label for="lastname" class="sr-only">Last Name</label>
-                    <input type="text" id="lastname" class="form-control" placeholder="Last Name" required ng-model="loginInfo.LastName">
+                    <label for="UserName" class="sr-only">User Name</label>
+                    <input type="text" style="margin-bottom: 10px;" id="username" class="form-control" placeholder="Username" required autofocus ng-model="model.loginInfo.username">
+                    <label for="Password" class="sr-only">Password</label>
+                    <input type="password" id="Password" class="form-control" placeholder="Password" required ng-model="model.loginInfo.password">
                 </form>
             </div>
             <div class="modal-footer">
