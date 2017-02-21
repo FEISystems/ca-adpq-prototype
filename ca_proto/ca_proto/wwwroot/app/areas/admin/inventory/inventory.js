@@ -12,6 +12,7 @@
         model.productTypes = [];
         model.categories = [];
         model.contracts = [];
+        model.contractors = [];
         model.products = [];
         model.orderByColumn = "name";
         model.orderAscending = true;
@@ -25,14 +26,20 @@
         model.addProduct = function () {
             //preserve the model.product in case the add operation fails
             var uploadData = model.clone(model.product);
-            //only store ids for lookups
-            uploadData.CategoryId = uploadData.CategoryId.Id;
-            uploadData.ProductType = uploadData.ProductType.Id;
-            uploadData.ContractId = uploadData.ContractId.Id;
-            if (uploadData.Id)
+            //model.debugAlert(uploadData);
+            //alert(uploadData.Id);
+            ////only store ids for lookups
+            //uploadData.CategoryId = uploadData.CategoryId.Id;
+            //uploadData.ProductType = uploadData.ProductType.Id;
+            //uploadData.ContractId = uploadData.ContractId.Id;
+            if (uploadData.Id) {
+                //alert("editing");
                 inventoryService.editProduct(uploadData);
-            else
+            }
+            else {
+                //alert("adding");
                 inventoryService.addProduct(uploadData);
+            }
         };
 
         model.importFile = function () {
@@ -82,10 +89,11 @@
 
         model.buildProduct = function (item) {
             var result = model.clone(item);
+            //model.debugAlert(result);
             //associate lookup items based on ids
-            result.ContractId = model.FindLookup(model.contracts, item.ContractId);
-            result.ProductType = model.FindLookup(model.productTypes, item.ProductType);
-            result.CategoryId = model.FindLookup(model.categories, item.CategoryId);
+            //result.ContractId = model.FindLookup(model.contracts, item.ContractId);
+            //result.ProductType = model.FindLookup(model.productTypes, item.ProductType);
+            //result.CategoryId = model.FindLookup(model.categories, item.CategoryId);
             return result;
         };
 
@@ -102,9 +110,17 @@
             return {};
         };
 
+        model.fetchAll = function () {
+            inventoryService.fetchProductTypes();
+            inventoryService.fetchCategories();
+            inventoryService.fetchContracts();
+            model.fetchProducts();
+        };
+
         messageService.subscribe('importSuccess', function (response) {
-            alert('Import Success');
+            alert('Import Success\r\n' + response);
             document.getElementById("fileImportForm").reset();
+            model.fetchAll();
         })
 
         messageService.subscribe('importFailure', function (response) {
@@ -153,6 +169,14 @@
             model.contracts = [];
         })
 
+        messageService.subscribe('retrievedContractors', function (response) {
+            model.contractors = response;
+        })
+
+        messageService.subscribe('retrievedContractorsFail', function (response) {
+            model.contractors = [];
+        })
+
         messageService.subscribe('querySuccess', function (response) {
             model.products = response;
         })
@@ -170,10 +194,7 @@
             alert('Delete Product Failure');
         })
 
-        inventoryService.fetchProductTypes();
-        inventoryService.fetchCategories();
-        inventoryService.fetchContracts();
-        model.fetchProducts();
+        model.fetchAll();
     };
 
     module.component("inventory", {

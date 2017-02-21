@@ -17,5 +17,7 @@ namespace ca_service.Interfaces
         List<Product> Fetch(int start, int count);
         string OrderColumnName { get; set; }
         bool OrderAscending { get; set; }
+
+        IEnumerable<Product> Where(Product product, params string[] columnNames);
     }
 }

@@ -11,11 +11,11 @@
           ng-submit="addProductForm.$valid && model.addProduct()">
         <table>
             <tr>
-                <td>Name</td>
-                <td><input type="text" ng-model="model.product.Name" required/></td>
-                <td>Contract Id</td>
+                <td>Title</td>
+                <td><input type="text" ng-model="model.product.Title" required/></td>
+                <td>Contract</td>
                 <td>
-                    <select ng-model="model.product.ContractId" ng-options="contract as contract.Text for contract in model.contracts" required>
+                    <select ng-model="model.product.ContractNumber" ng-options="contract for contract in model.contracts" required>
                         <option value="">Select Contract</option>
                     </select>
                 </td>
@@ -31,7 +31,7 @@
                 <td><input type="text" ng-model="model.product.SKU" required /></td>
                 <td>Product Type</td>
                 <td>
-                    <select ng-model="model.product.ProductType" ng-options="prod as prod.Text for prod in model.productTypes" required>
+                    <select ng-model="model.product.ProductType" ng-options="prod for prod in model.productTypes" required>
                         <option value="">Select Product Type</option>
                     </select>
                 </td>
@@ -43,9 +43,9 @@
             <tr>
                 <td>List Price</td>
                 <td><input type="text" ng-model="model.product.ListPrice" required /></td>
-                <td>Category Id</td>
+                <td>Category</td>
                 <td>
-                    <select ng-model="model.product.CategoryId" ng-options="categories as categories.Text for categories in model.categories" required>
+                    <select ng-model="model.product.Category" ng-options="category for category in model.categories" required>
                         <option value="">Select Category</option>
                     </select>
                 </td>
@@ -66,7 +66,7 @@
             <th><a href="" ng-click="model.newProduct()">New Item</a></th>
         </tr>
         <tr ng-repeat="row in model.products">
-            <td>{{row.Name}}</td>
+            <td>{{row.Title}}</td>
             <td>{{row.Manufacturer}}</td>
             <td>{{row.ManufacturerPartNumber}}</td>
             <td>{{row.SKU}}</td><td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.id)">Delete</a></td>

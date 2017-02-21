@@ -48,7 +48,7 @@
         };
 
         var fetchProductTypes = function () {
-            $http.get("/api/inventory/productTypes")
+            $http.get("/api/lookups/productTypes")
                 .success(function (response) {
                     messageService.publish('retrievedProductTypes', response);
                 })
@@ -58,7 +58,7 @@
         };
 
         var fetchCategories = function () {
-            $http.get("/api/category/lookups")
+            $http.get("/api/lookups/categories")
                 .success(function (response) {
                     messageService.publish('retrievedCategories', response);
                 })
@@ -68,12 +68,22 @@
         };
 
         var fetchContracts = function () {
-            $http.get("/api/contract/lookups")
+            $http.get("/api/lookups/contracts")
                 .success(function (response) {
                     messageService.publish('retrievedContracts', response);
                 })
                 .error(function (response) {
                     messageService.publish('retrievedContractsFail', response);
+                });
+        };
+
+        var fetchContractors = function () {
+            $http.get("/api/lookups/contractors")
+                .success(function (response) {
+                    messageService.publish('retrievedContractors', response);
+                })
+                .error(function (response) {
+                    messageService.publish('retrievedContractorsFail', response);
                 });
         };
 

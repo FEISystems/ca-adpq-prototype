@@ -17,8 +17,10 @@ namespace ca_service.Entities
         [DbColumn(System.Data.DbType.String)]
         public string Name { get; set; }
 
+        [DbColumn(System.Data.DbType.Int32)]
         public ProductType ProductType { get; set; }
 
+        [DbColumn(System.Data.DbType.Boolean)]
         public bool IsActive { get; set; }
     }
 }

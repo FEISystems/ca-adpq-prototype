@@ -24,7 +24,7 @@ namespace ca_proto.Controllers
         public string Test()
         {
             StringBuilder result = new StringBuilder();
-            Contract contract = new Contract(0) { Name = "Test Contract" };
+            Contract contract = new Contract(0) { Number = "Test Contract" };
             try
             {
                 result.AppendLine("Beginning test");
@@ -32,7 +32,7 @@ namespace ca_proto.Controllers
                 contractService.Add(contract);
                 result.AppendLine("Added contract: " + contract.Id);
                 result.AppendLine(string.Format("Have {0} row(s)", contractService.Fetch(0, int.MaxValue).Count()));
-                contract.Name += " - updated";
+                contract.Number += " - updated";
                 contractService.Update(contract);
                 result.AppendLine("Updated contract: " + contract.Id);
                 contractService.Delete(contract.Id);
@@ -72,13 +72,7 @@ namespace ca_proto.Controllers
         [HttpGet("Lookups")]
         public IActionResult Lookups()
         {
-            contractService.OrderAscending = true;
-            contractService.OrderColumnName = "Name";
-            return Json(contractService.Fetch(0, int.MaxValue).Select(item => new SelectItem
-                {
-                    Id = item.Id,
-                    Text = item.Name                      
-                }));
+            throw new Exception("Move to Lookups Controller");
         }
     }
 }

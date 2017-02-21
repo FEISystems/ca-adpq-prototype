@@ -91,7 +91,7 @@ namespace ca_proto.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(file.content))
                 {
-                    inventoryService.Import(file.content);
+                    return Json(inventoryService.Import(file.content));
                 }
             }
             return new EmptyResult();
@@ -136,7 +136,7 @@ namespace ca_proto.Controllers
         [HttpGet("ProductTypes")]
         public ActionResult ProductTypes()
         {
-            return Json(SelectItem.FromEnum<ProductType>().ToArray());
+            throw new Exception("Move to Lookups Controller");
         }
 
         [HttpPost("Delete")]

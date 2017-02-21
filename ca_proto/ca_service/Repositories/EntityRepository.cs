@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ca_service.Repositories
@@ -150,18 +151,23 @@ namespace ca_service.Repositories
         {
             foreach (var column in Columns)
             {
-                if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
-                {
-                    var o = column.Property.GetValue(entity);
-                    if (null == o)
-                        column.BuildParameter(cmd).Value = "";
-                    else
-                        column.BuildParameter(cmd).Value = string.Join(",", ((List<int>)o).Select(item => item.ToString()).ToArray());
-                }
+                BuildColumnParameter(column, cmd, entity);
+            }
+        }
+
+        private void BuildColumnParameter(DbColumnAttribute column, MySqlCommand cmd, EntityType entity)
+        {
+            if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
+            {
+                var o = column.Property.GetValue(entity);
+                if (null == o)
+                    column.BuildParameter(cmd).Value = "";
                 else
-                {
-                    column.BuildParameter(cmd).Value = column.Property.GetValue(entity);
-                }
+                    column.BuildParameter(cmd).Value = string.Join(",", ((List<int>)o).Select(item => item.ToString()).ToArray());
+            }
+            else
+            {
+                column.BuildParameter(cmd).Value = column.Property.GetValue(entity);
             }
         }
 
@@ -197,7 +203,8 @@ namespace ca_service.Repositories
             {
                 if (null == value || !Columns.Exists(item => value.Equals(item.ColumnName, StringComparison.OrdinalIgnoreCase)))
                     orderColumnName = "Id";
-                orderColumnName = value;
+                else
+                    orderColumnName = value;
             }
         }
 
@@ -268,5 +275,41 @@ namespace ca_service.Repositories
             }
             return result;
         }
+
+        public IEnumerable<EntityType> Where(EntityType entity, params string[] columnNames)
+        {
+            if (null == columnNames || columnNames.Length == 0)
+                yield break;
+            List<DbColumnAttribute> filterColumns = new List<DbColumnAttribute>();
+            foreach (string columnName in columnNames)
+            {
+                DbColumnAttribute column = Columns.Where(item => item.ColumnName.Equals(columnName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                if (null == column)
+                    yield break;
+                filterColumns.Add(column);
+            }
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                StringBuilder sqlBuilder = new StringBuilder();
+                DbColumnAttribute column = filterColumns[0];
+                sqlBuilder.AppendFormat("select * from {0} where {1} = @{1}", TableName, column.ColumnName);
+                BuildColumnParameter(column, cmd, entity);
+                for (int i=1; i<filterColumns.Count; i++)
+                {
+                    column = filterColumns[i];
+                    sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
+                    BuildColumnParameter(column, cmd, entity);
+                }
+                cmd.CommandText = sqlBuilder.ToString();
+                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                {
+                    while (reader.Read())
+                    {
+                        yield return ReadEntity(reader);
+                    }
+                }
+            }
+        }
+
     }
 }
