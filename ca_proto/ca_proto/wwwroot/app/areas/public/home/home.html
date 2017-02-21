@@ -17,25 +17,11 @@
 </div>
 <br/>
 <br/>
-<div class="usa-grid">    
+<div class="usa-grid">
     <h2>Recently Purchased</h2>
 </div>
-<div class="usa-grid">
-    <product-card class="usa-width-one-fourth"></product-card>
-    <product-card class="usa-width-one-fourth"></product-card>
-    <product-card class="usa-width-one-fourth"></product-card>
-    <product-card class="usa-width-one-fourth"></product-card>
+<div class="usa-grid" ng-repeat="rows in model.products | limitTo : 4" style="margin-bottom: 20px">
+    <div ng-repeat="product in rows" class="usa-width-one-fourth">
+        <product-card class="usa-grid-full"></product-card>
+    </div>
 </div>
-<!--<br/>
-<br/>
-<div class="usa-grid">
-    <h2>Brands</h2>
-
-    <select name="test" id="test" multiple="multiple">
-        <option value="">Test 1</option>
-        <option value="">Test 2</option>
-        <option value="">Test 3</option>
-        <option value="">Test 4</option>
-        <option value="">Test 5</option>
-    </select>
-</div>-->
