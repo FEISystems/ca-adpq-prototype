@@ -90,6 +90,41 @@ WHERE";
             }
 
             return result;
-        }        
+        }
+
+        public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
+        {
+            if (null == categories || categories.Length == 0)
+                return Fetch(start, count);
+            categories = categories.Where(item => null != item && !string.IsNullOrWhiteSpace(item)).ToArray();
+            if (null == categories || categories.Length == 0)
+                return Fetch(start, count);
+            Func<string, string> toSqlParameterValue = v => $"%{v}%";
+            using (var cmd = db.connection.CreateCommand())
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append("select * from Products where ");
+                string paramName = "@" + categories[0];
+                sql.Append(" Category like ");
+                sql.Append(paramName);
+                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = toSqlParameterValue(categories[0]) });
+                for (int i=1; i<categories.Length; i++)
+                {
+                    paramName = "@" + categories[i];
+                    sql.Append(" or Category like ");
+                    sql.Append(paramName);
+                    cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = toSqlParameterValue(categories[i]) });
+                }
+                sql.Append(" order by Category");
+                cmd.CommandText = sql.ToString();
+                List<Product> result = new List<Product>();
+                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                {
+                    while (reader.Read())
+                        result.Add(ReadEntity(reader));
+                }
+                return result;
+            }
+        }
     }
 }

@@ -86,6 +86,7 @@
                 if (item.Id == id) {
                     model.product = model.buildProduct(item);
                     model.editing = true;
+                    model.tab = 2;
                     return;
                 }
             }

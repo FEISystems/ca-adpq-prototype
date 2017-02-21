@@ -1,17 +1,17 @@
 ﻿<standard-layout>
     <h1>{{model.title}}</h1>
-    <h3>Import</h3>
     <a href="" ng-click="model.showImport()">Import</a>
     <a href="" ng-click="model.showAdd()">Add</a>
     <a href="" ng-click="model.showTable()">Table</a>
     <div ng-show="model.tab == 1">
+        <h3>Import</h3>
         <form name="fileImportForm" id="fileImportForm">
             <input type="file" id="selectedfile" name="selectedfile" /><br />
             <button class="btn" type="button" ng-click="model.importFile()">Import CSV Inventory File</button>
         </form>
     </div>
     <div ng-show="model.tab == 2">
-        <h3>Add Item</h3>
+        <h3><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>
         <form name="addProductForm" id="addProductForm" novalidate
               ng-submit="addProductForm.$valid && model.addProduct()">
             <table>
@@ -101,6 +101,7 @@
         </form>
     </div>
     <div ng-show="model.tab == 3">
+        <h3>Available Products</h3>
         <table>
             <tr>
                 <th>Product Name</th>

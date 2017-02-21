@@ -326,6 +326,12 @@ namespace ca_service.Services
             get { return inventoryRepository.OrderAscending; }
             set { inventoryRepository.OrderAscending = value; }
         }
+
+        public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
+        {
+            return inventoryRepository.FetchByCategories(start, count, categories);
+        }
+
     }
 }
 

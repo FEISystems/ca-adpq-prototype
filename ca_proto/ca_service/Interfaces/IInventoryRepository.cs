@@ -21,5 +21,6 @@ namespace ca_service.Interfaces
         IEnumerable<Product> Where(Product product, params string[] columnNames);
         IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter);
         int Count(IDictionary<string, object> filter);
+        IEnumerable<Product> FetchByCategories(int start, int count, string[] categories);
     }
 }

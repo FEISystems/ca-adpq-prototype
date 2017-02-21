@@ -163,5 +163,11 @@ namespace ca_proto.Controllers
         {
             return Json(inventoryService.Count(filter));
         }
+
+        [HttpPost("FetchByCategories")]
+        public IActionResult FetchByCategories([FromBody]CategoriesSearch searchCriteria)
+        {
+            return Json(inventoryService.FetchByCategories(searchCriteria.Start, searchCriteria.Count, searchCriteria.Categories));
+        }
     }
 }
