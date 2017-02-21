@@ -218,34 +218,34 @@ WHERE
             }
         }
 
-        public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
-        {
-            if (null == categories || categories.Length == 0)
-                return Fetch(start, count);
-            categories = categories.Where(item => null != item && !string.IsNullOrWhiteSpace(item)).ToArray();
-            if (null == categories || categories.Length == 0)
-                return Fetch(start, count);
+        //public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
+        //{
+        //    if (null == categories || categories.Length == 0)
+        //        return Fetch(start, count);
+        //    categories = categories.Where(item => null != item && !string.IsNullOrWhiteSpace(item)).ToArray();
+        //    if (null == categories || categories.Length == 0)
+        //        return Fetch(start, count);
 
-            using (var cmd = db.connection.CreateCommand())
-            {
-                StringBuilder sql = new StringBuilder();
-                sql.Append("select * from Products where ");
-                string paramName = "@" + categories[0];
-                sql.Append(" Category like ");
-                sql.Append(paramName);
-                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[0]) });
-                for (int i=1; i<categories.Length; i++)
-                {
-                    paramName = "@" + categories[i];
-                    sql.Append(" or Category like ");
-                    sql.Append(paramName);
-                    cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[i]) });
-                }
-                sql.Append(" order by Category");
-                cmd.CommandText = sql.ToString();
+        //    using (var cmd = db.connection.CreateCommand())
+        //    {
+        //        StringBuilder sql = new StringBuilder();
+        //        sql.Append("select * from Products where ");
+        //        string paramName = "@" + categories[0];
+        //        sql.Append(" Category like ");
+        //        sql.Append(paramName);
+        //        cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[0]) });
+        //        for (int i=1; i<categories.Length; i++)
+        //        {
+        //            paramName = "@" + categories[i];
+        //            sql.Append(" or Category like ");
+        //            sql.Append(paramName);
+        //            cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[i]) });
+        //        }
+        //        sql.Append(" order by Category");
+        //        cmd.CommandText = sql.ToString();
 
-                return GetProductsFromCommand(cmd);
-            }
-        }
+        //        return GetProductsFromCommand(cmd);
+        //    }
+        //}
     }
 }

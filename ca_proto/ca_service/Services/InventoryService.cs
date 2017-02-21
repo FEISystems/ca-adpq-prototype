@@ -327,11 +327,6 @@ namespace ca_service.Services
             set { inventoryRepository.OrderAscending = value; }
         }
 
-        public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
-        {
-            return inventoryRepository.FetchByCategories(start, count, categories);
-        }
-
         public List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku)
         {
             if(string.IsNullOrWhiteSpace(name) &&

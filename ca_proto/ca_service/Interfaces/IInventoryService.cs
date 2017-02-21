@@ -24,7 +24,6 @@ namespace ca_service.Interfaces
         string OrderColumnName { get; set; }
         bool OrderAscending { get; set; }
         int Count(IDictionary<string, object> filter);
-        IEnumerable<Product> FetchByCategories(int start, int count, string[] categories);
         List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
     }
 }

@@ -258,6 +258,12 @@ namespace ca_service.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Selects records exactly matching the data in the provided entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="columnNames"></param>
+        /// <returns></returns>
         public IEnumerable<EntityType> Where(EntityType entity, params string[] columnNames)
         {
             if (null == columnNames || columnNames.Length == 0)
@@ -311,6 +317,13 @@ namespace ca_service.Repositories
             }
         }
 
+        /// <summary>
+        /// Selects records using partial matching of data. Supports paging through a large number of records.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public IEnumerable<EntityType> Fetch(int start, int count, IDictionary<string, object> filter)
         {
             if (null == filter || filter.Count == 0)
@@ -331,14 +344,12 @@ namespace ca_service.Repositories
             using (var cmd = db.connection.CreateCommand() as MySqlCommand)
             {
                 StringBuilder sqlBuilder = new StringBuilder();
-                DbColumnAttribute column = filterColumns[0];
-                sqlBuilder.AppendFormat("select * from {0} where {1} = @{1}", TableName, column.ColumnName);
-                column.BuildParameter(cmd).Value = filter[keys[0]];
+                sqlBuilder.AppendFormat("select * from {0} where ", TableName);
+                BuildLikeParameter(cmd, sqlBuilder, filterColumns[0], filter[keys[0]]);
                 for (int i = 1; i < filterColumns.Count; i++)
                 {
-                    column = filterColumns[i];
-                    sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
-                    column.BuildParameter(cmd).Value = filter[keys[i]];
+                    sqlBuilder.Append(" AND ");
+                    BuildLikeParameter(cmd, sqlBuilder, filterColumns[i], filter[keys[i]]);
                 }
                 sqlBuilder.AppendFormat(" order by {0} {1} limit {2}, {3}", OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
                 cmd.CommandText = sqlBuilder.ToString();
@@ -350,6 +361,42 @@ namespace ca_service.Repositories
                     }
                 }
             }
+        }
+
+        private void BuildLikeParameter(MySqlCommand cmd, StringBuilder sqlBuilder, DbColumnAttribute column, object value)
+        {
+            if (column.DbType == System.Data.DbType.String)
+            {
+                var s = value as string;
+                if (null != s)// && s.Contains("|"))
+                {
+                    string[] values = s.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Distinct().ToArray();
+                    if (values.Length != 0)
+                    {
+                        sqlBuilder.Append("(");
+                        try
+                        {
+                            string paramName = "@" + values[0].Replace(' ', '_');
+                            sqlBuilder.AppendFormat("{0} like {1}", column.ColumnName, paramName);
+                            cmd.Parameters.Add(paramName, column.DbType).Value = string.Format("%{0}%", values[0]);
+                            for (int i=1; i<values.Length; i++)
+                            {
+                                sqlBuilder.Append(" OR ");
+                                paramName = "@" + values[i].Replace(' ', '_');
+                                sqlBuilder.AppendFormat("{0} like {1}", column.ColumnName, paramName);
+                                cmd.Parameters.Add(paramName, column.DbType).Value = string.Format("%{0}%", values[i]);
+                            }
+                        }
+                        finally
+                        {
+                            sqlBuilder.Append(")");
+                        }
+                        return;
+                    }
+                }
+            }
+            sqlBuilder.AppendFormat("{0} = @{0}", column.ColumnName);
+            column.BuildParameter(cmd).Value = value;
         }
 
         public int Count(IDictionary<string, object> filter)
