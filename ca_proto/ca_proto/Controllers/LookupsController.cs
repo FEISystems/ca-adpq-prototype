@@ -51,5 +51,10 @@ namespace ca_proto.Controllers
             return Json(categoryService.Fetch().Select(item => item.Name));
         }
 
+        [HttpGet("UnitsOfMeasure")]
+        public IActionResult UnitsOfMeasure()
+        {
+            return Json(Enum.GetValues(typeof(UnitOfMeasure)).Cast<UnitOfMeasure>().Select(item => item.ToString()));
+        }
     }
 }

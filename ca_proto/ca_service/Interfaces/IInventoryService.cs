@@ -20,8 +20,9 @@ namespace ca_service.Interfaces
         string Import(string fileContent);
         Product Get(int id);
         void Delete(int id);
-        IEnumerable<Product> Fetch(int start, int count);
+        IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter);
         string OrderColumnName { get; set; }
         bool OrderAscending { get; set; }
+        int Count(IDictionary<string, object> filter);
     }
 }

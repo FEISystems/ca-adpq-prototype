@@ -9,6 +9,7 @@
         model.provider = {};
         model.title = "Admin Product Management";
 
+        model.unitsOfMeasure = [];
         model.productTypes = [];
         model.categories = [];
         model.contracts = [];
@@ -17,7 +18,9 @@
         model.orderByColumn = "name";
         model.orderAscending = true;
         model.page = 0;
-        model.pageCount = 20;
+        model.itemsPerPage = 10;
+        model.pageCount = 1;
+        model.filter = {};
 
         model.clone = function (item) {
             return JSON.parse(JSON.stringify(item));
@@ -78,7 +81,9 @@
         };
 
         model.fetchProducts = function () {
-            inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
+            var filter = model.filter;
+            //model.debugAlert(filter);
+            inventoryService.fetchProducts(model.page * model.itemsPerPage, model.itemsPerPage, model.orderByColumn, model.orderAscending, filter);
         };
 
         model.newProduct = function () {
@@ -111,11 +116,59 @@
         };
 
         model.fetchAll = function () {
+            inventoryService.fetchUnitsOfMeasure();
             inventoryService.fetchProductTypes();
             inventoryService.fetchCategories();
             inventoryService.fetchContracts();
+            inventoryService.fetchContractors();
             model.fetchProducts();
+            model.fetchPageCount();
         };
+
+        model.buildFilter = function () {
+            var result = {};
+            //todo: need to include the filter data here
+            return result;
+        }
+
+        model.fetchPageCount = function () {
+            var filter = model.filter;
+            inventoryService.fetchCount(filter);
+        };
+
+        model.setPage = function(newPage)
+        {
+            if (!newPage || newPage < 0)
+                newPage = 0;
+            if (newPage > model.pageCount - 1)
+                newPage = model.pageCount - 1;
+            model.page = newPage;
+            model.fetchProducts();
+        }
+
+        model.firstPage = function () {
+            model.setPage(0);
+        };
+
+        model.priorPage = function () {
+            model.setPage(model.page - 1);
+        };
+
+        model.nextPage = function () {
+            model.setPage(model.page + 1);
+        };
+
+        model.lastPage = function () {
+            model.setPage(model.pageCount);
+        };
+
+        messageService.subscribe('countSuccess', function (response) {
+            model.pageCount = Math.ceil(response / model.itemsPerPage);
+        })
+
+        messageService.subscribe('countFailure', function (response) {
+            model.pageCount = 1;
+        })
 
         messageService.subscribe('importSuccess', function (response) {
             alert('Import Success\r\n' + response);
@@ -143,6 +196,14 @@
 
         messageService.subscribe('updateProductFailure', function (response) {
             alert('Update Product Failure');
+        })
+
+        messageService.subscribe('retrievedUnitsOfMeasure', function (response) {
+            model.unitsOfMeasure = response;
+        })
+
+        messageService.subscribe('retrievedUnitsOfMeasureFail', function (response) {
+            model.unitsOfMeasure = [];
         })
 
         messageService.subscribe('retrievedProductTypes', function (response) {

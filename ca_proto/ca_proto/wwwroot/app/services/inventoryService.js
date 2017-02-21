@@ -48,47 +48,38 @@
         };
 
         var fetchProductTypes = function () {
-            $http.get("/api/lookups/productTypes")
-                .success(function (response) {
-                    messageService.publish('retrievedProductTypes', response);
-                })
-                .error(function (response) {
-                    messageService.publish('retrievedProductTypesFail', response);
-                });
+            fetchLookups("ProductTypes");
+        };
+
+        var fetchUnitsOfMeasure = function () {
+            fetchLookups("UnitsOfMeasure");
         };
 
         var fetchCategories = function () {
-            $http.get("/api/lookups/categories")
-                .success(function (response) {
-                    messageService.publish('retrievedCategories', response);
-                })
-                .error(function (response) {
-                    messageService.publish('retrievedCategoriesFail', response);
-                });
+            fetchLookups("Categories");
         };
 
         var fetchContracts = function () {
-            $http.get("/api/lookups/contracts")
-                .success(function (response) {
-                    messageService.publish('retrievedContracts', response);
-                })
-                .error(function (response) {
-                    messageService.publish('retrievedContractsFail', response);
-                });
+            fetchLookups("Contracts");
         };
 
         var fetchContractors = function () {
-            $http.get("/api/lookups/contractors")
-                .success(function (response) {
-                    messageService.publish('retrievedContractors', response);
-                })
-                .error(function (response) {
-                    messageService.publish('retrievedContractorsFail', response);
-                });
+            fetchLookups("Contractors");
         };
 
-        var fetchProducts = function (start, count, orderByColumn, orderAscending) {
-            var postData = { start: start, count: count, orderByColumn: orderByColumn, orderAscending: orderAscending };
+        var fetchLookups = function (lookupName) {
+            $http.get("/api/lookups/" + lookupName)
+                .success(function (response) {
+                    messageService.publish('retrieved' + lookupName, response);
+                })
+                .error(function (response) {
+                    messageService.publish('retrieved' + lookupName + 'Fail', response);
+                });
+        }
+
+        var fetchProducts = function (start, count, orderByColumn, orderAscending, filter) {
+            var postData = { start: start, count: count, orderByColumn: orderByColumn, orderAscending: orderAscending, filter: filter };
+            //alert(JSON.stringify( postData));
             $http.post("/api/inventory/query", postData)
                 .success(function (response) {
                     messageService.publish('querySuccess', response);
@@ -111,16 +102,30 @@
                 });
         }
 
+        var fetchCount = function (filter) {
+            $http.post("/api/inventory/count", filter)
+                .success(function (response) {
+                    //at this point we'd want to load a new component that represents the search results page
+                    messageService.publish('countSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('countFailure', response);
+                });
+        }
+
         return {
             addProduct: addProduct,
             importFile: importFile,
+            fetchUnitsOfMeasure : fetchUnitsOfMeasure,
             fetchProductTypes: fetchProductTypes,
             fetchCategories: fetchCategories,
             fetchContracts: fetchContracts,
+            fetchContractors : fetchContractors,
             fetchProducts: fetchProducts,
             editProduct: editProduct,
             deleteProduct: deleteProduct,
-            quickSearch: quickSearch
+            quickSearch: quickSearch,
+            fetchCount : fetchCount,
         };
     }
 
