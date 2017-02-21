@@ -20,21 +20,6 @@ namespace ca_service.Repositories
         {
         }
 
-        private Product FromDataReader(DbDataReader reader)
-        {
-            var product = new Product((int)reader["Id"])
-            {
-                Title = reader["Title"].ToString(),
-                Manufacturer = reader["Manufacturer"].ToString(),
-                ManufacturerPartNumber = reader["ManufacturerPartNumber"].ToString(),
-                SKU = reader["SKU"].ToString(),
-                Category = reader["Category"].ToString()
-            };
-
-            return product;
-        }
-
-        [Obsolete("Use the base Fetch method.")]
         public List<Product> GetProductsByCategory(string category)
         {
             var filter = new Dictionary<string, object>();
@@ -58,15 +43,13 @@ WHERE";
 
             var cmd = db.connection.CreateCommand();
 
-            Func<string, string> toSqlParameterValue = v => $"%{v}%";
-
             StringBuilder sb = new StringBuilder();
             sb.Append(baseSql);
 
             for (int i = 0; i < searchTerms.Length; ++i)
             {
                 var paramName = $"@P{i}";
-                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = toSqlParameterValue(searchTerms[i]) });
+                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(searchTerms[i]) });
                 sb.AppendFormat(whereClause, paramName);
                 if(i < searchTerms.Length - 1)
                 {
@@ -75,21 +58,164 @@ WHERE";
                 }
             }
 
-            var result = new List<Product>();
-
             cmd.CommandText = sb.ToString();
 
-            using (var reader = cmd.ExecuteReader())
+            return GetProductsFromCommand(cmd);
+        }
+
+        private List<Product> GetProductsFromCommand(DbCommand cmd)
+        {
+            var result = new List<Product>();
+
+            using (var reader = cmd.ExecuteReader() as MySqlDataReader)
             {
                 while (reader.Read())
-                {
-                    var product = FromDataReader(reader);
-
-                    result.Add(product);
-                }
+                    result.Add(ReadEntity(reader));
             }
 
             return result;
+        }
+
+        private string ToSqlParameterValueForLike(string s)
+        {
+            return $"%{s}%";
+        }
+
+        public List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku)
+        {
+            if (string.IsNullOrWhiteSpace(name) &&
+                string.IsNullOrWhiteSpace(category) &&
+                string.IsNullOrWhiteSpace(manufacturer) &&
+                string.IsNullOrWhiteSpace(manufacturerPartNumber) &&
+                string.IsNullOrWhiteSpace(sku) &&
+                minPrice == null && maxPrice == null)
+            {
+                throw new Exception("At least one search term is required.");
+            }
+
+            var sql = new StringBuilder();
+
+            sql.Append(@"
+SELECT * FROM Products
+WHERE
+");
+            bool needsAnd = false;
+
+            List<MySqlParameter> parms = new List<MySqlParameter>();
+
+            if(!string.IsNullOrWhiteSpace(name))
+            {
+                sql.Append(@"
+    (Title LIKE @Title OR Description LIKE @Title)");
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@Title", Value = ToSqlParameterValueForLike(name) });
+            }
+
+            if(!string.IsNullOrWhiteSpace(category))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    Category LIKE @Category");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@Category", Value = ToSqlParameterValueForLike(category) });
+            }
+
+            if(minPrice.HasValue)
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    ContractPrice >= @MinPrice");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@MinPrice", Value = minPrice });
+            }
+
+            if (maxPrice.HasValue)
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    ContractPrice <= @MaxPrice");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@MaxPrice", Value = maxPrice });
+            }
+
+            if (!string.IsNullOrWhiteSpace(manufacturer))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    Manufacturer LIKE @Manufacturer");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@Manufacturer", Value = ToSqlParameterValueForLike(manufacturer) });
+            }
+
+            if (!string.IsNullOrWhiteSpace(manufacturerPartNumber))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    ManufacturerPartNumber LIKE @ManufacturerPartNumber");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@ManufacturerPartNumber", Value = ToSqlParameterValueForLike(manufacturerPartNumber) });
+            }
+
+            if (!string.IsNullOrWhiteSpace(sku))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    SKU LIKE @SKU");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@SKU", Value = ToSqlParameterValueForLike(sku) });
+            }
+
+            using (var cmd = db.connection.CreateCommand())
+            {
+                cmd.CommandText = sql.ToString();
+
+                cmd.Parameters.AddRange(parms.ToArray());
+
+                return GetProductsFromCommand(cmd);
+            }
         }
 
         public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
@@ -99,7 +225,7 @@ WHERE";
             categories = categories.Where(item => null != item && !string.IsNullOrWhiteSpace(item)).ToArray();
             if (null == categories || categories.Length == 0)
                 return Fetch(start, count);
-            Func<string, string> toSqlParameterValue = v => $"%{v}%";
+
             using (var cmd = db.connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
@@ -107,23 +233,18 @@ WHERE";
                 string paramName = "@" + categories[0];
                 sql.Append(" Category like ");
                 sql.Append(paramName);
-                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = toSqlParameterValue(categories[0]) });
+                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[0]) });
                 for (int i=1; i<categories.Length; i++)
                 {
                     paramName = "@" + categories[i];
                     sql.Append(" or Category like ");
                     sql.Append(paramName);
-                    cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = toSqlParameterValue(categories[i]) });
+                    cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[i]) });
                 }
                 sql.Append(" order by Category");
                 cmd.CommandText = sql.ToString();
-                List<Product> result = new List<Product>();
-                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
-                {
-                    while (reader.Read())
-                        result.Add(ReadEntity(reader));
-                }
-                return result;
+
+                return GetProductsFromCommand(cmd);
             }
         }
     }

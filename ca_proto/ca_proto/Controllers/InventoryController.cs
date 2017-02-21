@@ -158,6 +158,16 @@ namespace ca_proto.Controllers
             return Json(results);
         }
 
+        [HttpPost("advancedsearch")]
+        public ActionResult AdvancedSearch([FromBody]AdvancedSearch searchTerms)
+        {
+            searchTerms = searchTerms ?? new Models.AdvancedSearch();
+
+            var results = inventoryService.AdvancedSearch(searchTerms.Name, searchTerms.Category, searchTerms.MinPrice, searchTerms.MaxPrice, searchTerms.Manufacturer, searchTerms.ManufacturerPartNumber, searchTerms.SKU);
+
+            return Json(results);
+        }
+
         [HttpPost("Count")]
         public IActionResult Count([FromBody]IDictionary<string, object> filter)
         {

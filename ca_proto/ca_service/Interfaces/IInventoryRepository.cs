@@ -9,6 +9,8 @@ namespace ca_service.Interfaces
 {
     public interface IInventoryRepository : IDisposable
     {
+        List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
+
         List<Product> QuickSearch(string[] searchTerms);
         void Add(Product product);
         void Update(Product product);

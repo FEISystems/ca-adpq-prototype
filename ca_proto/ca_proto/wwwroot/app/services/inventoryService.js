@@ -89,6 +89,26 @@
                 });
         }
 
+        var advancedSearch = function (name, category, minPrice, maxPrice, manufacturer, manufacturerPartNumber, sku) {
+            var postData = {
+                Name: name,
+                Category: category,
+                MinPrice: minPrice,
+                MaxPrice: maxPrice,
+                Manufacturer: manufacturer,
+                ManufacturerPartNumber: manufacturerPartNumber,
+                SKU: sku
+            };
+            $http.post("/api/inventory/advancedsearch", postData)
+                .success(function (response) {
+                    //at this point we'd want to load a new component that represents the search results page
+                    messageService.publish('advancedsearchSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('advancedsearchFailure', response);
+                });
+        }
+
         var quickSearch = function (terms) {
             
             var postData = { SearchTerm: terms };
@@ -125,6 +145,7 @@
             editProduct: editProduct,
             deleteProduct: deleteProduct,
             quickSearch: quickSearch,
+            advancedSearch: advancedSearch,
             fetchCount : fetchCount,
         };
     }

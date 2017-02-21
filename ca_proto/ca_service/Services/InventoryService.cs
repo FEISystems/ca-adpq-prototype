@@ -332,6 +332,24 @@ namespace ca_service.Services
             return inventoryRepository.FetchByCategories(start, count, categories);
         }
 
+        public List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku)
+        {
+            if(string.IsNullOrWhiteSpace(name) &&
+                string.IsNullOrWhiteSpace(category) &&
+                string.IsNullOrWhiteSpace(manufacturer) &&
+                string.IsNullOrWhiteSpace(manufacturerPartNumber) &&
+                string.IsNullOrWhiteSpace(sku) &&
+                minPrice == null && maxPrice == null)
+            {
+                throw new Exception("At least one search term is required.");
+            }
+
+            if (minPrice != null && maxPrice != null && minPrice.Value > maxPrice.Value)
+                throw new Exception("minimum price should be less than or equal to maximum price.");
+
+            return inventoryRepository.AdvancedSearch(name, category, minPrice, maxPrice, manufacturer, manufacturerPartNumber, sku);
+        }
+
     }
 }
 
