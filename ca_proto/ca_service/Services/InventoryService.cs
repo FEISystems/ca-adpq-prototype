@@ -243,7 +243,7 @@ namespace ca_service.Services
 
         private void TestHaveRequiredColumnNames(List<string> columnNames)
         {
-            foreach(DbColumnAttribute column in ProductColumns)
+            foreach (DbColumnAttribute column in ProductColumns)
             {
                 if (!columnNames.Contains(column.ColumnName.ToLower()))
                     throw new Exception(string.Format("Missing column name '{0}'.", column.ColumnName));
@@ -305,10 +305,16 @@ namespace ca_service.Services
             inventoryRepository.Delete(id);
         }
 
-        public IEnumerable<Product> Fetch(int start, int count)
+        public IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter)
         {
-            return inventoryRepository.Fetch(start, count);
+            return inventoryRepository.Fetch(start, count, filter);
         }
+
+        public int Count(IDictionary<string, object> filter)
+        {
+            return inventoryRepository.Count(filter);
+        }
+
         public string OrderColumnName
         {
             get { return inventoryRepository.OrderColumnName; }
@@ -322,3 +328,5 @@ namespace ca_service.Services
         }
     }
 }
+
+

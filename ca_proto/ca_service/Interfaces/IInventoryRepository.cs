@@ -19,5 +19,7 @@ namespace ca_service.Interfaces
         bool OrderAscending { get; set; }
 
         IEnumerable<Product> Where(Product product, params string[] columnNames);
+        IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter);
+        int Count(IDictionary<string, object> filter);
     }
 }

@@ -210,24 +210,6 @@ namespace ca_service.Repositories
 
         public bool OrderAscending { get; set; }
 
-        public List<EntityType> Fetch(int start, int count)
-        {
-            //SELECT * FROM ca.categories order by id desc LIMIT 0, 1000
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
-            {
-                cmd.CommandText = string.Format("select * from {0} order by {1} {2} limit {3}, {4}", TableName, OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
-                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
-                {
-                    List<EntityType> result = new List<EntityType>();
-                    while (reader.Read())
-                    {
-                        result.Add(ReadEntity(reader));
-                    }
-                    return result;
-                }
-            }
-        }
-
         /// <summary>
         /// override in sub-classes to convert properties if necessary
         /// </summary>
@@ -309,6 +291,99 @@ namespace ca_service.Repositories
                     }
                 }
             }
+        }
+
+        public List<EntityType> Fetch(int start, int count)
+        {
+            //SELECT * FROM ca.categories order by id desc LIMIT 0, 1000
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                cmd.CommandText = string.Format("select * from {0} order by {1} {2} limit {3}, {4}", TableName, OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
+                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                {
+                    List<EntityType> result = new List<EntityType>();
+                    while (reader.Read())
+                    {
+                        result.Add(ReadEntity(reader));
+                    }
+                    return result;
+                }
+            }
+        }
+
+        public IEnumerable<EntityType> Fetch(int start, int count, IDictionary<string, object> filter)
+        {
+            if (null == filter || filter.Count == 0)
+            {
+                foreach (EntityType entity in Fetch(start, count))
+                    yield return entity;
+                yield break;
+            }
+            string[] keys = filter.Keys.ToArray();
+            List<DbColumnAttribute> filterColumns = new List<DbColumnAttribute>();
+            foreach (string columnName in keys)
+            {
+                DbColumnAttribute column = Columns.Where(item => item.ColumnName.Equals(columnName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                if (null == column)
+                    yield break;
+                filterColumns.Add(column);
+            }
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                StringBuilder sqlBuilder = new StringBuilder();
+                DbColumnAttribute column = filterColumns[0];
+                sqlBuilder.AppendFormat("select * from {0} where {1} = @{1}", TableName, column.ColumnName);
+                column.BuildParameter(cmd).Value = filter[keys[0]];
+                for (int i = 1; i < filterColumns.Count; i++)
+                {
+                    column = filterColumns[i];
+                    sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
+                    column.BuildParameter(cmd).Value = filter[keys[i]];
+                }
+                sqlBuilder.AppendFormat(" order by {0} {1} limit {2}, {3}", OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
+                cmd.CommandText = sqlBuilder.ToString();
+                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                {
+                    while (reader.Read())
+                    {
+                        yield return ReadEntity(reader);
+                    }
+                }
+            }
+        }
+
+        public int Count(IDictionary<string, object> filter)
+        {
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                cmd.CommandText = string.Format("select count('x') from {0}", TableName);
+                if (null != filter && filter.Count != 0)
+                {
+                    DbColumnAttribute column = null;
+                    string[] keys = filter.Keys.ToArray();
+                    List<DbColumnAttribute> filterColumns = new List<DbColumnAttribute>();
+                    foreach (string columnName in keys)
+                    {
+                        column = Columns.Where(item => item.ColumnName.Equals(columnName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                        if (null == column)
+                            throw new Exception(string.Format("Column name '{0}' does not exist."));
+                        filterColumns.Add(column);
+                    }
+                    StringBuilder sqlBuilder = new StringBuilder();
+                    column = filterColumns[0];
+                    sqlBuilder.AppendFormat(" where {1} = @{1}", TableName, column.ColumnName);
+                    column.BuildParameter(cmd).Value = filter[keys[0]];
+                    for (int i = 1; i < filterColumns.Count; i++)
+                    {
+                        column = filterColumns[i];
+                        sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
+                        column.BuildParameter(cmd).Value = filter[keys[i]];
+                    }
+                    cmd.CommandText += sqlBuilder.ToString();
+                }
+                return (int)(long)cmd.ExecuteScalar();
+            }
+
         }
 
     }

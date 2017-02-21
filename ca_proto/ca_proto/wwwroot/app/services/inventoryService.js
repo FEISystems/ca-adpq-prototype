@@ -87,8 +87,9 @@
                 });
         };
 
-        var fetchProducts = function (start, count, orderByColumn, orderAscending) {
-            var postData = { start: start, count: count, orderByColumn: orderByColumn, orderAscending: orderAscending };
+        var fetchProducts = function (start, count, orderByColumn, orderAscending, filter) {
+            var postData = { start: start, count: count, orderByColumn: orderByColumn, orderAscending: orderAscending, filter: filter };
+            //alert(JSON.stringify( postData));
             $http.post("/api/inventory/query", postData)
                 .success(function (response) {
                     messageService.publish('querySuccess', response);
@@ -111,6 +112,17 @@
                 });
         }
 
+        var fetchCount = function (filter) {
+            $http.post("/api/inventory/count", filter)
+                .success(function (response) {
+                    //at this point we'd want to load a new component that represents the search results page
+                    messageService.publish('countSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('countFailure', response);
+                });
+        }
+
         return {
             addProduct: addProduct,
             importFile: importFile,
@@ -120,7 +132,8 @@
             fetchProducts: fetchProducts,
             editProduct: editProduct,
             deleteProduct: deleteProduct,
-            quickSearch: quickSearch
+            quickSearch: quickSearch,
+            fetchCount : fetchCount,
         };
     }
 

@@ -2,14 +2,25 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, sampleInventoryService) {
+    var controller = function ($scope, $location, messageService, inventoryService) {
         var model = this;
         model.provider = {};
         model.title = "Workstations";
         
 
+        model.productTypes = [];
+        model.categories = [];
+        model.contracts = [];
+        model.contractors = [];
+        model.products = [];
+        model.orderByColumn = "name";
+        model.orderAscending = true;
+        model.page = 0;
+        model.pageCount = 20;
+
         this.$routerOnActivate = function (next, previous) {
-            var category = next.params.category.replace(/%20/g, " ");
+            
+        var filterByCategory = next.params.category.replace(/%20/g, " ");
 
             function createRows(arr, size) {
                 var newRow = [];
@@ -19,27 +30,32 @@
                 return newRow;
             }
 
+             model.fetchProducts = function () {
+                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
+            };
+            
+            model.fetchProducts();
 
-            sampleInventoryService.getProduct().get({ category: category}).$promise.then(
-                function (data) {
-                    var filteredList = data.filter(function(items) { return items.category === category });
-                    
-                    model.products = createRows(filteredList, 4);
-                },
-                function (error) {
-                    alert("Something went wrong!");
 
-                }
-            );
+            messageService.subscribe('querySuccess', function (response) {
+                
+                var filteredList = response.filter(function(items) { return items.Category === filterByCategory});
+                console.log(filteredList);
+                model.products = createRows(filteredList, 4);
+
+            })
+
+            messageService.subscribe('queryFailure', function (response) {
+                model.products = [];
+            })
 
         }
-
     };
 
     module.component("workstations", {
         templateUrl: "app/areas/public/categories/hardware/desktops/workstations/workstations.html",
         controllerAs: "model",
-        controller: ["$scope", "$location","sampleInventoryService", controller]
+        controller: ["$scope", "$location", "messageService", "inventoryService", controller]
 
     });
 }())
