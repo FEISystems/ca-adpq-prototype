@@ -17,9 +17,6 @@
         model.page = 0;
         model.pageCount = 20;
 
-        model.clone = function (item) {
-            return JSON.parse(JSON.stringify(item));
-        };
         
         this.$routerOnActivate = function (next, previous) {
             function createRows(arr, size) {
@@ -38,10 +35,6 @@
 
 
             messageService.subscribe('querySuccess', function (response) {
-                
-                //var filteredList = response.filter(function(items) { return items.category === category + " " });
-                //model.products = createRows(filteredList, 4);
-
                 model.products = createRows(response, 4);
             })
 
