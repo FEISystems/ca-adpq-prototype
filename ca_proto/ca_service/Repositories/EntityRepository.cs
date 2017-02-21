@@ -376,10 +376,10 @@ namespace ca_service.Repositories
                         sqlBuilder.Append("(");
                         try
                         {
-                            string paramName = "@" + values[0].Replace(' ', '_');
+                            string paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_');
                             sqlBuilder.AppendFormat("{0} like {1}", column.ColumnName, paramName);
                             cmd.Parameters.Add(paramName, column.DbType).Value = string.Format("%{0}%", values[0]);
-                            for (int i=1; i<values.Length; i++)
+                            for (int i = 1; i < values.Length; i++)
                             {
                                 sqlBuilder.Append(" OR ");
                                 paramName = "@" + values[i].Replace(' ', '_');
@@ -395,42 +395,57 @@ namespace ca_service.Repositories
                     }
                 }
             }
+            else if (column.DbType == System.Data.DbType.Currency)
+            {
+                //todo: it will be a string if it is separated by a character
+                var s = value as string;
+                if (null != s)
+                {
+                    string[] minMax = s.Split(new char[] { '-', ':', '|' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (minMax.Length == 2)
+                    {
+                        decimal min = decimal.Parse(minMax[0], System.Globalization.NumberStyles.Currency);
+                        decimal max = decimal.Parse(minMax[1], System.Globalization.NumberStyles.Currency);
+                        sqlBuilder.AppendFormat("(@Min{0} <= {0} AND {0} <= @Max{0})", column.ColumnName);
+                        cmd.Parameters.Add("@Min" + column.ColumnName, column.DbType).Value = min;
+                        cmd.Parameters.Add("@Max" + column.ColumnName, column.DbType).Value = max;
+                        return;
+                    }
+                }
+            }
             sqlBuilder.AppendFormat("{0} = @{0}", column.ColumnName);
             column.BuildParameter(cmd).Value = value;
         }
 
         public int Count(IDictionary<string, object> filter)
         {
+            string[] keys = filter.Keys.ToArray();
+            List<DbColumnAttribute> filterColumns = new List<DbColumnAttribute>();
+            foreach (string columnName in keys)
+            {
+                DbColumnAttribute column = Columns.Where(item => item.ColumnName.Equals(columnName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                if (null == column)
+                    return 0;
+                filterColumns.Add(column);
+            }
             using (var cmd = db.connection.CreateCommand() as MySqlCommand)
             {
-                cmd.CommandText = string.Format("select count('x') from {0}", TableName);
+                StringBuilder sqlBuilder = new StringBuilder();
+                sqlBuilder.AppendFormat("select count('x') from {0}", TableName);
                 if (null != filter && filter.Count != 0)
                 {
-                    DbColumnAttribute column = null;
-                    string[] keys = filter.Keys.ToArray();
-                    List<DbColumnAttribute> filterColumns = new List<DbColumnAttribute>();
-                    foreach (string columnName in keys)
-                    {
-                        column = Columns.Where(item => item.ColumnName.Equals(columnName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-                        if (null == column)
-                            throw new Exception(string.Format("Column name '{0}' does not exist."));
-                        filterColumns.Add(column);
-                    }
-                    StringBuilder sqlBuilder = new StringBuilder();
-                    column = filterColumns[0];
-                    sqlBuilder.AppendFormat(" where {1} = @{1}", TableName, column.ColumnName);
-                    column.BuildParameter(cmd).Value = filter[keys[0]];
+                    sqlBuilder.Append(" where ");
+                    BuildLikeParameter(cmd, sqlBuilder, filterColumns[0], filter[keys[0]]);
                     for (int i = 1; i < filterColumns.Count; i++)
                     {
-                        column = filterColumns[i];
-                        sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
-                        column.BuildParameter(cmd).Value = filter[keys[i]];
+                        sqlBuilder.Append(" AND ");
+                        BuildLikeParameter(cmd, sqlBuilder, filterColumns[i], filter[keys[i]]);
                     }
-                    cmd.CommandText += sqlBuilder.ToString();
                 }
-                return (int)(long)cmd.ExecuteScalar();
+                cmd.CommandText = sqlBuilder.ToString();
+                long result = (long)cmd.ExecuteScalar();
+                return (int)result;
             }
-
         }
 
     }

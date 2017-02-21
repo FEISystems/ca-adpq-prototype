@@ -21,22 +21,51 @@
         model.itemsPerPage = 10;
         model.pageCount = 1;
         model.filter = {};
-        model.tab = 1;
+        model.activeFilter = {};
+        model.tab = 3;
+
+        //sample query model
+        //for strings, "A|B" converts to "column like '%A%' or column like '%B%'
+        //for currency, "A|B" converts to "A <= column and column <= B"
+        //{
+        //    "Start": 0,
+        //    "Count": 10,
+        //    "OrderByColumn": "Title",
+        //    "OrderAscending": true,
+        //    "Filter": { "Category":"Service|Computer", "ListPrice":"31|34"}
+        //}
+
+        model.filterProducts = function () {
+            model.activeFilter = model.filter;
+            model.page = 0;
+            model.tab = 3;
+            model.fetchAll();
+        };
+
+        model.clearFilter = function () {
+            model.filter = {};
+            model.activeFilter = {};
+        };
+
+        model.showFilter = function () {
+            model.tab = 4;
+            model.filter = model.activeFilter;
+        };
 
         model.showImport = function () {
             model.tab = 1;
-        }
+        };
 
-        model.showAdd = function() {
+        model.showAdd = function () {
             model.tab = 2;
             model.product = {};
             model.editing = false;
-        }
+        };
 
         model.showTable = function () {
             model.tab = 3;
             model.newProduct();
-        }
+        };
 
         model.clone = function (item) {
             return JSON.parse(JSON.stringify(item));
@@ -45,18 +74,10 @@
         model.addProduct = function () {
             //preserve the model.product in case the add operation fails
             var uploadData = model.clone(model.product);
-            //model.debugAlert(uploadData);
-            //alert(uploadData.Id);
-            ////only store ids for lookups
-            //uploadData.CategoryId = uploadData.CategoryId.Id;
-            //uploadData.ProductType = uploadData.ProductType.Id;
-            //uploadData.ContractId = uploadData.ContractId.Id;
             if (uploadData.Id) {
-                //alert("editing");
                 inventoryService.editProduct(uploadData);
             }
             else {
-                //alert("adding");
                 inventoryService.addProduct(uploadData);
             }
         };
@@ -64,9 +85,7 @@
         model.importFile = function () {
             try
             {
-
                 var fileinfo = document.getElementById("selectedfile").files[0];
-                //model.debugAlert(fileinfo);
                 if (fileinfo == undefined)
                 {
                     alert("Please select a file.");
@@ -98,8 +117,7 @@
         };
 
         model.fetchProducts = function () {
-            var filter = model.filter;
-            //model.debugAlert(filter);
+            var filter = model.activeFilter;
             inventoryService.fetchProducts(model.page * model.itemsPerPage, model.itemsPerPage, model.orderByColumn, model.orderAscending, filter);
         };
 
@@ -111,11 +129,6 @@
 
         model.buildProduct = function (item) {
             var result = model.clone(item);
-            //model.debugAlert(result);
-            //associate lookup items based on ids
-            //result.ContractId = model.FindLookup(model.contracts, item.ContractId);
-            //result.ProductType = model.FindLookup(model.productTypes, item.ProductType);
-            //result.CategoryId = model.FindLookup(model.categories, item.CategoryId);
             return result;
         };
 
@@ -151,8 +164,7 @@
         }
 
         model.fetchPageCount = function () {
-            var filter = model.filter;
-            inventoryService.fetchCount(filter);
+            inventoryService.fetchCount(model.activeFilter);
         };
 
         model.setPage = function(newPage)

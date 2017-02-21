@@ -1,8 +1,9 @@
 ﻿<standard-layout>
     <h1>{{model.title}}</h1>
-    <a href="" ng-click="model.showImport()">Import</a>
-    <a href="" ng-click="model.showAdd()">Add</a>
     <a href="" ng-click="model.showTable()">Table</a>
+    <a href="" ng-click="model.showFilter()">Filter</a>
+    <a href="" ng-click="model.showAdd()">Add</a>
+    <a href="" ng-click="model.showImport()">Import</a>
     <div ng-show="model.tab == 1">
         <h3>Import</h3>
         <form name="fileImportForm" id="fileImportForm">
@@ -127,4 +128,94 @@
             &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
         </p>
     </div>
+    <div ng-show="model.tab == 4">
+        <h3>Filter Products</h3>
+        <form name="filterProductForm" id="filterProductForm" ng-submit="model.filterProducts()" novalidate>
+            <table>
+                <tr>
+                    <td>Title</td>
+                    <td><input type="text" ng-model="model.filter.Title" /></td>
+                    <td>Contract</td>
+                    <td>
+                        <select ng-model="model.filter.ContractNumber" ng-options="contract for contract in model.contracts" >
+                            <option value="">Select Contract</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contractor</td>
+                    <td>
+                        <select ng-model="model.filter.Contractor" ng-options="contractor for contractor in model.contractors" >
+                            <option value="">Select Contractor</option>
+                        </select>
+                    </td>
+                    <td>CLIN</td>
+                    <td><input type="text" ng-model="model.filter.CLIN" /></td>
+                </tr>
+                <tr>
+                    <td>Contract Discount</td>
+                    <td><input type="text" ng-model="model.filter.ContractDiscount" /></td>
+                    <td>Contract Expiration</td>
+                    <td><input type="text" ng-model="model.filter.ContractExpiration" /></td>
+                </tr>
+                <tr>
+                    <td>List Price</td>
+                    <td><input type="text" ng-model="model.filter.ListPrice" /></td>
+                    <td>Contract Price</td>
+                    <td><input type="text" ng-model="model.filter.ContractPrice" /></td>
+                </tr>
+                <tr>
+                    <td>Manufacturer</td>
+                    <td><input type="text" ng-model="model.filter.Manufacturer" /></td>
+                    <td>Part Number</td>
+                    <td><input type="text" ng-model="model.filter.ManufacturerPartNumber" /></td>
+                </tr>
+                <tr>
+                    <td>SKU</td>
+                    <td><input type="text" ng-model="model.filter.SKU" /></td>
+                    <td>UNSPSC</td>
+                    <td><input type="text" ng-model="model.filter.UNSPSC" /></td>
+                </tr>
+                <tr>
+                    <td>Product Type</td>
+                    <td>
+                        <select ng-model="model.filter.ProductType" ng-options="prod for prod in model.productTypes" >
+                            <option value="">Select Product Type</option>
+                        </select>
+                    </td>
+                    <td>Category</td>
+                    <td>
+                        <select ng-model="model.filter.Category" ng-options="category for category in model.categories" >
+                            <option value="">Select Category</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Unit of Measure</td>
+                    <td>
+                        <select ng-model="model.filter.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" >
+                            <option value="">Select Unit of Measure</option>
+                        </select>
+                    </td>
+                    <td>Quantity per UOM</td>
+                    <td><input type="text" ng-model="model.filter.QuantityPerUnitOfMeasure" /></td>
+                </tr>
+                <!--<tr>
+                    <td colspan="4">
+                        <textarea ng-model="model.product.Description" required cols="160" rows="3"></textarea>
+                    </td>
+                </tr>-->
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="submit" value="Set Filter" />
+                        <a href="" ng-click="model.clearFilter()">Clear Filter</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
 </standard-layout>
