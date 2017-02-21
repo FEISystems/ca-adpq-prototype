@@ -65,8 +65,6 @@ namespace ca_service.Entities
         [DbColumn(System.Data.DbType.String)]
         public string Category { get; set; }
 
-        [DbColumn(System.Data.DbType.Int32)]
-        public int CategoryId { get; set; }
     }
 
     public enum ProductType

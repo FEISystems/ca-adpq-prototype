@@ -28,41 +28,18 @@ namespace ca_service.Repositories
                 Manufacturer = reader["Manufacturer"].ToString(),
                 ManufacturerPartNumber = reader["ManufacturerPartNumber"].ToString(),
                 SKU = reader["SKU"].ToString(),
-                Category = reader["CategoryName"].ToString()
+                Category = reader["Category"].ToString()
             };
 
             return product;
         }
 
-        public List<Product> GetProductsByCategory(int categoryId)
+        [Obsolete("Use the base Fetch method.")]
+        public List<Product> GetProductsByCategory(string category)
         {
-            string sql = @"
-SELECT P.Id, P.Title, P.Manufacturer, P.ManufacturerPartNumber, P.SKU, C.Name AS CategoryName
-FROM Products P
-JOIN Categories C ON P.CategoryId = C.Id
-WHERE P.CategoryId = @CategoryId
-";
-
-            var result = new List<Product>();
-
-            using (var cmd = db.connection.CreateCommand())
-            {
-                cmd.CommandText = sql;
-
-                cmd.Parameters.Add(new MySqlParameter() { ParameterName = "@CategoryId", Value = categoryId });
-
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var product = FromDataReader(reader);
-
-                        result.Add(product);
-                    }
-                }
-            }
-
-            return result;
+            var filter = new Dictionary<string, object>();
+            filter.Add("Category", category);
+            return Fetch(0, int.MaxValue, filter).ToList();
         }
 
         public List<Product> QuickSearch(string[] searchTerms)
@@ -71,13 +48,12 @@ WHERE P.CategoryId = @CategoryId
                 return null;
 
             string baseSql = @"
-SELECT C.Name AS CategoryName, P.Id, P.Title, P.Manufacturer, P.ManufacturerPartNumber, P.SKU
+SELECT Category, Id, Title, Manufacturer, ManufacturerPartNumber, SKU
 FROM Products P
-JOIN Categories C ON P.CategoryId = C.Id
 WHERE";
 
             string whereClause = @"
-    (P.Title LIKE {0} OR Manufacturer LIKE {0} OR ManufacturerPartNumber LIKE {0} OR SKU LIKE {0} OR C.Name LIKE {0})
+    (Title LIKE {0} OR Manufacturer LIKE {0} OR ManufacturerPartNumber LIKE {0} OR SKU LIKE {0} OR Category LIKE {0})
 ";
 
             var cmd = db.connection.CreateCommand();
