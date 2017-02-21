@@ -21,6 +21,22 @@
         model.itemsPerPage = 10;
         model.pageCount = 1;
         model.filter = {};
+        model.tab = 1;
+
+        model.showImport = function () {
+            model.tab = 1;
+        }
+
+        model.showAdd = function() {
+            model.tab = 2;
+            model.product = {};
+            model.editing = false;
+        }
+
+        model.showTable = function () {
+            model.tab = 3;
+            model.newProduct();
+        }
 
         model.clone = function (item) {
             return JSON.parse(JSON.stringify(item));
@@ -89,7 +105,7 @@
         model.newProduct = function () {
             model.product = {};
             model.editing = false;
-            model.fetchProducts();
+            model.fetchAll();
         };
 
         model.buildProduct = function (item) {
@@ -121,8 +137,10 @@
             inventoryService.fetchCategories();
             inventoryService.fetchContracts();
             inventoryService.fetchContractors();
-            model.fetchProducts();
-            model.fetchPageCount();
+            if (model.tab == 3) {
+                model.fetchProducts();
+                model.fetchPageCount();
+            }
         };
 
         model.buildFilter = function () {
