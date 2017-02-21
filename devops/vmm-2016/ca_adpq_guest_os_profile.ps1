@@ -5,7 +5,10 @@ $path = Split-Path $MyInvocation.MyCommand.Path
 . "$path\ca_adpq_variables.ps1"
 
 function Add-CaAdpqOsProfile{
-    $osProfile = New-SCGuestOSProfile -Name $osProfileName -Description "" -ComputerName "*" -TimeZone 35 -LocalAdministratorCredential $null  -LinuxDomainName "fei.local" -Owner '' -OperatingSystem $existsOperatingSystem
+    
+    $LocalAdministratorCredential = Get-Credential
+    
+    $osProfile = New-SCGuestOSProfile -Name $osProfileName -Description "" -ComputerName "CA-ADPQ-SWARM1#" -TimeZone 35 -LocalAdministratorCredential $LocalAdministratorCredential -LinuxDomainName "fei.local" -Owner "" -OperatingSystem $existsOperatingSystem
 }
 
 if(!$existsOsProfile){
