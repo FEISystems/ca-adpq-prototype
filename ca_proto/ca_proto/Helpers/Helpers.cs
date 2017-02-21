@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ca_service.Entities;
+using ca_service.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -27,6 +29,22 @@ namespace ca_proto.Helpers
                 Content = content,
                 ContentType = "text/html"
             };
+        }
+
+        public static int? GetUserId(this HttpContext context)
+        {
+            IUserService userService = (IUserService)context.RequestServices.GetService(typeof(IUserService));
+            var request = context.Request;
+            var token = string.Empty;
+            if (request.Cookies.Any(x => x.Key == AuthToken))
+            {
+                token = request.Cookies.First(x => x.Key == AuthToken).Value.ToString();
+            }
+            var login = userService.GetLogin(token);
+
+            if (login != null)
+                return login.UserId;
+            return null;
         }
 
         public static T GetEntityFromRequest<T>(this HttpRequest request)
