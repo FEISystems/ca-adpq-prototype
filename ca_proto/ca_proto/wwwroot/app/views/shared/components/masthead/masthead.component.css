@@ -8,8 +8,8 @@ header masthead a:hover,
 header masthead a:active,
 header masthead a:visited {
   color: black;
+  vertical-align: top;
 }
-
 header masthead .logo {
   height: 120px;
   width: 120px;

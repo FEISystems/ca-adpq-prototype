@@ -9,6 +9,14 @@
 .ca-footer .ca-footer-menu .ca-footer-menu-header {
   font-size: 1.1em;
   font-weight: bold;
+  color: #e31c3d;
+}
+.ca-footer .ca-footer-menu a {
+  text-decoration: none;
+  color: #000;
+}
+.ca-footer .ca-footer-menu a:hover {
+  text-decoration: underline;
 }
 .ca-footer .ca-footer-info {
   background-color: #D6D7D9;
