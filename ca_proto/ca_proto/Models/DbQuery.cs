@@ -11,5 +11,6 @@ namespace ca_proto.Models
         public int Count { get; set; }
         public string OrderByColumn { get; set; }
         public bool OrderAscending { get; set; }
+        public IDictionary<string, object> Filter { get; set; }
     }
 }

@@ -65,16 +65,16 @@ namespace ca_proto.Controllers
             try
             {
                 result.AppendLine("Beginning test");
-                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue, null).Count()));
                 inventoryService.Add(product);
                 result.AppendLine("Added product: " + product.Id);
-                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue, null).Count()));
                 product.Title += " - updated";
                 inventoryService.Update(product);
                 result.AppendLine("Updated product: " + product.Id);
                 inventoryService.Delete(product.Id);
                 result.AppendLine("Deleted product: " + product.Id);
-                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue, null).Count()));
                 result.AppendLine("test success: " + product.Id.ToString());
                 return result.ToString();
             }
@@ -100,7 +100,7 @@ namespace ca_proto.Controllers
         [HttpGet("Fetch")]
         public ActionResult Fetch()
         {
-            return Json(inventoryService.Fetch(0, int.MaxValue));
+            return Json(inventoryService.Fetch(0, int.MaxValue, null));
         }
 
         [HttpPost("Query")]
@@ -110,7 +110,7 @@ namespace ca_proto.Controllers
                 return Json(new Product[0]);
             inventoryService.OrderAscending = query.OrderAscending;
             inventoryService.OrderColumnName = query.OrderByColumn;
-            return Json(inventoryService.Fetch(query.Start, query.Count));
+            return Json(inventoryService.Fetch(query.Start, query.Count, query.Filter));
         }
 
         [HttpGet("{id}")]
@@ -156,6 +156,12 @@ namespace ca_proto.Controllers
 
             //todo: create a DTO for products for the UI side
             return Json(results);
+        }
+
+        [HttpPost("Count")]
+        public IActionResult Count([FromBody]IDictionary<string, object> filter)
+        {
+            return Json(inventoryService.Count(filter));
         }
     }
 }

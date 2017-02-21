@@ -72,5 +72,12 @@
             <td>{{row.SKU}}</td><td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.id)">Delete</a></td>
         </tr>
     </table>
-    <p>Implement paging</p>
+    <p>
+        Page
+        &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
+        &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
+        &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
+        &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
+        &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
+    </p>
 </standard-layout>
