@@ -46,9 +46,23 @@ namespace ca_service.Services
 
         public void Add(Product product)
         {
+            Add(product, true);
+        }
+
+        private void Add(Product product, bool checkAddCodes)
+        {
             if (null == product)
                 throw new Exception("A product must be provided");
             inventoryRepository.Add(product);
+            if (checkAddCodes)
+            {
+                List<Category> existingCategories = categoryRepository.Fetch();
+                List<Contract> existingContracts = contractRepository.Fetch(0, int.MaxValue);
+                List<Contractor> existingContractors = contractorRepository.Fetch(0, int.MaxValue);
+                AddCategory(existingCategories, product.Category, product.ProductType);
+                AddContract(existingContracts, product.ContractNumber);
+                AddContractor(existingContractors, product.Contractor);
+            }
         }
 
         public void Update(Product product)
@@ -145,7 +159,8 @@ namespace ca_service.Services
 
         private bool ContractLineItemNumberExists(Product product)
         {
-            IEnumerable<Product> existing = inventoryRepository.Where(product, "CLIN");
+            //unique key is contract number + clin
+            IEnumerable<Product> existing = inventoryRepository.Where(product, "CLIN", "ContractNumber");
             return existing.Any();
         }
 
