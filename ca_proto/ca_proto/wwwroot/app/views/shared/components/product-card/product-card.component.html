@@ -1,11 +1,11 @@
 <link rel='stylesheet' type="text/css" href="app/views/shared/components/product-card/product-card.component.css" />
 
-<div class="usa-grid" style="text-align: center">
+<div class="usa-grid ca-image-wrapper" style="text-align: center">
     <div style="width:100%; min-height: 200px; background-color: lightgray; border: 1px solid darkgray"></div>
-    <strong>{{product.productTitle}}</strong>
+    <strong>{{product.Title}}</strong>
 </div>
 <div class="usa-grid" style="padding-top: 0px; padding-bottom: 0px;">
-    <span class="price">{{product.listPrice}}</span>
+    <span class="price">{{product.ListPrice | currency}}</span>
 </div>
 <div class="usa-grid">
     <div class="button_wrapper">

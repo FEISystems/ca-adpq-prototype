@@ -10,7 +10,6 @@
         
 
         this.$routerOnActivate = function (next, previous) {
-            var category = next.params.category.replace(/%20/g, " ");
 
             function createRows(arr, size) {
                 var newRow = [];
@@ -23,7 +22,7 @@
 
             sampleInventoryService.getProduct().get({ category: category}).$promise.then(
                 function (data) {
-                    var filteredList = data.filter(function(items) { return items.category === category });
+                    var filteredList = data.filter(function(items) { return items.category === "Standard Laptop Config" ||  items.category === "Power Laptop Config" ||  items.category === "Ultralight Laptop Config"});
                     
                     model.products = createRows(filteredList, 4);
                 },

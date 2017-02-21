@@ -2,20 +2,55 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, sampleInventoryService) {
+    var controller = function ($scope, $location, messageService, inventoryService) {
         var model = this;
         model.provider = {};
         model.title = "Home";
-        
-        // sampleInventoryService.getInventory().get().$promise.then(
-        //     function( data ) {
-        //         model.products = data;
-        //     },
-        //     function( error ) {
-        //         alert( "Something went wrong!" );
 
-        //     }
-        // );
+        model.productTypes = [];
+        model.categories = [];
+        model.contracts = [];
+        model.contractors = [];
+        model.products = [];
+        model.orderByColumn = "name";
+        model.orderAscending = true;
+        model.page = 0;
+        model.pageCount = 20;
+
+        model.clone = function (item) {
+            return JSON.parse(JSON.stringify(item));
+        };
+        
+        this.$routerOnActivate = function (next, previous) {
+            function createRows(arr, size) {
+                var newRow = [];
+                for (var i = 0; i < arr.length; i += size) {
+                    newRow.push(arr.slice(i, i + size));
+                }
+                return newRow;
+            }
+
+            model.fetchProducts = function () {
+                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
+            };
+            
+            model.fetchProducts();
+
+
+            messageService.subscribe('querySuccess', function (response) {
+                
+                //var filteredList = response.filter(function(items) { return items.category === category + " " });
+                //model.products = createRows(filteredList, 4);
+
+                model.products = createRows(response, 4);
+            })
+
+            messageService.subscribe('queryFailure', function (response) {
+                model.products = [];
+            })
+
+
+        }
 
         model.$onInit = function() {
 
@@ -33,7 +68,7 @@
     module.component("home", {
         templateUrl: "app/areas/public/home/home.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "sampleInventoryService", controller]
+        controller: ["$scope", "$location", "messageService","inventoryService", controller]
 
     });
 }())
