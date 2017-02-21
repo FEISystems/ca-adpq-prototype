@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace ca_service.Services
 {
-    public class InventoryService: IInventoryService, IDisposable
+    public class InventoryService : IInventoryService, IDisposable
     {
         private readonly IInventoryRepository inventoryRepository;
 
@@ -31,6 +31,53 @@ namespace ca_service.Services
             var result = inventoryRepository.QuickSearch(searchTerms);
 
             return result;
+        }
+
+        public void Add(Product product)
+        {
+            if (null == product)
+                throw new Exception("A product must be provided");
+            inventoryRepository.Add(product);
+        }
+
+        public void Update(Product product)
+        {
+            if (null == product)
+                return;
+            inventoryRepository.Update(product);
+        }
+
+        public void Import(string fileContent)
+        {
+            if (string.IsNullOrWhiteSpace(fileContent))
+                return;
+            inventoryRepository.Import(fileContent);
+        }
+
+        public Product Get(int id)
+        {
+            return inventoryRepository.Get(id);
+        }
+
+        public void Delete(int id)
+        {
+            inventoryRepository.Delete(id);
+        }
+
+        public IEnumerable<Product> Fetch(int start, int count)
+        {
+            return inventoryRepository.Fetch(start, count);
+        }
+        public string OrderColumnName
+        {
+            get { return inventoryRepository.OrderColumnName; }
+            set { inventoryRepository.OrderColumnName = value; }
+        }
+
+        public bool OrderAscending
+        {
+            get { return inventoryRepository.OrderAscending; }
+            set { inventoryRepository.OrderAscending = value; }
         }
     }
 }

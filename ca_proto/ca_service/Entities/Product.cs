@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ca_service.Database;
 
 namespace ca_service.Entities
 {
-    public class Contract : Entity
-    {
-        public Contract(int id) : base(id)
-        {
-
-        }
-    }
-
+    [DbTable("ca.products")]
     public class Product : Entity
     {
         public Product(int id) : base(id)
@@ -20,21 +14,35 @@ namespace ca_service.Entities
 
         }
 
+        [DbColumn(System.Data.DbType.String)]
         public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        [DbColumn(System.Data.DbType.Currency)]
+        public decimal ListPrice { get; set; }
 
+        [DbColumn(System.Data.DbType.Currency)]
+        public decimal ContractPrice { get; set; }
+
+        [DbColumn(System.Data.DbType.Int32)]
         public int ContractId { get; set; }
 
+        [DbColumn(System.Data.DbType.String)]
         public string Manufacturer { get; set; }
 
+        [DbColumn(System.Data.DbType.String)]
         public string ManufacturerPartNumber { get; set; }
 
+        [DbColumn(System.Data.DbType.String)]
         public string SKU { get; set; }
 
+        [DbColumn(System.Data.DbType.Int32)]
         public ProductType ProductType { get; set; }
 
-        public List<int> ValidAsAddOnForParentProductIds { get; set; }
+        [DbColumn(System.Data.DbType.String)]
+        public List<int> ValidAsAddOnForParentCategories { get; set; }
+
+        [DbColumn(System.Data.DbType.Int32)]
+        public int CategoryId { get; set; }
     }
 
     public enum ProductType

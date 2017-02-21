@@ -9,5 +9,14 @@ namespace ca_service.Interfaces
     public interface IInventoryService
     {
         IEnumerable<Product> QuickSearch(string[] searchTerms);
+        void Add(Product product);
+
+        void Update(Product product);
+        void Import(string fileContent);
+        Product Get(int id);
+        void Delete(int id);
+        IEnumerable<Product> Fetch(int start, int count);
+        string OrderColumnName { get; set; }
+        bool OrderAscending { get; set; }
     }
 }
