@@ -43,9 +43,9 @@ Invoke-MSBuild
 $revision = @{ $true = $env:APPVEYOR_BUILD_NUMBER; $false = 1 }[$env:APPVEYOR_BUILD_NUMBER -ne $NULL];
 $revision = "{0:D4}" -f [convert]::ToInt32($revision, 10)
 
-exec { & dotnet restore ..\ca_proto }
-exec { & dotnet test ..\ca_proto\ca_proto_tests }
-exec { & dotnet build ..\ca_proto }
+exec { & dotnet restore .\ca_proto }
+exec { & dotnet test .\ca_proto\ca_proto_tests }
+exec { & dotnet build .\ca_proto }
 
 $release = Join-Path $pwd release
-exec { & dotnet publish ..\ca_proto -c Release -o $release --version-suffix=$revision}
+exec { & dotnet publish .\ca_proto -c Release -o $release --version-suffix=$revision}
