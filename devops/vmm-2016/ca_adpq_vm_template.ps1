@@ -11,13 +11,13 @@ function Add-CaAdpqVmTemplate{
     $JobGroupID = [Guid]::NewGuid().ToString()
 
     #Ubuntu 16.10 prepped image
-    $vhdxName = "CA-ADPQ_Ubuntu_16_10.vhdx"
+    $vhdxName = "CA-ADPQ-TEMPLATE_system.vhdx"
     $preppedVhdx = Get-SCVirtualHardDisk -Name $vhdxName
-
+    
     #create virtual drive
     New-SCVirtualDiskDrive -SCSI -Bus 0 -LUN 0 -VirtualHardDisk $preppedVhdx -CreateDiffDisk $false -VolumeType BootAndSystem -JobGroup $JobGroupID
 
-    $template = New-SCVMTemplate -Name $vmTemplateName -RunAsynchronously -Generation 2 -HardwareProfile $existsHardwareProfile -GuestOSProfile $existsOsProfile -JobGroup $JobGroupID -ComputerName "*" -TimeZone 35 -LocalAdministratorCredential $null  -LinuxDomainName "fei.local" -OperatingSystem $existsOperatingSystem 
+    $template = New-SCVMTemplate -Name $vmTemplateName -RunAsynchronously -Generation 2 -HardwareProfile $existsHardwareProfile -GuestOSProfile $existsOsProfile -JobGroup $JobGroupID -ComputerName "*" -TimeZone 35 -OperatingSystem $existsOperatingSystem -LinuxDomainName "fei.local"
 
 }
 
