@@ -2,10 +2,10 @@
 
 <div class="usa-grid" style="text-align: center">
     <div style="width:100%; min-height: 200px; background-color: lightgray; border: 1px solid darkgray"></div>
-    <strong>Laptop</strong>
+    <strong>{{product.productTitle}}</strong>
 </div>
 <div class="usa-grid" style="padding-top: 0px; padding-bottom: 0px;">
-    <span class="price">$4,500</span>
+    <span class="price">{{product.listPrice}}</span>
 </div>
 <div class="usa-grid">
     <div class="button_wrapper">
@@ -24,6 +24,6 @@
             </ul>
     </div>
     <div class="usa-width-one-half text-right">
-        <a ng-link="['Product Details']">View Details</a>
+        <a ng-link="['Product Details', { id : product.sku }]">View Details</a>
     </div>
 </div>

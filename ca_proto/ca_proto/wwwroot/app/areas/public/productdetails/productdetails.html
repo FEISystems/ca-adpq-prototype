@@ -1,6 +1,6 @@
 ﻿<standard-layout>
     <div class="product-details">
-        <h2 class="usa-heading">Standard Desktops</h2>
+        <h2 class="usa-heading">{{model.product.category}}</h2>
         <div class="wrapper">
             <div class="usa-width-one-half">
                 <div class="product-placeholder"></div>
@@ -9,8 +9,8 @@
                 <div class="usa-width-one-third product-thumbnail"></div>
             </div>
             <div class="usa-width-one-half">
-                <h3>Standard-Dell Optiplex 3040 SFF – Core i5-6500</h3>
-                <h4>$446.03</h4>
+                <h3>{{model.product.productTitle}}</h3>
+                <h4>{{model.product.listPrice}}</h4>
                 <div class="usa-width-one-half add-to-cart">
                     <label for="add_to_cart"  class="usa-sr-only">Add to Cart</label>
                     <select type="text" id="add_to_cart">
@@ -27,17 +27,19 @@
                     <input type="checkbox" id="compare_checkbox">
                     <label for="compare_checkbox">Compare</label>
                 </div>
-                <p class="usa-width-one-whole">Standard-Dell Optiplex 3040 SFF – Core i5-6500, 3.20GHz, 4GB 1DIMM 1600MHz DDR3L, Windows 7 Pro (32/64 bit), integrated Intel HD Graphics, DVD+/- RW, 500GB SATA 7200rpm, USB Optical Wheel Mouse, USB Keyboard, 3-Year Next Business Day On-Site Warranty</p>
+                <p class="usa-width-one-whole">
+                    {{model.product.productDescription}}
+                </p>
                 <hr class="clear">
                 <div class="usa-width-one-whole">
                     <ul>
-                        <li>Manufacturer - Dell</li>
-                        <li>SKU # - 210-AFXK</li>
-                        <li>OEM # -210-AFXK</li>
-                        <li>CLIN - 100d</li>
-                        <li>Contractor - PC Specialists, dba Technology Integration Group (TIG)</li>
-                        <li>Contract # - 1-13-70-01B, Supplement 8, Attachment A</li>
-                        <li>Contract Expiration Date - 6/10/2017</li>
+                        <li><b>Manufacturer:</b> {{model.product.manufacturer}}</li>
+                        <li><b>SKU #</b> {{model.product.sku}}</li>
+                        <li><b>OEM #</b> {{model.product.manufacturerPartNumber}}</li>
+                        <li><b>CLIN:</b> {{model.product.clin}}</li>
+                        <li><b>Contractor:</b> {{model.product.contractor}}</li>
+                        <li><b>Contract #</b> {{model.product.contractNumber}}</li>
+                        <li><b>Contract Expiration Date:</b> {{model.product.contractExpirationDate}}</li>
                     </ul>
                 </div>
                 </div>
