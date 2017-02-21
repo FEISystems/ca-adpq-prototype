@@ -78,39 +78,68 @@ namespace ca_service.Services
             int contractCount = 0;
             int contractorCount = 0;
             int skippedCount = 0;
-            List<string> columnNames = new List<string>(lines[0].Split(new char[] { ',' }).Select(s => s.Trim().ToLower().Replace(" ", "")));
-            TestHaveRequiredColumnNames(columnNames);
-            for (int i = 1; i < lines.Length; i++)
-            {
-                string[] values = SplitCSVValues(lines[i]);
-                var product = new Product(0);
-                foreach (var column in ProductColumns)
-                {
-                    int colIndex = columnNames.IndexOf(column.ColumnName.ToLower());
-                    if (colIndex == -1)
-                        continue;
-                    column.Property.SetValue(product, GetCSVValue(values, colIndex, column.DbType));
-                }
-                if (!ContractLineItemNumberExists(product))
-                {
-                    Add(product);
-                    ++productCount;
-                    if (AddCategory(existingCategories, product.Category, product.ProductType))
-                        ++categoryCount;
-                    if (AddContract(existingContracts, product.ContractNumber))
-                        ++contractCount;
-                    if (AddContractor(existingContractors, product.Contractor))
-                        ++contractorCount;
-                }
-                else
-                    ++skippedCount;
-            }
+            int errorCount = 0;
             StringBuilder result = new StringBuilder();
-            result.AppendFormat("Added {0} products\r\n", productCount);
-            result.AppendFormat("Added {0} categories\r\n", categoryCount);
-            result.AppendFormat("Added {0} contracts\r\n", contractCount);
-            result.AppendFormat("Added {0} contractors\r\n", contractorCount);
+            List<string> columnNames = new List<string>(lines[0].Split(new char[] { ',' }).Select(s => s.Trim().ToLower().Replace(" ", "")));
+            try
+            {
+                TestHaveRequiredColumnNames(columnNames);
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    try
+                    {
+                        string[] values = SplitCSVValues(lines[i]);
+                        var product = new Product(0);
+                        foreach (var column in ProductColumns)
+                        {
+                            int colIndex = columnNames.IndexOf(column.ColumnName.ToLower());
+                            if (colIndex == -1)
+                                continue;
+                            try
+                            {
+                                column.Property.SetValue(product, GetCSVValue(values, colIndex, column.DbType));
+                            }
+                            catch
+                            {
+                                throw new Exception(string.Format("Error converting data '{0}' for column '{1}' in row {2}. Expected data type {3}",
+                                    values[colIndex], column.ColumnName, i, column.DbType));
+                            }
+                        }
+                        if (!ContractLineItemNumberExists(product))
+                        {
+                            Add(product);
+                            ++productCount;
+                            if (AddCategory(existingCategories, product.Category, product.ProductType))
+                                ++categoryCount;
+                            if (AddContract(existingContracts, product.ContractNumber))
+                                ++contractCount;
+                            if (AddContractor(existingContractors, product.Contractor))
+                                ++contractorCount;
+                        }
+                        else
+                            ++skippedCount;
+                    }
+                    catch (Exception x)
+                    {
+                        result.Append(x.Message + "\n");
+                        ++errorCount;
+                    }
+                }
+            }
+            catch (Exception x)
+            {
+                result.Append(x.Message + "\n");
+                ++errorCount;
+            }
+            result.AppendFormat("Added {0} products\n", productCount);
+            result.AppendFormat("Added {0} categories\n", categoryCount);
+            result.AppendFormat("Added {0} contracts\n", contractCount);
+            result.AppendFormat("Added {0} contractors\n", contractorCount);
             result.AppendFormat("Skipped {0} entries", skippedCount);
+            if (errorCount > 0)
+            {
+                result.AppendFormat("\n{0} errors encountered. Please make corrections to the data and try the import again.", errorCount);
+            }
             return result.ToString();
         }
 
@@ -186,10 +215,7 @@ namespace ca_service.Services
             {
                 if (string.IsNullOrWhiteSpace(value))
                     return 0.0m;
-                decimal temp;
-                if (decimal.TryParse(value, System.Globalization.NumberStyles.Currency, null, out temp))
-                    return temp;
-                return 0.0m;
+                return decimal.Parse(value, System.Globalization.NumberStyles.Currency);
             }
             else if (dbType == DbType.DateTime)
             {
