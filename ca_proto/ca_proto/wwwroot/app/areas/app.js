@@ -36,7 +36,7 @@
 
             // Categories
             // // Software
-            { path: '/categories/software/allsoftware/:category', component: 'allSoftware', name: 'All Software' },   
+            { path: '/categories/software/allsoftware', component: 'allSoftware', name: 'All Software' },   
 
             // // Hardware
             // // // Desktops   

@@ -5,7 +5,7 @@
     <strong>{{product.Title}}</strong>
 </div>
 <div class="usa-grid" style="padding-top: 0px; padding-bottom: 0px;">
-    <span class="price">{{product.ListPrice | currency}}</span>
+    <span class="price">{{product.ContractPrice | currency}}</span>
 </div>
 <div class="usa-grid">
     <div class="button_wrapper">
@@ -24,6 +24,6 @@
             </ul>
     </div>
     <div class="usa-width-one-half text-right">
-        <a ng-link="['Product Details', { id : product.sku }]">View Details</a>
+        <a ng-link="['Product Details', { id : product.SKU }]">View Details</a>
     </div>
 </div>
