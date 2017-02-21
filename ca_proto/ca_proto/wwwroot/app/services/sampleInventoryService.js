@@ -8,9 +8,16 @@
                 });
         }
 
+        var getProduct = function () {            
+            return $resource('js/sampleData/inventory.json',{ }, {
+                    get: {method:'GET', isArray: true}
+                });
+        }
+
 
         return {
-            getInventory: getInventory
+            getInventory: getInventory,
+            getProduct : getProduct
         };
     };
 

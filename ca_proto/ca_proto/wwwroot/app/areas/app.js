@@ -32,26 +32,26 @@
             { path: '/faq', component: 'faq', name: 'FAQ' },
             { path: '/help', component: 'help', name: 'Help' },
             { path: '/home', component: 'home', name: 'Home' },
-            { path: '/product/details', component: 'productDetails', name: 'Product Details'},
+            { path: '/product/details/:id', component: 'productDetails', name: 'Product Details'},
 
             // Categories
             // // Software
-            { path: '/categories/software/allsoftware', component: 'allSoftware', name: 'All Software' },   
+            { path: '/categories/software/allsoftware/:category', component: 'allSoftware', name: 'All Software' },   
 
             // // Hardware
-            // // // Desktops
+            // // // Desktops   
             { path: '/categories/hardware/alldesktops', component: 'allDesktops', name: 'All Desktops' },     
-            { path: '/categories/hardware/standarddesktops', component: 'standardDesktops', name: 'Standard Desktops' },
-            { path: '/categories/hardware/powerdesktops', component: 'powerDesktops', name: 'Power Desktops' },
-            { path: '/categories/hardware/workstations', component: 'workstations', name: 'Workstations' },
-            { path: '/categories/hardware/thinclientdesktops', component: 'thinClientDesktops', name: 'Thin Client Desktops' },
-            { path: '/categories/hardware/allinonedesktops', component: 'allInOneDesktops', name: 'All in One Desktops' },
+            { path: '/categories/hardware/standarddesktops/:category', component: 'standardDesktops', name: 'Standard Desktops' },
+            { path: '/categories/hardware/powerdesktops/:category', component: 'powerDesktops', name: 'Power Desktops' },
+            { path: '/categories/hardware/workstations/:category', component: 'workstations', name: 'Workstations' },
+            { path: '/categories/hardware/thinclientdesktops/:category', component: 'thinClientDesktops', name: 'Thin Client Desktops' },
+            { path: '/categories/hardware/allinonedesktops/:category', component: 'allInOneDesktops', name: 'All in One Desktops' },
             // // // Laptops
             { path: '/categories/hardware/alllaptops', component: 'allLaptops', name: 'All Laptops' },  
-            { path: '/categories/hardware/standardlaptops', component: 'standardLaptops', name: 'Standard Laptops' },  
-            { path: '/categories/hardware/powerlaptops', component: 'powerLaptops', name: 'Power Laptops' },  
-            { path: '/categories/hardware/ultralightlaptops', component: 'ultralightLaptops', name: 'Ultralight Laptops' },  
-            { path: '/categories/hardware/mobileworkstations', component: 'mobileWorkstations', name: 'Mobile Workstations' },     
+            { path: '/categories/hardware/standardlaptops/:category', component: 'standardLaptops', name: 'Standard Laptops' },  
+            { path: '/categories/hardware/powerlaptops/:category', component: 'powerLaptops', name: 'Power Laptops' },  
+            { path: '/categories/hardware/ultralightlaptops/:category', component: 'ultralightLaptops', name: 'Ultralight Laptops' },  
+            { path: '/categories/hardware/mobileworkstations/:category', component: 'mobileWorkstations', name: 'Mobile Workstations' },     
             // // // Accessories
             { path: '/categories/hardware/allaccessories', component: 'allAccessories', name: 'All Accessories' }, 
             { path: '/categories/hardware/desktopaccessories', component: 'desktopAccessories', name: 'Desktop Accessories' }, 
