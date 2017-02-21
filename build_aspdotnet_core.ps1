@@ -9,7 +9,7 @@ dotnet restore .\ca_proto\ca_proto_tests
 
 dotnet test .\ca_proto\ca_proto_tests
 
-dotnet build .\ca_proto\ca_proto.sln
+dotnet build --configuration Release .\ca_proto
 
 $release = Join-Path $pwd release
 dotnet publish .\ca_proto -c Release -o $release --version-suffix=$revision
