@@ -9,6 +9,7 @@
         model.provider = {};
         model.title = "Admin Product Management";
 
+        model.unitsOfMeasure = [];
         model.productTypes = [];
         model.categories = [];
         model.contracts = [];
@@ -115,9 +116,11 @@
         };
 
         model.fetchAll = function () {
+            inventoryService.fetchUnitsOfMeasure();
             inventoryService.fetchProductTypes();
             inventoryService.fetchCategories();
             inventoryService.fetchContracts();
+            inventoryService.fetchContractors();
             model.fetchProducts();
             model.fetchPageCount();
         };
@@ -193,6 +196,14 @@
 
         messageService.subscribe('updateProductFailure', function (response) {
             alert('Update Product Failure');
+        })
+
+        messageService.subscribe('retrievedUnitsOfMeasure', function (response) {
+            model.unitsOfMeasure = response;
+        })
+
+        messageService.subscribe('retrievedUnitsOfMeasureFail', function (response) {
+            model.unitsOfMeasure = [];
         })
 
         messageService.subscribe('retrievedProductTypes', function (response) {

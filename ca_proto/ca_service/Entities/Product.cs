@@ -73,6 +73,12 @@ namespace ca_service.Entities
         Service = 3
     }
 
+    public enum UnitOfMeasure
+    {
+        EACH = 1,
+        HOUR = 2,
+    }
+
     public class Order : Entity
     {
         public Order(int id) : base(id)
