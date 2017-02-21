@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
 using System.Text;
+using System.Data.Common;
 
 namespace ca_service.Repositories
 {
@@ -17,6 +18,51 @@ namespace ca_service.Repositories
         public InventoryRepository(IConfiguration configuration)
             : base(configuration)
         {
+        }
+
+        private Product FromDataReader(DbDataReader reader)
+        {
+            var product = new Product((int)reader["Id"])
+            {
+                Title = reader["Title"].ToString(),
+                Manufacturer = reader["Manufacturer"].ToString(),
+                ManufacturerPartNumber = reader["ManufacturerPartNumber"].ToString(),
+                SKU = reader["SKU"].ToString(),
+                Category = reader["CategoryName"].ToString()
+            };
+
+            return product;
+        }
+
+        public List<Product> GetProductsByCategory(int categoryId)
+        {
+            string sql = @"
+SELECT P.Id, P.Title, P.Manufacturer, P.ManufacturerPartNumber, P.SKU, C.Name AS CategoryName
+FROM Products P
+JOIN Categories C ON P.CategoryId = C.Id
+WHERE P.CategoryId = @CategoryId
+";
+
+            var result = new List<Product>();
+
+            using (var cmd = db.connection.CreateCommand())
+            {
+                cmd.CommandText = sql;
+
+                cmd.Parameters.Add(new MySqlParameter() { ParameterName = "@CategoryId", Value = categoryId });
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var product = FromDataReader(reader);
+
+                        result.Add(product);
+                    }
+                }
+            }
+
+            return result;
         }
 
         public List<Product> QuickSearch(string[] searchTerms)
@@ -61,13 +107,7 @@ WHERE";
             {
                 while (reader.Read())
                 {
-                    var product = new Product((int)reader["Id"])
-                    {
-                        Title = reader["Title"].ToString(),
-                        Manufacturer = reader["Manufacturer"].ToString(),
-                        ManufacturerPartNumber = reader["ManufacturerPartNumber"].ToString(),
-                        SKU = reader["SKU"].ToString(),
-                    };
+                    var product = FromDataReader(reader);
 
                     result.Add(product);
                 }
