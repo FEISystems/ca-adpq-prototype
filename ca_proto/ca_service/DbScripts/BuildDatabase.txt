@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS `categories`;
 DROP TABLE IF EXISTS `contractors`;
 DROP TABLE IF EXISTS `contracts`;
 DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS `images`;
 
 CREATE TABLE `products` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -96,3 +97,9 @@ CREATE TABLE `ShoppingCartItem` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
+CREATE TABLE `Images` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ImageFileName` varchar(255) NOT NULL,
+  `Buffer` mediumblob NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 

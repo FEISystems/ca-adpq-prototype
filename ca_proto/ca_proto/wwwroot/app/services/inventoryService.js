@@ -47,6 +47,22 @@
             r.readAsText(fileinfo);
         };
 
+        var importImage = function (fileinfo) {
+            var r = new FileReader();
+            r.onloadend = function (e) {
+                var data = new Uint8Array(e.target.result, 0, e.target.result.length);
+                var postData = { ImageFileName:fileinfo.name, Buffer: data };
+                $http.post("/api/image/add", postData)
+                    .success(function (response) {
+                        messageService.publish('importImageSuccess', fileinfo.name);
+                    })
+                    .error(function (response) {
+                        messageService.publish('importImageFailure', fileinfo.name);
+                    });
+            }
+            r.readAsArrayBuffer(fileinfo);
+        };
+
         var fetchProductTypes = function () {
             fetchLookups("ProductTypes");
         };
@@ -158,7 +174,8 @@
             quickSearch: quickSearch,
             advancedSearch: advancedSearch,
             fetchCount : fetchCount,
-            getProduct : getProduct
+            getProduct: getProduct,
+            importImage: importImage,
         };
     }
 

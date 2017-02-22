@@ -4,12 +4,29 @@
     <a href="" ng-click="model.showTable()">Catalog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showFilter()">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showAdd()">Add Product</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="" ng-click="model.showImport()">Import</a>
+    <a href="" ng-click="model.showImport()">Import Products</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" ng-click="model.showImportImages()">Import Images</a>
     <div ng-show="model.tab == 1">
-        <h3 class="usa-heading">Import</h3>
+        <h3 class="usa-heading">Import Products</h3>
         <form name="fileImportForm" id="fileImportForm">
             <input type="file" id="selectedfile" name="selectedfile" /><br />
             <button type="button" ng-click="model.importFile()" class="usa-button-secondary">Import CSV Inventory File</button>
+        </form>
+    </div>
+    <div ng-show="model.tab == 5">
+        <h3 class="usa-heading">Import Images</h3>
+        <form name="imageImportForm" id="imageImportForm">
+            <table>
+                <tr>
+                    <td><input type="file" id="selectedimages" name="selectedimages" multiple /><br /></td>
+                    <td><button type="button" ng-click="model.importImages()" class="usa-button-secondary">Import Images</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <pre>{{model.importProgress}}</pre>
+                    </td>
+                </tr>
+            </table>
         </form>
     </div>
     <div ng-show="model.tab == 2">
