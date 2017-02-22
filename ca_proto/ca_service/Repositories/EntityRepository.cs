@@ -234,9 +234,12 @@ namespace ca_service.Repositories
 
         protected virtual EntityType ReadEntity(MySqlDataReader reader)
         {
+            List<string> selectedFields = GetFieldNames(reader);
             EntityType result = Activator.CreateInstance(typeof(EntityType), reader["Id"]) as EntityType;
             foreach (var column in Columns)
             {
+                if (!selectedFields.Contains(column.ColumnName.ToLower()))
+                    continue;
                 if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
                 {
                     var values = reader[column.ColumnName] as string;
@@ -254,6 +257,16 @@ namespace ca_service.Repositories
                 {
                     column.Property.SetValue(result, reader[column.ColumnName]);
                 }
+            }
+            return result;
+        }
+
+        private List<string> GetFieldNames(MySqlDataReader reader)
+        {
+            var result = new List<string>();
+            for (int i=0; i<reader.FieldCount; i++)
+            {
+                result.Add(reader.GetName(i).ToLower());
             }
             return result;
         }
