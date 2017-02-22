@@ -121,7 +121,7 @@ namespace ca_service.Services
                         }
                         if (!ContractLineItemNumberExists(product))
                         {
-                            Add(product);
+                            Add(product, false);
                             ++productCount;
                             if (AddCategory(existingCategories, product.Category, product.ProductType))
                                 ++categoryCount;
