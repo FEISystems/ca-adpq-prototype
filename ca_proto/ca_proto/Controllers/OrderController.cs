@@ -25,5 +25,11 @@ namespace ca_proto.Controllers
         {
             return _orderService.Get(id);
         }
+
+        [HttpGet("GetUserOrders/{userId}")]
+        public List<Order> GetUserOrders(int userId)
+        {
+            return _orderService.GetOrdersForUser(userId);
+        }
     }
 }
