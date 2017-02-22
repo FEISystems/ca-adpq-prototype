@@ -72,7 +72,7 @@ namespace ca_service.Services
             if (product == null)
                 throw new Exception($"A product with id {productId} was not found");
 
-            if (cart.Items.Any(x => x.ProductId == productId))
+            if (cart.Items != null && cart.Items.Any(x => x.ProductId == productId))
             {
                 var item = cart.Items.First(x => x.ProductId == productId);
                 item.Quantity += quantity;
