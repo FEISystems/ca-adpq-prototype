@@ -1,5 +1,9 @@
 FROM microsoft/aspnetcore:latest
 
+#sanity
+CMD pwd
+CMD ls
+
 # Set ASP.NET Core environment variables
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Development"
