@@ -84,14 +84,9 @@
                     <td>Quantity per UOM</td>
                     <td><input type="text" ng-model="model.product.QuantityPerUnitOfMeasure" required /></td>
                 </tr>
-                <!--<tr>
-                    <td colspan="4">
-                        <textarea ng-model="model.product.Description" required cols="160" rows="3"></textarea>
-                    </td>
-                </tr>-->
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>Description</td>
+                    <td><textarea ng-model="model.product.Description" required></textarea></td>
                     <td><input type="hidden" ng-model="model.product.Id" /></td>
                     <td>
                         <input type="submit" value="Add Item" ng-disabled="!addProductForm.$valid" ng-hide="model.editing" />
@@ -206,8 +201,8 @@
                     </td>
                 </tr>-->
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>Description</td>
+                    <td><textarea ng-model="model.filter.Description" required></textarea></td>
                     <td>&nbsp;</td>
                     <td>
                         <input type="submit" value="Set Filter" />
