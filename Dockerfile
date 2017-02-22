@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore:latest
+FROM microsoft/aspnetcore:1.0.0
 
 # Set ASP.NET Core environment variables
 ENV ASPNETCORE_URLS="http://*:5000"
