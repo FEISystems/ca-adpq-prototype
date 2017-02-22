@@ -24,6 +24,7 @@ CREATE TABLE `products` (
   `ContractNumber` varchar(255) NOT NULL,
   `Contractor` varchar(255) DEFAULT NULL,
   `ContractExpiration` datetime DEFAULT NULL,
+  `ImageFileName` varchar(250) DEFAULT '',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 

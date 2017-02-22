@@ -167,7 +167,17 @@ namespace ca_service.Repositories
             }
             else
             {
-                column.BuildParameter(cmd).Value = column.Property.GetValue(entity);
+                object value = column.Property.GetValue(entity);
+                if (null == value && column.IsOptional)
+                {
+                    switch (column.DbType)
+                    {
+                        case System.Data.DbType.String: value = ""; break;
+                        case System.Data.DbType.Currency: value = 0.0m; break;
+                        case System.Data.DbType.Int32: value = 0; break;
+                    }
+                }
+                column.BuildParameter(cmd).Value = value;
             }
         }
 

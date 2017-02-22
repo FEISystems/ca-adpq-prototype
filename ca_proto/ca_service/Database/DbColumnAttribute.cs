@@ -18,6 +18,7 @@ namespace ca_service.Database
         {
             this.dbType = dbType;
             IsIdentity = false;
+            IsOptional = false;
         }
 
         // This is not currently used - identity column Id is assumed
@@ -61,5 +62,7 @@ namespace ca_service.Database
                 }
             }
         }
+
+        public bool IsOptional { get; set; }
     }
 }
