@@ -7,12 +7,18 @@
         model.provider = {};
         model.title = "Hardware";
 
-    };
 
-    module.directive("hardwareMenu", function() {
-        return {            
-            templateUrl: "app/areas/public/categories/shared/hardwaremenu/hardwaremenu.html"
+        $scope.isActive = function (path) {
+            console.log($location);
+            return ($location.path() === path) ? 'usa-current' : '';
         }
 
+
+
+    };
+
+    module.component("hardwareMenu", {
+            templateUrl: "app/areas/public/categories/shared/hardwaremenu/hardwaremenu.html",
+            controller: ["$scope", "$location", controller]
     });
 }())
