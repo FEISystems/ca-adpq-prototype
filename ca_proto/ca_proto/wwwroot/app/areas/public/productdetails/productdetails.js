@@ -2,32 +2,46 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, $route, sampleInventoryService) {
+    var controller = function ($scope, $location, $route, messageService, inventoryService) {
         var model = this;
         model.provider = {};
         model.title = "Product Details";
 
+
         //console.log($route);
 
         this.$routerOnActivate = function(next, previous) {
-            var id = next.params.id;
-            console.log(id);
+            model.productId = parseInt(next.params.id);
 
-            
-            sampleInventoryService.getProduct().get({ id : id }).$promise.then(
-                function (data) {
-                    var idx = data.map(function(item) { return item.sku}).indexOf(id);
-                    model.product = data[idx];
-                },
-                function (error) {
-                    alert("Something went wrong!");
 
-                }
-            );
-            
-            // return heroService.getHero(id).then(function(hero) {
-            // $ctrl.hero = hero;
-            // });
+            // sampleInventoryService.getProduct().get({ id : id }).$promise.then(
+            //     function (data) {
+            //         var idx = data.map(function(item) { return item.sku}).indexOf(id);
+            //         model.product = data[idx];
+            //     },
+            //     function (error) {
+            //         alert("Something went wrong!");
+
+            //     }
+            // );
+
+            model.getProduct = function () {
+                inventoryService.getProduct(model.productId);
+            };
+
+            model.getProduct();
+
+
+            messageService.subscribe('getProductSuccess', function (response) {
+                model.product = response;
+
+            })
+
+            messageService.subscribe('getProductFailure', function (response) {
+                model.product = {};
+            })
+
+
         }
 
     };
@@ -35,7 +49,7 @@
     module.component("productDetails", {
         templateUrl: "app/areas/public/productdetails/productdetails.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "$route", "sampleInventoryService", controller]
+        controller: ["$scope", "$location", "$route", "messageService", "inventoryService", controller]
 
     });
 }())

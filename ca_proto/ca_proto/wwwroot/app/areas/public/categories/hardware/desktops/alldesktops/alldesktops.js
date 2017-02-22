@@ -15,7 +15,7 @@
         model.orderByColumn = "name";
         model.orderAscending = true;
         model.page = 0;
-        model.pageCount = 20;
+        model.pageCount = 16;
 
         this.$routerOnActivate = function (next, previous) {
             
@@ -37,8 +37,7 @@
             messageService.subscribe('querySuccess', function (response) {
                 
                 var filteredList = response.filter(function(items) { return items.Category === "Standard Desktop Hardware" ||  
-                items.Category === "Power Desktop Hardware" ||  items.Category === "Ultralight Desktop Hardware" });
-                console.log(filteredList);
+                items.Category === "Power Desktop Hardware" ||  items.Category === "Workstation Hardware" ||  items.Category === "Thin Client Hardware" });
                 model.products = createRows(filteredList, 4);
 
             })

@@ -16,11 +16,10 @@
         model.orderByColumn = "name";
         model.orderAscending = true;
         model.page = 0;
-        model.pageCount = 20;
+        model.pageCount = 500;
+        model.filterBy = {"Category":"Workstation Hardware"};
 
         this.$routerOnActivate = function (next, previous) {
-            
-        var filterByCategory = next.params.category.replace(/%20/g, " ");
 
             function createRows(arr, size) {
                 var newRow = [];
@@ -31,7 +30,7 @@
             }
 
              model.fetchProducts = function () {
-                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
+                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending, model.filterBy);
             };
             
             model.fetchProducts();
@@ -39,9 +38,7 @@
 
             messageService.subscribe('querySuccess', function (response) {
                 
-                var filteredList = response.filter(function(items) { return items.Category === filterByCategory});
-                console.log(filteredList);
-                model.products = createRows(filteredList, 4);
+                model.products = createRows(response, 4);
 
             })
 

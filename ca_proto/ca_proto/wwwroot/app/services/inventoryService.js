@@ -133,6 +133,17 @@
                 });
         }
 
+        
+        var getProduct = function (id) {
+            $http.get("/api/inventory/" + id)
+                .success(function (response) {
+                    messageService.publish('getProductSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('getProductFailure', response);
+                });
+        };
+
         return {
             addProduct: addProduct,
             importFile: importFile,
@@ -147,6 +158,7 @@
             quickSearch: quickSearch,
             advancedSearch: advancedSearch,
             fetchCount : fetchCount,
+            getProduct : getProduct
         };
     }
 

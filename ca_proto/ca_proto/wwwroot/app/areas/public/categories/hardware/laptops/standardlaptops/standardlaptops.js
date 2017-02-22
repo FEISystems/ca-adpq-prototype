@@ -8,6 +8,7 @@
         model.title = "Standard Laptops";
 
 
+        
         model.productTypes = [];
         model.categories = [];
         model.contracts = [];
@@ -16,12 +17,10 @@
         model.orderByColumn = "name";
         model.orderAscending = true;
         model.page = 0;
-        model.pageCount = 500;
+        model.pageCount = 16;
+        model.filterBy = {"Category":"Standard Laptop Config"};
 
         this.$routerOnActivate = function (next, previous) {
-            
-        // var filterByCategory = next.params.category.replace(/%20/g, " ");
-        var filterByCategory = "Standard Laptop Config";
 
             function createRows(arr, size) {
                 var newRow = [];
@@ -31,18 +30,15 @@
                 return newRow;
             }
 
-             model.fetchProducts = function () {
-                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
+            model.fetchProducts = function () {
+                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending, model.filterBy);
             };
             
             model.fetchProducts();
 
 
             messageService.subscribe('querySuccess', function (response) {
-                
-                var filteredList = response.filter(function(items) { return items.Category === filterByCategory});
-                console.log(response);
-                model.products = createRows(filteredList, 4);
+                model.products = createRows(response, 4);
 
             })
 
@@ -52,6 +48,7 @@
 
         }
     };
+
 
     module.component("standardLaptops", {
         templateUrl: "app/areas/public/categories/hardware/laptops/standardlaptops/standardlaptops.html",
