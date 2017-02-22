@@ -35,6 +35,19 @@
         //    "Filter": { "Category":"Service|Computer", "ListPrice":"31|34"}
         //}
 
+        model.setOrderByColumn = function (columnName) {
+            if (model.orderByColumn == columnName)
+            {
+                model.orderAscending = !model.orderAscending;
+            }
+            else
+            {
+                model.orderByColumn = columnName;
+                model.page = 0;
+            }
+            model.fetchProducts();
+        };
+
         model.filterProducts = function () {
             model.activeFilter = model.filter;
             model.page = 0;

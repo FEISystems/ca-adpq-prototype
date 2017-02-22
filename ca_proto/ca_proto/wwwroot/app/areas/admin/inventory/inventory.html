@@ -1,8 +1,8 @@
 ﻿<standard-layout>
     <h1>{{model.title}}</h1>
-    <a href="" ng-click="model.showTable()">Table</a>
-    <a href="" ng-click="model.showFilter()">Filter</a>
-    <a href="" ng-click="model.showAdd()">Add</a>
+    <a href="" ng-click="model.showTable()">Table</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" ng-click="model.showFilter()">Filter</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" ng-click="model.showAdd()">Add</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showImport()">Import</a>
     <div ng-show="model.tab == 1">
         <h3>Import</h3>
@@ -100,22 +100,23 @@
         <h3>Available Products</h3>
         <table>
             <tr>
-                <th>Product Name</th>
-                <th>Manufacturer</th>
-                <th>Part Number</th>
-                <th>SKU</th>
+                <th><a href="" ng-click="model.setOrderByColumn('Title')">Title</a></th>
+                <th><a href="" ng-click="model.setOrderByColumn('Category')">Category</a></th>
+                <th><a href="" ng-click="model.setOrderByColumn('ProductType')">Product Type</a></th>
+                <th><a href="" ng-click="model.setOrderByColumn('Manufacturer')">Manufacturer</a></th>
+                <th><a href="" ng-click="model.setOrderByColumn('ContractDiscount')">ContractDiscount</a></th>
                 <th><a href="" ng-click="model.newProduct()">New Item</a></th>
             </tr>
             <tr ng-repeat="row in model.products">
                 <td>{{row.Title}}</td>
+                <td>{{row.Category}}</td>
+                <td>{{row.ProductType}}</td>
                 <td>{{row.Manufacturer}}</td>
-                <td>{{row.ManufacturerPartNumber}}</td>
-                <td>{{row.SKU}}</td>
+                <td>{{row.ContractDiscount}}</td>
                 <td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.id)">Delete</a></td>
             </tr>
         </table>
         <p>
-            Page
             &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
             &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
             &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
