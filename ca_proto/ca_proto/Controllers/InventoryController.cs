@@ -1,4 +1,5 @@
-﻿using ca_proto.Models;
+﻿using ca_proto.Filters;
+using ca_proto.Models;
 using ca_service.Entities;
 using ca_service.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -27,23 +28,6 @@ namespace ca_proto.Controllers
             StringBuilder result = new StringBuilder();
             Product product = new Product(0)
             {
-                //CLIN 
-                //UNSPSC
-                //Description 
-                //UnitOfMeasure 
-                //QuantityPerUnitOfMeasure 
-                //ContractDiscount 
-                //ContractNumber 
-                //Contractor
-                //ContractExpiration 
-                //Title 
-                //ListPrice 
-                //ContractPrice 
-                //Manufacturer
-                //ManufacturerPartNumber 
-                //SKU 
-                //ProductType 
-                //Category 
                 CLIN = "clin001",
                 UNSPSC = "unspsc01",
                 Description = "This is a long description. Parts of it will be extracted to be used as the title. This is done by a person, not by the system.",
@@ -84,6 +68,7 @@ namespace ca_proto.Controllers
             }
         }
 
+        [AdministratorFilter]
         [HttpPost("Import")]
         public ActionResult Import([FromBody] ImportFile file)
         {
@@ -119,6 +104,7 @@ namespace ca_proto.Controllers
             return Json(inventoryService.Get(id));
         }
 
+        [AdministratorFilter]
         [HttpPost("Add")]
         public ActionResult Add([FromBody] Product product)
         {
@@ -126,6 +112,7 @@ namespace ca_proto.Controllers
             return new EmptyResult();
         }
 
+        [AdministratorFilter]
         [HttpPost("Update")]
         public ActionResult Update([FromBody] Product product)
         {
@@ -133,12 +120,7 @@ namespace ca_proto.Controllers
             return new EmptyResult();
         }
 
-        [HttpGet("ProductTypes")]
-        public ActionResult ProductTypes()
-        {
-            throw new Exception("Move to Lookups Controller");
-        }
-
+        [AdministratorFilter]
         [HttpPost("Delete")]
         public ActionResult Delete([FromBody]int id)
         {
