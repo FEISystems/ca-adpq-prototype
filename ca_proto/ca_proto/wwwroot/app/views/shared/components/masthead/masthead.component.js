@@ -2,9 +2,10 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, messageService, roleService, $location) {
+    var controller = function ($scope, messageService, roleService, $location, inventoryService) {
         var model = this;
         model.data = {};
+        model.quickSearch = '';
         model.brandName = 'CA Prototype';
         model.showNavMenu = true;
         model.$onInit = function(){
@@ -22,12 +23,15 @@
             messageService.publish("logout", {});
         }
 
+    
 
     //if (model.role == 'isasadmin' || model.role == 'provideradmin') {
 
         $scope.menuItems = [
             
         ];
+
+
 
 
         var oldPath = $location.path(),
@@ -44,12 +48,18 @@
 
     //    return
         //}
+
+        model.doQuickSearch = function () {
+            var searchTerms = model.quickSearch;
+            inventoryService.quickSearch(searchTerms);
+            $location.path("/products/searchresults");
+        }
     }
 
     module.component("masthead", {
         templateUrl: "app/views/shared/components/masthead/masthead.component.html",
         controllerAs: "model",
-        controller  : ["$scope", "messageService","roleService", "$location", controller]
+        controller  : ["$scope", "messageService","roleService", "$location", "inventoryService", controller]
     });
 
 }())

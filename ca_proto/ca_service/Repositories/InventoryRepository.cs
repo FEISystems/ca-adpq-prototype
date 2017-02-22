@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
+using System.Text;
+using System.Data.Common;
 
 namespace ca_service.Repositories
 {
@@ -18,74 +20,232 @@ namespace ca_service.Repositories
         {
         }
 
+        public List<Product> GetProductsByCategory(string category)
+        {
+            var filter = new Dictionary<string, object>();
+            filter.Add("Category", string.Format("%{0}%", category));
+            return Fetch(0, int.MaxValue, filter).ToList();
+        }
+
         public List<Product> QuickSearch(string[] searchTerms)
         {
-            string sql = @"
-SELECT Id, Name
-FROM Products
-WHERE Name = @Name
+            if (searchTerms == null || searchTerms.Length == 0)
+                return null;
+
+            string baseSql = @"
+SELECT Category, Id, Title, Manufacturer, ManufacturerPartNumber, SKU
+FROM Products P
+WHERE";
+
+            string whereClause = @"
+    (Title LIKE {0} OR Manufacturer LIKE {0} OR ManufacturerPartNumber LIKE {0} OR SKU LIKE {0} OR Category LIKE {0})
 ";
-            //todo: add more columns, etc
+
             var cmd = db.connection.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.Parameters.Add(new MySqlParameter() { ParameterName = "@Name", Value = searchTerms[0] });
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(baseSql);
+
+            for (int i = 0; i < searchTerms.Length; ++i)
+            {
+                var paramName = $"@P{i}";
+                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(searchTerms[i]) });
+                sb.AppendFormat(whereClause, paramName);
+                if(i < searchTerms.Length - 1)
+                {
+                    sb.AppendLine(@"
+    OR");
+                }
+            }
+
+            cmd.CommandText = sb.ToString();
+
+            return GetProductsFromCommand(cmd);
+        }
+
+        private List<Product> GetProductsFromCommand(DbCommand cmd)
+        {
             var result = new List<Product>();
 
-            using (var reader = cmd.ExecuteReader())
+            using (var reader = cmd.ExecuteReader() as MySqlDataReader)
             {
                 while (reader.Read())
-                {
-                    var product = new Product((int)reader["Id"])
-                    {
-                        Name = reader["Name"].ToString(),
-                    };
-
-                    result.Add(product);
-                }
+                    result.Add(ReadEntity(reader));
             }
 
             return result;
         }
 
-        public void Import(string fileContent)
+        private string ToSqlParameterValueForLike(string s)
         {
-            //todo: assume first row identifies columns
-            string[] lines = fileContent.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            if (lines.Length < 2)
-                return;//need at least one column row and one data row
-            List<string> columnNames = new List<string>(lines[0].Split(new char[] { ',' }).Select(s => s.Trim().ToLower()));
-            for (int i=1; i<lines.Length; i++)
+            return $"%{s}%";
+        }
+
+        public List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku)
+        {
+            if (string.IsNullOrWhiteSpace(name) &&
+                string.IsNullOrWhiteSpace(category) &&
+                string.IsNullOrWhiteSpace(manufacturer) &&
+                string.IsNullOrWhiteSpace(manufacturerPartNumber) &&
+                string.IsNullOrWhiteSpace(sku) &&
+                minPrice == null && maxPrice == null)
             {
-                string[] values = lines[i].Split(new char[] { ',' }).Select(s => s.Trim()).ToArray();
-                var product = new Product(0);
-                foreach (var column in Columns)
+                throw new Exception("At least one search term is required.");
+            }
+
+            var sql = new StringBuilder();
+
+            sql.Append(@"
+SELECT * FROM Products
+WHERE
+");
+            bool needsAnd = false;
+
+            List<MySqlParameter> parms = new List<MySqlParameter>();
+
+            if(!string.IsNullOrWhiteSpace(name))
+            {
+                sql.Append(@"
+    (Title LIKE @Title OR Description LIKE @Title)");
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@Title", Value = ToSqlParameterValueForLike(name) });
+            }
+
+            if(!string.IsNullOrWhiteSpace(category))
+            {
+                if (needsAnd)
                 {
-                    int colIndex = columnNames.IndexOf(column.ColumnName.ToLower());
-                    if (colIndex == -1)
-                        continue;
-                    column.Property.SetValue(product, GetValue(values, colIndex, column.DbType));
+                    sql.Append(@"
+    AND");
                 }
-                Add(product);
+
+                sql.Append(@"
+    Category LIKE @Category");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@Category", Value = ToSqlParameterValueForLike(category) });
+            }
+
+            if(minPrice.HasValue)
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    ContractPrice >= @MinPrice");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@MinPrice", Value = minPrice });
+            }
+
+            if (maxPrice.HasValue)
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    ContractPrice <= @MaxPrice");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@MaxPrice", Value = maxPrice });
+            }
+
+            if (!string.IsNullOrWhiteSpace(manufacturer))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    Manufacturer LIKE @Manufacturer");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@Manufacturer", Value = ToSqlParameterValueForLike(manufacturer) });
+            }
+
+            if (!string.IsNullOrWhiteSpace(manufacturerPartNumber))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    ManufacturerPartNumber LIKE @ManufacturerPartNumber");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@ManufacturerPartNumber", Value = ToSqlParameterValueForLike(manufacturerPartNumber) });
+            }
+
+            if (!string.IsNullOrWhiteSpace(sku))
+            {
+                if (needsAnd)
+                {
+                    sql.Append(@"
+    AND");
+                }
+
+                sql.Append(@"
+    SKU LIKE @SKU");
+
+                needsAnd = true;
+
+                parms.Add(new MySqlParameter() { ParameterName = "@SKU", Value = ToSqlParameterValueForLike(sku) });
+            }
+
+            using (var cmd = db.connection.CreateCommand())
+            {
+                cmd.CommandText = sql.ToString();
+
+                cmd.Parameters.AddRange(parms.ToArray());
+
+                return GetProductsFromCommand(cmd);
             }
         }
 
-        //todo: support other data types if necessary
-        private object GetValue(string[] values, int colIndex, DbType dbType)
-        {
-            string value = values[colIndex];
-            if (dbType == DbType.Int32)
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    return 0;
-                return int.Parse(value);
-            }
-            else if (dbType == DbType.Currency)
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    return 0.0m;
-                return decimal.Parse(value);
-            }
-            return value;
-        }
+        //public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
+        //{
+        //    if (null == categories || categories.Length == 0)
+        //        return Fetch(start, count);
+        //    categories = categories.Where(item => null != item && !string.IsNullOrWhiteSpace(item)).ToArray();
+        //    if (null == categories || categories.Length == 0)
+        //        return Fetch(start, count);
+
+        //    using (var cmd = db.connection.CreateCommand())
+        //    {
+        //        StringBuilder sql = new StringBuilder();
+        //        sql.Append("select * from Products where ");
+        //        string paramName = "@" + categories[0];
+        //        sql.Append(" Category like ");
+        //        sql.Append(paramName);
+        //        cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[0]) });
+        //        for (int i=1; i<categories.Length; i++)
+        //        {
+        //            paramName = "@" + categories[i];
+        //            sql.Append(" or Category like ");
+        //            sql.Append(paramName);
+        //            cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[i]) });
+        //        }
+        //        sql.Append(" order by Category");
+        //        cmd.CommandText = sql.ToString();
+
+        //        return GetProductsFromCommand(cmd);
+        //    }
+        //}
     }
 }

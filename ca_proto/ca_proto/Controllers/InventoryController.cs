@@ -1,4 +1,5 @@
-﻿using ca_proto.Models;
+﻿using ca_proto.Filters;
+using ca_proto.Models;
 using ca_service.Entities;
 using ca_service.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -27,30 +28,37 @@ namespace ca_proto.Controllers
             StringBuilder result = new StringBuilder();
             Product product = new Product(0)
             {
-                CategoryId = 1,
-                ContractId = 1,
-                ContractPrice = 100.0m,
+                CLIN = "clin001",
+                UNSPSC = "unspsc01",
+                Description = "This is a long description. Parts of it will be extracted to be used as the title. This is done by a person, not by the system.",
+                UnitOfMeasure = "EACH",
+                QuantityPerUnitOfMeasure = "UnitOfMeasure",
+                ContractDiscount = "50%",
+                ContractNumber = "Contract111222",
+                Contractor = "Contractor A",
+                ContractExpiration = DateTime.Now.AddYears(1),
+                Title = "This is a long description.",
                 ListPrice = 150.0m,
+                ContractPrice = 100.0m,
                 Manufacturer = "mfg 1",
                 ManufacturerPartNumber = "mpn 1",
-                Name = "product 1",
-                ProductType = ProductType.Hardware,
                 SKU = "sku 1",
-                ValidAsAddOnForParentCategories = new List<int>()
+                ProductType = ProductType.Hardware.ToString(),
+                Category = "Category 1",
             };
             try
             {
                 result.AppendLine("Beginning test");
-                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue, null).Count()));
                 inventoryService.Add(product);
                 result.AppendLine("Added product: " + product.Id);
-                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
-                product.Name += " - updated";
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue, null).Count()));
+                product.Title += " - updated";
                 inventoryService.Update(product);
                 result.AppendLine("Updated product: " + product.Id);
                 inventoryService.Delete(product.Id);
                 result.AppendLine("Deleted product: " + product.Id);
-                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue).Count()));
+                result.AppendLine(string.Format("Have {0} row(s)", inventoryService.Fetch(0, int.MaxValue, null).Count()));
                 result.AppendLine("test success: " + product.Id.ToString());
                 return result.ToString();
             }
@@ -60,6 +68,7 @@ namespace ca_proto.Controllers
             }
         }
 
+        [AdministratorFilter]
         [HttpPost("Import")]
         public ActionResult Import([FromBody] ImportFile file)
         {
@@ -67,7 +76,7 @@ namespace ca_proto.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(file.content))
                 {
-                    inventoryService.Import(file.content);
+                    return Json(inventoryService.Import(file.content));
                 }
             }
             return new EmptyResult();
@@ -76,7 +85,7 @@ namespace ca_proto.Controllers
         [HttpGet("Fetch")]
         public ActionResult Fetch()
         {
-            return Json(inventoryService.Fetch(0, int.MaxValue));
+            return Json(inventoryService.Fetch(0, int.MaxValue, null));
         }
 
         [HttpPost("Query")]
@@ -86,7 +95,7 @@ namespace ca_proto.Controllers
                 return Json(new Product[0]);
             inventoryService.OrderAscending = query.OrderAscending;
             inventoryService.OrderColumnName = query.OrderByColumn;
-            return Json(inventoryService.Fetch(query.Start, query.Count));
+            return Json(inventoryService.Fetch(query.Start, query.Count, query.Filter));
         }
 
         [HttpGet("{id}")]
@@ -95,6 +104,7 @@ namespace ca_proto.Controllers
             return Json(inventoryService.Get(id));
         }
 
+        [AdministratorFilter]
         [HttpPost("Add")]
         public ActionResult Add([FromBody] Product product)
         {
@@ -102,6 +112,7 @@ namespace ca_proto.Controllers
             return new EmptyResult();
         }
 
+        [AdministratorFilter]
         [HttpPost("Update")]
         public ActionResult Update([FromBody] Product product)
         {
@@ -109,17 +120,40 @@ namespace ca_proto.Controllers
             return new EmptyResult();
         }
 
-        [HttpGet("ProductTypes")]
-        public ActionResult ProductTypes()
-        {
-            return Json(SelectItem.FromEnum<ProductType>().ToArray());
-        }
-
+        [AdministratorFilter]
         [HttpPost("Delete")]
         public ActionResult Delete([FromBody]int id)
         {
             inventoryService.Delete(id);
             return new EmptyResult();
+        }
+
+        [HttpPost("quicksearch")]
+        public ActionResult QuickSearch([FromBody]QuickSearch searchTerms)
+        {
+            //search terms can be comma delimited, turn them into a comma-separated list
+            var terms = (searchTerms?.SearchTerm ?? "").Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            var results = inventoryService.QuickSearch(terms);
+
+            //todo: create a DTO for products for the UI side
+            return Json(results);
+        }
+
+        [HttpPost("advancedsearch")]
+        public ActionResult AdvancedSearch([FromBody]AdvancedSearch searchTerms)
+        {
+            searchTerms = searchTerms ?? new Models.AdvancedSearch();
+
+            var results = inventoryService.AdvancedSearch(searchTerms.Name, searchTerms.Category, searchTerms.MinPrice, searchTerms.MaxPrice, searchTerms.Manufacturer, searchTerms.ManufacturerPartNumber, searchTerms.SKU);
+
+            return Json(results);
+        }
+
+        [HttpPost("Count")]
+        public IActionResult Count([FromBody]IDictionary<string, object> filter)
+        {
+            return Json(inventoryService.Count(filter));
         }
     }
 }

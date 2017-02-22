@@ -1,3 +1,70 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/revieworder/revieworder.css" />
+<standard-layout>
+   <div class="review-order">
+       <h2 class="usa-heading">Review Order</h2>
+       <div class="usa-width-one-half">
+           <div class="review-order-header">
+                <h3 class="left">Order Information</h3>
+                <a href="#" class="right">Edit</a>
+           </div>
+           <div class="name clear">
+               <label for="input-type-name">Name</label>
+               <input id="input-type-name" name="input-type-name" type="text" readonly="readonly">
+           </div>
+           <div class="department">
+               <label for="input-type-department">Department</label>
+               <input id="input-type-department" name="input-type-department" type="text" readonly="readonly">
+           </div>
+           <div class="phone">
+               <label for="input-type-phone">Phone Number</label>
+               <input id="input-type-phone" name="input-type-phone" type="text" readonly="readonly">
+           </div>
+           <div class="email">
+               <label for="input-type-email">Email Address</label>
+               <input id="input-type-email" name="input-type-email" type="text" readonly="readonly">
+           </div>
+           <div class="deliver-address">
+               <label for="input-type-deliver-address">Delivery Address</label>
+               <input id="input-type-deliver-address" name="input-type-delivery-address" type="text" readonly="readonly">
+           </div>
+           <div class="payment">
+               <label for="input-type-payment">Payment Method</label>
+               <select id="input-type-payment" name="input-type-payment" type="text" readonly="readonly">
+                   <option>California Department of General Services</option>
+                   <option>California Department of Technology</option>
+                   <option>California Department of Health and Human Services</option>
+                   <option>California Department of Education</option>
+               </select>
+           </div>
+       </div>
+       <div class="usa-width-one-half order-summary">
+           <h3 class="usa-heading">Order Summary</h3>
+           <div class="usa-width-one-sixth">
+                <div class="product-thumbnail"></div>
+           </div>
+           <div class="item-info-group">
+                <div><strong>Standard-Dell Optiplex 3040 SFF – Core i5-6500</strong></div>
+                <div class="item-info">210-AFXK</div>
+                <div class="item-info">Standard Desktop</div>
+                <div class="item-info">Quantity: 1</div>
+                <div class="item-info"><a href="#" class="text-right">Edit</a></div>
+           </div>
+           <div class="clear">
+               <div class="usa-width-one-half">Item</div>
+               <div class="usa-width-one-half text-right">$443.03</div>
+            </div>
+            <div class="clear">
+               <div class="usa-width-one-half">Tax</div>
+               <div class="usa-width-one-half text-right">$28.39</div>
+            </div>
+            <div class="clear total-cost">
+               <div class="usa-width-one-half">Total</div>
+               <div class="usa-width-one-half text-right">$471.42</div>
+            </div>
+        </div>
+   </div>
+   <div class="clear usa-width-one-whole">
+       <button class="usa-button-secondary right">Continue</button>
+        <button class="usa-button-secondary right" style="margin-top:0;">Back to Cart</button>
+   </div>
 </standard-layout>

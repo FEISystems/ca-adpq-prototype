@@ -1,0 +1,25 @@
+.checkout {
+  /*-------------------remove these once actual images are implemented----------------------------*/
+  /*----------------------------------------------------------------------------------------------*/
+}
+.checkout .usa-heading {
+  border-bottom: 1px solid #aeb0b5;
+}
+.checkout .product-thumbnail {
+  width: 100%;
+  min-height: 144px;
+  background-color: lightgray;
+  border: 1px solid darkgray;
+  margin-right: 10px;
+}
+.checkout .order-summary {
+  border: 1px solid #aeb0b5;
+  padding: 10px;
+}
+.checkout .item-info-group {
+  margin-bottom: 10px;
+}
+.checkout .total-cost {
+  font-weight: bold;
+  border-top: 1px solid #aeb0b5;
+}

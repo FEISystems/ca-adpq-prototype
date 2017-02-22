@@ -1,6 +1,9 @@
 product-card {
-  display: inline-block !important;
+  display: block !important;
   border: 1px solid gray;
+}
+product-card .ca-image-wrapper {
+  min-height: 300px;
 }
 product-card .usa-grid {
   padding: 10px;
