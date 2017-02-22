@@ -50,8 +50,10 @@ namespace ca_service.Services
             return cart;
         }
 
-        public ShoppingCart AddItemToCart(int productId, int userId)
+        public ShoppingCart AddItemToCart(int productId, int quantity, int userId)
         {
+            if (quantity < 1)
+                throw new Exception("Quantity cannot be less than one");
             ShoppingCart cart = GetActiveCart(userId);
             if (cart == null)
             {
@@ -69,17 +71,46 @@ namespace ca_service.Services
             Product product = this.inventoryRepository.Get(productId);
             if (product == null)
                 throw new Exception($"A product with id {productId} was not found");
-            shoppingCartItemRepository.Add(new ShoppingCartItem() {
-                Price = product.ContractPrice,
-                Description = product.Description,
-                ProductId = product.Id,
-                Quantity = 1,
-                ShoppingCartId = cart.Id
-            });
+
+            if (cart.Items.Any(x => x.ProductId == productId))
+            {
+                var item = cart.Items.First(x => x.ProductId == productId);
+                item.Quantity += quantity;
+                shoppingCartItemRepository.Update(item);
+            }
+            else
+                shoppingCartItemRepository.Add(new ShoppingCartItem() {
+                    Price = product.ContractPrice,
+                    Description = product.Description,
+                    ProductId = product.Id,
+                    Quantity = quantity,
+                    ShoppingCartId = cart.Id
+                });
             
             cart.Items = shoppingCartItemRepository.Fetch(cart.Id);
             return cart;
         }
+
+        public ShoppingCart UpdateItem(int shoppingCartItemId, int quantity, int userId)
+        {
+            if (quantity < 0)
+                throw new Exception("Quantity cannot be less than zero");
+            ShoppingCartItem item = shoppingCartItemRepository.Get(shoppingCartItemId);
+            if (item == null)
+                throw new Exception($"Item with id {shoppingCartItemId} was not found");
+
+            if (quantity == 0)
+            {
+                shoppingCartItemRepository.Delete(item.Id);
+            }
+            else
+            {
+                item.Quantity = quantity;
+                shoppingCartItemRepository.Update(item);
+            }
+            return GetCart(item.ShoppingCartId);
+        }
+
 
         public ShoppingCart ClearShoppingCart(int userId)
         {
