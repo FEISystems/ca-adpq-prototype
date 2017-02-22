@@ -14,13 +14,15 @@ namespace ca_proto.Controllers
         private readonly IContractService contractService;
         private readonly ICategoryService categoryService;
         private readonly IContractorService contractorService;
+        private readonly IImageService imageService;
 
         public LookupsController(IContractService contractService, ICategoryService categoryService,
-            IContractorService contractorService)
+            IContractorService contractorService, IImageService imageService)
         {
             this.contractService = contractService;
             this.categoryService = categoryService;
             this.contractorService = contractorService;
+            this.imageService = imageService;
         }
 
         [HttpGet("ProductTypes")]
@@ -55,6 +57,12 @@ namespace ca_proto.Controllers
         public IActionResult UnitsOfMeasure()
         {
             return Json(Enum.GetValues(typeof(UnitOfMeasure)).Cast<UnitOfMeasure>().Select(item => item.ToString()));
+        }
+
+        [HttpGet("ImageFileNames")]
+        public IActionResult ImageFilenames()
+        {
+            return Json(imageService.GetImageFileNames());
         }
     }
 }

@@ -23,6 +23,7 @@
         model.filter = {};
         model.activeFilter = {};
         model.tab = 3;
+        model.importProgress = "";
 
         //sample query model
         //for strings, "A|B" converts to "column like '%A%' or column like '%B%'
@@ -70,6 +71,11 @@
             model.tab = 1;
         };
 
+        model.showImportImages = function () {
+            model.importProgress = "";
+            model.tab = 5;
+        };
+
         model.showAdd = function () {
             model.tab = 2;
             model.product = {};
@@ -110,6 +116,21 @@
             catch (error)
             {
                 alert (error);
+            }
+        };
+
+        model.importImages = function () {
+            var files = document.getElementById("selectedimages").files;
+            if (files == undefined) {
+                alert("Please select one or more image files.");
+                return;
+            }
+            model.importProgress = "Importing " + files.length + " image(s)";
+            for (var i = 0; i < files.length; i++)
+            {
+                var fileInfo = files[i];
+                model.importProgress += "\nImporting " + fileInfo.name;
+                inventoryService.importImage(fileInfo);
             }
         };
 
@@ -223,6 +244,14 @@
 
         messageService.subscribe('importFailure', function (response) {
             alert('Import Failure: ' + response);
+        })
+
+        messageService.subscribe('importImageSuccess', function (response) {
+            model.importProgress += "\nImported " + response;
+        })
+
+        messageService.subscribe('importImageFailure', function (response) {
+            model.importProgress += "\nFailed to import " + response + ". An image with name may already exist in the database.";
         })
 
         messageService.subscribe('addProductSuccess', function (response) {
