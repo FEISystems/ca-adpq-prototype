@@ -96,3 +96,25 @@ CREATE TABLE `ShoppingCartItem` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
+DROP TABLE IF EXISTS `Orders`;
+
+CREATE TABLE `Orders` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserId` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
+  `CreateDate`  DATETIME Not NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
+
+DROP TABLE IF EXISTS `OrderItems`;
+
+CREATE TABLE `OrderItems` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `OrderId` int(11) NOT NULL,
+  `ProductId` int(11) NOT NULL,
+  `Price` Decimal(12,2) Not NULL,
+  `Quantity` int(11) NOT NULL,
+  `Description` text NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
+

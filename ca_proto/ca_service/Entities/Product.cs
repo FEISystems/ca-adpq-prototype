@@ -82,43 +82,6 @@ namespace ca_service.Entities
         HOUR = 2,
     }
 
-    public class Order : Entity
-    {
-        public Order(int id) : base(id)
-        {
-            Status = OrderStatus.Placed;
-        }
-
-        public int UserId { get; set; }
-
-        public List<OrderDetail> Details { get; set; }
-
-        public OrderStatus Status { get; set; }
-
-        public DateTime OrderDateUtc { get; set; }
-    }
-
-    public enum OrderStatus
-    {
-        Placed = 1,
-        UserCancelled = 2,
-        Shipped = 3
-    }
-
-    public class OrderDetail : Entity
-    {
-        public OrderDetail(int id) : base(id)
-        {
-
-        }
-
-        public int OrderId { get; set; }
-
-        public int ProductId { get; set; }
-
-        public int Quantity { get; set; }
-    }
-
 
     
 }
