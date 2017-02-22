@@ -23,6 +23,7 @@
             messageService.publish("logout", {});
         }
 
+    
 
     //if (model.role == 'isasadmin' || model.role == 'provideradmin') {
 
@@ -51,6 +52,7 @@
         model.doQuickSearch = function () {
             var searchTerms = model.quickSearch;
             inventoryService.quickSearch(searchTerms);
+            $location.path("/products/searchresults");
         }
     }
 
