@@ -32,6 +32,7 @@
         //    "Count": 10,
         //    "OrderByColumn": "Title",
         //    "OrderAscending": true,
+        //    "Fuzzy": false,
         //    "Filter": { "Category":"Service|Computer", "ListPrice":"31|34"}
         //}
 

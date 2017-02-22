@@ -389,15 +389,13 @@ namespace ca_service.Repositories
                         sqlBuilder.Append("(");
                         try
                         {
-                            string paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_');
-                            sqlBuilder.AppendFormat("{0} like {1}", column.ColumnName, paramName);
-                            cmd.Parameters.Add(paramName, column.DbType).Value = string.Format("%{0}%", values[0]);
+                            string paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                            BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[0]);
                             for (int i = 1; i < values.Length; i++)
                             {
                                 sqlBuilder.Append(" OR ");
-                                paramName = "@" + values[i].Replace(' ', '_');
-                                sqlBuilder.AppendFormat("{0} like {1}", column.ColumnName, paramName);
-                                cmd.Parameters.Add(paramName, column.DbType).Value = string.Format("%{0}%", values[i]);
+                                paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                                BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[i]);
                             }
                         }
                         finally
@@ -428,6 +426,20 @@ namespace ca_service.Repositories
             }
             sqlBuilder.AppendFormat("{0} = @{0}", column.ColumnName);
             column.BuildParameter(cmd).Value = value;
+        }
+
+        //todo: eventually include a fuzzy property in the query object and only switch to like if fuzzy is true
+        private void BuildFuzzyOrLiteralCommand(StringBuilder sqlBuilder, MySqlCommand cmd, string paramName, DbColumnAttribute column, string value)
+        {
+            if (value != null && value.Contains("%"))
+            {
+                sqlBuilder.AppendFormat("{0} like {1}", column.ColumnName, paramName);
+            }
+            else
+            {
+                sqlBuilder.AppendFormat("{0} = {1}", column.ColumnName, paramName);
+            }
+            cmd.Parameters.Add(paramName, column.DbType).Value = value;
         }
 
         public int Count(IDictionary<string, object> filter)

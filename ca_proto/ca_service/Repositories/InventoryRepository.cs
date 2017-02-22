@@ -23,7 +23,7 @@ namespace ca_service.Repositories
         public List<Product> GetProductsByCategory(string category)
         {
             var filter = new Dictionary<string, object>();
-            filter.Add("Category", category);
+            filter.Add("Category", string.Format("%{0}%", category));
             return Fetch(0, int.MaxValue, filter).ToList();
         }
 
