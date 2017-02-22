@@ -12,6 +12,10 @@ namespace ca_service.Interfaces
         List<ShoppingCart> GetCarts(int userId);
         ShoppingCart AddItemToCart(int productId, int userId);
         ShoppingCart RemoveItemFromCart(int shoppingCartItemId, int userId);
-        void ClearShoppingCart(int userId);
+        ShoppingCart ClearShoppingCart(int userId);
+
+        void DeactivateCart(int userId);
+
+        ShoppingCart CompleteCart(int userId);
     }
 }
