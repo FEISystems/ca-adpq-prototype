@@ -7,6 +7,7 @@ using ca_service.Interfaces;
 using ca_service.Entities;
 using ca_proto.Helpers;
 using ca_proto.Filters;
+using ca_proto.Models;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ca_proto.Controllers
@@ -50,12 +51,21 @@ namespace ca_proto.Controllers
 
         // POST api/values
         [HttpPost("AddItem")]
-        public ShoppingCart Post([FromBody]int productId)
+        public ShoppingCart Post([FromBody]CartAddition item)
         {
             var userId = HttpContext.GetUserId();
             if (!userId.HasValue)
                 throw new Exception("Please login first");
-            return shoppingCartService.AddItemToCart(productId, userId.Value);
+            return shoppingCartService.AddItemToCart(item.ProductId, item.Quantity, userId.Value);
+        }
+
+        [HttpPut("UpdateItem")]
+        public ShoppingCart Put([FromBody]CartUpdate item)
+        {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+            return shoppingCartService.UpdateItem(item.ShoppingCartItemId, item.Quantity, userId.Value);
         }
 
         [HttpPost("ClearCart")]
