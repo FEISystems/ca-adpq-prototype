@@ -54,8 +54,8 @@
       "wwwroot",
       "Views",
       "**/*.cshtml",
-      "web.config"
-      
+      "web.config",
+	  "appSettings.json"
     ]
   },
 
