@@ -15,7 +15,7 @@
         model.orderByColumn = "name";
         model.orderAscending = true;
         model.page = 0;
-        model.pageCount = 500;
+        model.pageCount = 550;
 
         this.$routerOnActivate = function (next, previous) {
             
@@ -36,7 +36,8 @@
 
             messageService.subscribe('querySuccess', function (response) {
                 
-                var filteredList = response.filter(function(items) { return items.Category === "Standard Laptop Config" ||  items.Category === "Power Laptop Config" ||  items.Category === "Ultralight Laptop Config" });
+                var filteredList = response.filter(function(items) { return items.Category === "Standard Laptop Config" ||  
+                items.Category === "Power Laptop Config" ||  items.Category === "Ultralight Laptop Config" ||  items.Category === "Mobile Workstation Config" });
                 console.log(filteredList);
                 model.products = createRows(filteredList, 4);
 

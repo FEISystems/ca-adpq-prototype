@@ -7,7 +7,6 @@
         model.provider = {};
         model.title = "All Software";
 
-
         model.productTypes = [];
         model.categories = [];
         model.contracts = [];
@@ -16,12 +15,11 @@
         model.orderByColumn = "name";
         model.orderAscending = true;
         model.page = 0;
-        model.pageCount = 500;
+        model.pageCount = 16;
+        model.filterBy = {"ProductType":"Software"};
 
         this.$routerOnActivate = function (next, previous) {
 
-            var productType = "Software";
-            
             function createRows(arr, size) {
                 var newRow = [];
                 for (var i = 0; i < arr.length; i += size) {
@@ -30,18 +28,15 @@
                 return newRow;
             }
 
-             model.fetchProducts = function () {
-                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
+            model.fetchProducts = function () {
+                inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending, model.filterBy);
             };
             
             model.fetchProducts();
 
 
             messageService.subscribe('querySuccess', function (response) {
-                
-                var filteredList = response.filter(function(items) { return items.ProductType === productType});
-                console.log(filteredList);
-                model.products = createRows(filteredList, 4);
+                model.products = createRows(response, 4);
 
             })
 
@@ -51,6 +46,7 @@
 
         }
     };
+
 
     module.component("allSoftware", {
         templateUrl: "app/areas/public/categories/software/allsoftware/allsoftware.html",
