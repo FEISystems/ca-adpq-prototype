@@ -111,14 +111,16 @@
         model.handleError = function (error) {
             model.tab = 6;
             if (error && error.toLowerCase().indexOf("<html", 0) >= 0) {
+                //try to find the error message returned from the server
                 try {
                     var parser = new DOMParser();
                     var dom = parser.parseFromString(error, "text/html");
-                    var text = dom.body.innerText;
-                    var periodIndex = text.indexOf(".", 0);
-                    if (periodIndex > 0)
-                        model.importProgress += "\n" + text.substring(0, periodIndex + 1);
-                    return;
+                    var titleError = dom.getElementsByClassName("titleerror");
+                    if (titleError) {
+                        titleError = titleError.item(0);
+                        if (titleError)
+                            error = titleError.innerText;
+                    }
                 }
                 catch (x) { }
                 model.importProgress += "\n" + error;
