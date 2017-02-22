@@ -1,3 +1,6 @@
+RUN pwd
+RUN ls
+
 FROM microsoft/aspnetcore:latest
 
 #sanity checks
@@ -9,7 +12,7 @@ ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Development"
 
 # Copy files to app directory
-COPY /release /app
+COPY ../../../release ../../../app
 
 # Set working directory
 WORKDIR /app
