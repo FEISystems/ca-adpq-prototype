@@ -55,7 +55,8 @@
       "Views",
       "**/*.cshtml",
       "web.config",
-	  "appsettings.json"
+	  "appsettings.json",
+	  "appSettings.json"
     ]
   },
 
