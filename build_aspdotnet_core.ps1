@@ -1,13 +1,8 @@
 
-dotnet restore .\ca_proto\ca_service
-dotnet restore .\ca_proto\ca_proto_tests
-dotnet restore .\ca_proto\ca_proto
-
-dotnet build .\ca_proto\ca_service --configuration Release --no-dependencies
-dotnet build .\ca_proto\ca_proto_tests --configuration Release --no-dependencies
-dotnet build .\ca_proto\ca_proto --configuration Release --no-dependencies
+dotnet restore .\ca_proto
 
 dotnet test .\ca_proto\ca_proto_tests
 
-$release = Join-Path $pwd release
-dotnet publish .\ca_proto\ca_proto -c Release -o $release
+dotnet build .\ca_proto --configuration Release
+
+dotnet publish $(build.sourcesdirectory)\src .\ca_proto\ca_proto\project.json --output $(build.stagingDirectory) --configuration Release
