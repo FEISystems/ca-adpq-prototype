@@ -10,7 +10,7 @@ namespace ca_service.Entities
     {
         Active = 1,
         Complete = 2,
-        Deleted = 3           
+        Deactivated = 3           
     }
     [DbTable("ca.shoppingcart")]
     public class ShoppingCart : Entity

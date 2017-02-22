@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ca_service.Entities;
+
 namespace ca_service.Services
 {
     public class ShoppingCartService : IShoppingCartService
@@ -80,13 +81,14 @@ namespace ca_service.Services
             return cart;
         }
 
-        public void ClearShoppingCart(int userId)
+        public ShoppingCart ClearShoppingCart(int userId)
         {
             ShoppingCart cart = GetActiveCart(userId);
             if (cart == null || cart.Items == null || !cart.Items.Any())
-                return;
+                return cart;
             foreach (var item in cart.Items)
                 shoppingCartItemRepository.Delete(item.Id);
+            return cart;
         }
 
         public ShoppingCart RemoveItemFromCart(int shoppingCartItemId, int userId)
@@ -96,6 +98,26 @@ namespace ca_service.Services
                 return cart;
             shoppingCartItemRepository.Delete(shoppingCartItemId);
             return GetCart(cart.Id);
+        }
+
+        public void DeactivateCart(int userId)
+        {
+            ShoppingCart cart = GetActiveCart(userId);
+            if (cart == null)
+                return;
+            cart.Status = ShoppingCartStatus.Deactivated;
+            shoppingCartRepository.Update(cart);
+        }
+
+        public ShoppingCart CompleteCart(int userId)
+        {
+            //TODO: Need to add the payment logic
+            ShoppingCart cart = GetActiveCart(userId);
+            if (cart == null)
+                return cart;
+            cart.Status = ShoppingCartStatus.Complete;
+            shoppingCartRepository.Update(cart);
+            return cart;
         }
     }
 }

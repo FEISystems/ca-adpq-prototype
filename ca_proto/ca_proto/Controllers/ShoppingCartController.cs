@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using ca_service.Interfaces;
 using ca_service.Entities;
 using ca_proto.Helpers;
+using ca_proto.Filters;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ca_proto.Controllers
 {
+    [AuthenticationFilter]
     [Route("api/[controller]")]
     public class ShoppingCartController : Controller
     {
@@ -55,11 +57,43 @@ namespace ca_proto.Controllers
                 throw new Exception("Please login first");
             return shoppingCartService.AddItemToCart(productId, userId.Value);
         }
-        
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+        [HttpPost("ClearCart")]
+        public ShoppingCart ClearCart()
         {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+            return shoppingCartService.ClearShoppingCart(userId.Value);
+        }
+
+        [HttpPost("DeactivateCart")]
+        public void DeactivateCart()
+        {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+            shoppingCartService.DeactivateCart(userId.Value);
+        }
+
+
+        [HttpPost("CompleteCart")]
+        public ShoppingCart CompleteCart()
+        {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+            return shoppingCartService.CompleteCart(userId.Value);
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("RemovedItem/{id}")]
+        public ShoppingCart RemovedItem(int id)
+        {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+            return shoppingCartService.RemoveItemFromCart(id, userId.Value);
         }
     }
 }
