@@ -24,6 +24,7 @@
         model.activeFilter = {};
         model.tab = 3;
         model.importProgress = "";
+        model.imageFileNames = [];
 
         //sample query model
         //for strings, "A|B" converts to "column like '%A%' or column like '%B%'
@@ -186,6 +187,7 @@
             inventoryService.fetchCategories();
             inventoryService.fetchContracts();
             inventoryService.fetchContractors();
+            inventoryService.fetchImageFileNames();
             if (model.tab == 3) {
                 model.fetchProducts();
                 model.fetchPageCount();
@@ -310,6 +312,15 @@
 
         messageService.subscribe('retrievedContractorsFail', function (response) {
             model.contractors = [];
+        })
+
+        messageService.subscribe('retrievedImageFileNames', function(response)
+        {
+            model.imageFileNames = response;
+        })
+
+        messageService.subscribe('retrievedImageFileNamesFail', function (response) {
+            model.imageFileNames = [];
         })
 
         messageService.subscribe('querySuccess', function (response) {

@@ -83,6 +83,10 @@
             fetchLookups("Contractors");
         };
 
+        var fetchImageFileNames = function () {
+            fetchLookups("ImageFileNames");
+        };
+
         var fetchLookups = function (lookupName) {
             $http.get("/api/lookups/" + lookupName)
                 .success(function (response) {
@@ -176,6 +180,7 @@
             fetchCount : fetchCount,
             getProduct: getProduct,
             importImage: importImage,
+            fetchImageFileNames: fetchImageFileNames,
         };
     }
 

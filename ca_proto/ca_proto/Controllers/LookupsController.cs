@@ -60,7 +60,7 @@ namespace ca_proto.Controllers
         }
 
         [HttpGet("ImageFileNames")]
-        public IActionResult ImageFilenames()
+        public IActionResult ImageFileNames()
         {
             return Json(imageService.GetImageFileNames());
         }

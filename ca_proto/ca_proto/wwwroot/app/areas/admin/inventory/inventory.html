@@ -103,9 +103,20 @@
                     <td><input type="text" ng-model="model.product.QuantityPerUnitOfMeasure" required /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Description</td>
-                    <td><textarea ng-model="model.product.Description" required></textarea></td>
-                    <td><input type="hidden" ng-model="model.product.Id" /></td>
+                    <td rowspan="2" class="table-header">Description</td>
+                    <td rowspan="2"><textarea ng-model="model.product.Description" required></textarea></td>
+                    <td>Image File Name</td>
+                    <td>
+                        <select ng-model="model.product.ImageFileName" ng-options="name for name in model.imageFileNames" required>
+                            <option value="">Select Image File Name</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" ng-model="model.product.Id" />
+                        <img height="100" width="100" ng-src="/api/image/{{model.product.ImageFileName}}" alt="No Image Selected" />
+                    </td>
                     <td>
                         <input type="submit" value="Add Item" ng-disabled="!addProductForm.$valid" ng-hide="model.editing" class="usa-button-secondary" />
                         <input type="submit" value="Save Changes" ng-disabled="!addProductForm.$valid" ng-show="model.editing" class="usa-button-secondary" />
