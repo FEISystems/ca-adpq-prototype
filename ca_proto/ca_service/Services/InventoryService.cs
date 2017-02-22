@@ -245,7 +245,7 @@ namespace ca_service.Services
         {
             foreach (DbColumnAttribute column in ProductColumns)
             {
-                if (!columnNames.Contains(column.ColumnName.ToLower()))
+                if (!column.IsOptional && !columnNames.Contains(column.ColumnName.ToLower()))
                     throw new Exception(string.Format("Missing column name '{0}'.", column.ColumnName));
             }
         }
