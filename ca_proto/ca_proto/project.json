@@ -50,13 +50,7 @@
   },
 
   "publishOptions": {
-    "include": [
-      "wwwroot",
-      "Views",
-      "**/*.cshtml",
-      "web.config",
-	  "appSettings.json"
-    ]
+    "include": ["wwwroot","Views","**/*.cshtml","web.config","appSettings.json"]
   },
 
   "scripts": {
