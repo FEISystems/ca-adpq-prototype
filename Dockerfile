@@ -5,8 +5,7 @@ ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Development"
 
 # Copy files to app directory
-ARG releaseDir=./release
-COPY $releaseDir /ca_proto
+COPY /release /ca_proto
 
 # Set working directory
 WORKDIR /ca_proto
