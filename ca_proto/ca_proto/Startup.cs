@@ -61,6 +61,9 @@ namespace ca_proto
             services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
             services.AddTransient<IShoppingCartItemRepository, ShoppingCartItemRepository>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();
             // Register the Swagger generator, defining one or more Swagger documents

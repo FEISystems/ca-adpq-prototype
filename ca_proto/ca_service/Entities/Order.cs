@@ -9,10 +9,9 @@ namespace ca_service.Entities
     [DbTable("ca.orders")]
     public class Order : Entity
     {
-        public Order(int id) : base(id)
-        {
+        public Order(int id) : base(id) { }
 
-        }
+        public Order() : base(0) { }
 
         [DbColumn(System.Data.DbType.Int32)]
         public OrderStatus Status { get; set; }

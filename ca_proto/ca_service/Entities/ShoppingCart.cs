@@ -12,6 +12,7 @@ namespace ca_service.Entities
         Complete = 2,
         Deactivated = 3           
     }
+
     [DbTable("ca.shoppingcart")]
     public class ShoppingCart : Entity
     {
@@ -30,6 +31,7 @@ namespace ca_service.Entities
 
         [DbColumn(System.Data.DbType.DateTime)]
         public DateTime CreateDate { get; set; }
+
         [DbColumn(System.Data.DbType.Int32)]
         public ShoppingCartStatus Status { get; set; }
 
@@ -42,7 +44,7 @@ namespace ca_service.Entities
                 return Items.Sum(x => x.Price * x.Quantity);
             }
         }
+
         public List<ShoppingCartItem> Items { get; set; }
-        
     }
 }

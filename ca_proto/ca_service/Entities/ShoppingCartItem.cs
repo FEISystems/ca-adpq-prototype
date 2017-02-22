@@ -22,7 +22,6 @@ namespace ca_service.Entities
         [DbColumn(System.Data.DbType.Int32)]
         public int ShoppingCartId { get; set; }
 
-
         [DbColumn(System.Data.DbType.Int32)]
         public int ProductId { get; set; }
 
@@ -34,8 +33,5 @@ namespace ca_service.Entities
 
         [DbColumn(System.Data.DbType.Decimal)]
         public decimal Price { get; set; }
-
-
-
     }
 }

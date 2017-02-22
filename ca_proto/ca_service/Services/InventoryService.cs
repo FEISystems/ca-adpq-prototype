@@ -32,6 +32,15 @@ namespace ca_service.Services
         {
             if (inventoryRepository != null)
                 inventoryRepository.Dispose();
+
+            if (categoryRepository != null)
+                categoryRepository.Dispose();
+
+            if (contractRepository != null)
+                contractRepository.Dispose();
+
+            if (contractorRepository != null)
+                contractorRepository.Dispose();
         }
 
         public List<Product> QuickSearch(string[] searchTerms)
