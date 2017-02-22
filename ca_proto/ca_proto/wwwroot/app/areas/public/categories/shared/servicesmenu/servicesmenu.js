@@ -5,14 +5,20 @@
     var controller = function ($scope, $location) {
         var model = this;
         model.provider = {};
-        model.title = "FAQ";
+        model.title = "Services";
+
+
+        $scope.isActive = function (path) {
+            console.log($location);
+            return ($location.path() === path) ? 'usa-current' : '';
+        }
+
+
 
     };
 
-    module.component("faq", {
-        templateUrl: "app/areas/public/faq/faq.html",
-        controllerAs: "model",
-        controller: ["$scope", "$location", controller]
-
+    module.component("servicesMenu", {
+            templateUrl: "app/areas/public/categories/shared/servicesmenu/servicesmenu.html",
+            controller: ["$scope", "$location", controller]
     });
 }())
