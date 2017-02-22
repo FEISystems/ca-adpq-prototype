@@ -18,22 +18,36 @@ namespace ca_proto.Controllers
         {
             this.shoppingCartService = shoppingCartService;
         }
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<ShoppingCart> Get()
-        {
-            throw new NotImplementedException();
-        }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public ShoppingCart Get(int id)
         {
             return shoppingCartService.GetCart(id);
         }
 
+        // GET: api/values
+        [HttpGet("GetActive")]
+        public ShoppingCart GetActive()
+        {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+            return shoppingCartService.GetActiveCart(userId.Value);
+        }
+
+        // GET api/values/5
+        [HttpGet("GetAll")]
+        public List<ShoppingCart> GetAll()
+        {
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("Please login first");
+
+            return shoppingCartService.GetCarts(userId.Value);
+        }
+
         // POST api/values
-        [HttpPost]
+        [HttpPost("AddItem")]
         public ShoppingCart Post([FromBody]int productId)
         {
             var userId = HttpContext.GetUserId();
@@ -41,13 +55,7 @@ namespace ca_proto.Controllers
                 throw new Exception("Please login first");
             return shoppingCartService.AddItemToCart(productId, userId.Value);
         }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
+        
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)

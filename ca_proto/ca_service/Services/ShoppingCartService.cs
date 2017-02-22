@@ -23,28 +23,47 @@ namespace ca_service.Services
         {
             var cart = shoppingCartRepository.Get(shoppingCartId);
             cart.Items = shoppingCartItemRepository.Fetch(shoppingCartId);
-            cart.Total = cart.Items.Sum(x => x.Price);
+            return cart;
+        }
+
+        public List<ShoppingCart> GetCarts(int userId)
+        {
+            var carts = shoppingCartRepository.Fetch(userId);
+            if (carts != null && carts.Any())
+                foreach (var cart in carts)
+                {
+                    cart.Items = shoppingCartItemRepository.Fetch(cart.Id);
+                }
+            return carts;
+        }
+
+        public ShoppingCart GetActiveCart(int userId)
+        {
+            ShoppingCart cart = null;
+
+            var allCarts = shoppingCartRepository.Fetch(userId);
+            if (allCarts != null && allCarts.Any())
+                cart = allCarts.OrderByDescending(x => x.CreateDate).FirstOrDefault(x => x.Status == ShoppingCartStatus.Active);
+            if (cart != null)
+                cart.Items = shoppingCartItemRepository.Fetch(cart.Id);
             return cart;
         }
 
         public ShoppingCart AddItemToCart(int productId, int userId)
         {
-            int? shoppingCartId = null; //TODO: Get current cart
-            ShoppingCart cart;
-            if (!shoppingCartId.HasValue)
+            ShoppingCart cart = GetActiveCart(userId);
+            if (cart == null)
             {
                 cart = new ShoppingCart()
                 {
                     CreateDate = DateTime.Now,
-                    UserId = userId
+                    UserId = userId,
+                    Status = ShoppingCartStatus.Active
                 };
                 shoppingCartRepository.Add(cart);
 
             }
-            else
-            {
-                cart = shoppingCartRepository.Get(shoppingCartId.Value);
-            }
+            
 
             Product product = this.inventoryRepository.Get(productId);
             if (product == null)
@@ -61,15 +80,22 @@ namespace ca_service.Services
             return cart;
         }
 
-        public void ClearShoppingCart(int shoppingCartId)
+        public void ClearShoppingCart(int userId)
         {
-            //todo
+            ShoppingCart cart = GetActiveCart(userId);
+            if (cart == null || cart.Items == null || !cart.Items.Any())
+                return;
+            foreach (var item in cart.Items)
+                shoppingCartItemRepository.Delete(item.Id);
         }
-               
 
-        public ShoppingCart RemoveItemFromCart(int productId, int userId)
+        public ShoppingCart RemoveItemFromCart(int shoppingCartItemId, int userId)
         {
-            throw new NotImplementedException();
+            ShoppingCart cart = GetActiveCart(userId);
+            if (cart == null || cart.Items == null || !cart.Items.Any() || !cart.Items.Any(x => x.Id == shoppingCartItemId))
+                return cart;
+            shoppingCartItemRepository.Delete(shoppingCartItemId);
+            return GetCart(cart.Id);
         }
     }
 }

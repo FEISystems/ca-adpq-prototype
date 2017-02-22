@@ -7,9 +7,11 @@ namespace ca_service.Interfaces
 {
     public interface IShoppingCartService
     {
+        ShoppingCart GetActiveCart(int userId);
         ShoppingCart GetCart(int shoppingCartId);
+        List<ShoppingCart> GetCarts(int userId);
         ShoppingCart AddItemToCart(int productId, int userId);
-        ShoppingCart RemoveItemFromCart(int productId, int userId);
-        void ClearShoppingCart(int shoppingCartId);
+        ShoppingCart RemoveItemFromCart(int shoppingCartItemId, int userId);
+        void ClearShoppingCart(int userId);
     }
 }

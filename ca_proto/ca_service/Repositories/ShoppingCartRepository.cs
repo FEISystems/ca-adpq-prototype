@@ -22,6 +22,6 @@ namespace ca_service.Repositories
             var filter = new Dictionary<string, object>();
             filter.Add("UserId", userId);
             return base.Fetch(0, int.MaxValue);
-        }
+        }        
     }
 }

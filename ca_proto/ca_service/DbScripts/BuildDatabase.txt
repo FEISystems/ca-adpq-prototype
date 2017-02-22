@@ -78,6 +78,7 @@ DROP TABLE IF EXISTS `ShoppingCart`;
 CREATE TABLE `ShoppingCart` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UserId` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
   `CreateDate`  DATETIME Not NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
@@ -93,3 +94,4 @@ CREATE TABLE `ShoppingCartItem` (
   `Description` text NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
+
