@@ -16,18 +16,13 @@
     <div ng-show="model.tab == 5">
         <h3 class="usa-heading">Import Images</h3>
         <form name="imageImportForm" id="imageImportForm">
-            <table>
-                <tr>
-                    <td><input type="file" id="selectedimages" name="selectedimages" multiple /><br /></td>
-                    <td><button type="button" ng-click="model.importImages()" class="usa-button-secondary">Import Images</button></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <pre>{{model.importProgress}}</pre>
-                    </td>
-                </tr>
-            </table>
+            <input type="file" id="selectedimages" name="selectedimages" multiple /><br />
+            <button type="button" ng-click="model.importImages()" class="usa-button-secondary">Import Images</button>
         </form>
+    </div>
+    <div ng-show="model.tab == 6">
+        <pre>{{model.importProgress}}</pre>
+        <span>{{model.errorHtml}}</span>
     </div>
     <div ng-show="model.tab == 2">
         <h3 class="usa-heading"><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>

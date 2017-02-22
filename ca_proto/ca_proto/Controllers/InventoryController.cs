@@ -72,14 +72,21 @@ namespace ca_proto.Controllers
         [HttpPost("Import")]
         public ActionResult Import([FromBody] ImportFile file)
         {
-            if (null != file)
+            try
             {
-                if (!string.IsNullOrWhiteSpace(file.content))
+                if (null != file)
                 {
-                    return Json(inventoryService.Import(file.content));
+                    if (!string.IsNullOrWhiteSpace(file.content))
+                    {
+                        return Json(inventoryService.Import(file.content));
+                    }
                 }
+                return new EmptyResult();
             }
-            return new EmptyResult();
+            catch (Exception x)
+            {
+                return Json(new ErrorReport { Error = x.Message });
+            }
         }
 
         [HttpGet("Fetch")]
@@ -108,24 +115,45 @@ namespace ca_proto.Controllers
         [HttpPost("Add")]
         public ActionResult Add([FromBody] Product product)
         {
-            inventoryService.Add(product);
-            return new EmptyResult();
+            try
+            {
+                inventoryService.Add(product);
+                return new EmptyResult();
+            }
+            catch (Exception x)
+            {
+                return Json(new ErrorReport { Error = x.Message });
+            }
         }
 
         [AdministratorFilter]
         [HttpPost("Update")]
         public ActionResult Update([FromBody] Product product)
         {
-            inventoryService.Update(product);
-            return new EmptyResult();
+            try
+            {
+                inventoryService.Update(product);
+                return new EmptyResult();
+            }
+            catch (Exception x)
+            {
+                return Json(new ErrorReport { Error = x.Message });
+            }
         }
 
         [AdministratorFilter]
         [HttpPost("Delete")]
         public ActionResult Delete([FromBody]int id)
         {
-            inventoryService.Delete(id);
-            return new EmptyResult();
+            try
+            {
+                inventoryService.Delete(id);
+                return new EmptyResult();
+            }
+            catch (Exception x)
+            {
+                return Json(new ErrorReport { Error = x.Message });
+            }
         }
 
         [HttpPost("quicksearch")]
