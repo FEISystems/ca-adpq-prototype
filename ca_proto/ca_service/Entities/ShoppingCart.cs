@@ -39,7 +39,7 @@ namespace ca_service.Entities
             {
                 if (Items == null || !Items.Any())
                     return 0m;
-                return Items.Sum(x => x.Price);
+                return Items.Sum(x => x.Price * x.Quantity);
             }
         }
         public List<ShoppingCartItem> Items { get; set; }
