@@ -23,10 +23,10 @@
                         <option>6</option>
                     </select>
                     <button class="usa-button-secondary left">Add to Cart</button>
+                    <!--<add-to-cart-button product="$scope.productInfo"></add-to-cart-button>-->
                 </div>
                 <div class="usa-width-one-half compare">
-                    <input type="checkbox" id="compare_checkbox">
-                    <label for="compare_checkbox">Compare</label>
+                    <compare-product-button product-id="model.productId"></compare-product-button>
                 </div>
                 <p class="usa-width-one-whole">
                     {{model.product.Description}}
