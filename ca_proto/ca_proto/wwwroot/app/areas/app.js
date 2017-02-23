@@ -90,6 +90,7 @@
             { path: '/admin/inventory', component: 'inventory', name: 'Inventory'},
             { path: '/admin/vendor', component: 'vendor', name: 'Vendor'},
             { path: '/admin/vendors', component: 'vendors', name: 'Vendors'},
+            { path: '/admin/reports', component: 'reports', name: 'Reports' },
 
             
             // Authorized Users
