@@ -105,6 +105,13 @@ CREATE TABLE `orders` (
   `Status` int(11) NOT NULL,
   `CreateDate`  DATETIME Not NULL,
   `PaymentMethod` int(11) NOT NULL,
+  `Address1` varchar(250) NOT NULL,
+  `Address2` varchar(250) NOT NULL,
+  `Address3` varchar(250) NOT NULL,
+  `City` varchar(100) NOT NULL,
+  `State` varchar(2) NOT NULL,
+  `PostalCode` varchar(10) NOT NULL,
+  `EmailAddress` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
