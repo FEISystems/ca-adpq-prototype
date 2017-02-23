@@ -1,5 +1,9 @@
-CREATE TABLE 'ca'.'category' (
-            'Id' INT NOT NULL AUTO_INCREMENT,
-            'Name' VARCHAR(250) NOT NULL,
+use ca;
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `ca`.`category` (
+            `Id` INT NOT NULL AUTO_INCREMENT,
+            `Name` VARCHAR(250) NOT NULL,
             PRIMARY KEY (`Id`)
 );

@@ -1,4 +1,5 @@
-﻿using ca_service.Entities;
+﻿using ca_service.Database;
+using ca_service.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IInventoryRepository : IDisposable
+    public interface IInventoryRepository : IEntityRepository, IDisposable
     {
+        List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
+
         List<Product> QuickSearch(string[] searchTerms);
         void Add(Product product);
         void Update(Product product);
-        void Import(string fileContent);
         Product Get(int id);
-        void Delete(int id);
         List<Product> Fetch(int start, int count);
-        string OrderColumnName { get; set; }
-        bool OrderAscending { get; set; }
+
+        IEnumerable<Product> Where(Product product, params string[] columnNames);
+        IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter);
+        int Count(IDictionary<string, object> filter);
     }
 }

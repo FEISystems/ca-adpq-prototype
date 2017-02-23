@@ -1,3 +1,58 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/orderdetails/orderdetails.css" />
+<standard-layout>
+   <div class="order-details">
+       <h2 class="usa-heading">Order Details</h2>
+       <button class="usa-button-secondary right">Cancel Order</button>
+       <div class="order-content clear">
+           <div class="field">
+               <table>
+                   <caption class="usa-sr-only">Order Information</caption>
+                   <tr>
+                       <th>Order Date</th>
+                       <td>02/22/2017</td>
+                   </tr>
+                   <tr>
+                       <th>Order #</th>
+                       <td>AVC394JD2</td>
+                   </tr>
+                   <tr>
+                       <th>Order placed by</th>
+                       <td>department name</td>
+                   </tr>
+                   <tr>
+                       <th>Status</th>
+                       <td>Pending</td>
+                   </tr>
+                </table>
+               <h3 class="usa-heading">Product List</h3>
+               <div class="order-item-list">
+                    <div class="usa-width-one-sixth">
+                        <div class="product-thumbnail"></div>
+                    </div>
+                    <div class="usa-width-one-half">
+                        <div><strong>Standard-Dell Optiplex 3040 SFF – Core i5-6500</strong></div>
+                        <div class="item-info">210-AFXK</div>
+                        <div class="item-info">Standard Desktop</div>
+                    </div>
+                    <div class="usa-width-one-sixth">
+                    <span>Quantity: 1</span>
+                    </div>
+                    <div class="usa-width-one-sixth text-right">
+                        <span><strong>$446.03</strong></span><br>
+                    </div>
+                </div>
+                
+                <hr class="clear">
+
+                <div class="usa-width-one-whole">
+                    <div class="usa-width-one-half">
+                        <strong>Total Cost</strong>
+                    </div>
+                    <div class="usa-width-one-half text-right">
+                        $$$$
+                    </div>
+                </div>
+           </div>
+       </div>
+   </div>
 </standard-layout>

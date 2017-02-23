@@ -1,55 +1,41 @@
-﻿(function() {
+﻿(function () {
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, messageService, roleService, $location) {
+    var controller = function ($scope, messageService, $location, inventoryService, $rootScope) {
         var model = this;
         model.data = {};
+        model.quickSearch = '';
         model.brandName = 'CA Prototype';
         model.showNavMenu = true;
-        model.$onInit = function(){
-            //model.role = roleService.getRole();
-            //if (model.role == 'provideradmin') model.brandName = 'Provider';
-            //if (model.role == 'isasadmin') model.brandName = 'ISAS';
-            //messageService.subscribe("loginSuccess", function(data) {
-            //    //now let's update our model
-            //    model.data = data;
-            //});
-        }
-        
-        model.onClick = function(){
-            model.data = {};
-            messageService.publish("logout", {});
+        model.$onInit = function () {
         }
 
 
-    //if (model.role == 'isasadmin' || model.role == 'provideradmin') {
+        model.doQuickSearch = function () {
+            var searchTerms = model.quickSearch;
+            inventoryService.quickSearch(searchTerms);
+        }
 
-        $scope.menuItems = [
-            
-        ];
-
-
-        var oldPath = $location.path(),
-            newPathArray = oldPath.split('/'),
-            newPath = newPathArray[1];
-
-        model.activeClass = function (path) {
-
-            var activeLink = (path === newPath);
-            return activeLink;
-        };
-
-    //    model.showNavMenu = true;
-
-    //    return
-        //}
+        messageService.subscribe("quicksearchSuccess", function (response) {
+            $rootScope.quickSearchResults = [];
+            $rootScope.quickSearchResults = response;
+            console.log($rootScope.quickSearchResults);
+            if ($location.path() != "/products/searchresults") {
+                $location.path("/products/searchresults");
+            } else {
+                $rootScope.$broadcast("newQuickSearch");
+            }
+        });
+        messageService.subscribe("quicksearchFailure", function (response) {
+            $rootScope.quickSearchResults = "";
+        });
     }
 
     module.component("masthead", {
         templateUrl: "app/views/shared/components/masthead/masthead.component.html",
         controllerAs: "model",
-        controller  : ["$scope", "messageService","roleService", "$location", controller]
+        controller: ["$scope", "messageService", "$location", "inventoryService", "$rootScope", controller]
     });
 
 }())

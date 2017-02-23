@@ -1,3 +1,30 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/myaccount/myaccount.css" />
+<standard-layout>
+   <div class="my-account">
+       <h2 class="usa-heading">My Account</h2>
+       <div class="latest-orders">
+           <h3 class="usa-heading">Latest Orders</h3>
+           <table>
+               <caption class="usa-sr-only">Latest Orders</caption>
+               <thead>
+                   <tr>
+                       <th>Order Date</th>
+                       <th>Order #</th>
+                       <th>Order Total</th>
+                       <th>Order Status</th>
+                       <th><span class="usa-sr-only">View Order</span></th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>02/22/2017</td>
+                       <td>AVC394JD2</td>
+                       <td>$511.16</td>
+                       <td>Pending</td>
+                       <td><a href="#">View Order</a></td>
+                   </tr>
+               </tbody>
+           </table>
+       </div>
+   </div>
 </standard-layout>

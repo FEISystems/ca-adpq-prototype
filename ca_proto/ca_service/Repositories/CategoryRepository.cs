@@ -17,6 +17,8 @@ namespace ca_service.Repositories
 
         public List<Category> Fetch()
         {
+            this.OrderAscending = true;
+            this.OrderColumnName = "Name";
             return base.Fetch(0, int.MaxValue);
         }
     }

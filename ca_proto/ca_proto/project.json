@@ -20,7 +20,8 @@
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Configuration": "1.1.0",
-    "Swashbuckle.AspNetCore": "1.0.0-rc1"
+    "Swashbuckle.AspNetCore": "1.0.0-rc1",
+    "System.Linq": "4.3.0"
   },
 
   "tools": {
@@ -50,13 +51,7 @@
   },
 
   "publishOptions": {
-    "include": [
-      "wwwroot",
-      "Views",
-      "**/*.cshtml",
-      "web.config"
-      
-    ]
+    "include": ["wwwroot","Views","**/*.cshtml","web.config","appSettings.json"]
   },
 
   "scripts": {

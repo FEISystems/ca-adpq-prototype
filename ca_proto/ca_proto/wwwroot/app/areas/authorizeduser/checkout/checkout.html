@@ -1,3 +1,68 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/checkout/checkout.css" />
+<standard-layout>
+    <div class="checkout">
+        <h2 class="usa-heading">Checkout Information</h2>
+        <div class="usa-width-one-half">
+            <h3>Order Information</h3>
+            <div class="name">
+                <label for="input-type-name">Name</label>
+                <input id="input-type-name" name="input-type-name" type="text">
+            </div>
+            <div class="department">
+                <label for="input-type-department">Department</label>
+                <input id="input-type-department" name="input-type-department" type="text">
+            </div>
+            <div class="phone">
+                <label for="input-type-phone">Phone Number</label>
+                <input id="input-type-phone" name="input-type-phone" type="text">
+            </div>
+            <div class="email">
+                <label for="input-type-email">Email Address</label>
+                <input id="input-type-email" name="input-type-email" type="text">
+            </div>
+            <div class="deliver-address">
+                <label for="input-type-deliver-address">Delivery Address</label>
+                <input id="input-type-deliver-address" name="input-type-delivery-address" type="text">
+            </div>
+            <div class="payment">
+                <label for="input-type-payment">Payment Account</label>
+                <select id="input-type-payment" name="input-type-payment" type="text">
+                   <option>California Department of General Services</option>
+                   <option>California Department of Technology</option>
+                   <option>California Department of Health and Human Services</option>
+                   <option>California Department of Education</option>
+               </select>
+            </div>
+        </div>
+        <div class="usa-width-one-half order-summary">
+            <h3 class="usa-heading">Order Summary</h3>
+
+            <div class="usa-grid" ng-repeat="item in model.cartItems">
+                <div class="usa-width-one-sixth">
+                    <div class="product-thumbnail"></div>
+                </div>
+                <div class="item-info-group">
+                    <div><strong>{{model.products[$index].Title}}</strong></div>
+                    <div class="item-info">{{model.products[$index].SKU}}</div>
+                    <div class="item-info">{{model.products[$index].Category}}</div>
+                    <div class="item-info">Quantity: {{item.Quantity}}</div>
+                </div>
+                <div class="clear">
+                    <div class="usa-width-one-half">Item</div>
+                    <div class="usa-width-one-half text-right">{{item.Price * item.Quantity | currency}}</div>
+                </div>
+                <div class="clear"ng-show="model.cartItems.length > 1">                    
+                    <hr ng-show="model.cartItems.length != $index + 1" />
+                </div>
+            </div>
+            <div class="clear total-cost" style="margin-top: 20px">
+                <div class="usa-width-one-half">Total:</div>
+                <div class="usa-width-one-half text-right">{{model.cartTotal | currency}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="clear usa-width-one-whole" style="margin-top: 20px;">
+        <button class="usa-button-secondary right">Continue</button>
+        <button class="usa-button-secondary right" style="margin-top:0;">Back to Cart</button>
+    </div>
 </standard-layout>

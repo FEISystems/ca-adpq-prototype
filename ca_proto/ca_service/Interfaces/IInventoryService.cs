@@ -8,15 +8,22 @@ namespace ca_service.Interfaces
 {
     public interface IInventoryService
     {
-        IEnumerable<Product> QuickSearch(string[] searchTerms);
+        /// <summary>
+        /// Retrieves a list of products based on a list of search criteria. Returns null if <paramref name="searchTerms"/> is null or empty.
+        /// </summary>
+        /// <param name="searchTerms"></param>
+        /// <returns>A list of <seealso cref="Product"/> objects, or null if <paramref name="searchTerms"/> is null or empty.</returns>
+        List<Product> QuickSearch(string[] searchTerms);
         void Add(Product product);
 
         void Update(Product product);
-        void Import(string fileContent);
+        string Import(string fileContent);
         Product Get(int id);
         void Delete(int id);
-        IEnumerable<Product> Fetch(int start, int count);
+        IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter);
         string OrderColumnName { get; set; }
         bool OrderAscending { get; set; }
+        int Count(IDictionary<string, object> filter);
+        List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
     }
 }

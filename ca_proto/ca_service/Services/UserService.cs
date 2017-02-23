@@ -40,6 +40,15 @@ namespace ca_service.Services
         }
 
 
+        public Login GetLogin(string token)
+        {
+            Login login;
+            var success = this.memoryCache.TryGetValue(token, out login);
+            if (!success || login == null)
+                return null;
+            return login;
+        }
+
         public Login Authenticate(string username, string password)
         {
             Login login = new Login();
@@ -50,6 +59,7 @@ namespace ca_service.Services
                 login.Token = Guid.NewGuid().ToString();
                 login.Message = "Success";
                 login.IsAdmin = user.IsAdmin;
+                login.UserId = user.Id;
                 this.memoryCache.Set(login.Token, login);
             }
             
