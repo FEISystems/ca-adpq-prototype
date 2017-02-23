@@ -2,54 +2,36 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, $route, messageService, inventoryService) {
+    var controller = function ($scope, $location, $rootScope, messageService, inventoryService) {
         var model = this;
-        model.provider = {};
         model.title = "Search Results";
 
+        function updateQuickSearchResults() {
+            if ($rootScope.quickSearchResults && $rootScope.quickSearchResults != "") {
 
-        //console.log($route);
+                function createRows(arr, size) {
+                    var newRow = [];
+                    for (var i = 0; i < arr.length; i += size) {
+                        newRow.push(arr.slice(i, i + size));
+                    }
+                    return newRow;
+                }
 
-        this.$routerOnActivate = function(next, previous) {
-            model.productId = parseInt(next.params.id);
-
-
-            // sampleInventoryService.getProduct().get({ id : id }).$promise.then(
-            //     function (data) {
-            //         var idx = data.map(function(item) { return item.sku}).indexOf(id);
-            //         model.product = data[idx];
-            //     },
-            //     function (error) {
-            //         alert("Something went wrong!");
-
-            //     }
-            // );
-
-            model.getProduct = function () {
-                inventoryService.getProduct(model.productId);
-            };
-
-            model.getProduct();
-
-
-            messageService.subscribe('getProductSuccess', function (response) {
-                model.product = response;
-
-            })
-
-            messageService.subscribe('getProductFailure', function (response) {
-                model.product = {};
-            })
-
-
+                model.products = createRows($rootScope.quickSearchResults, 4);
+            }
         }
+        updateQuickSearchResults();
+
+        $rootScope.$on("newQuickSearch", function(){
+            updateQuickSearchResults()
+        });
 
     };
 
     module.component("searchResults", {
         templateUrl: "app/areas/public/searchresults/searchresults.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "$route", "messageService", "inventoryService", controller]
+        controller: ["$scope", "$location", "$rootScope", "messageService", "inventoryService", controller]
 
     });
 }())

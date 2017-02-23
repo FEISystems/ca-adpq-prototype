@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IInventoryRepository : IDisposable
+    public interface IInventoryRepository : IEntityRepository, IDisposable
     {
         List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
 
@@ -15,10 +15,7 @@ namespace ca_service.Interfaces
         void Add(Product product);
         void Update(Product product);
         Product Get(int id);
-        void Delete(int id);
         List<Product> Fetch(int start, int count);
-        string OrderColumnName { get; set; }
-        bool OrderAscending { get; set; }
 
         IEnumerable<Product> Where(Product product, params string[] columnNames);
         IEnumerable<Product> Fetch(int start, int count, IDictionary<string, object> filter);

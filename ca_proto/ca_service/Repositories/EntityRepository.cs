@@ -1,5 +1,6 @@
 ﻿using ca_service.Database;
 using ca_service.Entities;
+using ca_service.Interfaces;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Repositories
 {
-    public abstract class EntityRepository<EntityType>: IDisposable where EntityType : Entity
+    public abstract class EntityRepository<EntityType>: IEntityRepository, IDisposable where EntityType : Entity
     {
         protected Connection db;
         protected EntityRepository(IConfiguration configuration)
@@ -201,6 +202,15 @@ namespace ca_service.Repositories
                 cmd.CommandText = string.Format("delete from {0} where id = @id", TableName);
                 cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = id;
                 cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteAll()
+        {
+            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            {
+                cmd.CommandText = string.Format("delete from {0} where ID <> 0", TableName);
+                return cmd.ExecuteNonQuery();
             }
         }
 

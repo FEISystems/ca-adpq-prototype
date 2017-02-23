@@ -75,9 +75,9 @@ INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset )
 VALUES ('Admin2','@dMin2', 1, -4);
 
 
-DROP TABLE IF EXISTS `ShoppingCart`;
+DROP TABLE IF EXISTS `shoppingcart`;
 
-CREATE TABLE `ShoppingCart` (
+CREATE TABLE `shoppingcart` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UserId` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
@@ -85,9 +85,9 @@ CREATE TABLE `ShoppingCart` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
-DROP TABLE IF EXISTS `ShoppingCartItem`;
+DROP TABLE IF EXISTS `shoppingcartitem`;
 
-CREATE TABLE `ShoppingCartItem` (
+CREATE TABLE `shoppingcartitem` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ShoppingCartId` int(11) NOT NULL,
   `ProductId` int(11) NOT NULL,
@@ -97,9 +97,9 @@ CREATE TABLE `ShoppingCartItem` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
-DROP TABLE IF EXISTS `Orders`;
+DROP TABLE IF EXISTS `orders`;
 
-CREATE TABLE `Orders` (
+CREATE TABLE `orders` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UserId` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
@@ -107,9 +107,9 @@ CREATE TABLE `Orders` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
-DROP TABLE IF EXISTS `OrderItems`;
+DROP TABLE IF EXISTS `orderitems`;
 
-CREATE TABLE `OrderItems` (
+CREATE TABLE `orderitems` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `OrderId` int(11) NOT NULL,
   `ProductId` int(11) NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE `OrderItems` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
-CREATE TABLE `Images` (
+CREATE TABLE `images` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ImageFileName` varchar(255) NOT NULL,
   `Buffer` mediumblob NOT NULL,
