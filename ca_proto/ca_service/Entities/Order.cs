@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ca_service.Entities
 {
@@ -34,13 +35,16 @@ namespace ca_service.Entities
         UserCancelled = 2,
         Shipped = 3
     }
-
-    //todo: rename these
+    
     public enum OrderPaymentMethod
     {
-        MethodA = 1,
-        MethodB = 2,
-        MethodC = 3,
-        MethodD = 4
+        [Description("California Department of General Services")]
+        CaliforniaDepartmentofGeneralServices = 1,
+        [Description("California Department of Technology")]
+        CaliforniaDepartmentofTechnology = 2,
+        [Description("California Department of Health and Human Services")]
+        CaliforniaDepartmentofHealthandHumanServices = 3,
+        [Description("California Department of Education")]
+        CaliforniaDepartmentofEducation = 4
     }
 }

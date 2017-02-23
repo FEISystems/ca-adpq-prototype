@@ -14,8 +14,6 @@ namespace ca_service.Services
         private readonly IShoppingCartRepository _shoppingCartRepository;
         private readonly IShoppingCartItemRepository _shoppingCartItemRepository;
 
-        public OrderService(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository) : this(orderRepository, orderItemRepository, null, null) { }
-
         public OrderService(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IShoppingCartRepository shoppingCartRepository, IShoppingCartItemRepository shoppingCartItemRepository)
         {
             _orderRepository = orderRepository;

@@ -28,7 +28,7 @@ namespace ca_proto_tests
 
             int shoppingCartId = 33, userId = 99, productId = 42;
 
-            OrderPaymentMethod paymentMethod = OrderPaymentMethod.MethodA;
+            OrderPaymentMethod paymentMethod = OrderPaymentMethod.CaliforniaDepartmentofEducation;
 
             ShoppingCart theCart = new ShoppingCart(shoppingCartId)
             {
@@ -84,7 +84,7 @@ namespace ca_proto_tests
 
             int shoppingCartId = 33, userId = 99, productId = 42, otherUserId = 102;
 
-            OrderPaymentMethod paymentMethod = OrderPaymentMethod.MethodA;
+            OrderPaymentMethod paymentMethod = OrderPaymentMethod.CaliforniaDepartmentofEducation;
 
             ShoppingCart theCart = new ShoppingCart(shoppingCartId)
             {
@@ -126,7 +126,7 @@ namespace ca_proto_tests
 
             cartRepository.Setup(x => x.Get(shoppingCartId)).Returns(() => theCart);
 
-            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.MethodA));
+            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.CaliforniaDepartmentofEducation));
 
             theCart = new ShoppingCart(shoppingCartId)
             {
@@ -146,7 +146,7 @@ namespace ca_proto_tests
 
             cartItemRepository.Setup(x => x.Fetch(shoppingCartId)).Returns(() => cartItems);
 
-            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.MethodA));
+            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.CaliforniaDepartmentofEducation));
 
             orderRepository.VerifyAll();
             orderItemRepository.VerifyAll();
@@ -159,7 +159,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int orderId = 42;
 
@@ -180,7 +180,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int orderId = 42;
 
@@ -196,7 +196,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int orderId = 42;
 
@@ -216,7 +216,7 @@ namespace ca_proto_tests
 
             Mock<IOrderItemRepository> orderItemRepository = new Mock<IOrderItemRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object, null, null);
 
             int orderId = 42, orderItemId = 84;
 
@@ -249,7 +249,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int userId = 12;
 
@@ -269,7 +269,7 @@ namespace ca_proto_tests
 
             Mock<IOrderItemRepository> orderItemRepository = new Mock<IOrderItemRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object, null, null);
 
             int orderId = 42, orderItemId = 84, userId = 12;
 
