@@ -104,7 +104,7 @@ CREATE TABLE `orders` (
   `UserId` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
   `CreateDate`  DATETIME Not NULL,
-  'PaymentMethod' int(11) NOT NULL,
+  `PaymentMethod` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; 
 
