@@ -10,6 +10,7 @@
     <div ng-show="model.tab == 1">
         <h3 class="usa-heading">Import Products</h3>
         <form name="fileImportForm" id="fileImportForm">
+            <label for="selectedfile" class="usa-sr-only">Upload File</label>
             <input type="file" id="selectedfile" name="selectedfile" /><br />
             <button type="button" ng-click="model.importFile()" class="usa-button-secondary">Import CSV Inventory File</button>
         </form>
@@ -17,6 +18,7 @@
     <div ng-show="model.tab == 5">
         <h3 class="usa-heading">Import Images</h3>
         <form name="imageImportForm" id="imageImportForm">
+            <label for="selectedimages" class="usa-sr-only">Upload Image</label>
             <input type="file" id="selectedimages" name="selectedimages" multiple /><br />
             <button type="button" ng-click="model.importImages()" class="usa-button-secondary">Import Images</button>
         </form>
@@ -34,87 +36,87 @@
               ng-submit="addProductForm.$valid && model.addProduct()">
             <table>
                 <tr>
-                    <td class="table-header">Title</td>
-                    <td><input type="text" ng-model="model.product.Title" required /></td>
-                    <td class="table-header">Contract</td>
+                    <td class="table-header"><label for="title">Title</label></td>
+                    <td><input type="text" ng-model="model.product.Title" id="title" required /></td>
+                    <td class="table-header"><label for="contract">Contract</label></td>
                     <td>
-                        <select ng-model="model.product.ContractNumber" ng-options="contract for contract in model.contracts" required>
+                        <select id="contract" ng-model="model.product.ContractNumber" ng-options="contract for contract in model.contracts" required>
                             <option value="">Select Contract</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td class="table-header">Contractor</td>
+                    <td class="table-header"><label for="contractor">Contractor</label></td>
                     <td>
-                        <select ng-model="model.product.Contractor" ng-options="contractor for contractor in model.contractors" required>
+                        <select id="contractor" ng-model="model.product.Contractor" ng-options="contractor for contractor in model.contractors" required>
                             <option value="">Select Contractor</option>
                         </select>
                     </td>
-                    <td class="table-header">CLIN</td>
-                    <td><input type="text" ng-model="model.product.CLIN" required /></td>
+                    <td class="table-header"><label for="clin">CLIN</label></td>
+                    <td><input id="clin" type="text" ng-model="model.product.CLIN" required /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Contract Discount</td>
-                    <td><input type="text" ng-model="model.product.ContractDiscount" required /></td>
-                    <td class="table-header">Contract Expiration</td>
-                    <td><input type="text" ng-model="model.product.ContractExpiration" required /></td>
+                    <td class="table-header"><label for="contractdiscount">Contract Discount</label></td>
+                    <td><input id="contractdiscount" type="text" ng-model="model.product.ContractDiscount" required /></td>
+                    <td class="table-header"><label for="contractexpiration">Contract Expiration</label></td>
+                    <td><input id="contractexpiration" type="text" ng-model="model.product.ContractExpiration" required /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">List Price</td>
-                    <td><input type="text" ng-model="model.product.ListPrice" required /></td>
-                    <td class="table-header">Contract Price</td>
-                    <td><input type="text" ng-model="model.product.ContractPrice" required /></td>
+                    <td class="table-header"><label for="listprice">List Price</label></td>
+                    <td><input id="listprice" type="text" ng-model="model.product.ListPrice" required /></td>
+                    <td class="table-header"><label for="contractprice">Contract Price</label></td>
+                    <td><input id="contractprice" type="text" ng-model="model.product.ContractPrice" required /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Manufacturer</td>
-                    <td><input type="text" ng-model="model.product.Manufacturer" required /></td>
-                    <td class="table-header">Part Number</td>
-                    <td><input type="text" ng-model="model.product.ManufacturerPartNumber" required /></td>
+                    <td class="table-header"><label for="manufacturer">Manufacturer</label></td>
+                    <td><input id="manufacturer" type="text" ng-model="model.product.Manufacturer" required /></td>
+                    <td class="table-header"><label for="partnumber">Part Number</label></td>
+                    <td><input id="partnumber" type="text" ng-model="model.product.ManufacturerPartNumber" required /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">SKU</td>
-                    <td><input type="text" ng-model="model.product.SKU" required /></td>
-                    <td class="table-header">UNSPSC</td>
-                    <td><input type="text" ng-model="model.product.UNSPSC" required /></td>
+                    <td class="table-header"><label for="sku">SKU</label></td>
+                    <td><input id="sku" type="text" ng-model="model.product.SKU" required /></td>
+                    <td class="table-header"><label for="unspsc">UNSPSC</label></td>
+                    <td><input id="unspsc" type="text" ng-model="model.product.UNSPSC" required /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Product Type</td>
+                    <td class="table-header"><label for="producttype">Product Type</label></td>
                     <td>
-                        <select ng-model="model.product.ProductType" ng-options="prod for prod in model.productTypes" required>
+                        <select id="producttype" ng-model="model.product.ProductType" ng-options="prod for prod in model.productTypes" required>
                             <option value="">Select Product Type</option>
                         </select>
                     </td>
-                    <td class="table-header">Category</td>
+                    <td class="table-header"><label for="category">Category</label></td>
                     <td>
-                        <select ng-model="model.product.Category" ng-options="category for category in model.categories" required>
+                        <select id="category" ng-model="model.product.Category" ng-options="category for category in model.categories" required>
                             <option value="">Select Category</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td class="table-header">Unit of Measure</td>
+                    <td class="table-header"><label for="unitofmeasure">Unit of Measure</label></td>
                     <td>
-                        <select ng-model="model.product.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" required>
+                        <select id="unitofmeasure" ng-model="model.product.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" required>
                             <option value="">Select Unit of Measure</option>
                         </select>
                     </td>
-                    <td class="table-header">Quantity per UOM</td>
-                    <td><input type="text" ng-model="model.product.QuantityPerUnitOfMeasure" required /></td>
+                    <td class="table-header"><label for="quantityperoum">Quantity per UOM</label></td>
+                    <td><input id="quantityperoum" type="text" ng-model="model.product.QuantityPerUnitOfMeasure" required /></td>
                 </tr>
                 <tr>
-                    <td rowspan="2" class="table-header">Description</td>
-                    <td rowspan="2"><textarea ng-model="model.product.Description" required></textarea></td>
-                    <td class="table-header">Image File Name</td>
+                    <td rowspan="2" class="table-header"><label for="description">Description</label></td>
+                    <td rowspan="2"><textarea id="description" ng-model="model.product.Description" required></textarea></td>
+                    <td class="table-header"><label for="imagefilename">Image File Name</label></td>
                     <td>
-                        <select ng-model="model.product.ImageFileName" ng-options="name for name in model.imageFileNames" required>
+                        <select id="imagefilename" ng-model="model.product.ImageFileName" ng-options="name for name in model.imageFileNames" required>
                             <option value="">Select Image File Name</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td class="table-header">&nbsp;</td>
+                    <td class="table-header">&nbsp;<label for="noimage" class="usa-sr-only">No image</label></td>
                     <td>
-                        <input type="hidden" ng-model="model.product.Id" />
+                        <input id="noimage" type="hidden" ng-model="model.product.Id" />
                         <img height="100" width="100" ng-src="/api/image/{{model.product.ImageFileName}}" alt="No Image Selected" />
                     </td>
                 </tr>
@@ -161,72 +163,72 @@
         <form name="filterProductForm" id="filterProductForm" ng-submit="model.filterProducts()" novalidate>
             <table>
                 <tr>
-                    <td class="table-header">Title</td>
-                    <td><input type="text" ng-model="model.filter.Title" /></td>
-                    <td class="table-header">Contract</td>
+                    <td class="table-header"><label for="search-title">Title</label></td>
+                    <td><input id="search-title" type="text" ng-model="model.filter.Title" /></td>
+                    <td class="table-header"><label for="search-contract">Contract</label></td>
                     <td>
-                        <select ng-model="model.filter.ContractNumber" ng-options="contract for contract in model.contracts" >
+                        <select id="search-contract" ng-model="model.filter.ContractNumber" ng-options="contract for contract in model.contracts" >
                             <option value="">Select Contract</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td class="table-header">Contractor</td>
+                    <td class="table-header"><label for="search-contractor">Contractor</label></td>
                     <td>
-                        <select ng-model="model.filter.Contractor" ng-options="contractor for contractor in model.contractors" >
+                        <select id="search-contractor" ng-model="model.filter.Contractor" ng-options="contractor for contractor in model.contractors" >
                             <option value="">Select Contractor</option>
                         </select>
                     </td>
-                    <td class="table-header">CLIN</td>
-                    <td><input type="text" ng-model="model.filter.CLIN" /></td>
+                    <td class="table-header"><label for="search-clin">CLIN</label></td>
+                    <td><input id="search-clin" type="text" ng-model="model.filter.CLIN" /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Contract Discount</td>
-                    <td><input type="text" ng-model="model.filter.ContractDiscount" /></td>
-                    <td class="table-header">Contract Expiration</td>
-                    <td><input type="text" ng-model="model.filter.ContractExpiration" /></td>
+                    <td class="table-header"><label for="search-contractdiscount">Contract Discount</label></td>
+                    <td><input id="search-contractdiscount" type="text" ng-model="model.filter.ContractDiscount" /></td>
+                    <td class="table-header"><label for="search-contractexpiration">Contract Expiration</label></td>
+                    <td><input id="search-contractexpiration" type="text" ng-model="model.filter.ContractExpiration" /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">List Price</td>
-                    <td><input type="text" ng-model="model.filter.ListPrice" /></td>
-                    <td class="table-header">Contract Price</td>
-                    <td><input type="text" ng-model="model.filter.ContractPrice" /></td>
+                    <td class="table-header"><label for="search-listprice">List Price</label></td>
+                    <td><input id="search-listprice" type="text" ng-model="model.filter.ListPrice" /></td>
+                    <td class="table-header"><label for="search-contractprice">Contract Price</label></td>
+                    <td><input id="search-contractprice" type="text" ng-model="model.filter.ContractPrice" /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Manufacturer</td>
-                    <td><input type="text" ng-model="model.filter.Manufacturer" /></td>
-                    <td class="table-header">Part Number</td>
-                    <td><input type="text" ng-model="model.filter.ManufacturerPartNumber" /></td>
+                    <td class="table-header"><label for="search-manufacturer">Manufacturer</label></td>
+                    <td><input id="search-manufacturer" type="text" ng-model="model.filter.Manufacturer" /></td>
+                    <td class="table-header"><label for="search-partnumber">Part Number</label></td>
+                    <td><input id="search-partnumber" type="text" ng-model="model.filter.ManufacturerPartNumber" /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">SKU</td>
-                    <td><input type="text" ng-model="model.filter.SKU" /></td>
-                    <td class="table-header">UNSPSC</td>
-                    <td><input type="text" ng-model="model.filter.UNSPSC" /></td>
+                    <td class="table-header"><label for="search-sku">SKU</label></td>
+                    <td><input id="search-sku" type="text" ng-model="model.filter.SKU" /></td>
+                    <td class="table-header"><label for="search-unspsc">UNSPSC</label></td>
+                    <td><input id="search-unspsc" type="text" ng-model="model.filter.UNSPSC" /></td>
                 </tr>
                 <tr>
-                    <td class="table-header">Product Type</td>
+                    <td class="table-header"><label for="search-producttype">Product Type</label></td>
                     <td>
-                        <select ng-model="model.filter.ProductType" ng-options="prod for prod in model.productTypes" >
+                        <select id="search-producttype" ng-model="model.filter.ProductType" ng-options="prod for prod in model.productTypes" >
                             <option value="">Select Product Type</option>
                         </select>
                     </td>
-                    <td class="table-header">Category</td>
+                    <td class="table-header"><label for="search-category">Category</label></td>
                     <td>
-                        <select ng-model="model.filter.Category" ng-options="category for category in model.categories" >
+                        <select id="search-category" ng-model="model.filter.Category" ng-options="category for category in model.categories" >
                             <option value="">Select Category</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td class="table-header">Unit of Measure</td>
+                    <td class="table-header"><label for="search-unitofmeasure">Unit of Measure</label></td>
                     <td>
-                        <select ng-model="model.filter.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" >
+                        <select id="search-unitofmeasure" ng-model="model.filter.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" >
                             <option value="">Select Unit of Measure</option>
                         </select>
                     </td>
-                    <td class="table-header">Quantity per UOM</td>
-                    <td><input type="text" ng-model="model.filter.QuantityPerUnitOfMeasure" /></td>
+                    <td class="table-header"><label for="search-quantityperuom">Quantity per UOM</label></td>
+                    <td><input id="search-quantityperuom" type="text" ng-model="model.filter.QuantityPerUnitOfMeasure" /></td>
                 </tr>
                 <!--<tr>
                     <td colspan="4">
@@ -234,8 +236,8 @@
                     </td>
                 </tr>-->
                 <tr>
-                    <td class="table-header">Description</td>
-                    <td><textarea ng-model="model.filter.Description" required></textarea></td>
+                    <td class="table-header"><label for="search-description">Description</label></td>
+                    <td><textarea id="search-description" ng-model="model.filter.Description" required></textarea></td>
                     <td>&nbsp;</td>
                     <td>
                         <input type="submit" value="Search" class="usa-button-secondary" />
