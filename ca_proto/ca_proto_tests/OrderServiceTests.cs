@@ -159,7 +159,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int orderId = 42;
 
@@ -180,7 +180,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int orderId = 42;
 
@@ -196,7 +196,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int orderId = 42;
 
@@ -216,7 +216,7 @@ namespace ca_proto_tests
 
             Mock<IOrderItemRepository> orderItemRepository = new Mock<IOrderItemRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object, null, null);
 
             int orderId = 42, orderItemId = 84;
 
@@ -249,7 +249,7 @@ namespace ca_proto_tests
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
             int userId = 12;
 
@@ -269,7 +269,7 @@ namespace ca_proto_tests
 
             Mock<IOrderItemRepository> orderItemRepository = new Mock<IOrderItemRepository>(MockBehavior.Strict);
 
-            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object);
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, orderItemRepository.Object, null, null);
 
             int orderId = 42, orderItemId = 84, userId = 12;
 
