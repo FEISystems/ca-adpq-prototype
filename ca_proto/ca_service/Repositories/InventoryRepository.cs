@@ -33,7 +33,7 @@ namespace ca_service.Repositories
                 return null;
 
             string baseSql = @"
-SELECT Category, Id, Title, Manufacturer, ManufacturerPartNumber, SKU
+SELECT P.*
 FROM Products P
 WHERE";
 
