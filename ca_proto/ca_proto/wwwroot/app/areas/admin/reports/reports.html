@@ -1,3 +1,38 @@
-﻿<standard-layout>
-    <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/admin/inventory/inventory.css" />
+<standard-layout>
+    <h2>{{model.title}}</h2>
+    <aside class="usa-width-one-fourth">
+        <ul class="usa-sidenav-list">
+            <li><a href="" ng-click="model.showFilter()" ng-class="{'usa-current' : model.tab == 1}">Data Filter</a></li>
+            <li><a href="" ng-click="model.showExpendituresByProductType()" ng-class="{'usa-current' : model.tab == 2}">Expenditures by Product Type</a></li>
+            <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
+            <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
+            <li><a href="" ng-click="model.showRawData()" ng-class="{'usa-current' : model.tab == 5}">Raw Data</a></li>
+        </ul>    
+    </aside>
+
+    <div class="usa-width-two-thirds">
+        <div ng-show="model.tab == 1">
+            <h3 class="usa-heading">Data Filter</h3>
+        </div>
+
+        <div ng-show="model.tab == 2">
+            <h3 class="usa-heading">Expenditures by Product Type</h3>
+            <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width}}" >
+
+            </canvas>
+        </div>
+
+        <div ng-show="model.tab == 3">
+            <h3 class="usa-heading">Expenditures by Contractor</h3>
+        </div>
+
+        <div ng-show="model.tab == 4">
+            <h3 class="usa-heading">Purchases by Account</h3>
+        </div>
+
+        <div ng-show="model.tab == 5">
+            <h3 class="usa-heading">Raw Data</h3>
+        </div>
+    </div>
 </standard-layout>
