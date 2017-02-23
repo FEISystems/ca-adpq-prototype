@@ -77,15 +77,17 @@
             model.tab = 5;
         };
 
-        model.showAdd = function () {
+        model.showAddEdit = function (product, editing) {
             model.tab = 2;
-            model.product = {};
-            model.editing = false;
+            model.product = product;
+            model.editing = editing;
         };
 
         model.showTable = function () {
             model.tab = 3;
-            model.newProduct();
+            model.product = {};
+            model.editing = false;
+            model.fetchAll();
         };
 
         model.clone = function (item) {
@@ -180,9 +182,7 @@
             for (var i = 0; i < model.products.length; i++) {
                 var item = model.products[i];
                 if (item.Id == id) {
-                    model.product = model.buildProduct(item);
-                    model.editing = true;
-                    model.tab = 2;
+                    model.showAddEdit(model.buildProduct(item), true);
                     return;
                 }
             }
@@ -196,12 +196,6 @@
         model.fetchProducts = function () {
             var filter = model.activeFilter;
             inventoryService.fetchProducts(model.page * model.itemsPerPage, model.itemsPerPage, model.orderByColumn, model.orderAscending, filter);
-        };
-
-        model.newProduct = function () {
-            model.product = {};
-            model.editing = false;
-            model.fetchAll();
         };
 
         model.buildProduct = function (item) {
@@ -301,7 +295,7 @@
 
         messageService.subscribe('addProductSuccess', function (response) {
             alert('Add Product Success');
-            model.newProduct();
+            model.showTable();
         })
 
         messageService.subscribe('addProductFailure', function (response) {
@@ -310,7 +304,7 @@
 
         messageService.subscribe('updateProductSuccess', function (response) {
             alert('Update Product Success');
-            model.newProduct();
+            model.showTable();
         })
 
         messageService.subscribe('updateProductFailure', function (response) {
@@ -375,7 +369,7 @@
         })
 
         messageService.subscribe('deleteSuccess', function (response) {
-            model.newProduct();
+            model.showTable();
         })
 
         messageService.subscribe('deleteFailure', function (response) {

@@ -3,7 +3,7 @@
     <h1>{{model.title}}</h1>
     <a href="" ng-click="model.showTable()">Catalog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showFilter()">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="" ng-click="model.showAdd()">Add Product</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" ng-click="model.showAddEdit({}, false)">Add Product</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showImport()">Import Products</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showImportImages()">Import Images</a>
     <div ng-show="model.tab == 1">
@@ -135,7 +135,7 @@
                 </tr>
             </thead>
             <tr ng-repeat="row in model.products">
-                <td>{{row.Title}}</td>
+                <td title="{{row.Description}}">{{row.Title}}</td>
                 <td>{{row.Category}}</td>
                 <td>{{row.ProductType}}</td>
                 <td>{{row.Manufacturer}}</td>
