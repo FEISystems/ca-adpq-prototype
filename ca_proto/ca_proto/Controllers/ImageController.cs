@@ -20,6 +20,13 @@ namespace ca_proto.Controllers
             this.imageService = imageService;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            //exists only in case a product has an empty string for the image file name, since the routing for the method below won't catch that
+            return new EmptyResult();
+        }
+
         [HttpGet("{imageFileName}")]
         public IActionResult Get(string imageFileName)
         {
