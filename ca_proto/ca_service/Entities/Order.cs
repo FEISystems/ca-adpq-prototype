@@ -23,6 +23,9 @@ namespace ca_service.Entities
         public int UserId { get; set; }
 
         public List<OrderItem> Items { get; set; }
+
+        [DbColumn(System.Data.DbType.Int32)]
+        public OrderPaymentMethod PaymentMethod { get; set; }
     }
 
     public enum OrderStatus
@@ -30,5 +33,14 @@ namespace ca_service.Entities
         Placed = 1,
         UserCancelled = 2,
         Shipped = 3
+    }
+
+    //todo: rename these
+    public enum OrderPaymentMethod
+    {
+        MethodA = 1,
+        MethodB = 2,
+        MethodC = 3,
+        MethodD = 4
     }
 }

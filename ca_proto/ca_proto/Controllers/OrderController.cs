@@ -1,4 +1,6 @@
 ﻿using ca_proto.Filters;
+using ca_proto.Helpers;
+using ca_proto.Models;
 using ca_service.Entities;
 using ca_service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +38,14 @@ namespace ca_proto.Controllers
         public Order CancelOrder(int orderId)
         {
             return _orderService.CancelOrder(orderId);
+        }
+
+        [HttpPost("PlaceOrder")]
+        public Order PlaceOrder([FromBody]PlaceOrder order)
+        {
+            var userId = HttpContext.GetUserId();
+
+            return _orderService.Create(order.ShoppingCartId, userId ?? 0, order.PaymentMethod);
         }
     }
 }

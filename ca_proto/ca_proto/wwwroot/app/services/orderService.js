@@ -20,9 +20,21 @@
                 });
         };
 
+        var placeOrder = function (shoppingCartId, paymentMethod) {
+            var data = { ShoppingCartId: shoppingCartId, PaymentMethod: paymentMethod };
+            $http.post("/api/order/placeorder", data)
+                .success(function (response) {
+                    messageService.publish('placeOrderSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('placeOrderFailure', response);
+                });
+        }
+
         return {
             getOrdersByUserId: getOrdersByUserId,
-            cancelOrder: cancelOrder
+            cancelOrder: cancelOrder,
+            placeOrder: placeOrder
         };
     }
 
