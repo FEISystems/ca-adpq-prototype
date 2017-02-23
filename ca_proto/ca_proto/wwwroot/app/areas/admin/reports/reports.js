@@ -38,13 +38,13 @@
             };
 
             return chart;
-        }
+        };
 
-        model.showFilter = function() {
+        model.showFilter = function () {
             model.tab = 1;
-        }
+        };
 
-        model.showExpendituresByProductType = function() {
+        model.showExpendituresByProductType = function () {
             model.tab = 2;
             var canvas = document.getElementById("productTypeCanvas");
             var context = canvas.getContext("2d");
@@ -52,26 +52,33 @@
             pieChart.drawSlice(0, 1.0 / 3.0, "red");
             pieChart.drawSlice(1.0 / 3.0, 2.0 / 3.0, "blue");
             pieChart.drawSlice(2.0 / 3.0, 1, "green");
-        }
+        };
 
-        model.showExpendituresByContractor = function() {
+        model.clearPie = function () {
+            var canvas = document.getElementById("productTypeCanvas");
+            var context = canvas.getContext("2d");
+            var pieChart = model.pieChart(context, model.height, model.width);
+            pieChart.clear();
+        };
+
+        model.showExpendituresByContractor = function () {
             model.tab = 3;
-        }
+        };
 
-        model.showPurchasesByAccount = function() {
+        model.showPurchasesByAccount = function () {
             model.tab = 4;
-        }
+        };
 
-        model.showRawData = function() {
+        model.showRawData = function () {
             model.tab = 5;
-        }
+        };
 
     };
 
     module.component("reports", {
         templateUrl: "app/areas/admin/reports/reports.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "messageService", "inventoryService", controller]
+        controller: ["$scope", "$location", "messageService", "reportService", controller]
 
     });
 }())
