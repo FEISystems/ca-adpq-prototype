@@ -79,7 +79,9 @@
                 <td>{{product.Manufacturer}}</td>
                 <td>{{product.ManufacturerPartNumber}}</td>
                 <td>{{product.SKU}}</td>
-                <td><a href="#">Compare</a><a href="#">View Details</a></td>
+                <td>
+                    <a ng-link="['Product Details', { id : product.Id }]">View Details</a>
+                </td>
             </tr>
             <tr ng-hide="model.products.length > 0">
                 <td aria-colspan="7" colspan="7" style="text-align: center">
