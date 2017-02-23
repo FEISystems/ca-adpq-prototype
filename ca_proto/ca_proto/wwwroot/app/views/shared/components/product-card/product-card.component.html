@@ -1,7 +1,9 @@
 <link rel='stylesheet' type="text/css" href="app/views/shared/components/product-card/product-card.component.css" />
 
 <div class="usa-grid ca-image-wrapper" style="text-align: center">
-    <div style="width:100%; min-height: 200px; background-color: lightgray; border: 1px solid darkgray"></div>
+    <div style="width:100%; min-height: 200px;">
+        <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+    </div>
     <strong>{{product.Title}}</strong>
 </div>
 <div class="usa-grid" style="padding-top: 0px; padding-bottom: 0px;">
