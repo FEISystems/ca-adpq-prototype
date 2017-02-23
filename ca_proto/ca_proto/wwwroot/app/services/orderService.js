@@ -20,8 +20,18 @@
                 });
         };
 
-        var placeOrder = function (shoppingCartId, paymentMethod) {
-            var data = { ShoppingCartId: shoppingCartId, PaymentMethod: paymentMethod };
+        var placeOrder = function (shoppingCartId, paymentMethod, address1, address2, address3, city, state, zip, emailAddress) {
+            var data = {
+                ShoppingCartId: shoppingCartId,
+                PaymentMethod: paymentMethod,
+                Address1: address1,
+                Address2: address2,
+                Address3: address3,
+                City: city,
+                State: state,
+                PostalCode: zip,
+                EmailAddress: emailAddress
+            };
             $http.post("/api/order/placeorder", data)
                 .success(function (response) {
                     messageService.publish('placeOrderSuccess', response);

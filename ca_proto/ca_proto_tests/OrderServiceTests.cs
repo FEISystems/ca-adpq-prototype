@@ -56,7 +56,9 @@ namespace ca_proto_tests
 
             cartItemRepository.Setup(x => x.Delete(It.IsAny<int>()));
 
-            var result = orderService.Create(shoppingCartId, userId, paymentMethod);
+            string address1 = "", address2 = "", address3 = "", city = "", state = "", zip = "", email = "";
+
+            var result = orderService.Create(shoppingCartId, userId, paymentMethod, address1, address2, address3, city, state, zip, email);
 
             Assert.NotNull(result);
 
@@ -102,7 +104,9 @@ namespace ca_proto_tests
                 Price = 25.00m,
             };
 
-            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, otherUserId, paymentMethod));
+            string address1 = "", address2 = "", address3 = "", city = "", state = "", zip = "", email = "";
+
+            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, otherUserId, paymentMethod, address1, address2, address3, city, state, zip, email));
 
             orderRepository.VerifyAll();
             orderItemRepository.VerifyAll();
@@ -126,7 +130,9 @@ namespace ca_proto_tests
 
             cartRepository.Setup(x => x.Get(shoppingCartId)).Returns(() => theCart);
 
-            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.CaliforniaDepartmentofEducation));
+            string address1 = "", address2 = "", address3 = "", city = "", state = "", zip = "", email = "";
+
+            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.CaliforniaDepartmentofEducation, address1, address2, address3, city, state, zip, email));
 
             theCart = new ShoppingCart(shoppingCartId)
             {
@@ -146,7 +152,7 @@ namespace ca_proto_tests
 
             cartItemRepository.Setup(x => x.Fetch(shoppingCartId)).Returns(() => cartItems);
 
-            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.CaliforniaDepartmentofEducation));
+            Assert.Throws<Exception>(() => orderService.Create(shoppingCartId, userId, OrderPaymentMethod.CaliforniaDepartmentofEducation, address1, address2, address3, city, state, zip, email));
 
             orderRepository.VerifyAll();
             orderItemRepository.VerifyAll();
