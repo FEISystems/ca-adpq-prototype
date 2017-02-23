@@ -158,7 +158,7 @@ namespace ca_service.Services
             result.AppendFormat("Added {0} categories\n", categoryCount);
             result.AppendFormat("Added {0} contracts\n", contractCount);
             result.AppendFormat("Added {0} contractors\n", contractorCount);
-            result.AppendFormat("Skipped {0} entries", skippedCount);
+            result.AppendFormat("{0} {1} skipped because duplicates were found in the database.", skippedCount, (skippedCount == 1 ? "entry was" : "entries were"));
             if (errorCount > 0)
             {
                 result.AppendFormat("\n{0} errors encountered. Please make corrections to the data and try the import again.", errorCount);
@@ -239,6 +239,8 @@ namespace ca_service.Services
             {
                 if (string.IsNullOrWhiteSpace(value))
                     return 0.0m;
+                //remove all whitespace, commas, and dollar sign - Currency format does not work on server for some reason
+                value = value.Trim().Replace("$", "").Replace(",", "");
                 return decimal.Parse(value, System.Globalization.NumberStyles.Currency);
             }
             else if (dbType == DbType.DateTime)

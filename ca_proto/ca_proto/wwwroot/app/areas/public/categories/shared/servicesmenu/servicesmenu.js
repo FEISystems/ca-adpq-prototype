@@ -9,7 +9,6 @@
 
 
         $scope.isActive = function (path) {
-            console.log($location);
             return ($location.path() === path) ? 'usa-current' : '';
         }
 

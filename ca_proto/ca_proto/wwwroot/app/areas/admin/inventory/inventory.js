@@ -77,15 +77,17 @@
             model.tab = 5;
         };
 
-        model.showAdd = function () {
+        model.showAddEdit = function (product, editing) {
             model.tab = 2;
-            model.product = {};
-            model.editing = false;
+            model.product = product;
+            model.editing = editing;
         };
 
         model.showTable = function () {
             model.tab = 3;
-            model.newProduct();
+            model.product = {};
+            model.editing = false;
+            model.fetchAll();
         };
 
         model.clone = function (item) {
@@ -103,6 +105,46 @@
             }
         };
 
+        model.onStartImport = function (text) {
+            model.importProgress = text;
+            model.tab = 6;
+        }
+
+        model.handleError = function (error) {
+            model.tab = 6;
+            if (error && error.toLowerCase().indexOf("<html", 0) >= 0) {
+                //try to find the error message returned from the server
+                try {
+                    var parser = new DOMParser();
+                    var dom = parser.parseFromString(error, "text/html");
+                    var titleError = dom.getElementsByClassName("titleerror");
+                    if (titleError) {
+                        titleError = titleError.item(0);
+                        if (titleError)
+                            error = titleError.innerText;
+                    }
+                }
+                catch (x) { }
+                model.importProgress += "\n" + error;
+            }
+            else {
+                model.importProgress += "\n" + error;
+            }
+        };
+
+        model.findNode = function (node, name) {
+            model.debugAlert(node);
+            if (node.nodeName == name)
+                return node;
+            for (var i = 0; i<node.childElementCount; i++)
+            {
+                var child = model.findNode(node.childNodes[i], name);
+                if (null != child)
+                    return child;
+            }
+            return null;
+        }
+
         model.importFile = function () {
             try
             {
@@ -112,6 +154,7 @@
                     alert("Please select a file.");
                     return;
                 }
+                model.onStartImport("Importing " + fileinfo.name);
                 inventoryService.importFile(fileinfo);
             }
             catch (error)
@@ -122,11 +165,11 @@
 
         model.importImages = function () {
             var files = document.getElementById("selectedimages").files;
-            if (files == undefined) {
+            if (files == undefined || files.length == 0) {
                 alert("Please select one or more image files.");
                 return;
             }
-            model.importProgress = "Importing " + files.length + " image(s)";
+            model.onStartImport("Importing " + files.length + " image(s)");
             for (var i = 0; i < files.length; i++)
             {
                 var fileInfo = files[i];
@@ -139,9 +182,7 @@
             for (var i = 0; i < model.products.length; i++) {
                 var item = model.products[i];
                 if (item.Id == id) {
-                    model.product = model.buildProduct(item);
-                    model.editing = true;
-                    model.tab = 2;
+                    model.showAddEdit(model.buildProduct(item), true);
                     return;
                 }
             }
@@ -155,12 +196,6 @@
         model.fetchProducts = function () {
             var filter = model.activeFilter;
             inventoryService.fetchProducts(model.page * model.itemsPerPage, model.itemsPerPage, model.orderByColumn, model.orderAscending, filter);
-        };
-
-        model.newProduct = function () {
-            model.product = {};
-            model.editing = false;
-            model.fetchAll();
         };
 
         model.buildProduct = function (item) {
@@ -239,13 +274,15 @@
         })
 
         messageService.subscribe('importSuccess', function (response) {
-            alert('Import Success\r\n' + response);
+            //alert('Import Success\r\n' + response);
+            model.importProgress += "\n" + response;
             document.getElementById("fileImportForm").reset();
             model.fetchAll();
         })
 
         messageService.subscribe('importFailure', function (response) {
-            alert('Import Failure: ' + response);
+            model.handleError(response);
+            //model.importProgress += "\nImport Failure: " + response;
         })
 
         messageService.subscribe('importImageSuccess', function (response) {
@@ -253,25 +290,25 @@
         })
 
         messageService.subscribe('importImageFailure', function (response) {
-            model.importProgress += "\nFailed to import " + response + ". An image with name may already exist in the database.";
+            model.handleError(response);
         })
 
         messageService.subscribe('addProductSuccess', function (response) {
             alert('Add Product Success');
-            model.newProduct();
+            model.showTable();
         })
 
         messageService.subscribe('addProductFailure', function (response) {
-            alert('Add Product Failure');
+            model.handleError(response);
         })
 
         messageService.subscribe('updateProductSuccess', function (response) {
             alert('Update Product Success');
-            model.newProduct();
+            model.showTable();
         })
 
         messageService.subscribe('updateProductFailure', function (response) {
-            alert('Update Product Failure');
+            model.handleError(response);
         })
 
         messageService.subscribe('retrievedUnitsOfMeasure', function (response) {
@@ -332,12 +369,11 @@
         })
 
         messageService.subscribe('deleteSuccess', function (response) {
-            alert('Delete Product Success');
-            model.newProduct();
+            model.showTable();
         })
 
         messageService.subscribe('deleteFailure', function (response) {
-            alert('Delete Product Failure');
+            model.handleError(response);
         })
 
         model.fetchAll();

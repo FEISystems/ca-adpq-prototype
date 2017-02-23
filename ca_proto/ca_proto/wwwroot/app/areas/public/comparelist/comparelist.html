@@ -6,72 +6,42 @@
            <caption class="usa-sr-only">Comparison Table</caption>
            <tr>
                 <th scope="row">&nbsp;</th>
-                <td class="product-content">
+                <td ng-repeat="product in model.products" class="product-content">
                     <a href="#" class="text-right">Remove</a>
-                    <div style="width: 300px; height: 100px; background: #ccc;"></div>
-                    <a href="#" style="text-align: center;">View Details</a>
-                    <button class="usa-button-secondary">Add to Cart</button>
-                </td>
-                <td class="product-content">
-                    <a href="#" class="text-right">Remove</a>
-                    <div style="width: 300px; height: 100px; background: #ccc;"></div>
-                    <a href="#" style="text-align: center;">View Details</a>
-                    <button class="usa-button-secondary">Add to Cart</button>
-                </td>
-                <td class="product-content">
-                    <a href="#" class="text-right">Remove</a>
-                    <div style="width: 300px; height: 100px; background: #ccc;"></div>
-                    <a href="#" style="text-align: center;">View Details</a>
-                    <button class="usa-button-secondary">Add to Cart</button>
-                </td>
-                <td class="product-content">
-                    <a href="#" class="text-right">Remove</a>
-                    <div style="width: 300px; height: 100px; background: #ccc;"></div>
-                    <a href="#" style="text-align: center;">View Details</a>
-                    <button class="usa-button-secondary">Add to Cart</button>
+                    <div style="width: 100%; height: 100px; background: #ccc;"></div>
+                    <a ng-link="['Product Details', { id : product.Id }]" style="text-align: center;">View Details</a>
+                    <add-to-cart-button product="product"></add-to-cart-button>
                 </td>
             </tr>
             <tr>
                 <th scope="row">Price</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td ng-repeat="product in model.products">
+                    {{product.ContractPrice | currency}}
+                </td>
             </tr>
             <tr>
                 <th scope="row">MSRP</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td ng-repeat="product in model.products">
+                    {{product.ListPrice | currency}}
+                </td>
             </tr>
             <tr>
                 <th scope="row">Brand</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td ng-repeat="product in model.products">
+                    {{product.Manufacturer}}
+                </td>
             </tr>
             <tr>
                 <th scope="row">Description</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">Availability</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td ng-repeat="product in model.products">
+                    {{product.Description}}
+                </td>
             </tr>
             <tr>
                 <th scope="row">Contract Discount</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td ng-repeat="product in model.products">
+                    {{product.ContractDiscount}}
+                </td>
             </tr>
        </table>
    </div>

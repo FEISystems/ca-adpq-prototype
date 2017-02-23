@@ -4,59 +4,43 @@
         <h2 class="usa-heading">Your Cart</h2>
         <div class="usa-width-one-whole">
             <div class="items-in-cart-header">
-                (2) items in your cart
+                ({{model.cart.Items.length}}) items in your cart
             </div>
-            <div class="items-in-cart">
-                <div class="usa-width-one-sixth">
-                    <div class="product-thumbnail"></div>
+
+                <div ng-repeat="item in model.cartItems" class="items-in-cart usa-grid">
+                    <div class="usa-width-one-sixth">
+                        <div class="product-thumbnail">
+                            <img src="{{model.products[$index].ImageFileName}}" alt="Product Image">
+                        </div>
+                    </div>
+                    <div class="usa-width-one-half">
+                        <div><strong>{{model.products[$index].Title}}</strong></div>
+                        <div class="item-info">{{item.SKU}}</div>
+                        <div class="item-info">{{item.Category}}</div>
+                    </div>
+                    <div class="usa-width-one-sixth">
+                        <select ng-model="item.Quantity" ng-options="key*1 as value for (key,value) in model.qtyOptions">
+                        </select>
+                        <span>Quantity</span>
+                    </div>
+                    <div class="usa-width-one-sixth text-right">
+                        <span><strong>{{item.Price * item.Quantity | currency}}</strong></span><br>
+                        <a role="button" ng-click="removeThisItem(item.Id)" >Remove</a>
+                    </div>
                 </div>
-                <div class="usa-width-one-half">
-                    <div><strong>Standard-Dell Optiplex 3040 SFF – Core i5-6500</strong></div>
-                    <div class="item-info">210-AFXK</div>
-                    <div class="item-info">Standard Desktop</div>
-                </div>
-                <div class="usa-width-one-sixth">
-                    <select type="text">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                   </select>
-                   <span>Quantity</span>
-                </div>
-                <div class="usa-width-one-sixth text-right">
-                    <span><strong>$446.03</strong></span><br>
-                    <a href="#">Remove</a>
-                </div>
-            </div>
+
+
             <div class="buttons">
-                <button class="usa-button-secondary">Update Cart</button>
-                <button class="usa-button-secondary">Proceed to Checkout</button>
+                <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
+                <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
             </div>
         </div>
         <div class="usa-width-one-whole help-info">
             <h4>Help</h4>
             <p>If you have any questions or need help with your account and purchase, please contact us for assistance.</p>
             <h4>Call Us</h4>
-            <p>1-888-555-5555<br>
-            Mon - Sat: 9am - 5pm PST<br>
-            Sun: 10am - 3pm PST
+            <p>1-888-555-5555<br> Mon - Sat: 9am - 5pm PST<br> Sun: 10am - 3pm PST
             </p>
         </div>
     </div>
-
-    <!--<div class="usa-grid">
-        <div class="usa-width-one-third">
-            <ul class="usa-unstyled-list">
-                <h3>Test Links</h3>
-                <li><a ng-link="['Checkout']">Checkout</a></li>
-                <li><a ng-link="['Order Confirmation']">Order Confirmation</a></li>
-                <li><a ng-link="['Review Order']">Review Order</a></li>
-            </ul>
-        </div>
-        <div class="usa-width-one-third"></div>
-        <div class="usa-width-one-third"></div>
-    </div>-->
 </standard-layout>
