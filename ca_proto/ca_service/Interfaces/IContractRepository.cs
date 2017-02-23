@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IContractRepository : IDisposable
+    public interface IContractRepository : IEntityRepository, IDisposable
     {
         void Add(Contract contract);
         void Update(Contract contract);
         Contract Get(int id);
-        void Delete(int id);
         List<Contract> Fetch(int start, int count);
-        string OrderColumnName { get; set; }
-        bool OrderAscending { get; set; }
     }
 }

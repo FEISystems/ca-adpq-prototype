@@ -31,5 +31,11 @@ namespace ca_proto.Controllers
         {
             return _orderService.GetOrdersForUser(userId);
         }
+
+        [HttpPost("CancelOrder/{orderId}")]
+        public Order CancelOrder(int orderId)
+        {
+            return _orderService.CancelOrder(orderId);
+        }
     }
 }

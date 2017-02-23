@@ -5,7 +5,8 @@
     <a href="" ng-click="model.showFilter()">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showAddEdit({}, false)">Add Product</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" ng-click="model.showImport()">Import Products</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="" ng-click="model.showImportImages()">Import Images</a>
+    <a href="" ng-click="model.showImportImages()">Import Images</a></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" ng-click="model.showPrototypeTasks()">Prototype Tasks</a>
     <div ng-show="model.tab == 1">
         <h3 class="usa-heading">Import Products</h3>
         <form name="fileImportForm" id="fileImportForm">
@@ -22,6 +23,10 @@
     </div>
     <div ng-show="model.tab == 6">
         <pre>{{model.importProgress}}</pre>
+    </div>
+    <div ng-show="model.tab == 7">
+        <h3 class="usa-heading">Prototype Tasks</h3>
+        <button ng-click="model.resetDatabase()">Reset Database</button>
     </div>
     <div ng-show="model.tab == 2">
         <h3 class="usa-heading"><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>
@@ -130,8 +135,8 @@
                     <th><a href="" ng-click="model.setOrderByColumn('Category')">Category</a></th>
                     <th><a href="" ng-click="model.setOrderByColumn('ProductType')">Product Type</a></th>
                     <th><a href="" ng-click="model.setOrderByColumn('Manufacturer')">Manufacturer</a></th>
-                    <th><a href="" ng-click="model.setOrderByColumn('ContractDiscount')">ContractDiscount</a></th>
-                    <th><a href="" ng-click="model.newProduct()">New Item</a></th>
+                    <th><a href="" ng-click="model.setOrderByColumn('ContractDiscount')">Contract Discount</a></th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tr ng-repeat="row in model.products">

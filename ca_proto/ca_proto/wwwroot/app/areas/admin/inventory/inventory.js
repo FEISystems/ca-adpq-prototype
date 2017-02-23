@@ -90,6 +90,10 @@
             model.fetchAll();
         };
 
+        model.showPrototypeTasks = function () {
+            model.tab = 7;
+        }
+
         model.clone = function (item) {
             return JSON.parse(JSON.stringify(item));
         };
@@ -108,7 +112,7 @@
         model.onStartImport = function (text) {
             model.importProgress = text;
             model.tab = 6;
-        }
+        };
 
         model.handleError = function (error) {
             model.tab = 6;
@@ -131,19 +135,6 @@
                 model.importProgress += "\n" + error;
             }
         };
-
-        model.findNode = function (node, name) {
-            model.debugAlert(node);
-            if (node.nodeName == name)
-                return node;
-            for (var i = 0; i<node.childElementCount; i++)
-            {
-                var child = model.findNode(node.childNodes[i], name);
-                if (null != child)
-                    return child;
-            }
-            return null;
-        }
 
         model.importFile = function () {
             try
@@ -188,9 +179,17 @@
             }
         };
 
+        model.resetDatabase = function () {
+            if (confirm("This will delete all records in the database!")) {
+                model.onStartImport("Deleting all records in the database...");
+                inventoryService.resetDatabase();
+            }
+        };
+
         model.delete = function (id) {
-            if (confirm("This will delete the selected item!"))
+            if (confirm("This will delete the selected item!"))            {
                 inventoryService.deleteProduct(id);
+            }
         };
 
         model.fetchProducts = function () {
@@ -233,21 +232,20 @@
             var result = {};
             //todo: need to include the filter data here
             return result;
-        }
+        };
 
         model.fetchPageCount = function () {
             inventoryService.fetchCount(model.activeFilter);
         };
 
-        model.setPage = function(newPage)
-        {
+        model.setPage = function (newPage) {
             if (!newPage || newPage < 0)
                 newPage = 0;
             if (newPage > model.pageCount - 1)
                 newPage = model.pageCount - 1;
             model.page = newPage;
             model.fetchProducts();
-        }
+        };
 
         model.firstPage = function () {
             model.setPage(0);
@@ -286,7 +284,8 @@
         })
 
         messageService.subscribe('importImageSuccess', function (response) {
-            model.importProgress += "\nImported " + response;
+            model.importProgress += "\n" + response;
+            model.fetchImageFileNames();
         })
 
         messageService.subscribe('importImageFailure', function (response) {
@@ -373,6 +372,16 @@
         })
 
         messageService.subscribe('deleteFailure', function (response) {
+            model.handleError(response);
+        })
+
+        messageService.subscribe('deleteAllSuccess', function (response) {
+            model.importProgress += "\n" + response;
+            model.fetchAll();
+            model.products = [];
+        })
+
+        messageService.subscribe('deleteAllFailure', function (response) {
             model.handleError(response);
         })
 

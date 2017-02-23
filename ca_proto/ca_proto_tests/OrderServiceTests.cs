@@ -1,5 +1,6 @@
 ﻿using ca_service.Entities;
 using ca_service.Interfaces;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,43 @@ namespace ca_proto_tests
         public OrderServiceTests()
         {
 
+        }
+
+        [Fact]
+        public void CancelOrderSetsOrderStatusToCancelled()
+        {
+            Moq.Mock<IOrderRepository> orderRepository = new Moq.Mock<IOrderRepository>(Moq.MockBehavior.Strict);
+
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+
+            int orderId = 42;
+
+            Order theOrder = new Order(orderId) { Status = OrderStatus.Placed };
+
+            orderRepository.Setup(x => x.Get(orderId)).Returns(() => theOrder);
+            orderRepository.Setup(x => x.Update(It.IsAny<Order>()));
+
+            var result = orderService.CancelOrder(orderId);
+
+            Assert.Equal(OrderStatus.UserCancelled, result.Status);
+
+            orderRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void CancelOrderThrowsExceptionIfNoOrder()
+        {
+            Moq.Mock<IOrderRepository> orderRepository = new Moq.Mock<IOrderRepository>(Moq.MockBehavior.Strict);
+
+            var orderService = new ca_service.Services.OrderService(orderRepository.Object, null);
+
+            int orderId = 42;
+
+            orderRepository.Setup(x => x.Get(orderId)).Returns(() => null);
+
+            Order result;
+
+            Assert.Throws<Exception>(() => result = orderService.CancelOrder(orderId));
         }
 
         [Fact]

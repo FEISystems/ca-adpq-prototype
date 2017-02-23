@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IShoppingCartItemRepository:IDisposable
+    public interface IShoppingCartItemRepository : IEntityRepository, IDisposable
     {
         void Add(ShoppingCartItem item);
         void Update(ShoppingCartItem item);
-        void Delete(int id);
         ShoppingCartItem Get(int id);
         List<ShoppingCartItem> Fetch(int shoppingCartId);
     }

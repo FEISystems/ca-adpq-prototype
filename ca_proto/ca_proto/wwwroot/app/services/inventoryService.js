@@ -5,7 +5,7 @@
             $http.post("/api/inventory/add", product)
                 .success(function (response) {
                     if (response.Error)
-                        messageService.publish('addProductFailure', response);
+                        messageService.publish('addProductFailure', response.Error);
                     else
                         messageService.publish('addProductSuccess', response);
                 })
@@ -18,7 +18,7 @@
             $http.post("/api/inventory/update", product)
                 .success(function (response) {
                     if (response.Error)
-                        messageService.publish('updateProductFailure', response);
+                        messageService.publish('updateProductFailure', response.Error);
                     else
                         messageService.publish('updateProductSuccess', response);
                 })
@@ -31,13 +31,26 @@
             $http.post("/api/inventory/delete", id)
                 .success(function (response) {
                     if (response.Error)
-                        messageService.publish('deleteFailure', response);
+                        messageService.publish('deleteFailure', response.Error);
                     else
                         messageService.publish('deleteSuccess', response);
                 })
                 .error(function (response) {
                     messageService.publish('deleteFailure', response);
                 });
+        };
+
+        var resetDatabase = function () {
+            $http.post("/api/prototype/DeleteAllEntities")
+                .success(function (response) {
+                    if (response.Error)
+                        messageService.publish('deleteAllFailure', response.Error);
+                    else
+                        messageService.publish('deleteAllSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('deleteAllFailure', response);
+                });            
         };
 
         var importFile = function (fileinfo) {
@@ -195,6 +208,7 @@
             getProduct: getProduct,
             importImage: importImage,
             fetchImageFileNames: fetchImageFileNames,
+            resetDatabase: resetDatabase,
         };
     }
 
