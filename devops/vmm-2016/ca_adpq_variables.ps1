@@ -7,7 +7,7 @@ Get-SCVMMServer feiprodvmm002.fei.local | Out-Null
 $operatingSystemName = "Ubuntu Linux 16.04 (64 bit)"
 $existsOperatingSystem = Get-SCOperatingSystem | where {$_.Name -eq $operatingSystemName}
 
-#gues OS profile
+#guest OS profile
 $osProfileName = "CA-ADPQ Ubuntu Guest OS Profile"
 $existsOsProfile = Get-SCGuestOSProfile -Name $osProfileName
 
@@ -19,10 +19,32 @@ $existsHardwareProfile = Get-SCHardwareProfile | Where-Object {$_.Name -eq $hard
 $vmTemplateName = "CA-ADPQ VM Template"
 $existsVmTemplate = Get-SCVMTemplate -Name $vmTemplateName
 
-#hardware profile for use with installation ISO (for custom configuration)
-$hardwareProfileNameIso = "CA-ADPQ Hardware Profile - w ISO"
-$existsHardwareProfileIso = Get-SCHardwareProfile | Where-Object {$_.Name -eq $hardwareProfileNameIso}
+#elastic hosting
+$minVmNodeCount = 2
+$maxVmNodeCount = 5
 
-#vm template for use with installation ISO (for custom configuration)
-$vmTemplateNameIso = "CA-ADPQ VM Template - w ISO"
-$existsVmTemplateIso = Get-SCVMTemplate -Name $vmTemplateNameIso
+#Hyper-V host name for placement
+$vmHostName = "ashprodhyper041.fei.local"
+$vmStorageLocation = "C:\ClusterStorage\Volume11"
+$vmStorageName = "LTSSProd07"
+
+#fei.local 17.20.10.* IP POOL - checked for availability
+$caAdpqSwarm10Ip = 172.20.10.210
+$caAdpqSwarm11Ip = 172.20.10.211
+$caAdpqSwarm12Ip = 172.20.10.212
+$caAdpqSwarm13Ip = 172.20.10.213
+$caAdpqSwarm14Ip = 172.20.10.214
+
+#host names
+$caAdpqSwarm10Name = "CA-ADPQ-SWARM10"
+$caAdpqSwarm11Name = "CA-ADPQ-SWARM11"
+$caAdpqSwarm12Name = "CA-ADPQ-SWARM12"
+$caAdpqSwarm13Name = "CA-ADPQ-SWARM13"
+$caAdpqSwarm14Name = "CA-ADPQ-SWARM14"
+
+#hosts exist
+$caAdpqSwarm10Exists = (@(Get-SCVirtualMachine -Name $caAdpqSwarm10Name).Count -ne 0)
+$caAdpqSwarm11Exists = (@(Get-SCVirtualMachine -Name $caAdpqSwarm11Name).Count -ne 0)
+$caAdpqSwarm12Exists = (@(Get-SCVirtualMachine -Name $caAdpqSwarm12Name).Count -ne 0)
+$caAdpqSwarm13Exists = (@(Get-SCVirtualMachine -Name $caAdpqSwarm13Name).Count -ne 0)
+$caAdpqSwarm14Exists = (@(Get-SCVirtualMachine -Name $caAdpqSwarm14Name).Count -ne 0)
