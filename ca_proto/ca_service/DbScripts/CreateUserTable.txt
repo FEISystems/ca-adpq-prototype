@@ -1,0 +1,28 @@
+﻿use ca;
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(45) DEFAULT NULL,
+  `Password` varchar(45) DEFAULT NULL,
+  `TimeZoneOffset` int(11) DEFAULT NULL,
+  `IsAdmin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+);
+
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('AuthorizedUser1','AuthorizedU$er1', 0, -4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('AuthorizedUser2','AuthorizedU$er2', 0, -4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('AuthorizedUser3','AuthorizedU$er3', 0, -4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Admin1','@dMin1', 1, -4);
+
+INSERT INTO users (UserName, Password, IsAdmin,TimeZoneOffset ) 
+VALUES ('Admin2','@dMin2', 1, -4);
