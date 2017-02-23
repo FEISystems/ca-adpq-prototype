@@ -239,6 +239,8 @@ namespace ca_service.Services
             {
                 if (string.IsNullOrWhiteSpace(value))
                     return 0.0m;
+                //remove all whitespace, commas, and dollar sign - Currency format does not work on server for some reason
+                value = value.Trim().Replace("$", "").Replace(",", "");
                 return decimal.Parse(value, System.Globalization.NumberStyles.Currency);
             }
             else if (dbType == DbType.DateTime)
