@@ -10,8 +10,19 @@
                 });
         };
 
+        var cancelOrder = function (orderId) {
+            $http.get("/api/order/cancelorder/" + orderId)
+                .success(function (response) {
+                    messageService.publish('cancelOrderSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('cancelOrderFailure', response);
+                });
+        };
+
         return {
-            getOrdersByUserId: getOrdersByUserId
+            getOrdersByUserId: getOrdersByUserId,
+            cancelOrder: cancelOrder
         };
     }
 

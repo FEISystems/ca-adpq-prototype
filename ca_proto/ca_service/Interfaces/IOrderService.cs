@@ -13,5 +13,7 @@ namespace ca_service.Interfaces
         Order Get(int id);
 
         List<Order> GetOrdersForUser(int userId);
+
+        Order CancelOrder(int orderId);
     }
 }

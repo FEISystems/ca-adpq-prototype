@@ -25,13 +25,6 @@ namespace ca_service.Services
             return new Order();
         }
 
-        public Order Cancel(int orderId)
-        {
-            //todo: implement
-
-            return new Order();
-        }
-
         public Order Get(int id)
         {
             var order = _orderRepository.Get(id);
@@ -58,6 +51,20 @@ namespace ca_service.Services
             }
 
             return orders;
+        }
+
+        public Order CancelOrder(int orderId)
+        {
+            var order = _orderRepository.Get(orderId);
+
+            if (order == null)
+                throw new Exception("The order specified was not found.");
+
+            order.Status = OrderStatus.UserCancelled;
+
+            _orderRepository.Update(order);
+
+            return order;
         }
 
         public void Dispose()
