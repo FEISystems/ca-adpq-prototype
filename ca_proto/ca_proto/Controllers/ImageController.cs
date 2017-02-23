@@ -70,7 +70,7 @@ namespace ca_proto.Controllers
                     buffer.Add((byte)jProp.Value);
                 }
                 imageService.Add(fileName, buffer.ToArray());
-                return new EmptyResult();
+                return Json(string.Format("Successfully added {0}", fileName));
             }
             catch (Exception x)
             {
