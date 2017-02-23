@@ -8,13 +8,17 @@
         model.showNavMenu = true;
         model.$onInit = function () {
             $(document).on("mouseup", function () {
-                if ($('.usa-accordion-button').attr('aria-expanded') == "true") {
-                    $(document).on("click", function () {
-                        $('.usa-accordion-button').attr('aria-expanded', 'false')
-                        $('.usa-nav-submenu').attr('aria-hidden', 'true')
+                $('.usa-accordion-button').each(function(){
+                    var accordionbutton = this;
+                    if ($(accordionbutton).attr('aria-expanded') == "true") {
+                        $(document).on("click", function () {
+                        $(accordionbutton).attr('aria-expanded', 'false')
+                        $(accordionbutton).next('.usa-nav-submenu').attr('aria-hidden', 'true')
                         $(document).unbind( "click" );
                     });
                 }
+                });
+            
             });
         }
         $scope.menuItems = [
