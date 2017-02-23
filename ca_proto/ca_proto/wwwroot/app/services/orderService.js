@@ -10,6 +10,16 @@
                 });
         };
 
+        var getOrder = function (orderId) {
+            $http.get("/api/order/" + orderId)
+                .success(function (response) {
+                    messageService.publish('getOrderSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('getOrderFailure', response);
+                });
+        };
+
         var cancelOrder = function (orderId) {
             $http.get("/api/order/cancelorder/" + orderId)
                 .success(function (response) {
@@ -44,7 +54,8 @@
         return {
             getOrdersByUserId: getOrdersByUserId,
             cancelOrder: cancelOrder,
-            placeOrder: placeOrder
+            placeOrder: placeOrder,
+            getOrder: getOrder
         };
     }
 
