@@ -8,10 +8,12 @@ namespace ca_service.Interfaces
 {
     public interface IOrderService
     {
-        Order Create(ShoppingCart cart);
+        Order Create(int shoppingCartId, int userId, OrderPaymentMethod paymentMethod);
 
         Order Get(int id);
 
         List<Order> GetOrdersForUser(int userId);
+
+        Order CancelOrder(int orderId);
     }
 }

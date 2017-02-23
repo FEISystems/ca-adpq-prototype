@@ -11,25 +11,67 @@ namespace ca_service.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderItemRepository _orderItemRepository;
+        private readonly IShoppingCartRepository _shoppingCartRepository;
+        private readonly IShoppingCartItemRepository _shoppingCartItemRepository;
 
-        public OrderService(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository)
+        public OrderService(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IShoppingCartRepository shoppingCartRepository, IShoppingCartItemRepository shoppingCartItemRepository)
         {
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
+            _shoppingCartRepository = shoppingCartRepository;
+            _shoppingCartItemRepository = shoppingCartItemRepository;
         }
 
-        public Order Create(ShoppingCart cart)
+        public Order Create(int shoppingCartId, int userId, OrderPaymentMethod paymentMethod)
         {
-            //todo: implement
+            var cart = _shoppingCartRepository.Get(shoppingCartId);
 
-            return new Order();
-        }
+            if (cart == null)
+                throw new Exception("Shopping cart not found.");
 
-        public Order Cancel(int orderId)
-        {
-            //todo: implement
+            if (userId != cart.UserId)
+                throw new Exception("Shopping cart not found.");
 
-            return new Order();
+            var cartItems = _shoppingCartItemRepository.Fetch(shoppingCartId);
+
+            if (cartItems == null || !cartItems.Any())
+                throw new Exception("No items found in shopping cart.");
+
+            Order newOrder = new Order()
+            {
+                Items = new List<OrderItem>(),
+                OrderDateUtc = DateTime.UtcNow,
+                PaymentMethod = paymentMethod,
+                Status = OrderStatus.Placed,
+                UserId = cart.UserId
+            };
+
+            foreach(var item in cartItems)
+            {
+                OrderItem orderItem = new OrderItem()
+                {
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                };
+
+                newOrder.Items.Add(orderItem);
+            }
+
+            _orderRepository.Add(newOrder);
+
+            foreach (var orderItem in newOrder.Items)
+            {
+                orderItem.OrderId = newOrder.Id;
+                _orderItemRepository.Add(orderItem);
+            }
+
+            foreach(var cartItem in cartItems)
+            {
+                _shoppingCartItemRepository.Delete(cartItem.Id);
+            }
+
+            return newOrder;
         }
 
         public Order Get(int id)
@@ -58,6 +100,20 @@ namespace ca_service.Services
             }
 
             return orders;
+        }
+
+        public Order CancelOrder(int orderId)
+        {
+            var order = _orderRepository.Get(orderId);
+
+            if (order == null)
+                throw new Exception("The order specified was not found.");
+
+            order.Status = OrderStatus.UserCancelled;
+
+            _orderRepository.Update(order);
+
+            return order;
         }
 
         public void Dispose()

@@ -10,10 +10,9 @@ namespace ca_service.Entities
     [DbTable("ca.orderitems")]
     public class OrderItem : Entity
     {
-        public OrderItem(int id) : base(id)
-        {
+        public OrderItem(int id) : base(id) { }
 
-        }
+        public OrderItem() : base(0) { }
 
         [DbColumn(System.Data.DbType.Int32)]
         public int OrderId { get; set; }
