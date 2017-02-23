@@ -4,7 +4,10 @@
         var addProduct = function (product) {
             $http.post("/api/inventory/add", product)
                 .success(function (response) {
-                    messageService.publish('addProductSuccess', response);
+                    if (response.Error)
+                        messageService.publish('addProductFailure', response);
+                    else
+                        messageService.publish('addProductSuccess', response);
                 })
                 .error(function (response) {
                     messageService.publish('addProductFailure', response);
@@ -14,7 +17,10 @@
         var editProduct = function (product) {
             $http.post("/api/inventory/update", product)
                 .success(function (response) {
-                    messageService.publish('updateProductSuccess', response);
+                    if (response.Error)
+                        messageService.publish('updateProductFailure', response);
+                    else
+                        messageService.publish('updateProductSuccess', response);
                 })
                 .error(function (response) {
                     messageService.publish('updateProductFailure', response);
@@ -24,7 +30,10 @@
         var deleteProduct = function (id) {
             $http.post("/api/inventory/delete", id)
                 .success(function (response) {
-                    messageService.publish('deleteSuccess', response);
+                    if (response.Error)
+                        messageService.publish('deleteFailure', response);
+                    else
+                        messageService.publish('deleteSuccess', response);
                 })
                 .error(function (response) {
                     messageService.publish('deleteFailure', response);
@@ -38,7 +47,10 @@
                 var postData = { content: data };
                 $http.post("/api/inventory/import", postData)
                     .success(function (response) {
-                        messageService.publish('importSuccess', response);
+                        if (response.Error)
+                            messageService.publish('importFailure', response.Error);
+                        else
+                            messageService.publish('importSuccess', response);
                     })
                     .error(function (response) {
                         messageService.publish('importFailure', response);
@@ -54,10 +66,13 @@
                 var postData = { ImageFileName:fileinfo.name, Buffer: data };
                 $http.post("/api/image/add", postData)
                     .success(function (response) {
-                        messageService.publish('importImageSuccess', fileinfo.name);
+                        if (response.Error)
+                            messageService.publish('importImageFailure', response.Error);
+                        else
+                            messageService.publish('importImageSuccess', response);
                     })
                     .error(function (response) {
-                        messageService.publish('importImageFailure', fileinfo.name);
+                        messageService.publish('importImageFailure', response);
                     });
             }
             r.readAsArrayBuffer(fileinfo);

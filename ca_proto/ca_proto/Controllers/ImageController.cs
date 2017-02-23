@@ -1,4 +1,5 @@
-﻿using ca_proto.Helpers;
+﻿using ca_proto.Filters;
+using ca_proto.Helpers;
 using ca_proto.Models;
 using ca_service.Entities;
 using ca_service.Interfaces;
@@ -48,25 +49,33 @@ namespace ca_proto.Controllers
             return "";
         }
 
+        [AdministratorFilter]
         [HttpPost("Add")]
         public IActionResult Add([FromBody]ImportImageData data)
         {
-            string fileName = data.ImageFileName;
-            if (string.IsNullOrWhiteSpace(GetContentType(data.ImageFileName)))
-                throw new Exception("Invalid file type. Only JPEG and PNG files are supported.");
-            var jBuffer = data.Buffer as Newtonsoft.Json.Linq.JObject;
-            if (null == jBuffer)
-                throw new Exception("Inbound data is not in the correct format!");
-            List<byte> buffer = new List<byte>();
-            foreach (var item in jBuffer.Children())
+            try
             {
-                var jProp = item as Newtonsoft.Json.Linq.JProperty;
-                if (null == jProp)
+                string fileName = data.ImageFileName;
+                if (string.IsNullOrWhiteSpace(GetContentType(data.ImageFileName)))
+                    throw new Exception("Invalid file type. Only JPEG and PNG files are supported.");
+                var jBuffer = data.Buffer as Newtonsoft.Json.Linq.JObject;
+                if (null == jBuffer)
                     throw new Exception("Inbound data is not in the correct format!");
-                buffer.Add((byte)jProp.Value);
+                List<byte> buffer = new List<byte>();
+                foreach (var item in jBuffer.Children())
+                {
+                    var jProp = item as Newtonsoft.Json.Linq.JProperty;
+                    if (null == jProp)
+                        throw new Exception("Inbound data is not in the correct format!");
+                    buffer.Add((byte)jProp.Value);
+                }
+                imageService.Add(fileName, buffer.ToArray());
+                return new EmptyResult();
             }
-            imageService.Add(fileName, buffer.ToArray());
-            return new EmptyResult();
+            catch (Exception x)
+            {
+                return Json(new ErrorReport { Error = x.Message });
+            }
         }
     }
 }
