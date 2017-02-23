@@ -27,6 +27,27 @@ namespace ca_service.Entities
 
         [DbColumn(System.Data.DbType.Int32)]
         public OrderPaymentMethod PaymentMethod { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string Address1 { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string Address2 { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string Address3 { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string City { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string State { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string PostalCode { get; set; }
+
+        [DbColumn(System.Data.DbType.String)]
+        public string EmailAddress { get; set; }
     }
 
     public enum OrderStatus

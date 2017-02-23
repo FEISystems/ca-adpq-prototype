@@ -22,7 +22,7 @@ namespace ca_service.Services
             _shoppingCartItemRepository = shoppingCartItemRepository;
         }
 
-        public Order Create(int shoppingCartId, int userId, OrderPaymentMethod paymentMethod)
+        public Order Create(int shoppingCartId, int userId, OrderPaymentMethod paymentMethod, string address1, string address2, string address3, string city, string state, string postalCode, string emailAddress)
         {
             var cart = _shoppingCartRepository.Get(shoppingCartId);
 
@@ -43,7 +43,14 @@ namespace ca_service.Services
                 OrderDateUtc = DateTime.UtcNow,
                 PaymentMethod = paymentMethod,
                 Status = OrderStatus.Placed,
-                UserId = cart.UserId
+                UserId = cart.UserId,
+                Address1 = address1,
+                Address2 = address2,
+                Address3 = address3,
+                City = city,
+                State = state,
+                PostalCode = postalCode,
+                EmailAddress = emailAddress
             };
 
             foreach(var item in cartItems)

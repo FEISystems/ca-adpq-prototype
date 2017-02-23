@@ -45,7 +45,8 @@ namespace ca_proto.Controllers
         {
             var userId = HttpContext.GetUserId();
 
-            return _orderService.Create(order.ShoppingCartId, userId ?? 0, order.PaymentMethod);
+            return _orderService.Create(order.ShoppingCartId, userId ?? 0, order.PaymentMethod,
+                order.Address1, order.Address2, order.Address3, order.City, order.State, order.PostalCode, order.EmailAddress);
         }
     }
 }
