@@ -34,6 +34,14 @@
                     model.minPrice = 0;
                     model.maxPrice = 1500;
                     break;
+                case "$2000 and Under":
+                    model.minPrice = 0;
+                    model.maxPrice = 2000;
+                    break;
+                case "$2500 and Under":
+                    model.minPrice = 0;
+                    model.maxPrice = 2500;
+                    break;
                 default:
                     model.minPrice = 0;
                     model.maxPrice = 99999999;

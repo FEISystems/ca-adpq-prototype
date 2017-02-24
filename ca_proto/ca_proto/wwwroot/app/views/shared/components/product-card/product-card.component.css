@@ -2,6 +2,9 @@ product-card {
   display: block !important;
   border: 1px solid gray;
 }
+product-card a {
+  font-size: 0.75em;
+}
 product-card .ca-image-wrapper {
   min-height: 300px;
 }
@@ -21,4 +24,7 @@ product-card .button_wrapper button {
 product-card input[type=checkbox] {
   display: inline-block;
   width: auto;
+}
+product-card .compare {
+  width: 100px;
 }

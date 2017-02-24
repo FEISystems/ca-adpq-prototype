@@ -1,7 +1,7 @@
 ﻿(function () {
     var orderService = function (messageService, $http) {
-        var getOrdersByUserId = function (userId) {
-            $http.get("/api/order/getuserorders/" + userId)
+        var getOrdersByUserId = function () {
+            $http.get("/api/order/getuserorders")
                 .success(function (response) {
                     messageService.publish('getOrdersByUserIdSuccess', response);
                 })
@@ -21,7 +21,7 @@
         };
 
         var cancelOrder = function (orderId) {
-            $http.get("/api/order/cancelorder/" + orderId)
+            $http.post("/api/order/cancelorder/" + orderId)
                 .success(function (response) {
                     messageService.publish('cancelOrderSuccess', response);
                 })

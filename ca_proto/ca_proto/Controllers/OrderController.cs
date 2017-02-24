@@ -28,16 +28,23 @@ namespace ca_proto.Controllers
             return _orderService.Get(id);
         }
 
-        [HttpGet("GetUserOrders/{userId}")]
-        public List<Order> GetUserOrders(int userId)
+        [HttpGet("GetUserOrders")]
+        public List<Order> GetUserOrders()
         {
-            return _orderService.GetOrdersForUser(userId);
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("User must be logged in");
+            return _orderService.GetOrdersForUser(userId.Value);
         }
 
         [HttpPost("CancelOrder/{orderId}")]
         public Order CancelOrder(int orderId)
         {
-            return _orderService.CancelOrder(orderId);
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("User must be logged in");
+
+            return _orderService.CancelOrder(orderId, userId.Value);
         }
 
         [HttpPost("PlaceOrder")]

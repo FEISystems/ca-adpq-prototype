@@ -14,10 +14,10 @@
                 <label for="input-type-name">Name</label>
                 <input id="input-type-name" ng-model="model.name" name="input-type-name" required type="text" readonly="readonly">
             </div>
-            <div class="department">
+            <!--<div class="department">
                 <label for="input-type-department">Department</label>
                 <input id="input-type-department" ng-model="model.department" name="input-type-department" required type="text" readonly="readonly">
-            </div>
+            </div>-->
             <div class="phone">
                 <label for="input-type-phone">Phone Number</label>
                 <input id="input-type-phone" ng-model="model.phoneNumber" name="input-type-phone" required type="text" readonly="readonly">
@@ -44,7 +44,9 @@
             </div>
             <div class="delivery-state">
                 <label for="input-type-delivery-state">State</label>
-                <input id="input-type-delivery-state" ng-model="model.state" name="input-type-delivery-state" required type="text" readonly="readonly">
+                <select id="input-type-delivery-state" ng-model="model.state" name="input-type-delivery-state" ng-options="key as value for (key,value) in model.stateOptions" required disabled="disabled" aria-disabled="true">
+                   
+               </select>
             </div>
             <div class="delivery-postalcode">
                 <label for="input-type-delivery-postalcode">Zip Code</label>
@@ -52,8 +54,7 @@
             </div>
             <div class="payment">
                 <label for="input-type-payment">Payment Account</label>
-                <select id="input-type-payment" ng-model="model.paymentAccount" name="input-type-payment" ng-options="key*1 as value for (key,value) in model.paymentOptions" type="text" required readonly="readonly">
-                   
+                <select id="input-type-payment" ng-model="model.paymentAccount" name="input-type-payment" ng-options="key*1 as value for (key,value) in model.paymentOptions" type="text" required  disabled="disabled" aria-disabled="true">
                </select>
             </div>
             <br>
