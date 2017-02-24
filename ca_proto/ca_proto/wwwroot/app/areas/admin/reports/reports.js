@@ -2,13 +2,15 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location) {
+    var controller = function ($scope, $location, messageService, reportService) {
         var model = this;
         model.provider = {};
         model.title = "Reports";
         model.tab = 1;
         model.height = 400;
         model.width = 700;
+        model.orderProducts = [];
+        model.orderProductQuery = {};
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -25,7 +27,6 @@
 
             chart.drawSlice = function (startPercent, sweepPercent, color) {
                 chart.context.beginPath();
-                var o = { a: chart.centerX, b: chart.centerY, c: chart.radius, d: chart.zero + startPercent * chart.fullSweep, e: chart.zero + sweepPercent * chart.fullSweep };
                 chart.context.arc(chart.centerX, chart.centerY, chart.radius, chart.zero + startPercent * chart.fullSweep, chart.zero + sweepPercent * chart.fullSweep);
                 chart.context.lineTo(chart.centerX, chart.centerY);
                 chart.context.stroke();
@@ -72,6 +73,18 @@
         model.showRawData = function () {
             model.tab = 5;
         };
+
+        model.fetchOrderProducts = function () {
+            reportService.fetchOrderProducts(model.orderProductQuery);
+        };
+
+        messageService.subscribe('getOrderProductsSuccess', function (response) {
+            model.orderProducts = response;
+        });
+
+        messageService.subscribe('getOrderProductsFailure', function (response) {
+            model.orderProducts = [];
+        });
 
     };
 

@@ -1,20 +1,21 @@
 ﻿(function () {
 
     var reportService = function (messageService, $http) {
-
-        //var fetchProducts = function (start, count, orderByColumn, orderAscending, filter) {
-        //    var postData = { start, count, orderByColumn, orderAscending, filter };
-        //    $http.post("/api/inventory/query", postData)
-        //        .success(function (response) {
-        //            messageService.publish('querySuccess', response);
-        //        })
-        //        .error(function (response) {
-        //            messageService.publish('queryFailure', response);
-        //        });
-        //}
+        var fetchOrderProducts = function (orderProductQuery) {
+            $http.post("/api/report/GetOrderProducts", orderProductQuery)
+                .success(function (response) {
+                    if (response.Error)
+                        messageService.publish('getOrderProductsFailure', response.Error);
+                    else
+                        messageService.publish('getOrderProductsSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('getOrderProductsFailure', response);
+                });
+        };
 
         return {
-        //    fetchProducts: fetchProducts,
+            fetchOrderProducts: fetchOrderProducts,
         };
     }
 
