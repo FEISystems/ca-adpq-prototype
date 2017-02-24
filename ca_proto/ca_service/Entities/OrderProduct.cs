@@ -14,7 +14,6 @@ namespace ca_service.Entities
         public OrderStatus Status { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public decimal Total { get; set; }
         public string ProductType { get; set; }
         public string Contractor { get; set; }
 
@@ -27,7 +26,6 @@ namespace ca_service.Entities
             result.Status = (OrderStatus)reader["Status"];
             result.Price = (decimal)reader["Price"];
             result.Quantity = (int)reader["Quantity"];
-            result.Total = (decimal)reader["Total"];
             result.ProductType = (string)reader["ProductType"];
             result.Contractor = (string)reader["Contractor"];
             return result;
@@ -46,7 +44,7 @@ namespace ca_service.Entities
                         if (null == query)
                         {
                             StringBuilder temp = new StringBuilder();
-                            temp.AppendLine("select o.Id as OrderID, o.CreateDate, o.PaymentMethod, o.Status, oi.Price, oi.Quantity, (oi.Price * oi.Quantity) as Total, p.ProductType, p.Contractor");
+                            temp.AppendLine("select o.Id as OrderID, o.CreateDate, o.PaymentMethod, o.Status, oi.Price, oi.Quantity, p.ProductType, p.Contractor");
                             temp.AppendLine("  from orders o");
                             temp.AppendLine("  left outer join orderitems oi on oi.OrderId = o.Id");
                             temp.AppendLine("  left outer join products p on p.Id = oi.ProductId");

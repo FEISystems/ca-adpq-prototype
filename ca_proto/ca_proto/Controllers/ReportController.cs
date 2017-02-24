@@ -1,5 +1,6 @@
 ﻿using ca_proto.Filters;
 using ca_proto.Models;
+using ca_service.Entities;
 using ca_service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,11 +26,22 @@ namespace ca_proto.Controllers
         {
             try
             {
-                return Json(reportService.GetOrderProducts(query.Start, query.End));
+                return Json(HydrateOrderProducts(reportService.GetOrderProducts(query.Start, query.End)));
             }
             catch (Exception x)
             {
                 return Json(new ErrorReport { Error = x.Message });
+            }
+        }
+
+
+        private IEnumerable<OrderProductReportItem> HydrateOrderProducts(IEnumerable<OrderProduct> orderProducts)
+        {
+            if (null == orderProducts)
+                yield break;
+            foreach (var orderProduct in orderProducts)
+            {
+                yield return new OrderProductReportItem(orderProduct);
             }
         }
 
