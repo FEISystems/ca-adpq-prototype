@@ -1,18 +1,30 @@
+<link rel='stylesheet' type="text/css" href="app/areas/admin/adminhome/adminhome.css" />
 <standard-layout>
-    <h1>{{model.title}}</h1>
+    <h2 class="usa-heading">{{model.title}}</h1>
     <div class="usa-grid">
-        <div class="usa-width-one-third">
+        <div class="usa-width-one-half">
             <ul class="usa-unstyled-list">
-                <h3>Test Links</h3>
-                <li><a ng-link="['Vendors']">Vendors</a></li>
-                <li><a ng-link="['Inventory']">Inventory</a></li>
-                <li><a ng-link="['Admin Users']">Admin Users</a></li>
-                <li><a ng-link="['Authorized Users']">Authroized Users</a></li>
-                <li><a ng-link="['Admin Login']">Admin Login</a></li>
-                <li><a ng-link="['Reports']">Reports</a></li>
+                <!--<li><a ng-link="['Vendors']">Vendors</a></li>-->
+                <!--<li><a ng-link="['Admin Users']">Admin Users</a></li>-->
+                <!--<li><a ng-link="['Authorized Users']">Authroized Users</a></li>-->
+                <!--<li><a ng-link="['Admin Login']">Admin Login</a></li>-->
             </ul>
+            <div class="content-block">
+                <div class="content-heading">
+                    <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                    <a ng-link="['Inventory']">Catalog</a>
+                </div>
+                <p>View, search, add, edit and delete products currently within your catalog.</p>
+            </div>
         </div>
-        <div class="usa-width-one-third"></div>
-        <div class="usa-width-one-third"></div>
+        <div class="usa-width-one-half">
+            <div class="content-block">
+                <div class="content-heading">
+                    <i class="fa fa-area-chart fa-2x" aria-hidden="true"></i>
+                    <a ng-link="['Reports']">Reports</a>
+                </div>
+                <p>View reports based on expenditures and purchases</p>
+            </div>
+        </div>
     </div>
 </standard-layout>
