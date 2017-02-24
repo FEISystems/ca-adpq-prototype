@@ -7,7 +7,7 @@
 
         model.title = "Order History";
 
-        orderService.getOrdersByUserId(4);
+        orderService.getOrdersByUserId();
 
         messageService.subscribe("getOrdersByUserIdSuccess", function (response) {
             model.orders = response;
@@ -15,11 +15,6 @@
         messageService.subscribe("getOrdersByUserIdFailure", function (response) {
             model.orders = [];
         })
-
-        $scope.viewOrder = function(orderId) {
-            $rootScope.orderId = orderId;
-            $location.path("user/orderdetails");
-        }
 
 
 
