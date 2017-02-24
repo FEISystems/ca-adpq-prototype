@@ -1,3 +1,6 @@
+.your-cart input[type="text"] {
+  width: 60px;
+}
 .your-cart .usa-heading {
   border-bottom: 1px solid #e31c3d;
 }
@@ -11,15 +14,6 @@
 .your-cart .items-in-cart {
   padding: 20px 0;
   font-size: 1em;
-  /*-------------------remove these once actual images are implemented----------------------------*/
-  /*----------------------------------------------------------------------------------------------*/
-}
-.your-cart .items-in-cart .product-thumbnail {
-  width: 100%;
-  min-height: 100px;
-  background-color: lightgray;
-  border: 1px solid darkgray;
-  margin-right: 10px;
 }
 .your-cart .buttons {
   clear: both;
@@ -34,4 +28,16 @@
 }
 .your-cart .help-info p {
   margin-top: 0;
+}
+.your-cart .total {
+  border-top: 1px solid #e31c3d;
+  padding: 10px 0;
+}
+.your-cart .cost-per-item {
+  float: left;
+  padding-right: 10px;
+}
+.your-cart .quantity {
+  float: right;
+  padding-right: 25px;
 }

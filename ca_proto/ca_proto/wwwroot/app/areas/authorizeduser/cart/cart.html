@@ -16,29 +16,34 @@
                     <div class="item-info">{{item.SKU}}</div>
                     <div class="item-info">{{item.Category}}</div>
                 </div>
-                <div class="usa-width-one-sixth">
-                    <select ng-model="item.Quantity" ng-options="key*1 as value for (key,value) in model.qtyOptions">
-                        </select>
-                    <span>Quantity</span>
+                <div class="usa-width-one-fourth">
+                    <span class="cost-per-item">{{item.Price | currency}} each</span>
+                    <span class="quantity">
+                        <input type="text" ng-model="item.Quantity" />
+                        <span>Quantity</span>
+                    </span>
                 </div>
-                <div class="usa-width-one-sixth text-right">
+                <div class="usa-width-one-twelfth text-right">
                     <span><strong>{{item.Price * item.Quantity | currency}}</strong></span><br>
                     <a role="button" ng-click="removeThisItem(item.Id)">Remove</a>
                 </div>
+                
             </div>
 
-
+            <div class="usa-width-one-whole total">
+                <div class="usa-width-one-half">
+                    <h4>Total</h4>
+                </div>
+                <div class="usa-width-one-half">
+                    <h4 class="text-right">
+                            $$$
+                    </h4>
+                </div>
+            </div>
             <div class="buttons">
                 <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
                 <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
             </div>
-        </div>
-        <div class="usa-width-one-whole help-info">
-            <h4>Help</h4>
-            <p>If you have any questions or need help with your account and purchase, please contact us for assistance.</p>
-            <h4>Call Us</h4>
-            <p>1-888-555-5555<br> Mon - Sat: 9am - 5pm PST<br> Sun: 10am - 3pm PST
-            </p>
         </div>
     </div>
 </standard-layout>
