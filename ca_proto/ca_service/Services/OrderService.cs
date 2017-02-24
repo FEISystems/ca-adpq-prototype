@@ -109,11 +109,14 @@ namespace ca_service.Services
             return orders;
         }
 
-        public Order CancelOrder(int orderId)
+        public Order CancelOrder(int orderId, int userId)
         {
             var order = _orderRepository.Get(orderId);
 
             if (order == null)
+                throw new Exception("The order specified was not found.");
+
+            if(order.UserId != userId)
                 throw new Exception("The order specified was not found.");
 
             order.Status = OrderStatus.UserCancelled;
