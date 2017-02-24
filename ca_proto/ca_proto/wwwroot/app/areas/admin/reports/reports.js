@@ -100,22 +100,16 @@
             var top = 20;
             var left = model.width - 100;
             context.font = "16px Verdana";
-            context.fillStyle = model.hardwareColor;// "#6495ED";
-            context.fillRect(left, top, 10, 10)
-            context.fillStyle = "Black";
-            context.fillText("Hardware", left + 15, top + 10);
+            model.drawLabel(context, left, top, model.hardwareColor, "Hardware");
+            model.drawLabel(context, left, top + 20, model.softwareColor, "Software");
+            model.drawLabel(context, left, top + 40, model.serviceColor, "Service");
+        };
 
-            top += 20;
-            context.fillStyle = model.softwareColor;// "#FF7F50";
+        model.drawLabel = function (context, left, top, color, text) {
+            context.fillStyle = color;
             context.fillRect(left, top, 10, 10)
             context.fillStyle = "Black";
-            context.fillText("Software", left + 15, top + 10);
-
-            top += 20;
-            context.fillStyle = model.serviceColor;// "#A9A9A9";
-            context.fillRect(left, top, 10, 10)
-            context.fillStyle = "Black";
-            context.fillText("Service", left + 15, top + 10);
+            context.fillText(text, left + 15, top + 10);
         };
 
         model.clearCanvas = function (context) {
@@ -130,26 +124,13 @@
             model.contractors = [];
             model.contractorColumnWidth = 0;
             var contractors = model.extractContractors();
-            //alert(JSON.stringify(contractors));
             if (!contractors || contractors.length == 0)
                 return;
             model.contractors = contractors;
             model.contractorColumnWidth = Math.floor(model.width / model.contractors.length);
             var totals = model.initializeTotals(contractors.length);
-            for (var i = 0; i < model.orderProducts.length; i++) {
-                var row = model.orderProducts[i];
-                var contractorIndex = contractors.indexOf(row.Contractor);
-                var values = totals[contractorIndex];
-                if (row.ProductType == "Hardware")
-                    values.hardwareTotal += row.Total;
-                else if (row.ProductType == "Software")
-                    values.softwareTotal += row.Total;
-                else if (row.ProductType == "Service")
-                    values.serviceTotal += row.Total;
-            }
-            //normalize the data - get the max then divide all totals by the max to bring largest to one
-            var max = model.findMaxInTotals(totals);
-            model.normalizeTotals(totals, max);
+            model.calculateTotals(totals, contractors, "Contractor");
+            model.normalizeTotals(totals);
             model.drawTotals(context, totals);
             model.drawLabels(context);
         };
@@ -188,28 +169,28 @@
             return max;
         };
 
-        model.normalizeTotals = function (totals, max) {
+        model.normalizeTotals = function (totals) {
+            var max = model.findMaxInTotals(totals);
             for (var i = 0; i < totals.length; i++) {
                 totals[i].hardwareTotal /= max;
                 totals[i].softwareTotal /= max;
                 totals[i].serviceTotal /= max;
             }
-        }
-
+        };
 
         model.drawBar = function (context, x, y, width, height, color) {
             context.fillStyle = color;
             context.fillRect(x, y, width, height);
-        }
+        };
 
         model.initializeTotals = function (count) {
             var totals = [];
             for (var i = 0; i < count; i++) {
-                var values = { hardwareTotal :0.0, softwareTotal:0.0, serviceTotal:0.0 };
+                var values = { hardwareTotal: 0.0, softwareTotal: 0.0, serviceTotal: 0.0 };
                 totals.push(values);
             }
             return totals;
-        }
+        };
 
         model.extractContractors = function () {
             var result = [];
@@ -228,17 +209,23 @@
             model.clearCanvas(context);
             model.paymentAccounts = [];
             model.paymentAccountColumnWidth = 0;
-
             var accounts = model.extractAccounts();
             if (!accounts || accounts.length == 0)
                 return;
             model.paymentAccounts = accounts;
             model.paymentAccountColumnWidth = Math.floor(model.width / model.paymentAccounts.length);
             var totals = model.initializeTotals(accounts.length);
+            model.calculateTotals(totals, accounts, "PaymentMethod");
+            model.normalizeTotals(totals);
+            model.drawTotals(context, totals);
+            model.drawLabels(context);
+        };
+
+        model.calculateTotals = function (totals, list, key) {
             for (var i = 0; i < model.orderProducts.length; i++) {
                 var row = model.orderProducts[i];
-                var accountIndex = accounts.indexOf(row.PaymentMethod);
-                var values = totals[accountIndex];
+                var keyIndex = list.indexOf(row[key]);
+                var values = totals[keyIndex];
                 if (row.ProductType == "Hardware")
                     values.hardwareTotal += row.Total;
                 else if (row.ProductType == "Software")
@@ -246,15 +233,7 @@
                 else if (row.ProductType == "Service")
                     values.serviceTotal += row.Total;
             }
-            //normalize the data - get the max then divide all totals by the max to bring largest to one
-            var max = model.findMaxInTotals(totals);
-            model.normalizeTotals(totals, max);
-            //alert(JSON.stringify(totals));
-
-            model.drawTotals(context, totals);
-
-            model.drawLabels(context);
-        };
+        }
 
         model.extractAccounts = function () {
             var result = [];
