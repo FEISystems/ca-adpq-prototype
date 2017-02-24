@@ -14,12 +14,13 @@
     <div class="usa-width-two-thirds" style="margin-top:-80px">
         <div ng-show="model.tab == 1">
             <h3 class="usa-heading">Data Filter</h3>
-            <form id="orderProductQueryForm" name="orderProductQueryForm" ng-submit="model.fetchOrderProducts()" novalidate>
+            <form id="orderProductQueryForm" name="orderProductQueryForm"
+                   ng-submit="orderProductQueryForm.$valid && model.fetchOrderProducts()" novalidate>
                 <table>
                     <tr><th>Start Date</th><td><input type="text" ng-model="model.orderProductQuery.Start" required /></td></tr>
                     <tr><th>End Date</th><td><input type="text" ng-model="model.orderProductQuery.End" required /></td></tr>
-                    <tr><th></th><td><input type="submit" value="Run Report" /></td></tr>
-                    
+                    <tr><th></th><td><input type="submit" value="Run Report" ng-disabled="!orderProductQueryForm.$valid" /></td></tr>
+                    <tr><th colspan="2">{{model.responseMessage}}</th></tr>
                 </table>
             </form>
         </div>
@@ -42,32 +43,42 @@
 
         <div ng-show="model.tab == 5">
             <h3 class="usa-heading">Raw Data</h3>
-            <table>
+            <table style="font-size:small">
                 <thead>
                     <tr>
-                        <th>OrderId</th>
-                        <th>CreateDate</th>
-                        <th>PaymentMethod</th>
-                        <th>Status</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>ProductType</th>
-                        <th>Contractor</th>
+                        <!--<th><a href="" ng-click="model.setOrder('OrderId')">OrderId</a></th>-->
+                        <th><a href="" ng-click="model.setOrder('CreateDate')">Create Date</a></th>
+                        <th><a href="" ng-click="model.setOrder('PaymentMethod')">Payment Account</a></th>
+                        <th><a href="" ng-click="model.setOrder('Status')">Status</a></th>
+                        <th><a href="" ng-click="model.setOrder('Price')">Price</a></th>
+                        <th><a href="" ng-click="model.setOrder('Quantity')">Quantity</a></th>
+                        <th><a href="" ng-click="model.setOrder('Total')">Total</a></th>
+                        <th><a href="" ng-click="model.setOrder('ProductType')">Product Type</a></th>
+                        <th><a href="" ng-click="model.setOrder('Contractor')">Contractor</a></th>
                     </tr>
                 </thead>
-                <tr ng-repeat="row in model.orderProducts">
-                    <td>{{row.OrderId}}</td>
+                <tr ng-repeat="row in model.orderProductsOnPage">
+                    <!--<td>{{row.OrderId}}</td>-->
                     <td>{{row.CreateDate}}</td>
                     <td>{{row.PaymentMethod}}</td>
                     <td>{{row.Status}}</td>
-                    <td>{{row.Price}}</td>
+                    <td>{{row.Price|currency}}</td>
                     <td>{{row.Quantity}}</td>
-                    <td>{{row.Total}}</td>
+                    <td>{{row.Total|currency}}</td>
                     <td>{{row.ProductType}}</td>
                     <td>{{row.Contractor}}</td>
                 </tr>
             </table>
+            <p>
+                &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
+                &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
+                &nbsp;<span>Page {{model.pageIndex + 1}} of {{model.numberOfPages}}</span>
+                &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
+                &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
+                <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.pageCount" ng-options="count for count in model.pageCounts" ng-change="model.firstPage()" >
+                </select>
+            </p>
         </div>
     </div>
 </standard-layout>
