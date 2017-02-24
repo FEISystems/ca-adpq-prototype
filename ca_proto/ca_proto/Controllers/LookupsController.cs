@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using ca_proto.Helpers;
+using ca_proto.Models;
 
 namespace ca_proto.Controllers
 {
@@ -71,25 +73,7 @@ namespace ca_proto.Controllers
         public IActionResult PaymentMethods()
         {
             var vals = Enum.GetValues(typeof(OrderPaymentMethod)).Cast<OrderPaymentMethod>();
-
-            return Json(vals.Select(x => new { Id = (int)x, Description = GetEnumDescription((OrderPaymentMethod)x) }));
+            return Json(vals.Select(x => new { Id = (int)x, Description = x.Description() }));
         }
-
-        public static string GetEnumDescription(Enum value)
-        {
-            FieldInfo fi = value.GetType().GetField(value.ToString());
-
-            DescriptionAttribute[] attributes =
-                (DescriptionAttribute[])fi.GetCustomAttributes(
-                typeof(DescriptionAttribute),
-                false);
-
-            if (attributes != null &&
-                attributes.Length > 0)
-                return attributes[0].Description;
-            else
-                return value.ToString();
-        }
-
     }
 }

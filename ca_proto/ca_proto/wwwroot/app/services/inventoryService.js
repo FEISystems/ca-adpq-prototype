@@ -53,6 +53,19 @@
                 });            
         };
 
+        var createDemoOrders = function (count) {
+            $http.post("/api/prototype/GenerateOrders", count)
+                .success(function (response) {
+                    if (response.Error)
+                        messageService.publish('generateOrdersFailure', response.Error);
+                    else
+                        messageService.publish('generateOrdersSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('generateOrdersFailure', response);
+                });
+        }
+
         var importFile = function (fileinfo) {
             var r = new FileReader();
             r.onloadend = function (e) {
@@ -209,6 +222,7 @@
             importImage: importImage,
             fetchImageFileNames: fetchImageFileNames,
             resetDatabase: resetDatabase,
+            createDemoOrders: createDemoOrders,
         };
     }
 

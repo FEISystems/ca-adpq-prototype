@@ -18,7 +18,7 @@ namespace ca_service.Entities
         public OrderStatus Status { get; set; }
 
         [DbColumn(System.Data.DbType.DateTime)]
-        public DateTime OrderDateUtc { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [DbColumn(System.Data.DbType.Int32)]
         public int UserId { get; set; }

@@ -263,6 +263,16 @@
             model.setPage(model.pageCount);
         };
 
+        model.createDemoOrders = function () {
+            if (model.createCount > 0) {
+                model.onStartImport("Preparing to import " + model.createCount + " items");
+                inventoryService.createDemoOrders(model.createCount);
+            }
+            else {
+                model.onStartImport("Please enter the number of items to create.");
+            }
+        };
+
         messageService.subscribe('countSuccess', function (response) {
             model.pageCount = Math.ceil(response / model.itemsPerPage);
         })
@@ -385,6 +395,14 @@
             model.handleError(response);
         })
 
+        messageService.subscribe('generateOrdersSuccess', function (response) {
+            model.importProgress += "\n" + response;
+        })
+
+        messageService.subscribe('generateOrdersFailure', function (response) {
+            model.handleError(response);
+        })
+        
         model.fetchAll();
     };
 
