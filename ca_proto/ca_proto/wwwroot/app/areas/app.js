@@ -94,7 +94,7 @@
 
             
             // Authorized Users
-            { path: '/user/cancelorder', component: 'cancelOrder', name: 'Cancel Order'},
+            { path: '/user/cancelledorderconfirmation', component: 'cancelOrder', name: 'Cancel Order'},
             { path: '/user/cart', component: 'cart', name: 'Cart'},
             { path: '/user/checkout', component: 'checkout', name: 'Checkout'},
             { path: '/user/myaccount', component: 'myAccount', name: 'My Account'},
