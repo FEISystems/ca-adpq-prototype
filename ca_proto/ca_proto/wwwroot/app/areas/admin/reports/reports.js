@@ -34,6 +34,7 @@
 
             chart.fullSweep = 2.0 * Math.PI;
             chart.zero = -0.5 * Math.PI;
+            chart.context.strokeStyle = "Black";
 
             chart.drawSlice = function (startPercent, sweepPercent, color) {
                 chart.context.beginPath();
@@ -69,10 +70,47 @@
             model.tab = 2;
             var canvas = document.getElementById("productTypeCanvas");
             var context = canvas.getContext("2d");
+
+            var count = 0.0;
+            var hardwareCount = 0;
+            var softwareCount = 0;
+            var serviceCount = 0;
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                ++count;
+                if (model.orderProducts[i].ProductType == "Hardware")
+                    ++hardwareCount;
+                else if (model.orderProducts[i].ProductType == "Software")
+                    ++softwareCount;
+                else if (model.orderProducts[i].ProductType == "Service")
+                    ++serviceCount;
+            }
             var pieChart = model.pieChart(context, model.height, model.width);
-            pieChart.drawSlice(0, 1.0 / 3.0, "red");
-            pieChart.drawSlice(1.0 / 3.0, 2.0 / 3.0, "blue");
-            pieChart.drawSlice(2.0 / 3.0, 1, "green");
+            pieChart.drawSlice(0.0, hardwareCount / count, "#6495ED");
+            pieChart.drawSlice(hardwareCount / count, (hardwareCount + softwareCount) / count, "#FF7F50");
+            pieChart.drawSlice((hardwareCount + softwareCount) / count, 1.0, "#A9A9A9");
+            model.drawLabels(context);
+        };
+
+        model.drawLabels = function (context) {
+            var top = 20;
+            var left = model.width - 100;
+            context.font = "16px Verdana";
+            context.fillStyle = "#6495ED";
+            context.fillRect(left, top, 10, 10)
+            context.fillStyle = "Black";
+            context.fillText("Hardware", left + 15, top + 10);
+
+            top += 20;
+            context.fillStyle = "#FF7F50";
+            context.fillRect(left, top, 10, 10)
+            context.fillStyle = "Black";
+            context.fillText("Software", left + 15, top + 10);
+
+            top += 20;
+            context.fillStyle = "#A9A9A9";
+            context.fillRect(left, top, 10, 10)
+            context.fillStyle = "Black";
+            context.fillText("Service", left + 15, top + 10);
         };
 
         model.clearPie = function () {
