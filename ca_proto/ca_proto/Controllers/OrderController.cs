@@ -40,7 +40,11 @@ namespace ca_proto.Controllers
         [HttpPost("CancelOrder/{orderId}")]
         public Order CancelOrder(int orderId)
         {
-            return _orderService.CancelOrder(orderId);
+            var userId = HttpContext.GetUserId();
+            if (!userId.HasValue)
+                throw new Exception("User must be logged in");
+
+            return _orderService.CancelOrder(orderId, userId.Value);
         }
 
         [HttpPost("PlaceOrder")]

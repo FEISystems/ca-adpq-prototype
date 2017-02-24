@@ -21,7 +21,7 @@
         };
 
         var cancelOrder = function (orderId) {
-            $http.get("/api/order/cancelorder/" + orderId)
+            $http.post("/api/order/cancelorder/" + orderId)
                 .success(function (response) {
                     messageService.publish('cancelOrderSuccess', response);
                 })

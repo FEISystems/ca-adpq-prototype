@@ -2,48 +2,50 @@
 # author:  Ryan Chadwick
 # company: FEi Systems Inc.
 
-This readme will serve as an outline to Plays 9 and 10
+This readme will serve as an outline to Plays 9, 10, and 12
 in the Digital Services Playbook located at below.
 
 https://playbook.cio.gov/#play9
 
 https://playbook.cio.gov/#play10
 
+https://playbook.cio.gov/#play12
+
 Play 9 - Deploy in a flexible hosting environment
 
 Our services should be deployed on flexible infrastructure,
 where resources can be provisioned in real-time to meet spikes
 in traffic and user demand. Our digital services are crippled
-when we host them in data centers that market themselves as ìcloud hostingî
+when we host them in data centers that market themselves as ‚Äúcloud hosting‚Äù
 but require us to manage and maintain hardware directly. This outdated
 practice wastes time, weakens our disaster recovery plans, and results
 in significantly higher costs.
 
 Checklist for Play 9:
 
-C 9.1   Resources are provisioned on demand.
-C 9.2   Resources scale based on real-time user demand.
-C 9.3   Resources are provisioned through an API.
-C 9.4   Resources are available in multiple regions.
-C 9.5   We only par for the resources we user.
-C 9.6   Static assets are served through a content delivery network.
-C 9.7   Application is hosted on commodity hardware.
+* C 9.1   Resources are provisioned on demand.
+* C 9.2   Resources scale based on real-time user demand.
+* C 9.3   Resources are provisioned through an API.
+* C 9.4   Resources are available in multiple regions.
+* C 9.5   We only par for the resources we user.
+* C 9.6   Static assets are served through a content delivery network.
+* C 9.7   Application is hosted on commodity hardware.
 
 Key Questions for Play 9:
 
-K 9.1   Where is your service hosted?
-K 9.2   What Hardware does your service use to run?
-K 9.3   What is the demand or usage pattern for your services?
-K 9.4   What happens to your services when it experiences a surves in traffic or load?
-K 9.5   How much capacity is available in your hosting environment?
-K 9.6   How long does it take you to provision a new resources, like an application server?
-K 9.7   How have you designed your service to scale based on demand?
-K 9.8   How are you planning for your hosting infrastructure (e.g., by the minute, hourly, daily, monthly, fixed)?
-K 9.9   Is your service hosted in multiple regions, availability zones, or data centers?
-K 9.10  In the event of a catastrophic disaster to a datacenter, how long till it take to have the service operational?
-K 9.11  What would the impact of a prolonged downtime window?
-K 9.12  What data redundancy do you have built into the system, and what would be the impact of a catastrophic data loss?
-K 9.13  How often do you need to contact a person from your hosting provider to get resources or to fix an issue?
+* K 9.1   Where is your service hosted?
+* K 9.2   What Hardware does your service use to run?
+* K 9.3   What is the demand or usage pattern for your services?
+* K 9.4   What happens to your services when it experiences a surves in traffic or load?
+* K 9.5   How much capacity is available in your hosting environment?
+* K 9.6   How long does it take you to provision a new resources, like an application server?
+* K 9.7   How have you designed your service to scale based on demand?
+* K 9.8   How are you planning for your hosting infrastructure (e.g., by the minute, hourly, daily, monthly, fixed)?
+* K 9.9   Is your service hosted in multiple regions, availability zones, or data centers?
+* K 9.10  In the event of a catastrophic disaster to a datacenter, how long till it take to have the service operational?
+* K 9.11  What would the impact of a prolonged downtime window?
+* K 9.12  What data redundancy do you have built into the system, and what would be the impact of a catastrophic data loss?
+* K 9.13  How often do you need to contact a person from your hosting provider to get resources or to fix an issue?
 
 Play 10 - Automate testing and deployments
 
@@ -58,11 +60,11 @@ frequent updates to the service.
 
 Checklist for Play 10:
 
-C 10.1  Create automated tests that verify all user-facing functionality.
-C 10.2  Create unit and integration tests to verify modules and components.
-C 10.3  Run tests automatically as part of the build process.
-C 10.4  Perform deployments automatically with deployment scripts, continuous delivery services, or similar techniques.
-C 10.5  Conduct load and performance tests at regular intervals, including before public launch.
+* C 10.1  Create automated tests that verify all user-facing functionality.
+* C 10.2  Create unit and integration tests to verify modules and components.
+* C 10.3  Run tests automatically as part of the build process.
+* C 10.4  Perform deployments automatically with deployment scripts, continuous delivery services, or similar techniques.
+* C 10.5  Conduct load and performance tests at regular intervals, including before public launch.
 
 Key Questions for Play 10:
 

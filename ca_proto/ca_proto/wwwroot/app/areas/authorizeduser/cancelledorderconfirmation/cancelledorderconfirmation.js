@@ -10,7 +10,7 @@
     };
 
     module.component("cancelOrder", {
-        templateUrl: "app/areas/authorizeduser/cancelorder/cancelorder.html",
+        templateUrl: "app/areas/authorizeduser/cancelledorderconfirmation/cancelledorderconfirmation.html",
         controllerAs: "model",
         controller: ["$scope", "$location", controller]
 

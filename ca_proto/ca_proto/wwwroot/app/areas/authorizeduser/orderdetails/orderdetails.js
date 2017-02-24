@@ -7,10 +7,20 @@
         model.provider = {};
         model.title = "Order Details";
         model.orderTotal = 0;
+
+
         this.$routerOnActivate = function (next, previous) {
 
 
+
             model.orderId = parseInt(next.params.id);
+
+            
+
+            model.cancelOrder = function() {
+                orderService.cancelOrder(model.orderId);
+            };
+
 
 
             model.getOrder = function () {
@@ -22,7 +32,6 @@
             model.getProduct = function (productId) {
                 inventoryService.getProduct(productId);
             };
-
 
 
             messageService.subscribe("getOrderSuccess", function (response) {
@@ -48,6 +57,16 @@
             })
 
             messageService.subscribe('getProductFailure', function (response) {
+                model.products = [];
+
+            })
+            
+
+            messageService.subscribe('cancelOrderSuccess', function (response) {
+                $location.path("user/cancelledorderconfirmation");
+            })
+
+            messageService.subscribe('cancelOrderFailure', function (response) {
                 model.products = [];
 
             })

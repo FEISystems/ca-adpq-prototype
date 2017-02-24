@@ -167,14 +167,14 @@ namespace ca_proto_tests
 
             var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
-            int orderId = 42;
+            int orderId = 42, userId = 9;
 
-            Order theOrder = new Order(orderId) { Status = OrderStatus.Placed };
+            Order theOrder = new Order(orderId) { Status = OrderStatus.Placed, UserId = userId };
 
             orderRepository.Setup(x => x.Get(orderId)).Returns(() => theOrder);
             orderRepository.Setup(x => x.Update(It.IsAny<Order>()));
 
-            var result = orderService.CancelOrder(orderId);
+            var result = orderService.CancelOrder(orderId, userId);
 
             Assert.Equal(OrderStatus.UserCancelled, result.Status);
 
@@ -182,19 +182,25 @@ namespace ca_proto_tests
         }
 
         [Fact]
-        public void CancelOrderThrowsExceptionIfNoOrder()
+        public void CancelOrderThrowsExceptionIfNoOrderOrWrongUser()
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>(MockBehavior.Strict);
 
             var orderService = new ca_service.Services.OrderService(orderRepository.Object, null, null, null);
 
-            int orderId = 42;
+            int orderId = 42, userId = 9, wrongUserId = 99;
 
-            orderRepository.Setup(x => x.Get(orderId)).Returns(() => null);
+            Order theOrder = null;
+
+            orderRepository.Setup(x => x.Get(orderId)).Returns(() => theOrder);
 
             Order result;
 
-            Assert.Throws<Exception>(() => result = orderService.CancelOrder(orderId));
+            Assert.Throws<Exception>(() => result = orderService.CancelOrder(orderId, userId));
+
+            theOrder = new Order(orderId) { Status = OrderStatus.Placed, UserId = userId };
+
+            Assert.Throws<Exception>(() => result = orderService.CancelOrder(orderId, wrongUserId));
         }
 
         [Fact]
