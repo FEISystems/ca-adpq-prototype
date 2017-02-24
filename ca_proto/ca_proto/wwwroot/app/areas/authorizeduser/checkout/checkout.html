@@ -8,10 +8,10 @@
                 <label for="input-type-name">Name</label>
                 <input id="input-type-name" ng-model="model.name" name="input-type-name" required type="text">
             </div>
-            <div class="department">
+            <!--<div class="department">
                 <label for="input-type-department">Department</label>
                 <input id="input-type-department" ng-model="model.department" name="input-type-department" required type="text">
-            </div>
+            </div>-->
             <div class="phone">
                 <label for="input-type-phone">Phone Number</label>
                 <input id="input-type-phone" ng-model="model.phoneNumber" name="input-type-phone" required type="text">
@@ -38,7 +38,9 @@
             </div>
             <div class="delivery-state">
                 <label for="input-type-delivery-state">State</label>
-                <input id="input-type-delivery-state" ng-model="model.state" name="input-type-delivery-state" required type="text">
+                <select id="input-type-delivery-state" ng-model="model.state" name="input-type-delivery-state" ng-options="key as value for (key,value) in model.stateOptions" required type="text">
+                   
+               </select>
             </div>
             <div class="delivery-postalcode">
                 <label for="input-type-delivery-postalcode">Postal Code</label>

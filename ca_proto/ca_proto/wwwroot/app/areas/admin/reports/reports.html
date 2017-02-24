@@ -34,10 +34,12 @@
 
         <div ng-show="model.tab == 3">
             <h3 class="usa-heading">Expenditures by Contractor</h3>
+            <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width}}"></canvas><br />
         </div>
 
         <div ng-show="model.tab == 4">
             <h3 class="usa-heading">Purchases by Account</h3>
+            <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width}}"></canvas><br />
         </div>
 
         <div ng-show="model.tab == 5">
