@@ -1,4 +1,7 @@
 .your-cart {
+    input[type="text"] {
+        width: 60px;
+    }
     .usa-heading {
         border-bottom: 1px solid #e31c3d;
     }
@@ -12,15 +15,6 @@
     .items-in-cart {
         padding: 20px 0;
         font-size: 1em;
-        /*-------------------remove these once actual images are implemented----------------------------*/
-        .product-thumbnail {
-            width: 100%;
-            min-height: 100px;
-            background-color: lightgray; 
-            border: 1px solid darkgray;
-            margin-right: 10px;
-        }
-    /*----------------------------------------------------------------------------------------------*/
     }
     .buttons {
         clear: both;
@@ -35,5 +29,17 @@
         p {
             margin-top: 0;
        }
+    }
+    .total {
+        border-top: 1px solid #e31c3d;
+        padding: 10px 0;
+    }
+    .cost-per-item {
+        float: left;
+        padding-right: 10px;
+    }
+    .quantity {
+        float: right;
+        padding-right: 25px;
     }
 }
