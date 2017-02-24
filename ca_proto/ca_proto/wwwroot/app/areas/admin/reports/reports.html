@@ -43,6 +43,9 @@
         <div ng-show="model.tab == 4">
             <h3 class="usa-heading">Purchases by Account</h3>
             <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width}}"></canvas><br />
+            <table style="width:{{model.width}};text-align:center">
+                <tr style="width:{{model.width}}"><td ng-repeat="account in model.paymentAccounts" style="width:{{model.paymentAccountColumnWidth}}px">{{account}}</td></tr>
+            </table>
         </div>
 
         <div ng-show="model.tab == 5">

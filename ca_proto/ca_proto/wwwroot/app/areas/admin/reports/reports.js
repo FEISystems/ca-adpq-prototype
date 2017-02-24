@@ -27,6 +27,8 @@
         model.serviceColor = "#A9A9A9";
         model.contractors = [];
         model.contractorColumnWidth = 0;
+        model.paymentAccounts = [];
+        model.paymentAccountColumnWidth = 0;
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -146,17 +148,13 @@
                     values.serviceTotal += row.Total;
             }
             //normalize the data - get the max then divide all totals by the max to bring largest to one
-            var max = Math.max(totals[0].hardwareTotal, totals[0].softwareTotal, totals[0].serviceTotal);
-            for (var i = 1; i < totals.length; i++) {
-                var temp = Math.max(totals[i].hardwareTotal, totals[i].softwareTotal, totals[i].serviceTotal);
-                if (temp > max)
-                    max = temp;
-            }
-            for (var i = 0; i < totals.length; i++) {
-                totals[i].hardwareTotal /= max;
-                totals[i].softwareTotal /= max;
-                totals[i].serviceTotal /= max;
-            }
+            var max = model.findMaxInTotals(totals);
+            model.normalizeTotals(totals, max);
+            model.drawTotals(context, totals);
+            model.drawLabels(context);
+        };
+
+        model.drawTotals = function (context, totals) {
             //draw the data
             var padding = 20 * (totals.length + 1);
             var usableWidth = model.width - padding;
@@ -164,7 +162,7 @@
             var left = 22;
             for (var i = 0; i < totals.length; i++) {
                 var values = totals[i];
-                var barHeight = Math.floor( model.height * values.hardwareTotal);
+                var barHeight = Math.floor(model.height * values.hardwareTotal);
                 model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.hardwareColor);
 
                 left += columnWidth + 2;
@@ -175,10 +173,29 @@
                 var barHeight = Math.floor(model.height * values.serviceTotal);
                 model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.serviceColor);
 
-                left += columnWidth + 2 + 40;
+                left += columnWidth + 2 + 30;
             }
-            model.drawLabels(context);
+
         };
+
+        model.findMaxInTotals = function (totals) {
+            var max = Math.max(totals[0].hardwareTotal, totals[0].softwareTotal, totals[0].serviceTotal);
+            for (var i = 1; i < totals.length; i++) {
+                var temp = Math.max(totals[i].hardwareTotal, totals[i].softwareTotal, totals[i].serviceTotal);
+                if (temp > max)
+                    max = temp;
+            }
+            return max;
+        };
+
+        model.normalizeTotals = function (totals, max) {
+            for (var i = 0; i < totals.length; i++) {
+                totals[i].hardwareTotal /= max;
+                totals[i].softwareTotal /= max;
+                totals[i].serviceTotal /= max;
+            }
+        }
+
 
         model.drawBar = function (context, x, y, width, height, color) {
             context.fillStyle = color;
@@ -209,8 +226,44 @@
             var canvas = document.getElementById("purchasesCanvas");
             var context = canvas.getContext("2d");
             model.clearCanvas(context);
+            model.paymentAccounts = [];
+            model.paymentAccountColumnWidth = 0;
+
+            var accounts = model.extractAccounts();
+            if (!accounts || accounts.length == 0)
+                return;
+            model.paymentAccounts = accounts;
+            model.paymentAccountColumnWidth = Math.floor(model.width / model.paymentAccounts.length);
+            var totals = model.initializeTotals(accounts.length);
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                var row = model.orderProducts[i];
+                var accountIndex = accounts.indexOf(row.PaymentMethod);
+                var values = totals[accountIndex];
+                if (row.ProductType == "Hardware")
+                    values.hardwareTotal += row.Total;
+                else if (row.ProductType == "Software")
+                    values.softwareTotal += row.Total;
+                else if (row.ProductType == "Service")
+                    values.serviceTotal += row.Total;
+            }
+            //normalize the data - get the max then divide all totals by the max to bring largest to one
+            var max = model.findMaxInTotals(totals);
+            model.normalizeTotals(totals, max);
+            //alert(JSON.stringify(totals));
+
+            model.drawTotals(context, totals);
 
             model.drawLabels(context);
+        };
+
+        model.extractAccounts = function () {
+            var result = [];
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                if (!result.includes(model.orderProducts[i].PaymentMethod)) {
+                    result.push(model.orderProducts[i].PaymentMethod);
+                }
+            }
+            return result;
         };
 
         model.showRawData = function () {
