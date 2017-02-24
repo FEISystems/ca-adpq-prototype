@@ -48,10 +48,6 @@
                 chart.context.fill();
             };
 
-            chart.clear = function () {
-                chart.context.clearRect(0, 0, chart.width, chart.height);
-            };
-
             return chart;
         };
 
@@ -73,6 +69,7 @@
             model.tab = 2;
             var canvas = document.getElementById("productTypeCanvas");
             var context = canvas.getContext("2d");
+            model.clearCanvas(context);
 
             var total = 0.0;
             var hardwareTotal = 0;
@@ -117,19 +114,26 @@
             context.fillText("Service", left + 15, top + 10);
         };
 
-        model.clearPie = function () {
-            var canvas = document.getElementById("productTypeCanvas");
-            var context = canvas.getContext("2d");
-            var pieChart = model.pieChart(context, model.height, model.width);
-            pieChart.clear();
+        model.clearCanvas = function (context) {
+            context.clearRect(0, 0, model.width, model.height);
         };
 
         model.showExpendituresByContractor = function () {
             model.tab = 3;
+            var canvas = document.getElementById("contractorCanvas");
+            var context = canvas.getContext("2d");
+            model.clearCanvas(context);
+
+            model.drawLabels(context);
         };
 
         model.showPurchasesByAccount = function () {
             model.tab = 4;
+            var canvas = document.getElementById("purchasesCanvas");
+            var context = canvas.getContext("2d");
+            model.clearCanvas(context);
+
+            model.drawLabels(context);
         };
 
         model.showRawData = function () {
