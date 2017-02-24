@@ -8,7 +8,7 @@
         model.title = "Reports";
         model.tab = 1;
         model.height = 400;
-        model.width = 700;
+        model.width = 750;
         model.orderProducts = [];
         model.orderProductsOnPage = [];
         var start = new Date();
@@ -173,7 +173,7 @@
                 var barHeight = Math.floor(model.height * values.serviceTotal);
                 model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.serviceColor);
 
-                left += columnWidth + 2 + 30;
+                left += columnWidth + 2 + 20;
             }
 
         };
