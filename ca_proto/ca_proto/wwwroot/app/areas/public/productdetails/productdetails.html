@@ -1,3 +1,49 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/public/productdetails/productdetails.css" />
+<standard-layout>
+    <div class="product-details">
+        <h2 class="usa-heading">{{model.product.Category}}</h2>
+        <div class="wrapper">
+            <div class="usa-width-one-half" style="text-align: center">
+                <div style="display: inline-block; height: 250px; width: 250px;">
+                    <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+                </div>
+            </div>
+            <div class="usa-width-one-half">
+                <h3>{{model.product.Title}}</h3>
+                <h4>{{model.product.ContractPrice | currency}}</h4>
+                <div class="usa-width-one-half add-to-cart">
+                    <label for="add_to_cart" class="usa-sr-only">Add to Cart</label>
+                    <select type="text" id="add_to_cart">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
+                    <button class="usa-button-secondary left">Add to Cart</button>
+                    <!--<add-to-cart-button product="$scope.productInfo"></add-to-cart-button>-->
+                </div>
+                <div class="usa-width-one-half compare">
+                    <compare-product-button product-id="model.productId"></compare-product-button>
+                </div>
+                <p class="usa-width-one-whole">
+                    {{model.product.Description}}
+                </p>
+                <hr class="clear">
+                <div class="usa-width-one-whole">
+                    <ul>
+                        <li><b>Manufacturer:</b> {{model.product.Manufacturer}}</li>
+                        <li><b>SKU #</b> {{model.product.SKU}}</li>
+                        <li><b>OEM #</b> {{model.product.ManufacturerPartNumber}}</li>
+                        <li><b>CLIN:</b> {{model.product.CLIN}}</li>
+                        <li><b>Contractor:</b> {{model.product.Contractor}}</li>
+                        <li><b>Contract #</b> {{model.product.ContractNumber}}</li>
+                        <li><b>Contract Expiration Date:</b> {{model.product.ContractExpiration}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </standard-layout>

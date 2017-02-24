@@ -62,11 +62,7 @@ namespace ca_proto.Controllers
         [HttpGet("Lookups")]
         public IActionResult Lookups()
         {
-            return Json(categoryService.Fetch().Select(item => new SelectItem
-            {
-                Id = item.Id,
-                Text = item.Name
-            }));
+            throw new Exception("Move to Lookups Controller");
         }
     }
 }

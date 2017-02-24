@@ -49,12 +49,23 @@ namespace ca_proto
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IInventoryService, InventoryService>();
+            services.AddTransient<IImageService, ImageService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IContractService, ContractService>();
+            services.AddTransient<IContractorService, ContractorService>();
             services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IContractRepository, ContractRepository>();
+            services.AddTransient<IContractorRepository, ContractorRepository>();
+            services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddTransient<IShoppingCartItemRepository, ShoppingCartItemRepository>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IPrototypeService, PrototypeService>();
+            services.AddTransient<IReportService, ReportService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMemoryCache();
             // Register the Swagger generator, defining one or more Swagger documents
@@ -62,6 +73,12 @@ namespace ca_proto
             {
                 c.SwaggerDoc("v1", new Info { Title = "Ca Proto", Version = "v1" });
             });
+
+            services.AddMvc()
+               .AddJsonOptions(options =>
+               {
+                   options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

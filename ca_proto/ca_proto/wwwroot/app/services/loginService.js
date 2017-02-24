@@ -6,7 +6,7 @@
             var creds = {username: username, password: password };
             $http.post("/api/authentication", creds)
                 .success(function (response) {
-                    if (!response.token || !response.token.length) {
+                    if (!response.Token || !response.Token.length) {
                         messageService.publish('loginFailure', response);
                         messageService.publish('showError', 'Login Failed')
                     }

@@ -1,14 +1,19 @@
-CREATE TABLE 'ca'.products' (
-            'Id' INT NOT NULL AUTO_INCREMENT,
-            'Name' VARCHAR(250) NOT NULL,
-            'ContractId' INT NOT NULL,
-            'Manufacturer' VARCHAR(250) NOT NULL,
-            'ManufacturerPartNumber' VARCHAR(250) NOT NULL,
-            'SKU' VARCHAR(50) NOT NULL,
-            'ProductType' int NOT NULL,
-            'ValidParentProductIds', VARCHAR(500) NULL,
-            'Category', VARCHAR(100) NOT NULL,
-            'ListPrice', DECIMAL(12,4),
-            'ContractPrice', DECIMAL(12,4),
-            PRIMARY KEY ('Id')
+use ca;
+
+DROP TABLE IF EXISTS `products`;
+
+
+CREATE TABLE `ca`.`products` (
+            `Id` INT NOT NULL AUTO_INCREMENT,
+            `Name` VARCHAR(250) NOT NULL,
+            `ContractId` INT NOT NULL,
+            `Manufacturer` VARCHAR(250) NOT NULL,
+            `ManufacturerPartNumber` VARCHAR(250) NOT NULL,
+            `SKU` VARCHAR(50) NOT NULL,
+            `ProductType` int NOT NULL,
+            `ValidParentProductIds` VARCHAR(500) NULL,
+            `Category` VARCHAR(100) NOT NULL,
+            `ListPrice` DECIMAL(12,4),
+            `ContractPrice` DECIMAL(12,4),
+            PRIMARY KEY (`Id`)
 );

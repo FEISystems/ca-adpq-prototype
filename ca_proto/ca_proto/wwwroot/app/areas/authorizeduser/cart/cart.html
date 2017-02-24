@@ -1,15 +1,44 @@
-﻿<standard-layout>
-    <h1>{{model.title}}</h1>
-    <div class="usa-grid">
-        <div class="usa-width-one-third">
-            <ul class="usa-unstyled-list">
-                <h3>Test Links</h3>
-                <li><a ng-link="['Checkout']">Checkout</a></li>
-                <li><a ng-link="['Order Confirmation']">Order Confirmation</a></li>
-                <li><a ng-link="['Review Order']">Review Order</a></li>
-            </ul>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/cart/cart.css" />
+<standard-layout>
+    <div class="your-cart">
+        <h2 class="usa-heading">Your Cart</h2>
+        <div class="usa-width-one-whole">
+            <div class="items-in-cart-header">
+                ({{model.cart.Items.length}}) items in your cart
+            </div>
+
+            <div ng-repeat="item in model.cartItems" class="items-in-cart usa-grid">
+                <div class="usa-width-one-sixth">
+                    <img ng-src="api/image/{{model.products[$index].ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
+                </div>
+                <div class="usa-width-one-half">
+                    <div><strong>{{model.products[$index].Title}}</strong></div>
+                    <div class="item-info">{{item.SKU}}</div>
+                    <div class="item-info">{{item.Category}}</div>
+                </div>
+                <div class="usa-width-one-sixth">
+                    <select ng-model="item.Quantity" ng-options="key*1 as value for (key,value) in model.qtyOptions">
+                        </select>
+                    <span>Quantity</span>
+                </div>
+                <div class="usa-width-one-sixth text-right">
+                    <span><strong>{{item.Price * item.Quantity | currency}}</strong></span><br>
+                    <a role="button" ng-click="removeThisItem(item.Id)">Remove</a>
+                </div>
+            </div>
+
+
+            <div class="buttons">
+                <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
+                <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
+            </div>
         </div>
-        <div class="usa-width-one-third"></div>
-        <div class="usa-width-one-third"></div>
+        <div class="usa-width-one-whole help-info">
+            <h4>Help</h4>
+            <p>If you have any questions or need help with your account and purchase, please contact us for assistance.</p>
+            <h4>Call Us</h4>
+            <p>1-888-555-5555<br> Mon - Sat: 9am - 5pm PST<br> Sun: 10am - 3pm PST
+            </p>
+        </div>
     </div>
 </standard-layout>

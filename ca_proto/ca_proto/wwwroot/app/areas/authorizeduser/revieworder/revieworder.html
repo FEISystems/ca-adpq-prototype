@@ -1,3 +1,97 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/revieworder/revieworder.css" />
+<standard-layout>
+    <div class="usa-grid" style="text-align: center; margin-top: 40px" ng-show="orderInfoIsEmpty()">
+        <h2>Please return to checkout.</h2>
+        <button class="usa-button-secondary" ng-click="backToCheckout()">Back to Checkout</button>
+    </div>
+    <div class="review-order" ng-hide="orderInfoIsEmpty()">
+        <h2 class="usa-heading">Review Order</h2>
+        <div class="usa-width-one-half">
+            <div class="review-order-header">
+                <h3 class="left">Order Information</h3>
+            </div>
+            <div class="name clear">
+                <label for="input-type-name">Name</label>
+                <input id="input-type-name" ng-model="model.name" name="input-type-name" required type="text" readonly="readonly">
+            </div>
+            <div class="department">
+                <label for="input-type-department">Department</label>
+                <input id="input-type-department" ng-model="model.department" name="input-type-department" required type="text" readonly="readonly">
+            </div>
+            <div class="phone">
+                <label for="input-type-phone">Phone Number</label>
+                <input id="input-type-phone" ng-model="model.phoneNumber" name="input-type-phone" required type="text" readonly="readonly">
+            </div>
+            <div class="email">
+                <label for="input-type-email">Email Address</label>
+                <input id="input-type-email" ng-model="model.emailAddress" name="input-type-email" required type="text" readonly="readonly">
+            </div>
+            <div class="delivery-address1">
+                <label for="input-type-delivery-address1">Address 1</label>
+                <input id="input-type-delivery-address1" ng-model="model.address1" name="input-type-delivery-address1" required type="text" readonly="readonly">
+            </div>
+            <div class="delivery-address2">
+                <label for="input-type-delivery-address2">Address 2</label>
+                <input id="input-type-delivery-address2" ng-model="model.address2" name="input-type-delivery-address2"  type="text" readonly="readonly">
+            </div>
+            <div class="delivery-address3">
+                <label for="input-type-delivery-address3">Address 3</label>
+                <input id="input-type-delivery-address3" ng-model="model.address3" name="input-type-delivery-address3"  type="text" readonly="readonly">
+            </div>
+            <div class="delivery-city">
+                <label for="input-type-delivery-city">City</label>
+                <input id="input-type-delivery-city" ng-model="model.city" name="input-type-delivery-city" required type="text" readonly="readonly">
+            </div>
+            <div class="delivery-state">
+                <label for="input-type-delivery-state">State</label>
+                <input id="input-type-delivery-state" ng-model="model.state" name="input-type-delivery-state" required type="text" readonly="readonly">
+            </div>
+            <div class="delivery-postalcode">
+                <label for="input-type-delivery-postalcode">Zip Code</label>
+                <input id="input-type-delivery-postalcode" ng-model="model.postalCode" name="input-type-delivery-postalcode" required type="text" readonly="readonly">
+            </div>
+            <div class="payment">
+                <label for="input-type-payment">Payment Account</label>
+                <select id="input-type-payment" ng-model="model.paymentAccount" name="input-type-payment" ng-options="key*1 as value for (key,value) in model.paymentOptions" type="text" required readonly="readonly">
+                   
+               </select>
+            </div>
+            <br>
+            <a ng-link="['Checkout']">Edit Checkout Information</a>
+        </div>
+        <div class="usa-width-one-half order-summary">
+            <h3 class="usa-heading">Order Summary</h3>
+
+            <div class="usa-grid" ng-repeat="item in model.cartItems">
+                <div class="usa-grid-full">
+                    <div class="usa-width-one-fourth">
+                        <img ng-src="api/image/{{model.products[$index].ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
+                    </div>
+                    <div class="usa-width-three-fourths item-info-group">
+                        <div><strong>{{model.products[$index].Title}}</strong></div>
+                        <div class="item-info">{{model.products[$index].SKU}}</div>
+                        <div class="item-info">{{model.products[$index].Category}}</div>
+                        <div class="item-info">Qty: {{item.Quantity}}</div>
+                    </div>
+                </div>
+
+                <div class="usa-grid-full text-right">
+                    {{item.Price * item.Quantity | currency}}/ea.
+                </div>
+                <div class="clear" ng-show="model.cartItems.length > 1">
+                    <hr ng-show="model.cartItems.length != $index + 1" />
+                </div>
+            </div>
+
+
+            <div class="clear total-cost" style="margin-top: 20px">
+                <div class="usa-width-one-half">Total:</div>
+                <div class="usa-width-one-half text-right">{{model.cartTotal | currency}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="clear usa-width-one-whole" style="margin-top: 20px; text-align: right" ng-hide="orderInfoIsEmpty()">
+        <button class="usa-button-secondary" ng-click="backToCart()">Back to Cart</button>
+        <button class="usa-button-secondary" type="submit" ng-click="placeOrder()">Place Order</button>
+    </div>
 </standard-layout>

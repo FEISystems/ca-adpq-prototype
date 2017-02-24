@@ -11,5 +11,7 @@ namespace ca_service.Entities
         public string Message { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public int UserId { get; set; }
     }
 }

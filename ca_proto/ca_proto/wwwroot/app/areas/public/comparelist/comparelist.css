@@ -1,0 +1,18 @@
+.compare-list .usa-heading {
+  border-bottom: 1px solid #e31c3d;
+}
+.compare-list .compare-table {
+  float: left;
+  min-width: 20%;
+}
+.compare-list .compare-table button {
+  width: 124px;
+  margin: 0 auto;
+  display: block;
+}
+.compare-list .compare-table a {
+  display: block;
+}
+.compare-list .compare-table th {
+  background: #f1f1f1;
+}

@@ -1,0 +1,14 @@
+<aside-layout>
+    <aside-panel>
+        <hardware-menu></hardware-menu>
+    </aside-panel>
+    <body-panel>
+        <h2>{{model.title}}</h2>
+
+        <div class="usa-grid-full" ng-repeat="rows in model.products" style="margin-bottom: 20px">
+            <div ng-repeat="product in rows" class="usa-width-one-fourth" >
+                <product-card></product-card>
+            </div>
+        </div>  
+    </body-panel>
+</aside-layout>

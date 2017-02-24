@@ -1,3 +1,54 @@
-﻿<standard-layout>
-   <h1>{{model.title}}</h1>
+﻿<link rel='stylesheet' type="text/css" href="app/areas/public/comparelist/comparelist.css" />
+<standard-layout>
+    <div class="compare-list">
+        <h2 class="usa-heading">Compare List</h2>
+        <div style="text-align: center">
+            <br>
+            <span class="h4" ng-hide="model.products.length > 0">No products to show. Please select up to 4 products to compare.</span>
+        </div>
+        <table class="compare-table" ng-show="model.products.length > 0">
+            <caption class="usa-sr-only">Comparison Table</caption>
+            <tr>
+                <th style="max-width: 100px;" scope="row">&nbsp; <span class="usa-sr-only">product info header</span></th>
+                <td width="22%" ng-repeat="product in model.products" class="product-content">
+                    <a href="#" class="text-right">Remove</a>
+                    <div style="width: auto; height: 200px;">
+                        <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+                    </div style="margin-bottom: 20px">
+                    <a ng-link="['Product Details', { id : product.Id }]" style="text-align: center;">View Details</a>
+                    <add-to-cart-button product="product"></add-to-cart-button>
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">Price</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.ContractPrice | currency}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">MSRP</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.ListPrice | currency}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">Brand</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.Manufacturer}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">Description</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.Description}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">Contract Discount</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.ContractDiscount}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </standard-layout>

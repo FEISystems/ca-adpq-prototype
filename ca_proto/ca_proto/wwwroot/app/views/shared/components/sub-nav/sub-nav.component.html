@@ -1,6 +1,6 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/sub-nav/sub-nav.component.css" />
 
-<nav id="sub-nav" role="navigation" class="usa-nav">
+<nav id="sub-nav" role="navigation" class="usa-nav" ng-click="model.hide();">
     <div class="usa-nav-inner">
         <button class="usa-nav-close">
         <img src="../..//assets/img/close.svg" alt="close">
@@ -55,10 +55,13 @@
                         </ul>
                     </li>
                     <li class="usa-megamenu-col">
-                        <span class="ca-megamenu-header">Accessories</span>
+                        <span class="ca-megamenu-header">Accessories & Upgrades</span>
                         <ul>
                             <li>
-                                <a ng-link="['All Accessories']">All Accessories</a>
+                                <a ng-link="['All Accessories']">All Accessories & Upgrades</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Monitors']">Monitors</a>
                             </li>
                             <li>
                                 <a ng-link="['Desktop Accessories']">Desktop Accessories</a>
@@ -66,9 +69,9 @@
                             <li>
                                 <a ng-link="['Laptop Accessories']">Laptop Accessories</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a ng-link="['Miscellaneous']">Miscellaneous</a>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
                 </ul>
@@ -77,6 +80,70 @@
                 <a ng-link="['All Software']" class="usa-nav-link">
                     <span>Software</span>
                 </a>
+            </li>
+            <li>
+                <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sub-nav-3">
+                    <span>Services</span>
+                </button>
+                <ul id="sub-nav-3" class="usa-nav-submenu usa-megamenu usa-grid-full">
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Desktop Services</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['All Desktop Services']">All Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Standard Desktop Services']">Standard Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Power Desktop Services']">Power Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Workstation Services']">Workstation Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Thin Client Desktop Services']">Thin Client Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['All in One Desktop Services']">All in One Desktop Services</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Laptop Services</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['All Laptop Services']">All Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Standard Laptop Services']">Standard Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Power Laptop Services']">Power Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Ultralight Laptop Services']">Ultralight Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Mobile Workstation Services']">Mobile Workstation Services</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Value Added Services</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['All VAS']">All Value Added Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Desktop VAS']">Desktop Value Added Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Laptop VAS']">Laptop Value Added Services</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

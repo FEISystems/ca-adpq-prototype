@@ -1,15 +1,17 @@
 <link rel='stylesheet' type="text/css" href="app/views/shared/components/product-card/product-card.component.css" />
 
-<div class="usa-grid" style="text-align: center">
-    <div style="width:100%; min-height: 200px; background-color: lightgray; border: 1px solid darkgray"></div>
-    <strong>Laptop</strong>
+<div class="usa-grid ca-image-wrapper" style="text-align: center">
+    <div style="width:100%; min-height: 200px;">
+        <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+    </div>
+    <strong>{{product.Title}}</strong>
 </div>
 <div class="usa-grid" style="padding-top: 0px; padding-bottom: 0px;">
-    <span class="price">$4,500</span>
+    <span class="price">{{product.ContractPrice | currency}}</span>
 </div>
 <div class="usa-grid">
     <div class="button_wrapper">
-        <button class="usa-button-secondary">Add to Cart</button>
+        <add-to-cart-button product="product"></add-to-cart-button>
     </div>
 </div>
 <div class="usa-grid">
@@ -18,12 +20,12 @@
             <legend class="usa-sr-only">Select to Compare Product</legend>
             <ul class="usa-unstyled-list">
                 <li>
-                    <input type="checkbox" id="compareItem">
-                    <label for="compareItem">Compare</label>
+                    <compare-product-button product-id="product.Id"></compare-product-button>
                 </li>
             </ul>
+        </fieldset>
     </div>
     <div class="usa-width-one-half text-right">
-        <a ng-link="['Product Details']">View Details</a>
+        <a ng-link="['Product Details', { id : product.Id }]">View Details</a>
     </div>
 </div>
