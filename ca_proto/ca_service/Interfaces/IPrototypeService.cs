@@ -11,5 +11,6 @@ namespace ca_service.Interfaces
     public interface IPrototypeService
     {
         string DeleteAllEntities();
+        string GenerateOrders(int count);
     }
 }

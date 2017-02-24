@@ -32,5 +32,20 @@ namespace ca_proto.Controllers
                 return Json(new ErrorReport { Error = x.Message });
             }
         }
+
+        //[AdministratorFilter]
+        [HttpPost("GenerateOrders")]
+        public IActionResult GenerateOrders([FromBody]int count)
+        {
+            try
+            {
+                return Json(prototypeService.GenerateOrders(count));
+            }
+            catch (Exception x)
+            {
+                return Json(new ErrorReport { Error = x.Message });
+            }
+        }
+
     }
 }

@@ -464,7 +464,9 @@ namespace ca_service.Repositories
 
         public int Count(IDictionary<string, object> filter)
         {
-            string[] keys = filter.Keys.ToArray();
+            string[] keys = null;
+            if (null != filter)
+                keys = filter.Keys.ToArray();
             List<DbColumnAttribute> filterColumns = new List<DbColumnAttribute>();
             foreach (string columnName in keys)
             {
