@@ -22,6 +22,9 @@
         model.numberOfPages = 1;
         model.pageCount = 10;
         model.pageCounts = [5, 10, 25, 50];
+        model.hardwareColor = "#6495ED";
+        model.softwareColor = "#FF7F50";
+        model.serviceColor = "#A9A9A9";
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -45,10 +48,6 @@
                 chart.context.fill();
             };
 
-            chart.clear = function () {
-                chart.context.clearRect(0, 0, chart.width, chart.height);
-            };
-
             return chart;
         };
 
@@ -70,24 +69,26 @@
             model.tab = 2;
             var canvas = document.getElementById("productTypeCanvas");
             var context = canvas.getContext("2d");
+            model.clearCanvas(context);
 
-            var count = 0.0;
-            var hardwareCount = 0;
-            var softwareCount = 0;
-            var serviceCount = 0;
+            var total = 0.0;
+            var hardwareTotal = 0;
+            var softwareTotal = 0;
+            var serviceTotal = 0;
             for (var i = 0; i < model.orderProducts.length; i++) {
-                ++count;
+                var row = model.orderProducts[i];
+                total += row.Total;
                 if (model.orderProducts[i].ProductType == "Hardware")
-                    ++hardwareCount;
+                    hardwareTotal += row.Total;
                 else if (model.orderProducts[i].ProductType == "Software")
-                    ++softwareCount;
+                    softwareTotal += row.Total;
                 else if (model.orderProducts[i].ProductType == "Service")
-                    ++serviceCount;
+                    serviceTotal += row.Total;
             }
             var pieChart = model.pieChart(context, model.height, model.width);
-            pieChart.drawSlice(0.0, hardwareCount / count, "#6495ED");
-            pieChart.drawSlice(hardwareCount / count, (hardwareCount + softwareCount) / count, "#FF7F50");
-            pieChart.drawSlice((hardwareCount + softwareCount) / count, 1.0, "#A9A9A9");
+            pieChart.drawSlice(0.0, hardwareTotal / total, model.hardwareColor);// "#6495ED");
+            pieChart.drawSlice(hardwareTotal / total, (hardwareTotal + softwareTotal) / total, model.softwareColor);// "#FF7F50");
+            pieChart.drawSlice((hardwareTotal + softwareTotal) / total, 1.0, model.serviceColor);// "#A9A9A9");
             model.drawLabels(context);
         };
 
@@ -95,37 +96,44 @@
             var top = 20;
             var left = model.width - 100;
             context.font = "16px Verdana";
-            context.fillStyle = "#6495ED";
+            context.fillStyle = model.hardwareColor;// "#6495ED";
             context.fillRect(left, top, 10, 10)
             context.fillStyle = "Black";
             context.fillText("Hardware", left + 15, top + 10);
 
             top += 20;
-            context.fillStyle = "#FF7F50";
+            context.fillStyle = model.softwareColor;// "#FF7F50";
             context.fillRect(left, top, 10, 10)
             context.fillStyle = "Black";
             context.fillText("Software", left + 15, top + 10);
 
             top += 20;
-            context.fillStyle = "#A9A9A9";
+            context.fillStyle = model.serviceColor;// "#A9A9A9";
             context.fillRect(left, top, 10, 10)
             context.fillStyle = "Black";
             context.fillText("Service", left + 15, top + 10);
         };
 
-        model.clearPie = function () {
-            var canvas = document.getElementById("productTypeCanvas");
-            var context = canvas.getContext("2d");
-            var pieChart = model.pieChart(context, model.height, model.width);
-            pieChart.clear();
+        model.clearCanvas = function (context) {
+            context.clearRect(0, 0, model.width, model.height);
         };
 
         model.showExpendituresByContractor = function () {
             model.tab = 3;
+            var canvas = document.getElementById("contractorCanvas");
+            var context = canvas.getContext("2d");
+            model.clearCanvas(context);
+
+            model.drawLabels(context);
         };
 
         model.showPurchasesByAccount = function () {
             model.tab = 4;
+            var canvas = document.getElementById("purchasesCanvas");
+            var context = canvas.getContext("2d");
+            model.clearCanvas(context);
+
+            model.drawLabels(context);
         };
 
         model.showRawData = function () {

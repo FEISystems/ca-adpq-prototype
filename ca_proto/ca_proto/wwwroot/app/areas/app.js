@@ -94,12 +94,12 @@
 
             
             // Authorized Users
-            { path: '/user/cancelorder', component: 'cancelOrder', name: 'Cancel Order'},
+            { path: '/user/cancelledorderconfirmation', component: 'cancelOrder', name: 'Cancel Order'},
             { path: '/user/cart', component: 'cart', name: 'Cart'},
             { path: '/user/checkout', component: 'checkout', name: 'Checkout'},
             { path: '/user/myaccount', component: 'myAccount', name: 'My Account'},
             { path: '/user/orderconfirmation', component: 'orderConfirmation', name: 'Order Confirmation'},
-            { path: '/user/orderdetails/:id', component: 'orderDetails', name: 'Order Details'},
+            { path: '/user/orderdetails', component: 'orderDetails', name: 'Order Details'},
             { path: '/user/orderhistory', component: 'orderHistory', name: 'Order History'},
             { path: '/user/revieworder', component: 'reviewOrder', name: 'Review Order'},
 
