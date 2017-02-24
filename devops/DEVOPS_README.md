@@ -2,12 +2,14 @@
 # author:  Ryan Chadwick
 # company: FEi Systems Inc.
 
-This readme will serve as an outline to Plays 9 and 10
+This readme will serve as an outline to Plays 9, 10, and 12
 in the Digital Services Playbook located at below.
 
 https://playbook.cio.gov/#play9
 
 https://playbook.cio.gov/#play10
+
+https://playbook.cio.gov/#play12
 
 Play 9 - Deploy in a flexible hosting environment
 
