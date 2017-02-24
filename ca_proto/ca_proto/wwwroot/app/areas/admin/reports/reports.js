@@ -25,6 +25,8 @@
         model.hardwareColor = "#6495ED";
         model.softwareColor = "#FF7F50";
         model.serviceColor = "#A9A9A9";
+        model.contractors = [];
+        model.contractorColumnWidth = 0;
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -51,7 +53,7 @@
             return chart;
         };
 
-        model.setOrder = function(columnName) {
+        model.setOrder = function (columnName) {
             if (columnName == model.sortColumn)
                 model.sortAscending = !model.sortAscending;
             else {
@@ -59,7 +61,7 @@
                 model.pageIndex = 0;
             }
             model.refreshTable();
-        }
+        };
 
         model.showFilter = function () {
             model.tab = 1;
@@ -123,8 +125,83 @@
             var canvas = document.getElementById("contractorCanvas");
             var context = canvas.getContext("2d");
             model.clearCanvas(context);
+            model.contractors = [];
+            model.contractorColumnWidth = 0;
+            var contractors = model.extractContractors();
+            //alert(JSON.stringify(contractors));
+            if (!contractors || contractors.length == 0)
+                return;
+            model.contractors = contractors;
+            model.contractorColumnWidth = Math.floor(model.width / model.contractors.length);
+            var totals = model.initializeTotals(contractors.length);
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                var row = model.orderProducts[i];
+                var contractorIndex = contractors.indexOf(row.Contractor);
+                var values = totals[contractorIndex];
+                if (row.ProductType == "Hardware")
+                    values.hardwareTotal += row.Total;
+                else if (row.ProductType == "Software")
+                    values.softwareTotal += row.Total;
+                else if (row.ProductType == "Service")
+                    values.serviceTotal += row.Total;
+            }
+            //normalize the data - get the max then divide all totals by the max to bring largest to one
+            var max = Math.max(totals[0].hardwareTotal, totals[0].softwareTotal, totals[0].serviceTotal);
+            for (var i = 1; i < totals.length; i++) {
+                var temp = Math.max(totals[i].hardwareTotal, totals[i].softwareTotal, totals[i].serviceTotal);
+                if (temp > max)
+                    max = temp;
+            }
+            for (var i = 0; i < totals.length; i++) {
+                totals[i].hardwareTotal /= max;
+                totals[i].softwareTotal /= max;
+                totals[i].serviceTotal /= max;
+            }
+            //draw the data
+            var padding = 20 * (totals.length + 1);
+            var usableWidth = model.width - padding;
+            var columnWidth = Math.floor(usableWidth / totals.length / 3) - 2;
+            var left = 22;
+            for (var i = 0; i < totals.length; i++) {
+                var values = totals[i];
+                var barHeight = Math.floor( model.height * values.hardwareTotal);
+                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.hardwareColor);
 
+                left += columnWidth + 2;
+                barHeight = Math.floor(model.height * values.softwareTotal);
+                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.softwareColor);
+
+                left += columnWidth + 2;
+                var barHeight = Math.floor(model.height * values.serviceTotal);
+                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.serviceColor);
+
+                left += columnWidth + 2 + 40;
+            }
             model.drawLabels(context);
+        };
+
+        model.drawBar = function (context, x, y, width, height, color) {
+            context.fillStyle = color;
+            context.fillRect(x, y, width, height);
+        }
+
+        model.initializeTotals = function (count) {
+            var totals = [];
+            for (var i = 0; i < count; i++) {
+                var values = { hardwareTotal :0.0, softwareTotal:0.0, serviceTotal:0.0 };
+                totals.push(values);
+            }
+            return totals;
+        }
+
+        model.extractContractors = function () {
+            var result = [];
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                if (!result.includes(model.orderProducts[i].Contractor)) {
+                    result.push(model.orderProducts[i].Contractor);
+                }
+            }
+            return result;
         };
 
         model.showPurchasesByAccount = function () {

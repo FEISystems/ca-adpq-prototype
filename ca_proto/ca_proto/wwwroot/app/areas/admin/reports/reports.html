@@ -35,6 +35,9 @@
         <div ng-show="model.tab == 3">
             <h3 class="usa-heading">Expenditures by Contractor</h3>
             <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width}}"></canvas><br />
+            <table style="width:{{model.width}};text-align:center">
+                <tr style="width:{{model.width}}"><td ng-repeat="contractor in model.contractors" style="width:{{model.contractorColumnWidth}}px">{{contractor}}</td></tr>
+            </table>
         </div>
 
         <div ng-show="model.tab == 4">
