@@ -8,7 +8,34 @@
                 <li><a ng-link="['Cancel Order']">Cancel Order</a></li>
             </ul>
         </div>
-        <div class="usa-width-one-third"></div>
-        <div class="usa-width-one-third"></div>
+        <div class="usa-width-two-thirds">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order Date</th>
+                        <th>Number of Items</th>
+                        <th>Payment Account</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in model.orders" ng-show="model.orders.length > 0">
+                        <td>{{order.CreateDate | date}}</td>
+                        <td>{{order.Items.length}}</td>
+                        <td>{{order.Status}}</td>
+                        <td>{{order.PaymentMethod}}</td>
+                        <td>
+                            <a ng-link="['Order Details', { id : order.Id }]">View Order</a>
+                        </td>
+                    </tr>
+                    <tr ng-show="model.orders.length == 0">
+                        <td colspan="5" style="text-align: center">
+                            No orders to display.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </standard-layout>
