@@ -40,7 +40,7 @@ namespace ca_service.Services
             Order newOrder = new Order()
             {
                 Items = new List<OrderItem>(),
-                OrderDateUtc = DateTime.UtcNow,
+                CreateDate = DateTime.UtcNow,
                 PaymentMethod = paymentMethod,
                 Status = OrderStatus.Placed,
                 UserId = cart.UserId,

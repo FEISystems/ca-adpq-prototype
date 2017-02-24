@@ -34,6 +34,7 @@
     <div ng-show="model.tab == 7">
         <h3 class="usa-heading">Prototype Tasks</h3>
         <button ng-click="model.resetDatabase()">Reset Database</button>
+        <input type="text" ng-model="model.createCount" /> <button ng-click="model.createDemoOrders()">Create Demo Orders</button>
     </div>
     <div ng-show="model.tab == 2">
         <h3 class="usa-heading"><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>

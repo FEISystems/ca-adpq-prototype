@@ -10,20 +10,8 @@
 
         //console.log($route);
 
-        this.$routerOnActivate = function(next, previous) {
+        this.$routerOnActivate = function (next, previous) {
             model.productId = parseInt(next.params.id);
-
-
-            // sampleInventoryService.getProduct().get({ id : id }).$promise.then(
-            //     function (data) {
-            //         var idx = data.map(function(item) { return item.sku}).indexOf(id);
-            //         model.product = data[idx];
-            //     },
-            //     function (error) {
-            //         alert("Something went wrong!");
-
-            //     }
-            // );
 
             model.getProduct = function () {
                 inventoryService.getProduct(model.productId);
