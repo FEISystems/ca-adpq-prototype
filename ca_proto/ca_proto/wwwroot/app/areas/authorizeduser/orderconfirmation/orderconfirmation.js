@@ -7,6 +7,10 @@
         model.provider = {};
         model.title = "Order Confirmation";
 
+        $scope.continueShopping = function() {
+            $location.path("home");
+        }
+
     };
 
     module.component("orderConfirmation", {
