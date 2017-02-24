@@ -33,7 +33,7 @@ namespace ca_proto.Controllers
             }
         }
 
-        //[AdministratorFilter]
+        [AdministratorFilter]
         [HttpPost("GenerateOrders")]
         public IActionResult GenerateOrders([FromBody]int count)
         {
