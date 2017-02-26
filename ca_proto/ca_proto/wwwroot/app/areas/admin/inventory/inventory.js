@@ -38,6 +38,34 @@
         //    "Filter": { "Category":"Service|Computer", "ListPrice":"31|34"}
         //}
 
+        model.select = function (id) {
+            var product = model.findProduct(id);
+            if (null == product)
+                return;
+            if (product.isSelected)
+                product.isSelected = false;
+            else
+                product.isSelected = true;
+        };
+
+        model.deleteSelected = function () {
+            var selected = [];
+            for (var i = 0; i < model.products.length; i++) {
+                if (model.products[i].isSelected)
+                    selected.push(model.products[i].Id);
+            }
+            if (selected.length == 0) {
+                alert("Please select at least one product to delete.");
+                return;
+            }
+            if (confirm("This will delete " + selected.length + " selected product(s)!")) {
+                model.onStartImport("Deleting " + selected.length + " product(s)...");
+                for (var i = 0; i < selected.length; i++) {
+                    inventoryService.deleteProduct(selected[i]);
+                }
+            }
+        };
+
         model.setOrderByColumn = function (columnName) {
             if (model.orderByColumn == columnName)
             {
@@ -174,14 +202,20 @@
             }
         };
 
-        model.edit = function (id) {
+        model.findProduct = function (id) {
             for (var i = 0; i < model.products.length; i++) {
                 var item = model.products[i];
                 if (item.Id == id) {
-                    model.showAddEdit(model.buildProduct(item), true);
-                    return;
+                    return item;
                 }
             }
+            alert("Product " + id + " not found");
+        };
+
+        model.edit = function (id) {
+            var product = model.findProduct(id);
+            if (product)
+                model.showAddEdit(model.buildProduct(item), true);
         };
 
         model.resetDatabase = function () {
@@ -387,6 +421,10 @@
         })
 
         messageService.subscribe('deleteSuccess', function (response) {
+            if (model.tab == 6) {
+                model.importProgress += "\nDeleted Product";
+                return;
+            }
             model.showTable();
         })
 

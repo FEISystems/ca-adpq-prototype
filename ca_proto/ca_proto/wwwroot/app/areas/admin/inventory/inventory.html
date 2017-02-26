@@ -127,6 +127,7 @@
                             <img height="100" width="100" ng-src="/api/image/{{model.product.ImageFileName}}" alt="No Image Selected" />
                         </td>
                     </tr>
+                    <tr>
                         <td colspan="4">
                             <input type="submit" value="Add Item" ng-disabled="!addProductForm.$valid" ng-hide="model.editing" class="usa-button-secondary right" />
                             <input type="submit" value="Save Changes" ng-disabled="!addProductForm.$valid" ng-show="model.editing" class="usa-button-secondary right" />
@@ -140,6 +141,7 @@
             <table>
                 <thead> 
                     <tr>
+                        <th>Select</th>
                         <th><a href="" ng-click="model.setOrderByColumn('Title')">Title</a></th>
                         <th><a href="" ng-click="model.setOrderByColumn('Category')">Category</a></th>
                         <th><a href="" ng-click="model.setOrderByColumn('ProductType')">Product Type</a></th>
@@ -149,6 +151,12 @@
                     </tr>
                 </thead>
                 <tr ng-repeat="row in model.products">
+                    <td>
+                        <a href="" ng-click="model.select(row.Id)">
+                            <span ng-show="row.isSelected">Selected</span>
+                            <spap ng-hide="row.isSelected">Unselected</spap>
+                        </a>
+                    </td>
                     <td title="{{row.Description}}">{{row.Title}}</td>
                     <td>{{row.Category}}</td>
                     <td>{{row.ProductType}}</td>
@@ -156,14 +164,18 @@
                     <td>{{row.ContractDiscount}}</td>
                     <td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.Id)">Delete</a></td>
                 </tr>
+                <tr>
+                    <td><button ng-click="model.deleteSelected()">Delete<br/>Selected</button></td>
+                    <td colspan="5" style="text-align:center">
+                        &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
+                        &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
+                        &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
+                        &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
+                        &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
             </table>
-            <p>
-                &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
-                &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
-                &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
-                &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
-                &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
-            </p>
         </div>
         <div ng-show="model.tab == 4">
             <h3 class="usa-heading">Search Products</h3>
@@ -243,12 +255,26 @@
                         </td>
                     </tr>-->
                     <tr>
-                        <td class="table-header"><label for="search-description">Description</label></td>
-                        <td><textarea id="search-description" ng-model="model.filter.Description" required></textarea></td>
-                        <td>&nbsp;</td>
+                        <td rowspan="2" class="table-header"><label for="search-description">Description</label></td>
+                        <td rowspan="2"><textarea id="search-description" ng-model="model.filter.Description" required></textarea></td>
+                        <td class="table-header"><label for="imagefilename">Image File Name</label></td>
                         <td>
-                            <input type="button" value="Search" ng-click="model.filterProducts()" class="usa-button-secondary" />
-                            <a href="" ng-click="model.clearFilter()">Clear Search</a>
+                            <select id="imagefilename" ng-model="model.filter.ImageFileName" ng-options="name for name in model.imageFileNames" required>
+                                <option value="">Select Image File Name</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header">&nbsp;<label for="noimage" class="usa-sr-only">No image</label></td>
+                        <td>
+                            <input id="noimage" type="hidden" ng-model="model.product.Id" />
+                            <img height="100" width="100" ng-src="/api/image/{{model.product.ImageFileName}}" alt="No Image Selected" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <input type="button" value="Search" ng-click="model.filterProducts()" class="usa-button-secondary right" />
+                            <input type="button" value="Clear Search" ng-click="model.clearFilter()" class="usa-button-secondary right" />
                         </td>
                     </tr>
                 </table>
