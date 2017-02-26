@@ -1,14 +1,18 @@
 ﻿(function () {
     "use strict";
-    var module = angular.module("caWebApp", ["ngComponentRouter", 'ngAnimate', 'ngResource']);
+    var module = angular.module("caWebApp", ["ngComponentRouter", 'ngAnimate', 'ngResource', 'ngStorage']);
     window.document.title = 'CA Prototype';
     module.value("$routerRootComponent", "caWebApp");
 
     var controller = function () {
         var model = this;
+
+
         model.$onInit = function () {
             //Do Something
         }
+
+
     };
 
     module.component("caWebApp", {
@@ -81,7 +85,7 @@
 
             
             // Admin
-            { path: '/admin/home', component: 'adminHome', name: 'Admin Home' },
+            { path: '/admin/home', component: 'adminHome', name: 'Admin Home', requiresAuthentication : true },
             { path: '/admin/login', component: 'adminLogin', name: 'Admin Login'}, //Login Testing Only
             { path: '/admin/adminuser', component: 'adminUser', name: 'Admin User'},
             { path: '/admin/adminusers', component: 'adminUsers', name: 'Admin Users'},
@@ -106,10 +110,24 @@
 
             { path: '/**', redirectTo: ['Home'] }
     ]
+    
     });
 
-}());
+    module.run(['$rootScope', '$location', 'authenticationService', function ($rootScope, $location, authenticationService) {
 
+        authenticationService.init();
+            
+        // this.$routerOnActivate = function (next, previous) {
+        //         console.log(authenticationService.checkPermissionForView(next));
+        //         if (!authenticationService.checkPermissionForView(next)){
+        //             event.preventDefault();
+        //             $location.path("/home");
+        //         }
+        //     };
+    }]);
+
+
+}());
 
 function getSrv(name, element) {
     element = element || '*[ng-app]';
@@ -129,4 +147,3 @@ if (!String.prototype.toTitleCase) {
       return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   };
 }
-

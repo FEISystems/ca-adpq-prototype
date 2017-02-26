@@ -1,7 +1,8 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/areas/admin/inventory/inventory.css" />
 <standard-layout>
     <h2>{{model.title}}</h2>
-    <aside class="usa-width-one-fourth">
+    <unauthorized-page  authorized="['Admin']"></unauthorized-page>
+    <aside class="usa-width-one-fourth" permission="['Admin']">
         <ul class="usa-sidenav-list">
             <li><a href="" ng-click="model.showFilter()" ng-class="{'usa-current' : model.tab == 1}">Data Filter</a></li>
             <li><a href="" ng-click="model.showExpendituresByProductType()" ng-class="{'usa-current' : model.tab == 2}">Expenditures by Product Type</a></li>
@@ -11,7 +12,7 @@
         </ul>    
     </aside>
 
-    <div class="usa-width-two-thirds" style="margin-top:-80px">
+    <div class="usa-width-two-thirds" permission="['Admin']" style="margin-top:-80px">
         <div ng-show="model.tab == 1">
             <h3 class="usa-heading">Data Filter</h3>
             <form id="orderProductQueryForm" name="orderProductQueryForm"

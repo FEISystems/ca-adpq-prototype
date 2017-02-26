@@ -1,7 +1,8 @@
 <link rel='stylesheet' type="text/css" href="app/areas/admin/adminhome/adminhome.css" />
 <standard-layout>
     <h2 class="usa-heading">{{model.title}}</h1>
-    <div class="usa-grid">
+    <unauthorized-page  authorized="['Admin']"></unauthorized-page>
+    <div class="usa-grid" permission="['Admin']">
         <div class="usa-width-one-half">
             <ul class="usa-unstyled-list">
                 <!--<li><a ng-link="['Vendors']">Vendors</a></li>-->
