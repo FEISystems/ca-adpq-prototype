@@ -167,7 +167,7 @@
         </div>
         <div ng-show="model.tab == 4">
             <h3 class="usa-heading">Search Products</h3>
-            <form name="filterProductForm" id="filterProductForm" ng-submit="model.filterProducts()" novalidate>
+            <form name="filterProductForm" id="filterProductForm" novalidate>
                 <table>
                     <tr>
                         <td class="table-header"><label for="search-title">Title</label></td>
@@ -247,7 +247,7 @@
                         <td><textarea id="search-description" ng-model="model.filter.Description" required></textarea></td>
                         <td>&nbsp;</td>
                         <td>
-                            <input type="submit" value="Search" class="usa-button-secondary" />
+                            <input type="button" value="Search" ng-click="model.filterProducts()" class="usa-button-secondary" />
                             <a href="" ng-click="model.clearFilter()">Clear Search</a>
                         </td>
                     </tr>

@@ -52,10 +52,15 @@
         };
 
         model.filterProducts = function () {
+            for (var propName in model.filter) { 
+                if (model.filter[propName] === null || model.filter[propName] === undefined || model.filter[propName] === "") {
+                    delete model.filter[propName];
+                }
+            }
             model.activeFilter = model.filter;
             model.page = 0;
             model.tab = 3;
-            model.fetchAll();
+            model.fetchProducts();
         };
 
         model.clearFilter = function () {
@@ -194,7 +199,9 @@
 
         model.fetchProducts = function () {
             var filter = model.activeFilter;
+            console.log(filter);
             inventoryService.fetchProducts(model.page * model.itemsPerPage, model.itemsPerPage, model.orderByColumn, model.orderAscending, filter);
+            model.filter = {};
         };
 
         model.buildProduct = function (item) {
@@ -222,10 +229,12 @@
             inventoryService.fetchContracts();
             inventoryService.fetchContractors();
             inventoryService.fetchImageFileNames();
+
             if (model.tab == 3) {
                 model.fetchProducts();
                 model.fetchPageCount();
             }
+
         };
 
         model.buildFilter = function () {
@@ -402,7 +411,7 @@
         messageService.subscribe('generateOrdersFailure', function (response) {
             model.handleError(response);
         })
-        
+
         model.fetchAll();
     };
 
