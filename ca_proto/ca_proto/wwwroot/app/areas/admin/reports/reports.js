@@ -226,6 +226,7 @@
                 for (var i = 0; i < trends.length; i++) {
                     model.drawTrend(context, trends[i], maxTotal, labels[i].color);
                 }
+                context.clearRect(0, model.height, model.width, 20 * model.paymentAccounts.length);
                 model.drawCustomLabels(context, 20, model.height, labels);
             }, 100);
         };
@@ -459,6 +460,10 @@
             start = new Date(year, month, 1);
             var end = new Date(new Date(year, month + 3, 0, 0, 0, 0, 0));
             model.orderProductQuery = { Start: start.toLocaleDateString(), End: end.toLocaleDateString() };
+        };
+
+        model.downloadCsv = function () {
+            reportService.downloadCsv(model.orderProductQuery);
         };
 
         messageService.subscribe('getOrderProductsSuccess', function (response) {
