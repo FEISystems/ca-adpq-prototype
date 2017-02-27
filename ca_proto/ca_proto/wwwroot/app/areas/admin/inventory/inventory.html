@@ -257,9 +257,9 @@
                     <tr>
                         <td rowspan="2" class="table-header"><label for="search-description">Description</label></td>
                         <td rowspan="2"><textarea id="search-description" ng-model="model.filter.Description" required></textarea></td>
-                        <td class="table-header"><label for="imagefilename">Image File Name</label></td>
+                        <td class="table-header"><label for="filterImagefilename">Image File Name</label></td>
                         <td>
-                            <select id="imagefilename" ng-model="model.filter.ImageFileName" ng-options="name for name in model.imageFileNames" required>
+                            <select id="filterImagefilename" ng-model="model.filter.ImageFileName" ng-options="name for name in model.imageFileNames" required>
                                 <option value="">Select Image File Name</option>
                             </select>
                         </td>
@@ -267,8 +267,8 @@
                     <tr>
                         <td class="table-header">&nbsp;<label for="noimage" class="usa-sr-only">No image</label></td>
                         <td>
-                            <input id="noimage" type="hidden" ng-model="model.product.Id" />
-                            <img height="100" width="100" ng-src="/api/image/{{model.product.ImageFileName}}" alt="No Image Selected" />
+                            <input id="noimage" type="hidden" ng-model="model.filter.Id" />
+                            <img id="filterImage" height="100" width="100" ng-src="/api/image/{{model.filter.ImageFileName}}" alt="No Image Selected" />
                         </td>
                     </tr>
                     <tr>

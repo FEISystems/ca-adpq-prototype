@@ -95,6 +95,9 @@
         model.clearFilter = function () {
             model.filter = {};
             model.activeFilter = {};
+            var img = document.getElementById("filterImage");
+            if (img)
+                img.src = "";
         };
 
         model.showFilter = function () {
