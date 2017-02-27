@@ -11,7 +11,7 @@
             <tr>
                 <th style="max-width: 100px;" scope="row">&nbsp; <span class="usa-sr-only">product info header</span></th>
                 <td width="22%" ng-repeat="product in model.products" class="product-content">
-                    <a href="#" class="text-right">Remove</a>
+                    <a role="button"ng-click="removeFromCompare(product.Id)" class="text-right">Remove</a>
                     <div style="width: auto; height: 200px;">
                         <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
                     </div style="margin-bottom: 20px">
@@ -20,27 +20,34 @@
                 </td>
             </tr>
             <tr>
-                <th style="max-width: 100px;" scope="row">Price</th>
+                <th style="max-width: 100px;" scope="row">Product Name</th>
                 <td width="22%" ng-repeat="product in model.products">
-                    {{product.ContractPrice | currency}}
-                </td>
-            </tr>
-            <tr>
-                <th style="max-width: 100px;" scope="row">MSRP</th>
-                <td width="22%" ng-repeat="product in model.products">
-                    {{product.ListPrice | currency}}
-                </td>
-            </tr>
-            <tr>
-                <th style="max-width: 100px;" scope="row">Brand</th>
-                <td width="22%" ng-repeat="product in model.products">
-                    {{product.Manufacturer}}
+                    {{product.Title}}
                 </td>
             </tr>
             <tr>
                 <th style="max-width: 100px;" scope="row">Description</th>
                 <td width="22%" ng-repeat="product in model.products">
                     {{product.Description}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">Category</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.Category}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">OEM</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.Manufacturer}}
+                </td>
+            </tr>
+            <tr>
+                <th style="max-width: 100px;" scope="row">Price</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    <strong class="h4" style="font-weight: bold">{{product.ContractPrice | currency}}</strong> <br>
+                    <span class="h5" style="color: red">(MSRP: {{product.ListPrice | currency}})</span>
                 </td>
             </tr>
             <tr>
