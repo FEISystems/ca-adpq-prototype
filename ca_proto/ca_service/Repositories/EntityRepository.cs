@@ -396,6 +396,14 @@ namespace ca_service.Repositories
             }
         }
 
+        private static readonly char[] SpecialCharsInStrings = { ' ', '-', '%', '/' };
+        private static string ReplaceSpecialChars(string s)
+        {
+            foreach (char c in SpecialCharsInStrings)
+                s = s.Replace(c, '_');
+            return s;
+        }
+
         private void BuildLikeParameter(MySqlCommand cmd, StringBuilder sqlBuilder, DbColumnAttribute column, object value)
         {
             if (column.DbType == System.Data.DbType.String)
@@ -409,12 +417,12 @@ namespace ca_service.Repositories
                         sqlBuilder.Append("(");
                         try
                         {
-                            string paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                            string paramName = "@" + ReplaceSpecialChars(values[0]);
                             BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[0]);
                             for (int i = 1; i < values.Length; i++)
                             {
                                 sqlBuilder.Append(" OR ");
-                                paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                                paramName = "@" + ReplaceSpecialChars(values[i]);
                                 BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[i]);
                             }
                         }
