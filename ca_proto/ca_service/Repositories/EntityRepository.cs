@@ -260,17 +260,24 @@ namespace ca_service.Repositories
             {
                 if (!selectedFields.Contains(column.ColumnName.ToLower()))
                     continue;
-                if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
+                if (column.DbType == System.Data.DbType.String)
                 {
-                    var values = reader[column.ColumnName] as string;
-                    if (null == values)
+                    var value = reader[column.ColumnName] as string;
+                    if (column.Property.PropertyType == typeof(List<int>))
                     {
-                        column.Property.SetValue(result, new List<int>(0));
+                        if (null == value)
+                        {
+                            column.Property.SetValue(result, new List<int>(0));
+                        }
+                        else
+                        {
+                            var list = new List<int>(value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
+                            column.Property.SetValue(result, list);
+                        }
                     }
                     else
-                    {
-                        var list = new List<int>(values.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
-                        column.Property.SetValue(result, list);
+                    {                        
+                        column.Property.SetValue(result, CleanText(value));
                     }
                 }
                 else
@@ -279,6 +286,17 @@ namespace ca_service.Repositories
                 }
             }
             return result;
+        }
+
+        private string CleanText(string value)
+        {
+            char[] chars = value.ToCharArray();
+            for (int i=0; i<value.Length; i++)
+            {
+                if (chars[i] > 127)
+                    chars[i] = ' ';
+            }
+            return new string(chars);
         }
 
         private List<string> GetFieldNames(MySqlDataReader reader)
@@ -396,6 +414,14 @@ namespace ca_service.Repositories
             }
         }
 
+        private static readonly char[] SpecialCharsInStrings = { ' ', '-', '%', '/' };
+        private static string ReplaceSpecialChars(string s)
+        {
+            foreach (char c in SpecialCharsInStrings)
+                s = s.Replace(c, '_');
+            return s;
+        }
+
         private void BuildLikeParameter(MySqlCommand cmd, StringBuilder sqlBuilder, DbColumnAttribute column, object value)
         {
             if (column.DbType == System.Data.DbType.String)
@@ -409,12 +435,12 @@ namespace ca_service.Repositories
                         sqlBuilder.Append("(");
                         try
                         {
-                            string paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                            string paramName = "@" + ReplaceSpecialChars(values[0]);
                             BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[0]);
                             for (int i = 1; i < values.Length; i++)
                             {
                                 sqlBuilder.Append(" OR ");
-                                paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                                paramName = "@" + ReplaceSpecialChars(values[i]);
                                 BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[i]);
                             }
                         }

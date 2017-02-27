@@ -47,7 +47,7 @@ namespace ca_service.Entities
                             temp.AppendLine("select o.Id as OrderID, o.CreateDate, o.PaymentMethod, o.Status, oi.Price, oi.Quantity, p.ProductType, p.Contractor");
                             temp.AppendLine("  from orders o");
                             temp.AppendLine("  left outer join orderitems oi on oi.OrderId = o.Id");
-                            temp.AppendLine("  left outer join products p on p.Id = oi.ProductId");
+                            temp.AppendLine("  inner join products p on p.Id = oi.ProductId");//if products are deleted do not return matching rows
                             temp.AppendLine("  where o.CreateDate between @StartDate and @EndDate");
                             query = temp.ToString();
                         }

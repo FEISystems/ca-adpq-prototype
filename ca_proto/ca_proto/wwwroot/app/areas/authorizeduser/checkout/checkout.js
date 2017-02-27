@@ -86,19 +86,19 @@
 
         } 
         
-        // else {
-        //     model.name = "Joe";
-        //     model.department = "Technology";
-        //     model.phoneNumber = "301-123-4567";
-        //     model.emailAddress = "joe@something.com";
-        //     model.address1 = "1000 Main Street";
-        //     model.address2 = "Apt - 303";
-        //     model.address3 = "";
-        //     model.city = "Columbia";
-        //     model.state = "MD";
-        //     model.postalCode = "21470";
-        //     model.paymentAccount = 2;
-        // }
+        else {
+            model.name = "Joe";
+            model.department = "Technology";
+            model.phoneNumber = "301-123-4567";
+            model.emailAddress = "joe@something.com";
+            model.address1 = "1000 Main Street";
+            model.address2 = "Apt - 303";
+            model.address3 = "";
+            model.city = "Columbia";
+            model.state = "MD";
+            model.postalCode = "21470";
+            model.paymentAccount = 2;
+        }
 
 
         model.getActiveCart = function () {

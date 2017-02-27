@@ -33,7 +33,7 @@ namespace ca_service.Services
             {
                 command.CommandText = string.Format(OrderProduct.Query, start, end);
                 command.Parameters.Add("@StartDate", System.Data.DbType.DateTime).Value = start;
-                command.Parameters.Add("@EndDate", System.Data.DbType.DateTime).Value = end;
+                command.Parameters.Add("@EndDate", System.Data.DbType.DateTime).Value = end.AddDays(1);
                 using (var reader = command.ExecuteReader() as MySql.Data.MySqlClient.MySqlDataReader)
                 {
                     while (reader.Read())

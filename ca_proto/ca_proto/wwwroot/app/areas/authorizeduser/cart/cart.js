@@ -8,6 +8,7 @@
         model.title = "Cart";
         model.products = [];
         model.qtyOptions = [0,1,2,3,4,5,6];
+        model.cartTotal = 0;
         model.cart = {};
 
 
@@ -55,6 +56,9 @@
             model.cartItems = model.cart.Items;
             for (let product of model.cart.Items) {                
                 model.getProduct(product.ProductId);
+            }
+            for (let item of model.cartItems) {
+                model.cartTotal += item.Price * item.Quantity;
             }
         })
 

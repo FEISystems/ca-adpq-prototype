@@ -1,20 +1,17 @@
 ﻿(function () {
     "use strict";
     var module = angular.module("caWebApp");
-
+    
     var controller = function ($scope, $location, messageService, reportService, orderByFilter) {
         var model = this;
         model.provider = {};
         model.title = "Reports";
         model.tab = 1;
         model.height = 400;
-        model.width = 700;
+        model.width = 750;
         model.orderProducts = [];
         model.orderProductsOnPage = [];
-        var start = new Date();
-        var end = new Date();
-        start.setMonth(start.getMonth() -3);
-        model.orderProductQuery = { Start: start.toLocaleDateString(), End: end.toLocaleDateString() };
+        model.orderProductQuery = { Start: 0, End: 0 };
         model.sortColumn = "CreateDate";
         model.sortAscending = true;
         model.responseMessage = "";
@@ -25,6 +22,14 @@
         model.hardwareColor = "#6495ED";
         model.softwareColor = "#FF7F50";
         model.serviceColor = "#A9A9A9";
+        model.accountColors = [model.hardwareColor, model.softwareColor, model.serviceColor, "Gold"];
+        model.contractors = [];
+        model.contractorColumnWidth = 0;
+        model.paymentAccounts = [];
+        model.paymentAccountColumnWidth = 0;
+        model.orderStatuses = [];
+        model.trendDatePadding = 100;
+        model.moneyAxisPadding = 100;
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -51,7 +56,7 @@
             return chart;
         };
 
-        model.setOrder = function(columnName) {
+        model.setOrder = function (columnName) {
             if (columnName == model.sortColumn)
                 model.sortAscending = !model.sortAscending;
             else {
@@ -59,30 +64,42 @@
                 model.pageIndex = 0;
             }
             model.refreshTable();
-        }
+        };
 
         model.showFilter = function () {
             model.tab = 1;
         };
 
+        model.getFilteredProducts = function () {
+            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.len == 0) {
+                //if no order status is chosen to filter then return all rows
+                return model.orderProducts;
+            }
+            var result = [];
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                var row = model.orderProducts[i];
+                if (model.orderProductQuery.OrderStatus.includes(row.Status))
+                    result.push(row);
+            }
+            return result;
+        };
+
         model.showExpendituresByProductType = function () {
-            model.tab = 2;
-            var canvas = document.getElementById("productTypeCanvas");
-            var context = canvas.getContext("2d");
-            model.clearCanvas(context);
+            var context = model.initContext(2, "productTypeCanvas");
 
             var total = 0.0;
             var hardwareTotal = 0;
             var softwareTotal = 0;
             var serviceTotal = 0;
-            for (var i = 0; i < model.orderProducts.length; i++) {
-                var row = model.orderProducts[i];
+            var filtered = model.getFilteredProducts();
+            for (var i = 0; i < filtered.length; i++) {
+                var row = filtered[i];
                 total += row.Total;
-                if (model.orderProducts[i].ProductType == "Hardware")
+                if (filtered[i].ProductType == "Hardware")
                     hardwareTotal += row.Total;
-                else if (model.orderProducts[i].ProductType == "Software")
+                else if (filtered[i].ProductType == "Software")
                     softwareTotal += row.Total;
-                else if (model.orderProducts[i].ProductType == "Service")
+                else if (filtered[i].ProductType == "Service")
                     serviceTotal += row.Total;
             }
             var pieChart = model.pieChart(context, model.height, model.width);
@@ -90,50 +107,400 @@
             pieChart.drawSlice(hardwareTotal / total, (hardwareTotal + softwareTotal) / total, model.softwareColor);// "#FF7F50");
             pieChart.drawSlice((hardwareTotal + softwareTotal) / total, 1.0, model.serviceColor);// "#A9A9A9");
             model.drawLabels(context);
+
+            var totalLabels = [];
+            totalLabels.push({ color: model.hardwareColor, text: "$" + model.toMoney(hardwareTotal) });
+            totalLabels.push({ color: model.softwareColor, text: "$" + model.toMoney(softwareTotal) });
+            totalLabels.push({ color: model.serviceColor, text: "$" + model.toMoney(serviceTotal) });
+            model.drawCustomLabels(context, 10, 20, totalLabels);
+        };
+
+        model.toMoney = function (number) {
+            return number.toFixed(2).replace(/./g, function (c, i, a) {
+                return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+            });
         };
 
         model.drawLabels = function (context) {
-            var top = 20;
-            var left = model.width - 100;
+            model.drawCustomLabels(context, model.width - 100, 20,
+                [
+                    { color: model.hardwareColor, text: "Hardware" },
+                    { color: model.softwareColor, text: "Software" },
+                    { color: model.serviceColor, text: "Service" }
+                ]);
+        };
+
+        model.drawCustomLabels = function (context, left, top, labels) {
             context.font = "16px Verdana";
-            context.fillStyle = model.hardwareColor;// "#6495ED";
-            context.fillRect(left, top, 10, 10)
-            context.fillStyle = "Black";
-            context.fillText("Hardware", left + 15, top + 10);
+            for (var i = 0; i < labels.length; i++)
+                model.drawLabel(context, left, top + (i * 20), labels[i].color, labels[i].text);
+        };
 
-            top += 20;
-            context.fillStyle = model.softwareColor;// "#FF7F50";
+        model.drawLabel = function (context, left, top, color, text) {
+            context.fillStyle = color;
             context.fillRect(left, top, 10, 10)
             context.fillStyle = "Black";
-            context.fillText("Software", left + 15, top + 10);
-
-            top += 20;
-            context.fillStyle = model.serviceColor;// "#A9A9A9";
-            context.fillRect(left, top, 10, 10)
-            context.fillStyle = "Black";
-            context.fillText("Service", left + 15, top + 10);
+            context.fillText(text, left + 15, top + 10);
         };
 
         model.clearCanvas = function (context) {
-            context.clearRect(0, 0, model.width, model.height);
+            context.clearRect(0, 0, model.width + model.moneyAxisPadding, model.height);
         };
 
         model.showExpendituresByContractor = function () {
-            model.tab = 3;
-            var canvas = document.getElementById("contractorCanvas");
-            var context = canvas.getContext("2d");
-            model.clearCanvas(context);
+            var context = model.initContext(3, "contractorCanvas");
 
+            model.contractors = [];
+            model.contractorColumnWidth = 0;
+            var contractors = model.extractContractors();
+            if (!contractors || contractors.length == 0)
+                return;
+            model.contractors = contractors;
+            model.contractorColumnWidth = Math.floor(model.width / model.contractors.length);
+            var totals = model.initializeTotals(contractors.length);
+            model.calculateTotals(totals, contractors, "Contractor");
+            var max = model.normalizeTotals(totals);
+            model.drawTotals(context, totals);
+            model.drawMoneyLines(context, max);
             model.drawLabels(context);
         };
 
-        model.showPurchasesByAccount = function () {
-            model.tab = 4;
-            var canvas = document.getElementById("purchasesCanvas");
+        model.drawTotals = function (context, totals) {
+            //draw the data
+            var padding = 20 * (totals.length + 1);
+            var usableWidth = model.width - padding;
+            var columnWidth = Math.floor(usableWidth / totals.length / 3) - 2;
+            var left = 22;
+            for (var i = 0; i < totals.length; i++) {
+                var values = totals[i];
+                var barHeight = Math.floor(model.height * values.hardwareTotal);
+                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.hardwareColor);
+
+                left += columnWidth + 2;
+                barHeight = Math.floor(model.height * values.softwareTotal);
+                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.softwareColor);
+
+                left += columnWidth + 2;
+                var barHeight = Math.floor(model.height * values.serviceTotal);
+                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.serviceColor);
+
+                left += columnWidth + 2 + 20;
+            }
+
+        };
+
+        model.findMaxInTotals = function (totals) {
+            var max = Math.max(totals[0].hardwareTotal, totals[0].softwareTotal, totals[0].serviceTotal);
+            for (var i = 1; i < totals.length; i++) {
+                var temp = Math.max(totals[i].hardwareTotal, totals[i].softwareTotal, totals[i].serviceTotal);
+                if (temp > max)
+                    max = temp;
+            }
+            return model.normalizeMax(max);
+        };
+
+        model.normalizeTotals = function (totals) {
+            var max = model.findMaxInTotals(totals);
+            for (var i = 0; i < totals.length; i++) {
+                totals[i].hardwareTotal /= max;
+                totals[i].softwareTotal /= max;
+                totals[i].serviceTotal /= max;
+            }
+            return max;
+        };
+
+        model.drawBar = function (context, x, y, width, height, color) {
+            context.fillStyle = color;
+            context.fillRect(x, y, width, height);
+        };
+
+        model.initializeTotals = function (count) {
+            var totals = [];
+            for (var i = 0; i < count; i++) {
+                var values = { hardwareTotal: 0.0, softwareTotal: 0.0, serviceTotal: 0.0 };
+                totals.push(values);
+            }
+            return totals;
+        };
+
+        model.extractContractors = function () {
+            var result = [];
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                if (!result.includes(model.orderProducts[i].Contractor)) {
+                    result.push(model.orderProducts[i].Contractor);
+                }
+            }
+            return result;
+        };
+
+        model.initContext = function (canvasTab, canvasName) {
+            model.tab = canvasTab;
+            var canvas = document.getElementById(canvasName);
             var context = canvas.getContext("2d");
             model.clearCanvas(context);
+            return context;
+        };
 
+        model.showPurchaseTrends = function () {
+            var context = model.initContext(6, "purchaseTrendsCanvas");
+            model.paymentAccounts = [];
+            var accounts = model.extractAccounts();
+            if (!accounts || accounts.length == 0)
+                return;
+            accounts = orderByFilter(accounts, "length", false);
+            model.paymentAccounts = accounts;
+            window.setTimeout(function () {
+                model.finalizeTrends();
+            }, 100);
+        };
+
+        model.finalizeTrends = function () {
+            var context = model.initContext(6, "purchaseTrendsCanvas");
+            var accounts = model.paymentAccounts;
+            context.clearRect(0, model.height, model.width + model.moneyAxisPadding, model.trendDatePadding + 20 * accounts.length);
+            var trends = model.initTrends(accounts);
+            model.fillTrendData(trends);
+            var maxTotal = model.findMaxTotalInTrends(trends);
+            var labels = model.getAccountLabels(accounts);
+            //this canvas taller than the others for drawing the labels - need to give the ui a chance to expand before drawing labels
+            for (var i = 0; i < trends.length; i++) {
+                model.drawTrend(context, trends[i], maxTotal, labels[i].color);
+            }
+            model.drawMoneyLines(context, maxTotal);
+            model.drawCustomLabels(context, 20, model.height + model.trendDatePadding, labels);
+            var dateLabels = model.getDateLabels();
+            for (var i = 0; i < dateLabels.length; i++) {
+                model.drawDateLabel(context, dateLabels[i].x, 0, dateLabels[i].text);
+            }
+        };
+
+        model.drawMoneyLines = function (context, max) {
+            context.font = "16px Verdana";
+            context.fillStyle = "Black";
+            context.strokeStyle = "#D0D0D0";
+            var dollarLevels = model.getDollarLevels(max);
+            for (var i = 0; i < dollarLevels.length; i++) {
+                var y = model.calculateTrendY(dollarLevels[i], max);
+                if (y > 10) {
+                    context.beginPath();
+                    context.moveTo(0, y);
+                    context.lineTo(model.width + model.moneyAxisPadding, y);
+                    context.stroke();
+                }
+                if (dollarLevels[i] == 0)
+                    continue;
+                context.fillText(dollarLevels[i], 5, y + 15);
+            }
+        };
+
+        model.getDateLabels = function () {
+            var start = new Date(model.orderProductQuery.Start);
+            var days = Math.round((new Date(model.orderProductQuery.End) - start) / 86400000);
+            var sections = 10;
+            var daysPerSection = days / sections;
+            if (daysPerSection < 1) {
+                daysPerSection = 1;
+                sections = days;
+            }
+            var result = [];
+            result.push({x:0,text: start.toLocaleDateString()});
+            var widthPerSection = model.width / sections;
+            var startDay = start.getDate();
+            for (var i = 1; i < sections; i++) {
+                var date = new Date(start);
+                date = new Date(date.setDate(startDay + Math.round(i * daysPerSection)));
+                result.push({x: Math.round( i*widthPerSection),text: date.toLocaleDateString()});
+            }
+            result.push({ x: model.width, text: new Date(model.orderProductQuery.End).toLocaleDateString() });
+            return result;
+        };
+
+        model.drawDateLabel = function (context, x, y, text) {
+            context.font = "16px Verdana";
+            context.fillStyle = "Black";
+            context.save();
+            context.translate(x + model.moneyAxisPadding, model.height + y);
+            context.rotate(-Math.PI / 2);
+            context.textAlign = "right";
+            context.fillText(text, 0, 0);
+            context.restore();
+        };
+
+        model.getDollarLevels = function (max) {
+            var result = [];
+            var temp = max / 5;
+            for (var i = 0; i < 6; i++)
+                result.push(Math.round(temp * i))
+            return result;
+        };
+
+        model.drawTrend = function (context, trend, maxTotal, color) {
+            if (trend.points.length == 0)
+                return;
+            var coordinates = [];
+            for (var i = 0; i < trend.points.length; i++) {
+                var point = trend.points[i];
+                var x = model.calculateTrendX(point.date) + model.moneyAxisPadding;
+                var y = model.calculateTrendY(point.total, maxTotal);
+                coordinates.push({ x: x, y: y });
+            }
+            context.beginPath();
+            if (coordinates.length == 1) {
+                context.fillStyle = color;
+                context.arc(coordinates[0].x, coordinates[0].y, 3, 0, 2 * Math.PI);
+                context.fill();
+                return;
+            }
+            context.strokeStyle = color;
+            context.moveTo(coordinates[0].x, coordinates[0].y);
+            for (var i = 0; i < coordinates.length; i++) {
+                context.lineTo(coordinates[i].x, coordinates[i].y);
+                context.stroke();
+            }
+        };
+
+        model.calculateTrendX = function (date) {
+            var min = new Date(model.orderProductQuery.Start).setHours(0, 0, 0, 0);
+            var max = reportService.getEndOfDay(new Date(model.orderProductQuery.End));
+            var range = max - min;
+            var delta = date - min;
+            var percent = delta / range;
+            return model.width * percent;
+        };
+
+        model.calculateTrendY = function (value, max) {
+            var percent = value / max;
+            //use model.height - 10 as the multiplier to pad the top by 10 pixels
+            return Math.floor(model.height - ((model.height - 10) * percent));
+        };
+
+        model.findMaxTotalInTrends = function (trends) {
+            if (!trends)
+                return 0.0;
+            var max = 0.0;
+            for (var i = 0; i < trends.length; i++) {
+                var temp = model.findMaxTotalInTrend(trends[i]);
+                if (temp > max)
+                    max = temp;
+            }
+            return model.normalizeMax(max);
+        };
+
+        model.normalizeMax = function (max) {
+            var orderOfMagnitude = 10;
+            while (max > orderOfMagnitude) {
+                orderOfMagnitude *= 10;
+            }
+            orderOfMagnitude /= 100;
+            var temp = orderOfMagnitude;
+            while (temp < max) {
+                temp += orderOfMagnitude;
+            }
+            return temp;
+        };
+
+        model.findMaxTotalInTrend = function (trend) {
+            if (!trend.points)
+                return 0;
+            var max = 0.0;
+            for (var i = 0; i < trend.points.length; i++) {
+                if (trend.points[i].total > max)
+                    max = trend.points[i].total;
+            }
+            return max;
+        };
+
+        model.fillTrendData = function (trends) {
+            var filtered = model.getFilteredProducts();
+            var products = orderByFilter(filtered, "CreateDate", false);
+            for (var i = 0; i < filtered.length; i++) {
+                var row = filtered[i];
+                var date = new Date(row.CreateDate).setHours(0, 0, 0, 0);
+                var trend = model.findTrend(trends, row.PaymentMethod)
+                var dataPoint = model.findDataPoint(trend, date);
+                dataPoint.total += row.Total;
+            }
+        };
+
+        model.findDataPoint = function (trend, date) {
+            for (var i = 0; i < trend.points.length; i++) {
+                if (trend.points[i].date == date) {
+                    return trend.points[i];
+                }
+            }
+            var result = { date: date, total: 0.0 };
+            trend.points.push(result);
+            return result;
+        };
+
+        model.findTrend = function (trends, name) {
+            for (var i = 0; i < trends.length; i++) {
+                if (trends[i].name == name)
+                    return trends[i];
+            }
+            return null;
+        };
+
+        model.initTrends = function (accounts) {
+            var result = [];
+            for (var i = 0; i < accounts.length; i++) {
+                result.push({name: accounts[i], points:[]})
+            }
+            return result;
+        };
+
+        model.getAccountLabels = function (accounts) {
+            var result = [];
+            for (var i = 0; i < accounts.length; i++) {
+                if (i < 4)
+                    result.push({ color: model.accountColors[i], text: accounts[i] });
+                else
+                    result.push({ color: "Black", text: accounts[i] });//this should never happen
+            }
+            return result;
+        };
+
+        model.showPurchasesByAccount = function () {
+            var context = model.initContext(4, "purchasesCanvas");
+
+            model.paymentAccounts = [];
+            model.paymentAccountColumnWidth = 0;
+            var accounts = model.extractAccounts();
+            if (!accounts || accounts.length == 0)
+                return;
+            model.paymentAccounts = accounts;
+            model.paymentAccountColumnWidth = Math.floor(model.width / model.paymentAccounts.length);
+            var totals = model.initializeTotals(accounts.length);
+            model.calculateTotals(totals, accounts, "PaymentMethod");
+            var max = model.normalizeTotals(totals);
+            model.drawTotals(context, totals);
+            model.drawMoneyLines(context, max);
             model.drawLabels(context);
+        };
+
+        model.calculateTotals = function (totals, list, key) {
+            var filtered = model.getFilteredProducts();
+            for (var i = 0; i < filtered.length; i++) {
+                var row = filtered[i];
+                var keyIndex = list.indexOf(row[key]);
+                var values = totals[keyIndex];
+                if (row.ProductType == "Hardware")
+                    values.hardwareTotal += row.Total;
+                else if (row.ProductType == "Software")
+                    values.softwareTotal += row.Total;
+                else if (row.ProductType == "Service")
+                    values.serviceTotal += row.Total;
+            }
+        }
+
+        model.extractAccounts = function () {
+            var result = [];
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                if (!result.includes(model.orderProducts[i].PaymentMethod)) {
+                    result.push(model.orderProducts[i].PaymentMethod);
+                }
+            }
+            return result;
         };
 
         model.showRawData = function () {
@@ -205,6 +572,27 @@
             model.setPage(model.numberOfPages);
         };
 
+        model.initDateRange = function () {
+            var start = new Date(Date.now());
+            var year = start.getFullYear();
+            var month = start.getMonth();
+            if (month < 3)
+                month = 0;
+            else if (month < 6)
+                month = 3;
+            else if (month < 9)
+                month = 6;
+            else
+                month = 9;
+            start = new Date(year, month, 1);
+            var end = new Date(new Date(year, month + 3, 0, 0, 0, 0, 0));
+            model.orderProductQuery = { Start: start.toLocaleDateString(), End: end.toLocaleDateString() };
+        };
+
+        model.downloadCsv = function () {
+            reportService.downloadCsv(model.orderProductQuery);
+        };
+
         messageService.subscribe('getOrderProductsSuccess', function (response) {
             model.orderProducts = response;
             model.refreshTable();
@@ -216,6 +604,16 @@
             model.handleError(response);
         });
 
+        messageService.subscribe('retrievedOrderStatusSimple', function(response) {
+            model.orderStatuses = response;
+        });
+
+        messageService.subscribe('retrievedOrderStatusSimpleFail', function (response) {
+            model.orderStatuses = [];
+        });
+
+        model.initDateRange();
+        reportService.fetchOrderStatuses();
     };
 
     module.component("reports", {
