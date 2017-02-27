@@ -132,7 +132,7 @@
         };
 
         model.clearCanvas = function (context) {
-            context.clearRect(0, 0, model.width, model.height);
+            context.clearRect(0, 0, model.width + model.moneyAxisPadding, model.height);
         };
 
         model.showExpendituresByContractor = function () {
@@ -245,7 +245,7 @@
         model.finalizeTrends = function () {
             var context = model.initContext(6, "purchaseTrendsCanvas");
             var accounts = model.paymentAccounts;
-            context.clearRect(0, model.height, model.width, model.trendDatePadding + 20 * accounts.length);
+            context.clearRect(0, model.height, model.width + model.moneyAxisPadding, model.trendDatePadding + 20 * accounts.length);
             var trends = model.initTrends(accounts);
             model.fillTrendData(trends);
             var maxTotal = model.findMaxTotalInTrends(trends);
@@ -256,6 +256,10 @@
             }
             model.drawMoneyLines(context, maxTotal);
             model.drawCustomLabels(context, 20, model.height + model.trendDatePadding, labels);
+            var dateLabels = model.getDateLabels();
+            for (var i = 0; i < dateLabels.length; i++) {
+                model.drawDateLabel(context, dateLabels[i].x, 0, dateLabels[i].text);
+            }
         };
 
         model.drawMoneyLines = function (context, max) {
@@ -277,6 +281,39 @@
             }
         };
 
+        model.getDateLabels = function () {
+            var start = new Date(model.orderProductQuery.Start);
+            var days = Math.round((new Date(model.orderProductQuery.End) - start) / 86400000);
+            var sections = 10;
+            var daysPerSection = days / sections;
+            if (daysPerSection < 1) {
+                daysPerSection = 1;
+                sections = days;
+            }
+            var result = [];
+            result.push({x:0,text: start.toLocaleDateString()});
+            var widthPerSection = model.width / sections;
+            var startDay = start.getDate();
+            for (var i = 1; i < sections; i++) {
+                var date = new Date(start);
+                date = new Date(date.setDate(startDay + Math.round(i * daysPerSection)));
+                result.push({x: Math.round( i*widthPerSection),text: date.toLocaleDateString()});
+            }
+            result.push({ x: model.width, text: new Date(model.orderProductQuery.End).toLocaleDateString() });
+            return result;
+        };
+
+        model.drawDateLabel = function (context, x, y, text) {
+            context.font = "16px Verdana";
+            context.fillStyle = "Black";
+            context.save();
+            context.translate(x + model.moneyAxisPadding, model.height + y);
+            context.rotate(-Math.PI / 2);
+            context.textAlign = "right";
+            context.fillText(text, 0, 0);
+            context.restore();
+        };
+
         model.getDollarLevels = function (max) {
             var result = [];
             var temp = max / 5;
@@ -286,6 +323,8 @@
         };
 
         model.drawTrend = function (context, trend, maxTotal, color) {
+            if (trend.points.length == 0)
+                return;
             var coordinates = [];
             for (var i = 0; i < trend.points.length; i++) {
                 var point = trend.points[i];
