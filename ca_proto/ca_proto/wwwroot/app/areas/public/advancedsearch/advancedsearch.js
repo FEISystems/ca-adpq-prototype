@@ -69,6 +69,7 @@
             model.manfacturerPartNumber = "";
             model.sku = "";
             model.products = [];
+            model.priceRange = "";
         }
 
 

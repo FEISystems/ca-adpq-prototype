@@ -22,7 +22,13 @@
                     <tr><th>Start Date</th><td><input type="text" ng-model="model.orderProductQuery.Start" required /></td></tr>
                     <tr><th>End Date</th><td><input type="text" ng-model="model.orderProductQuery.End" required /></td></tr>
                     <tr><th></th><td><input type="submit" value="Run Report" ng-disabled="!orderProductQueryForm.$valid" /></td></tr>
-                    <tr><th colspan="2">{{model.responseMessage}}</th></tr>
+                    <tr><th colspan="2" style="text-align:center;">{{model.responseMessage}}</th></tr>
+                    <tr>
+                        <th>Order Status [optional]<br/>Note: does not impact raw results</th>
+                        <td>
+                            <select ng-model="model.orderProductQuery.OrderStatus" ng-options="status for status in model.orderStatuses" multiple style="height:90px;" ></select>
+                        </td>
+                    </tr>
                 </table>
             </form>
         </div>
@@ -50,7 +56,7 @@
 
         <div ng-show="model.tab == 6">
             <h3 class="usa-heading">Purchase Trends by Account</h3>
-            <canvas id="purchaseTrendsCanvas" height="{{model.height + (20 * model.paymentAccounts.length)}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="purchaseTrendsCanvas" height="{{model.height + model.trendDatePadding + (20 * model.paymentAccounts.length)}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
 
         <div ng-show="model.tab == 5">
