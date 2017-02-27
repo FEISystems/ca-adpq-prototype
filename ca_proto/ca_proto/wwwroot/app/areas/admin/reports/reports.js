@@ -25,6 +25,7 @@
         model.hardwareColor = "#6495ED";
         model.softwareColor = "#FF7F50";
         model.serviceColor = "#A9A9A9";
+        model.accountColors = [model.hardwareColor, model.softwareColor, model.serviceColor, "Gold"];
         model.contractors = [];
         model.contractorColumnWidth = 0;
         model.paymentAccounts = [];
@@ -70,10 +71,7 @@
         };
 
         model.showExpendituresByProductType = function () {
-            model.tab = 2;
-            var canvas = document.getElementById("productTypeCanvas");
-            var context = canvas.getContext("2d");
-            model.clearCanvas(context);
+            var context = model.initContext(2, "productTypeCanvas");
 
             var total = 0.0;
             var hardwareTotal = 0;
@@ -97,12 +95,18 @@
         };
 
         model.drawLabels = function (context) {
-            var top = 20;
-            var left = model.width - 100;
+            model.drawCustomLabels(context, model.width - 100, 20,
+                [
+                    { color: model.hardwareColor, text: "Hardware" },
+                    { color: model.softwareColor, text: "Software" },
+                    { color: model.serviceColor, text: "Service" }
+                ]);
+        };
+
+        model.drawCustomLabels = function (context, left, top, labels) {
             context.font = "16px Verdana";
-            model.drawLabel(context, left, top, model.hardwareColor, "Hardware");
-            model.drawLabel(context, left, top + 20, model.softwareColor, "Software");
-            model.drawLabel(context, left, top + 40, model.serviceColor, "Service");
+            for (var i = 0; i < labels.length; i++)
+                model.drawLabel(context, left, top + (i * 20), labels[i].color, labels[i].text);
         };
 
         model.drawLabel = function (context, left, top, color, text) {
@@ -117,10 +121,8 @@
         };
 
         model.showExpendituresByContractor = function () {
-            model.tab = 3;
-            var canvas = document.getElementById("contractorCanvas");
-            var context = canvas.getContext("2d");
-            model.clearCanvas(context);
+            var context = model.initContext(3, "contractorCanvas");
+
             model.contractors = [];
             model.contractorColumnWidth = 0;
             var contractors = model.extractContractors();
@@ -202,11 +204,143 @@
             return result;
         };
 
-        model.showPurchasesByAccount = function () {
-            model.tab = 4;
-            var canvas = document.getElementById("purchasesCanvas");
+        model.initContext = function (canvasTab, canvasName) {
+            model.tab = canvasTab;
+            var canvas = document.getElementById(canvasName);
             var context = canvas.getContext("2d");
             model.clearCanvas(context);
+            return context;
+        };
+
+        model.showPurchaseTrends = function () {
+            var context = model.initContext(6, "purchaseTrendsCanvas");
+            model.paymentAccounts = [];
+            var accounts = model.extractAccounts();
+            if (!accounts || accounts.length == 0)
+                return;
+            accounts = orderByFilter(accounts, "length", false);
+            model.paymentAccounts = accounts;
+            var trends = model.initTrends(accounts);
+            model.fillTrendData(trends);
+            var maxTotal = model.findMaxTotalInTrends(trends);
+            var labels = model.getAccountLabels(accounts);
+            //this canvas taller than the others for drawing the labels - need to give the ui a chance to expand before drawing labels
+            window.setTimeout(function () {
+                for (var i = 0; i < trends.length; i++) {
+                    model.drawTrend(context, trends[i], maxTotal, labels[i].color);
+                    //alert(trends[i].name + "::" + JSON.stringify(trends[i].points));
+                }
+                model.drawCustomLabels(context, 20, model.height, labels);
+            }, 100);
+        };
+
+        model.drawTrend = function (context, trend, maxTotal, color) {
+            var coordinates = [];
+            for (var i = 0; i < trend.points.length; i++) {
+                var point = trend.points[i];
+                var x = model.calculateTrendX(point.date);
+                var y = model.calculateTrendY(point.total, maxTotal);
+                coordinates.push({ x: x, y: y });
+            }
+            context.beginPath();
+            context.strokeStyle = color;
+            context.moveTo(coordinates[0].x, coordinates[0].y);
+            for (var i = 0; i < coordinates.length; i++) {
+                context.lineTo(coordinates[i].x, coordinates[i].y);
+                context.stroke();
+            }
+        }
+
+        model.calculateTrendX = function (date) {
+            var min = new Date(model.orderProductQuery.Start).setHours(0, 0, 0, 0);
+            var max = new Date(model.orderProductQuery.End).setHours(0, 0, 0, 0);
+            var range = max - min;
+            var delta = date - min;
+            var percent = delta / range;
+            return model.width * percent;
+        };
+
+        model.calculateTrendY = function (value, max) {
+            var percent = value / max;
+            //use model.height - 10 as the multiplier to pad the top by 10 pixels
+            return Math.floor(model.height - ((model.height - 10) * percent));
+        }
+
+        model.findMaxTotalInTrends = function (trends) {
+            if (!trends)
+                return 0.0;
+            var max = 0.0;
+            for (var i = 0; i < trends.length; i++) {
+                var temp = model.findMaxTotalInTrend(trends[i]);
+                if (temp > max)
+                    max = temp;
+            }
+            return max;
+        };
+
+        model.findMaxTotalInTrend = function (trend) {
+            if (!trend.points)
+                return 0;
+            var max = 0.0;
+            for (var i = 0; i < trend.points.length; i++) {
+                if (trend.points[i].total > max)
+                    max = trend.points[i].total;
+            }
+            return max;
+        };
+
+        model.fillTrendData = function (trends) {
+            var products = orderByFilter(model.orderProducts, "CreateDate", false);
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                var row = model.orderProducts[i];
+                var date = new Date(row.CreateDate).setHours(0, 0, 0, 0);
+                var trend = model.findTrend(trends, row.PaymentMethod)
+                var dataPoint = model.findDataPoint(trend, date);
+                dataPoint.total += row.Total;
+            }
+        };
+
+        model.findDataPoint = function (trend, date) {
+            for (var i = 0; i < trend.points.length; i++) {
+                if (trend.points[i].date == date) {
+                    return trend.points[i];
+                }
+            }
+            var result = { date: date, total: 0.0 };
+            trend.points.push(result);
+            return result;
+        };
+
+        model.findTrend = function (trends, name) {
+            for (var i = 0; i < trends.length; i++) {
+                if (trends[i].name == name)
+                    return trends[i];
+            }
+            return null;
+        };
+
+        model.initTrends = function (accounts) {
+            var result = [];
+            for (var i = 0; i < accounts.length; i++) {
+                result.push({name: accounts[i], points:[]})
+            }
+            return result;
+        };
+
+        model.getAccountLabels = function (accounts) {
+            var result = [];
+            for (var i = 0; i < accounts.length; i++) {
+                if (i < 4)
+                    result.push({ color: model.accountColors[i], text: accounts[i] });
+                else
+                    result.push({ color: "Black", text: accounts[i] });//this should never happen
+            }
+            return result;
+        };
+
+        model.showPurchasesByAccount = function () {
+            var context = model.initContext(4, "purchasesCanvas");
+
             model.paymentAccounts = [];
             model.paymentAccountColumnWidth = 0;
             var accounts = model.extractAccounts();
