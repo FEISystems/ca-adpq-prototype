@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
     var module = angular.module("caWebApp");
-
+    
     var controller = function ($scope, $location, messageService, reportService, orderByFilter) {
         var model = this;
         model.provider = {};
@@ -11,10 +11,7 @@
         model.width = 750;
         model.orderProducts = [];
         model.orderProductsOnPage = [];
-        var start = new Date();
-        var end = new Date();
-        start.setMonth(start.getMonth() -3);
-        model.orderProductQuery = { Start: start.toLocaleDateString(), End: end.toLocaleDateString() };
+        model.orderProductQuery = { Start: 0, End: 0 };
         model.sortColumn = "CreateDate";
         model.sortAscending = true;
         model.responseMessage = "";
@@ -228,7 +225,6 @@
             window.setTimeout(function () {
                 for (var i = 0; i < trends.length; i++) {
                     model.drawTrend(context, trends[i], maxTotal, labels[i].color);
-                    //alert(trends[i].name + "::" + JSON.stringify(trends[i].points));
                 }
                 model.drawCustomLabels(context, 20, model.height, labels);
             }, 100);
@@ -253,7 +249,7 @@
 
         model.calculateTrendX = function (date) {
             var min = new Date(model.orderProductQuery.Start).setHours(0, 0, 0, 0);
-            var max = new Date(model.orderProductQuery.End).setHours(0, 0, 0, 0);
+            var max = reportService.getEndOfDay(new Date(model.orderProductQuery.End));
             var range = max - min;
             var delta = date - min;
             var percent = delta / range;
@@ -448,6 +444,23 @@
             model.setPage(model.numberOfPages);
         };
 
+        model.initDateRange = function () {
+            var start = new Date(Date.now());
+            var year = start.getFullYear();
+            var month = start.getMonth();
+            if (month < 3)
+                month = 0;
+            else if (month < 6)
+                month = 3;
+            else if (month < 9)
+                month = 6;
+            else
+                month = 9;
+            start = new Date(year, month, 1);
+            var end = new Date(new Date(year, month + 3, 0, 0, 0, 0, 0));
+            model.orderProductQuery = { Start: start.toLocaleDateString(), End: end.toLocaleDateString() };
+        };
+
         messageService.subscribe('getOrderProductsSuccess', function (response) {
             model.orderProducts = response;
             model.refreshTable();
@@ -459,6 +472,7 @@
             model.handleError(response);
         });
 
+        model.initDateRange();
     };
 
     module.component("reports", {

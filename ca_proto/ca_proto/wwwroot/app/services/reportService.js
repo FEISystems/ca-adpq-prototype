@@ -2,6 +2,7 @@
 
     var reportService = function (messageService, $http) {
         var fetchOrderProducts = function (orderProductQuery) {
+
             $http.post("/api/report/GetOrderProducts", orderProductQuery)
                 .success(function (response) {
                     if (response.Error)
@@ -14,8 +15,13 @@
                 });
         };
 
+        var getEndOfDay = function (date) {
+            return new Date(date.setHours(24, 0, 0, 0));
+        };
+
         return {
             fetchOrderProducts: fetchOrderProducts,
+            getEndOfDay: getEndOfDay,
         };
     }
 
