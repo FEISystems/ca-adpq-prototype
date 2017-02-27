@@ -30,7 +30,7 @@
                         <li><b>CLIN:</b> {{model.product.CLIN}}</li>
                         <li><b>Contractor:</b> {{model.product.Contractor}}</li>
                         <li><b>Contract #</b> {{model.product.ContractNumber}}</li>
-                        <li><b>Contract Expiration Date:</b> {{model.product.ContractExpiration}}</li>
+                        <li><b>Contract Expiration Date:</b> {{model.product.ContractExpiration | date:'shortDate'}}</li>
                     </ul>
                 </div>
             </div>

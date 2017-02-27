@@ -34,7 +34,7 @@ namespace ca_service.Repositories
 
             string baseSql = @"
 SELECT P.*
-FROM Products P
+FROM products P
 WHERE";
 
             string whereClause = @"
@@ -96,7 +96,7 @@ WHERE";
             var sql = new StringBuilder();
 
             sql.Append(@"
-SELECT * FROM Products
+SELECT * FROM products
 WHERE
 ");
             bool needsAnd = false;

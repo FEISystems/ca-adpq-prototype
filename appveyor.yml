@@ -14,7 +14,7 @@
     git_email:
       secure: oRZ8Osh1fASFzE/ff8aFltjftBtlRP422CKRxGSfIVA=
   build_script:
-    - ps: .\build_aspdotnet_core.ps1
+    - ps: .\build_aspdotnet_core_latest.ps1
   on_success:
     - git config --global credential.helper store
     - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
@@ -43,7 +43,7 @@
     git_email:
       secure: oRZ8Osh1fASFzE/ff8aFltjftBtlRP422CKRxGSfIVA=
   build_script:
-    - ps: .\build_aspdotnet_core.ps1
+    - ps: .\build_aspdotnet_core_stable.ps1
   on_success:
     - git config --global credential.helper store
     - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
