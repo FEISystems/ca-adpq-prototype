@@ -28,6 +28,8 @@
         model.paymentAccounts = [];
         model.paymentAccountColumnWidth = 0;
         model.orderStatuses = [];
+        model.trendDatePadding = 100;
+        model.moneyAxisPadding = 100;
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -130,7 +132,7 @@
         };
 
         model.clearCanvas = function (context) {
-            context.clearRect(0, 0, model.width, model.height);
+            context.clearRect(0, 0, model.width + model.moneyAxisPadding, model.height);
         };
 
         model.showExpendituresByContractor = function () {
@@ -145,8 +147,9 @@
             model.contractorColumnWidth = Math.floor(model.width / model.contractors.length);
             var totals = model.initializeTotals(contractors.length);
             model.calculateTotals(totals, contractors, "Contractor");
-            model.normalizeTotals(totals);
+            var max = model.normalizeTotals(totals);
             model.drawTotals(context, totals);
+            model.drawMoneyLines(context, max);
             model.drawLabels(context);
         };
 
@@ -181,7 +184,7 @@
                 if (temp > max)
                     max = temp;
             }
-            return max;
+            return model.normalizeMax(max);
         };
 
         model.normalizeTotals = function (totals) {
@@ -191,6 +194,7 @@
                 totals[i].softwareTotal /= max;
                 totals[i].serviceTotal /= max;
             }
+            return max;
         };
 
         model.drawBar = function (context, x, y, width, height, color) {
@@ -233,25 +237,98 @@
                 return;
             accounts = orderByFilter(accounts, "length", false);
             model.paymentAccounts = accounts;
+            window.setTimeout(function () {
+                model.finalizeTrends();
+            }, 100);
+        };
+
+        model.finalizeTrends = function () {
+            var context = model.initContext(6, "purchaseTrendsCanvas");
+            var accounts = model.paymentAccounts;
+            context.clearRect(0, model.height, model.width + model.moneyAxisPadding, model.trendDatePadding + 20 * accounts.length);
             var trends = model.initTrends(accounts);
             model.fillTrendData(trends);
             var maxTotal = model.findMaxTotalInTrends(trends);
             var labels = model.getAccountLabels(accounts);
             //this canvas taller than the others for drawing the labels - need to give the ui a chance to expand before drawing labels
-            window.setTimeout(function () {
-                for (var i = 0; i < trends.length; i++) {
-                    model.drawTrend(context, trends[i], maxTotal, labels[i].color);
+            for (var i = 0; i < trends.length; i++) {
+                model.drawTrend(context, trends[i], maxTotal, labels[i].color);
+            }
+            model.drawMoneyLines(context, maxTotal);
+            model.drawCustomLabels(context, 20, model.height + model.trendDatePadding, labels);
+            var dateLabels = model.getDateLabels();
+            for (var i = 0; i < dateLabels.length; i++) {
+                model.drawDateLabel(context, dateLabels[i].x, 0, dateLabels[i].text);
+            }
+        };
+
+        model.drawMoneyLines = function (context, max) {
+            context.font = "16px Verdana";
+            context.fillStyle = "Black";
+            context.strokeStyle = "#D0D0D0";
+            var dollarLevels = model.getDollarLevels(max);
+            for (var i = 0; i < dollarLevels.length; i++) {
+                var y = model.calculateTrendY(dollarLevels[i], max);
+                if (y > 10) {
+                    context.beginPath();
+                    context.moveTo(0, y);
+                    context.lineTo(model.width + model.moneyAxisPadding, y);
+                    context.stroke();
                 }
-                context.clearRect(0, model.height, model.width, 20 * model.paymentAccounts.length);
-                model.drawCustomLabels(context, 20, model.height, labels);
-            }, 100);
+                if (dollarLevels[i] == 0)
+                    continue;
+                context.fillText(dollarLevels[i], 5, y + 15);
+            }
+        };
+
+        model.getDateLabels = function () {
+            var start = new Date(model.orderProductQuery.Start);
+            var days = Math.round((new Date(model.orderProductQuery.End) - start) / 86400000);
+            var sections = 10;
+            var daysPerSection = days / sections;
+            if (daysPerSection < 1) {
+                daysPerSection = 1;
+                sections = days;
+            }
+            var result = [];
+            result.push({x:0,text: start.toLocaleDateString()});
+            var widthPerSection = model.width / sections;
+            var startDay = start.getDate();
+            for (var i = 1; i < sections; i++) {
+                var date = new Date(start);
+                date = new Date(date.setDate(startDay + Math.round(i * daysPerSection)));
+                result.push({x: Math.round( i*widthPerSection),text: date.toLocaleDateString()});
+            }
+            result.push({ x: model.width, text: new Date(model.orderProductQuery.End).toLocaleDateString() });
+            return result;
+        };
+
+        model.drawDateLabel = function (context, x, y, text) {
+            context.font = "16px Verdana";
+            context.fillStyle = "Black";
+            context.save();
+            context.translate(x + model.moneyAxisPadding, model.height + y);
+            context.rotate(-Math.PI / 2);
+            context.textAlign = "right";
+            context.fillText(text, 0, 0);
+            context.restore();
+        };
+
+        model.getDollarLevels = function (max) {
+            var result = [];
+            var temp = max / 5;
+            for (var i = 0; i < 6; i++)
+                result.push(Math.round(temp * i))
+            return result;
         };
 
         model.drawTrend = function (context, trend, maxTotal, color) {
+            if (trend.points.length == 0)
+                return;
             var coordinates = [];
             for (var i = 0; i < trend.points.length; i++) {
                 var point = trend.points[i];
-                var x = model.calculateTrendX(point.date);
+                var x = model.calculateTrendX(point.date) + model.moneyAxisPadding;
                 var y = model.calculateTrendY(point.total, maxTotal);
                 coordinates.push({ x: x, y: y });
             }
@@ -268,7 +345,7 @@
                 context.lineTo(coordinates[i].x, coordinates[i].y);
                 context.stroke();
             }
-        }
+        };
 
         model.calculateTrendX = function (date) {
             var min = new Date(model.orderProductQuery.Start).setHours(0, 0, 0, 0);
@@ -283,7 +360,7 @@
             var percent = value / max;
             //use model.height - 10 as the multiplier to pad the top by 10 pixels
             return Math.floor(model.height - ((model.height - 10) * percent));
-        }
+        };
 
         model.findMaxTotalInTrends = function (trends) {
             if (!trends)
@@ -294,7 +371,20 @@
                 if (temp > max)
                     max = temp;
             }
-            return max;
+            return model.normalizeMax(max);
+        };
+
+        model.normalizeMax = function (max) {
+            var orderOfMagnitude = 10;
+            while (max > orderOfMagnitude) {
+                orderOfMagnitude *= 10;
+            }
+            orderOfMagnitude /= 100;
+            var temp = orderOfMagnitude;
+            while (temp < max) {
+                temp += orderOfMagnitude;
+            }
+            return temp;
         };
 
         model.findMaxTotalInTrend = function (trend) {
@@ -370,8 +460,9 @@
             model.paymentAccountColumnWidth = Math.floor(model.width / model.paymentAccounts.length);
             var totals = model.initializeTotals(accounts.length);
             model.calculateTotals(totals, accounts, "PaymentMethod");
-            model.normalizeTotals(totals);
+            var max = model.normalizeTotals(totals);
             model.drawTotals(context, totals);
+            model.drawMoneyLines(context, max);
             model.drawLabels(context);
         };
 
