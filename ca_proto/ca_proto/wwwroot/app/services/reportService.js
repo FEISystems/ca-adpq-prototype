@@ -20,17 +20,29 @@
         };
 
         var downloadCsv = function (orderProductQuery) {
-            //http://localhost:55327/api/Report/DownloadCSV?start=1%2F1%2F2017&end=3%2F31%2F2017
-            //http://localhost:55327/admin/reports/downloadCsv?start=1%2F1%2F2017,end=3%2F31%2F2017
-            //http://localhost:55327/api/reports/downloadCsv?start=1%2F1%2F2017&end=3%2F31%2F2017
             var url = "/api/report/downloadCsv?start=" + encodeURIComponent(orderProductQuery.Start) + "&end=" + encodeURIComponent(orderProductQuery.End);
             window.open(url, "[blank]");
         };
+
+        var fetchOrderStatuses = function () {
+            fetchLookups("OrderStatusSimple");
+        };
+
+        var fetchLookups = function (lookupName) {
+            $http.get("/api/lookups/" + lookupName)
+                .success(function (response) {
+                    messageService.publish('retrieved' + lookupName, response);
+                })
+                .error(function (response) {
+                    messageService.publish('retrieved' + lookupName + 'Fail', response);
+                });
+        }
 
         return {
             fetchOrderProducts: fetchOrderProducts,
             getEndOfDay: getEndOfDay,
             downloadCsv: downloadCsv,
+            fetchOrderStatuses: fetchOrderStatuses,
         };
     }
 

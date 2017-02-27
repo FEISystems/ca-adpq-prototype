@@ -27,6 +27,7 @@
         model.contractorColumnWidth = 0;
         model.paymentAccounts = [];
         model.paymentAccountColumnWidth = 0;
+        model.orderStatuses = [];
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -67,6 +68,20 @@
             model.tab = 1;
         };
 
+        model.getFilteredProducts = function () {
+            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.len == 0) {
+                //if no order status is chosen to filter then return all rows
+                return model.orderProducts;
+            }
+            var result = [];
+            for (var i = 0; i < model.orderProducts.length; i++) {
+                var row = model.orderProducts[i];
+                if (model.orderProductQuery.OrderStatus.includes(row.Status))
+                    result.push(row);
+            }
+            return result;
+        };
+
         model.showExpendituresByProductType = function () {
             var context = model.initContext(2, "productTypeCanvas");
 
@@ -74,14 +89,15 @@
             var hardwareTotal = 0;
             var softwareTotal = 0;
             var serviceTotal = 0;
-            for (var i = 0; i < model.orderProducts.length; i++) {
-                var row = model.orderProducts[i];
+            var filtered = model.getFilteredProducts();
+            for (var i = 0; i < filtered.length; i++) {
+                var row = filtered[i];
                 total += row.Total;
-                if (model.orderProducts[i].ProductType == "Hardware")
+                if (filtered[i].ProductType == "Hardware")
                     hardwareTotal += row.Total;
-                else if (model.orderProducts[i].ProductType == "Software")
+                else if (filtered[i].ProductType == "Software")
                     softwareTotal += row.Total;
-                else if (model.orderProducts[i].ProductType == "Service")
+                else if (filtered[i].ProductType == "Service")
                     serviceTotal += row.Total;
             }
             var pieChart = model.pieChart(context, model.height, model.width);
@@ -240,6 +256,12 @@
                 coordinates.push({ x: x, y: y });
             }
             context.beginPath();
+            if (coordinates.length == 1) {
+                context.fillStyle = color;
+                context.arc(coordinates[0].x, coordinates[0].y, 3, 0, 2 * Math.PI);
+                context.fill();
+                return;
+            }
             context.strokeStyle = color;
             context.moveTo(coordinates[0].x, coordinates[0].y);
             for (var i = 0; i < coordinates.length; i++) {
@@ -287,9 +309,10 @@
         };
 
         model.fillTrendData = function (trends) {
-            var products = orderByFilter(model.orderProducts, "CreateDate", false);
-            for (var i = 0; i < model.orderProducts.length; i++) {
-                var row = model.orderProducts[i];
+            var filtered = model.getFilteredProducts();
+            var products = orderByFilter(filtered, "CreateDate", false);
+            for (var i = 0; i < filtered.length; i++) {
+                var row = filtered[i];
                 var date = new Date(row.CreateDate).setHours(0, 0, 0, 0);
                 var trend = model.findTrend(trends, row.PaymentMethod)
                 var dataPoint = model.findDataPoint(trend, date);
@@ -353,8 +376,9 @@
         };
 
         model.calculateTotals = function (totals, list, key) {
-            for (var i = 0; i < model.orderProducts.length; i++) {
-                var row = model.orderProducts[i];
+            var filtered = model.getFilteredProducts();
+            for (var i = 0; i < filtered.length; i++) {
+                var row = filtered[i];
                 var keyIndex = list.indexOf(row[key]);
                 var values = totals[keyIndex];
                 if (row.ProductType == "Hardware")
@@ -477,7 +501,16 @@
             model.handleError(response);
         });
 
+        messageService.subscribe('retrievedOrderStatusSimple', function(response) {
+            model.orderStatuses = response;
+        });
+
+        messageService.subscribe('retrievedOrderStatusSimpleFail', function (response) {
+            model.orderStatuses = [];
+        });
+
         model.initDateRange();
+        reportService.fetchOrderStatuses();
     };
 
     module.component("reports", {
