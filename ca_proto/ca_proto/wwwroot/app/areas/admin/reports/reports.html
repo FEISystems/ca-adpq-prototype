@@ -56,7 +56,7 @@
 
         <div ng-show="model.tab == 6">
             <h3 class="usa-heading">Purchase Trends by Account</h3>
-            <canvas id="purchaseTrendsCanvas" height="{{model.height + (20 * model.paymentAccounts.length)}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="purchaseTrendsCanvas" height="{{model.height + model.trendDatePadding + (20 * model.paymentAccounts.length)}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
 
         <div ng-show="model.tab == 5">
