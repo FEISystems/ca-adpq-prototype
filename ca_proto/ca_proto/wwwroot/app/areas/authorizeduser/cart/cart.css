@@ -41,3 +41,12 @@
   float: right;
   padding-right: 25px;
 }
+.your-cart .quantity input {
+  width: 80px;
+}
+.your-cart .quantity label {
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  text-align: center;
+}

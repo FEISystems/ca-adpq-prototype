@@ -10,19 +10,10 @@
             </div>
             <div class="usa-width-one-half">
                 <h3>{{model.product.Title}}</h3>
-                <h4>{{model.product.ContractPrice | currency}}</h4>
+                <h4 class="price">Price: {{model.product.ContractPrice | currency}}</h4>
+                <h5><em style="text-decoration: line-through">{{model.product.ListPrice | currency }}</em> <em>Save  {{model.product.ContractDiscount}}</em></h5>
                 <div class="usa-width-one-half add-to-cart">
-                    <label for="add_to_cart" class="usa-sr-only">Add to Cart</label>
-                    <select type="text" id="add_to_cart">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                    </select>
-                    <button class="usa-button-secondary left">Add to Cart</button>
-                    <!--<add-to-cart-button product="$scope.productInfo"></add-to-cart-button>-->
+                    <add-to-cart-qty-button product="model.product"></add-to-cart-qty-button>
                 </div>
                 <div class="usa-width-one-half compare">
                     <compare-product-button product-id="model.productId"></compare-product-button>

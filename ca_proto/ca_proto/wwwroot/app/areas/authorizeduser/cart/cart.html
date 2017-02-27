@@ -19,8 +19,8 @@
                 <div class="usa-width-one-fourth">
                     <span class="cost-per-item">{{item.Price | currency}} each</span>
                     <span class="quantity">
-                        <input type="text" ng-model="item.Quantity" />
-                        <span>Quantity</span>
+                        <input id="quantity" min="1" type="number" type="text" ng-model="item.Quantity" />
+                        <label for="quantity">Qty</label>
                     </span>
                 </div>
                 <div class="usa-width-one-twelfth text-right">

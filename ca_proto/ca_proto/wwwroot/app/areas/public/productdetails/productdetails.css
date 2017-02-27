@@ -1,7 +1,3 @@
-.product-details {
-  /*-------------------remove these once actual images are implemented----------------------------*/
-  /*----------------------------------------------------------------------------------------------*/
-}
 .product-details .usa-heading {
   border-bottom: 1px solid #02bfe7;
 }
@@ -23,16 +19,6 @@
 .product-details .compare label {
   margin: 15px 0;
 }
-.product-details .product-placeholder {
-  width: 100%;
-  min-height: 200px;
-  background-color: lightgray;
-  border: 1px solid darkgray;
-}
-.product-details .product-thumbnail {
-  width: 31.5%;
-  min-height: 50px;
-  background-color: lightgray;
-  border: 1px solid darkgray;
-  margin-top: 10px;
+.product-details h5 {
+  margin-top: 0;
 }
