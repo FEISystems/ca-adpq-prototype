@@ -13,7 +13,7 @@
         model.orderProductsOnPage = [];
         model.orderProductQuery = { Start: 0, End: 0 };
         model.sortColumn = "CreateDate";
-        model.sortAscending = true;
+        model.sortAscending = false;
         model.responseMessage = "";
         model.pageIndex = 0;
         model.numberOfPages = 1;
@@ -30,6 +30,8 @@
         model.orderStatuses = [];
         model.trendDatePadding = 100;
         model.moneyAxisPadding = 100;
+        model.grandTotal = 0;
+        model.expendituresOverTime = [];
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -56,6 +58,11 @@
             return chart;
         };
 
+        model.setExpendituresOrder = function (columnName) {
+            model.setOrder(columnName);
+            model.showExpendituresOverTime();
+        };
+
         model.setOrder = function (columnName) {
             if (columnName == model.sortColumn)
                 model.sortAscending = !model.sortAscending;
@@ -68,6 +75,18 @@
 
         model.showFilter = function () {
             model.tab = 1;
+        };
+
+        model.showExpendituresOverTime = function () {
+            model.tab = 7;
+            model.grandTotal = 0;
+            var total = 0;
+            var filtered = model.getFilteredProducts();
+            for (var i = 0; i < filtered.length; i++) {
+                total += filtered[i].Total;                
+            }
+            model.grandTotal = total;
+            model.expendituresOverTime = filtered;
         };
 
         model.getFilteredProducts = function () {
@@ -109,14 +128,14 @@
             model.drawLabels(context);
 
             var totalLabels = [];
-            totalLabels.push({ color: model.hardwareColor, text: "$" + model.toMoney(hardwareTotal) });
-            totalLabels.push({ color: model.softwareColor, text: "$" + model.toMoney(softwareTotal) });
-            totalLabels.push({ color: model.serviceColor, text: "$" + model.toMoney(serviceTotal) });
+            totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal) });
+            totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal) });
+            totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal) });
             model.drawCustomLabels(context, 10, 20, totalLabels);
         };
 
         model.toMoney = function (number) {
-            return number.toFixed(2).replace(/./g, function (c, i, a) {
+            return "$" + number.toFixed(2).replace(/./g, function (c, i, a) {
                 return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
         };
@@ -289,7 +308,7 @@
                 }
                 if (dollarLevels[i] == 0)
                     continue;
-                context.fillText(dollarLevels[i], 5, y + 15);
+                context.fillText(model.toMoney(dollarLevels[i]), 5, y + 15);
             }
         };
 
@@ -508,6 +527,8 @@
         };
 
         model.fetchOrderProducts = function () {
+            model.orderProducts = [];
+            model.expendituresOverTime = [];
             reportService.fetchOrderProducts(model.orderProductQuery);
         };
 

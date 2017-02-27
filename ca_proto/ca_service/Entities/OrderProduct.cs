@@ -20,15 +20,23 @@ namespace ca_service.Entities
         public static OrderProduct Read(MySql.Data.MySqlClient.MySqlDataReader reader)
         {
             OrderProduct result = new OrderProduct();
-            result.OrderId = (int)reader["OrderID"];
-            result.CreateDate = (DateTime)reader["CreateDate"];
-            result.PaymentMethod = (OrderPaymentMethod)reader["PaymentMethod"];
-            result.Status = (OrderStatus)reader["Status"];
-            result.Price = (decimal)reader["Price"];
-            result.Quantity = (int)reader["Quantity"];
-            result.ProductType = (string)reader["ProductType"];
-            result.Contractor = (string)reader["Contractor"];
+            result.OrderId = Read<int>(reader, "OrderID");
+            result.CreateDate = Read<DateTime>(reader, "CreateDate");
+            result.PaymentMethod = Read<OrderPaymentMethod>(reader, "PaymentMethod");
+            result.Status = Read<OrderStatus>(reader, "Status");
+            result.Price = Read<decimal>(reader, "Price");
+            result.Quantity = Read<int>(reader, "Quantity");
+            result.ProductType = Read<string>(reader, "ProductType");
+            result.Contractor = Read<string>(reader, "Contractor");
             return result;
+        }
+
+        private static T Read<T>(MySql.Data.MySqlClient.MySqlDataReader reader, string name)
+        {
+            var o = reader[name];
+            if (null == o || o == DBNull.Value)
+                return default(T);
+            return (T)o;
         }
 
         private static readonly object sync = new object();

@@ -9,11 +9,12 @@
             <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
             <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
             <li><a href="" ng-click="model.showPurchaseTrends()" ng-class="{'usa-current' : model.tab == 6}">Purchase Trends</a></li>
+            <li><a href="" ng-click="model.showExpendituresOverTime()" ng-class="{'usa-current' : model.tab == 7}">Expenditures Over Time</a></li>
             <li><a href="" ng-click="model.showRawData()" ng-class="{'usa-current' : model.tab == 5}">Raw Data</a></li>
         </ul>    
     </aside>
 
-    <div class="usa-width-two-thirds" permission="['Admin']" style="margin-top:-80px">
+    <div class="usa-width-two-thirds" permission="['Admin']" style="page-break-before:always;">
         <div ng-show="model.tab == 1">
             <h3 class="usa-heading">Data Filter</h3>
             <form id="orderProductQueryForm" name="orderProductQueryForm"
@@ -101,6 +102,36 @@
                         <a href="" ng-click="model.downloadCsv()">Download</a>
                     </td>
                 </tr>
+            </table>
+        </div>
+
+        <div ng-show="model.tab == 7">
+            <h3 class="usa-heading">Expenditures Over a Period of Time</h3>
+            <table style="font-size:small">
+                <thead>
+                    <tr>
+                        <th colspan="4">Expenditures over {{model.orderProductQuery.Start|date}} - {{model.orderProductQuery.End|date}}</th>
+                    </tr>
+                    <tr>
+                        <th><a href="" ng-click="model.setExpendituresOrder('CreateDate')">Date</a></th>
+                        <th><a href="" ng-click="model.setExpendituresOrder('OrderId')">Order #</a></th>
+                        <th><a href="" ng-click="model.setExpendituresOrder('PaymentMethod')">Account</a></th>
+                        <th><a href="" ng-click="model.setExpendituresOrder('Total')">Total</a></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="row in model.expendituresOverTime">
+                    <td>{{row.CreateDate|date}}</td>
+                    <td>{{row.OrderId}}</td>
+                    <td>{{row.PaymentMethod}}</td>
+                    <td>{{row.Total|currency}}</td>
+                </tr>
+                <thead>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2">&nbsp;</td>
+                        <th>{{model.grandTotal|currency}}</th>
+                    </tr>
+                </thead>
             </table>
         </div>
     </div>
