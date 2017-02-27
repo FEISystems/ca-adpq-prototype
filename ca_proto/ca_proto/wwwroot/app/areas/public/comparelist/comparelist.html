@@ -44,6 +44,12 @@
                 </td>
             </tr>
             <tr>
+                <th style="max-width: 100px;" scope="row">SKU</th>
+                <td width="22%" ng-repeat="product in model.products">
+                    {{product.SKU}}
+                </td>
+            </tr>
+            <tr>
                 <th style="max-width: 100px;" scope="row">Price</th>
                 <td width="22%" ng-repeat="product in model.products">
                     <strong class="h4" style="font-weight: bold">{{product.ContractPrice | currency}}</strong> <br>
