@@ -12,3 +12,19 @@
 .swiper-container .swiper-wrapper .swiper-slide {
   text-align: center;
 }
+.swiper-container .bg-img {
+  width: 100%;
+  height: 350px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.swiper-container .hero1 {
+  background-image: url(../../../../img/heroImage1_2500.jpg);
+}
+.swiper-container .hero2 {
+  background-image: url(../../../../img/heroImage2_2500.jpg);
+}
+.swiper-container .hero3 {
+  background-image: url(../../../../img/heroImage3_2500.jpg);
+}
