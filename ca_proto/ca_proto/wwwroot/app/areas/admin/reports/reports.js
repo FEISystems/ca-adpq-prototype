@@ -107,6 +107,18 @@
             pieChart.drawSlice(hardwareTotal / total, (hardwareTotal + softwareTotal) / total, model.softwareColor);// "#FF7F50");
             pieChart.drawSlice((hardwareTotal + softwareTotal) / total, 1.0, model.serviceColor);// "#A9A9A9");
             model.drawLabels(context);
+
+            var totalLabels = [];
+            totalLabels.push({ color: model.hardwareColor, text: "$" + model.toMoney(hardwareTotal) });
+            totalLabels.push({ color: model.softwareColor, text: "$" + model.toMoney(softwareTotal) });
+            totalLabels.push({ color: model.serviceColor, text: "$" + model.toMoney(serviceTotal) });
+            model.drawCustomLabels(context, 10, 20, totalLabels);
+        };
+
+        model.toMoney = function (number) {
+            return number.toFixed(2).replace(/./g, function (c, i, a) {
+                return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+            });
         };
 
         model.drawLabels = function (context) {
