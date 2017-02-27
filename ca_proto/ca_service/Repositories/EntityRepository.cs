@@ -260,17 +260,24 @@ namespace ca_service.Repositories
             {
                 if (!selectedFields.Contains(column.ColumnName.ToLower()))
                     continue;
-                if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
+                if (column.DbType == System.Data.DbType.String)
                 {
-                    var values = reader[column.ColumnName] as string;
-                    if (null == values)
+                    var value = reader[column.ColumnName] as string;
+                    if (column.Property.PropertyType == typeof(List<int>))
                     {
-                        column.Property.SetValue(result, new List<int>(0));
+                        if (null == value)
+                        {
+                            column.Property.SetValue(result, new List<int>(0));
+                        }
+                        else
+                        {
+                            var list = new List<int>(value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
+                            column.Property.SetValue(result, list);
+                        }
                     }
                     else
-                    {
-                        var list = new List<int>(values.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
-                        column.Property.SetValue(result, list);
+                    {                        
+                        column.Property.SetValue(result, CleanText(value));
                     }
                 }
                 else
@@ -279,6 +286,17 @@ namespace ca_service.Repositories
                 }
             }
             return result;
+        }
+
+        private string CleanText(string value)
+        {
+            char[] chars = value.ToCharArray();
+            for (int i=0; i<value.Length; i++)
+            {
+                if (chars[i] > 127)
+                    chars[i] = ' ';
+            }
+            return new string(chars);
         }
 
         private List<string> GetFieldNames(MySqlDataReader reader)

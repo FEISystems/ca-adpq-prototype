@@ -215,7 +215,7 @@
         model.edit = function (id) {
             var product = model.findProduct(id);
             if (product)
-                model.showAddEdit(model.buildProduct(item), true);
+                model.showAddEdit(model.buildProduct(product), true);
         };
 
         model.resetDatabase = function () {
