@@ -126,9 +126,7 @@
         }
 
         $scope.placeOrder = function () {
-            console.log(model.paymentAccount)
-            orderService.placeOrder(model.cart.Id, model.paymentMethod, model.address1, model.address2, model.address3, model.city, model.state, model.postalCode, model.emailAddress)
-            $location.path("user/orderconfirmation");
+            orderService.placeOrder(model.cart.Id, model.paymentAccount, model.address1, model.address2, model.address3, model.city, model.state, model.postalCode, model.emailAddress)
             
     }
 
@@ -162,11 +160,11 @@
         })
 
         messageService.subscribe("placeOrderSuccess", function (response) {
-
+            $location.path("user/orderconfirmation");
         });
 
         messageService.subscribe("placeOrderFailure", function (response) {
-
+            $location.path("user/orderfailed");
         });
 
         if ($rootScope.orderInfo != null) {
