@@ -89,6 +89,7 @@
             model.page = 0;
             model.tab = 3;
             model.fetchProducts();
+            model.fetchPageCount();
         };
 
         model.clearFilter = function () {
