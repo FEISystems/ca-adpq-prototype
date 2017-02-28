@@ -139,7 +139,7 @@
         }
 
         var fetchProducts = function (start, count, orderByColumn, orderAscending, filter) {
-            var postData = { start, count, orderByColumn, orderAscending, filter};
+            var postData = { Start: start, Count: count, OrderByColumn: orderByColumn, OrderAscending: orderAscending, Filter: filter};
             $http.post("/api/inventory/query", postData)
                 .success(function (response) {
                     messageService.publish('querySuccess', response);

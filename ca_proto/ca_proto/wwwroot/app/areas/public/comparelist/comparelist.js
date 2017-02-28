@@ -23,7 +23,8 @@
         var updateCompareList = function(){
             model.products = [];
             if (model.compareListIds.length > 0) {
-                for (let productId of model.compareListIds){
+                for (var idx = 0; idx < model.compareListIds.length; ++idx) {
+                    var productId = model.compareListIds[i];
                     model.getProduct(productId);
                 }
             }
