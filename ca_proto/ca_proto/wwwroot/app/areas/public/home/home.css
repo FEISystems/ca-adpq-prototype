@@ -1,5 +1,5 @@
 .swiper-container {
-  height: 400px;
+  height: 350px;
 }
 .swiper-container .swiper-button-prev,
 .swiper-container .swiper-container-rtl .swiper-button-next {
@@ -27,14 +27,23 @@
   text-align: left;
   margin-right: 20%;
 }
-.swiper-container .hero1 .text h2 {
-  font-size: 3em;
+.swiper-container .hero1 .text h3 {
+  font-size: 1.5em;
+  text-align: left;
 }
 .swiper-container .hero1 .text p {
   font-size: 1.25em;
 }
 .swiper-container .hero2 {
   background-image: url(../../../../img/heroImage2_2500.jpg);
+}
+.swiper-container .hero2 .text h3 {
+  font-size: 2em;
+  color: #fff;
+  text-align: left;
+  margin-left: 10%;
+  padding-top: 5%;
+  margin-top: 0;
 }
 .swiper-container .hero3 {
   background-image: url(../../../../img/heroImage3_2500.jpg);
