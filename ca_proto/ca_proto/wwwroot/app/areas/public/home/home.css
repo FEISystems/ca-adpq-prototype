@@ -28,3 +28,9 @@
 .swiper-container .hero3 {
   background-image: url(../../../../img/heroImage3_2500.jpg);
 }
+
+@media screen and (max-width: 600px){
+  h2{
+    margin-bottom: -20px !important;
+  }
+}

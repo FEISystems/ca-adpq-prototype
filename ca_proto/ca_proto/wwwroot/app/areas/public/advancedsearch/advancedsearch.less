@@ -2,9 +2,104 @@
     .usa-heading {
         border-bottom: 1px solid #e31c3d;
     }
-    .search-field {
-        float: left;
-        width: 32%;
-        margin-right: 10px;
+    div.usa-grid-full {
+        div.usa-width-one-half {
+            padding-right: 2.35765%;
+            margin-right: 0;
+            input {
+                margin-right: 0rem !important;
+                width: 100%;
+                max-width: none;
+            }
+            &.end {
+                padding-right: 0;
+            }
+        }
+        div.usa-width-one-whole{
+            padding-top: 8px;
+            padding-right: 1.35765%;
+        }
+    }
+}
+
+@media screen and (max-width: 721px) {
+    div.search-wrapper {
+        margin-top: 2em;
+        overflow-x: scroll;
+        width: 100%;
+        table {
+            margin: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 706px){
+    label[for="oem"]{
+        margin-top: 0.6rem;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1199px) {
+    
+    div.advanced-search {
+        div.usa-grid-full {
+            
+            div.usa-width-one-sixth {
+                &.mid-half {
+                    width: 47.58542% !important;
+                    margin-right: 0 !important;
+                    padding-right: 2.35765%;
+                    select {
+                        max-width: none;
+                    }
+                }
+
+                &.mid-end{
+                    padding-right: 0;
+                }
+            }
+
+            div.usa-width-one-whole{
+                padding-right: 3.65765%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    div.advanced-search{
+        div.usa-grid-full{
+            div.usa-width-one-sixth{
+                select{
+                    max-width: none;
+                }
+            }
+            div.usa-width-one-half{
+                padding-right: 0;
+            }
+            div.usa-width-one-whole{
+                div.right:first-of-type{
+                    margin-right: -15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px){
+    div.advanced-search{
+        div.usa-grid-full{
+            div.usa-width-one-whole{
+                padding-top: 12px;
+                div.right{
+                    float: left;
+                    width: 102%;
+                    button{
+                        margin-right: 0 !important;
+                    }
+                }
+            }
+        }
     }
 }
