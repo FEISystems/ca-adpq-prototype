@@ -30,6 +30,16 @@
                 });
         };
 
+        var fetchOrderStatuses = function () {
+            $http.get("/api/Lookups/OrderStatus")
+                .success(function (response) {
+                    messageService.publish('fetchOrderStatusSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('fetchOrderStatusFailure', response);
+                });
+        }
+
         var placeOrder = function (shoppingCartId, paymentMethod, address1, address2, address3, city, state, zip, emailAddress) {
             var data = {
                 ShoppingCartId: shoppingCartId,
@@ -55,7 +65,8 @@
             getOrdersByUserId: getOrdersByUserId,
             cancelOrder: cancelOrder,
             placeOrder: placeOrder,
-            getOrder: getOrder
+            getOrder: getOrder,
+            fetchOrderStatuses: fetchOrderStatuses
         };
     }
 
