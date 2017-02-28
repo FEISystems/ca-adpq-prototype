@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IShoppingCartItemRepository : IEntityRepository, IDisposable
+    public interface IShoppingCartItemRepository : IEntityRepository
     {
         void Add(ShoppingCartItem item);
         void Update(ShoppingCartItem item);

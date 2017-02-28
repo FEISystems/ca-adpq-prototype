@@ -40,7 +40,7 @@
                             <span>Qty: {{item.Quantity}}</span>
                         </div>
                         <div class="usa-width-one-sixth text-right">
-                            <span><strong>{{model.products[$index].ListPrice | currency}}/ea.</strong></span><br>
+                            <span><strong>{{model.products[$index].ContractPrice | currency}}/ea.</strong></span><br>
                         </div>
                     </div>
                     <div class="usa-grid-full" ng-show="model.orderItems.length > 1">

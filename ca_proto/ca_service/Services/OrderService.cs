@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Services
 {
-    public class OrderService : IOrderService, IDisposable
+    public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderItemRepository _orderItemRepository;
@@ -124,21 +124,6 @@ namespace ca_service.Services
             _orderRepository.Update(order);
 
             return order;
-        }
-
-        public void Dispose()
-        {
-            if (_orderRepository != null)
-                _orderRepository.Dispose();
-
-            if (_orderItemRepository != null)
-                _orderItemRepository.Dispose();
-
-            if (_shoppingCartRepository != null)
-                _shoppingCartRepository.Dispose();
-
-            if (_shoppingCartItemRepository != null)
-                _shoppingCartItemRepository.Dispose();
         }
     }
 }

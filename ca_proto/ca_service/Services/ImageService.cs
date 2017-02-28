@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Services
 {
-    public class ImageService : IImageService, IDisposable
+    public class ImageService : IImageService
     {
         private readonly IImageRepository imageRepository;
 
@@ -32,12 +32,6 @@ namespace ca_service.Services
             filter.Add("ImageFileName", imageFileName);
             var count = imageRepository.Count(filter);
             return count != 0;
-        }
-
-        public void Dispose()
-        {
-            if (imageRepository != null)
-                imageRepository.Dispose();
         }
 
         public byte[] Get(string filename)

@@ -9,36 +9,30 @@ using ca_service.Database;
 
 namespace ca_service.Services
 {
-    public class ReportService : IReportService, IDisposable
+    public class ReportService : IReportService
     {
-        private Connection db;
+        private readonly IConfiguration _configuration;
 
         public ReportService(IConfiguration configuration)
         {
-            db = new Connection(configuration);
-        }
-
-        public void Dispose()
-        {
-            if (null != db)
-            {
-                db.Dispose();
-                db = null;
-            }
+            _configuration = configuration;
         }
 
         public IEnumerable<OrderProduct> GetOrderProducts(DateTime start, DateTime end)
         {
-            using (var command = db.connection.CreateCommand() as MySql.Data.MySqlClient.MySqlCommand)
+            using (var db = new Connection(_configuration))
             {
-                command.CommandText = string.Format(OrderProduct.Query, start, end);
-                command.Parameters.Add("@StartDate", System.Data.DbType.DateTime).Value = start;
-                command.Parameters.Add("@EndDate", System.Data.DbType.DateTime).Value = end.AddDays(1);
-                using (var reader = command.ExecuteReader() as MySql.Data.MySqlClient.MySqlDataReader)
+                using (var command = db.connection.CreateCommand() as MySql.Data.MySqlClient.MySqlCommand)
                 {
-                    while (reader.Read())
+                    command.CommandText = string.Format(OrderProduct.Query, start, end);
+                    command.Parameters.Add("@StartDate", System.Data.DbType.DateTime).Value = start;
+                    command.Parameters.Add("@EndDate", System.Data.DbType.DateTime).Value = end.AddDays(1);
+                    using (var reader = command.ExecuteReader() as MySql.Data.MySqlClient.MySqlDataReader)
                     {
-                        yield return OrderProduct.Read(reader);
+                        while (reader.Read())
+                        {
+                            yield return OrderProduct.Read(reader);
+                        }
                     }
                 }
             }
