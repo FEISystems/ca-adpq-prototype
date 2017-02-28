@@ -1,6 +1,7 @@
 
-<div>
-    <aside-layout ng-hide="model.isSoftware()">
+<link rel='stylesheet' type="text/css" href="app/areas/public/categories/categories.css" />
+<div >
+    <aside-layout  ng-hide="model.isSoftware()">
         <aside-panel>
             <hardware-menu ng-show="model.showHardwareMenu()"></hardware-menu>
             <services-menu ng-show="model.showServicesMenu()"></services-menu>
@@ -8,7 +9,7 @@
         <body-panel>
             <h2>{{model.title}}</h2>
 
-            <div class="usa-grid-full" ng-repeat="rows in model.products" style="margin-bottom: 20px">
+            <div class="usa-grid-full categoryListContainer" ng-repeat="rows in model.products">
                 <div ng-repeat="product in rows" class="usa-width-one-fourth" >
                     <product-card></product-card>
                 </div>
@@ -19,7 +20,7 @@
     <standard-layout ng-show="model.isSoftware()">
             <h2>{{model.title}}</h2>
 
-            <div class="usa-grid-full" ng-repeat="rows in model.products" style="margin-bottom: 20px">
+            <div class="usa-grid-full categoryListContainer" ng-repeat="rows in model.products">
                 <div ng-repeat="product in rows" class="usa-width-one-fourth" >
                     <product-card></product-card>
                 </div>

@@ -13,7 +13,7 @@
         model.orderProductsOnPage = [];
         model.orderProductQuery = { Start: 0, End: 0 };
         model.sortColumn = "CreateDate";
-        model.sortAscending = true;
+        model.sortAscending = false;
         model.responseMessage = "";
         model.pageIndex = 0;
         model.numberOfPages = 1;
@@ -30,6 +30,8 @@
         model.orderStatuses = [];
         model.trendDatePadding = 100;
         model.moneyAxisPadding = 100;
+        model.grandTotal = 0;
+        model.expendituresOverTime = [];
 
         model.pieChart = function (context, height, width) {
             var chart = this;
@@ -56,6 +58,11 @@
             return chart;
         };
 
+        model.setExpendituresOrder = function (columnName) {
+            model.setOrder(columnName);
+            model.showExpendituresOverTime();
+        };
+
         model.setOrder = function (columnName) {
             if (columnName == model.sortColumn)
                 model.sortAscending = !model.sortAscending;
@@ -68,6 +75,27 @@
 
         model.showFilter = function () {
             model.tab = 1;
+        };
+
+        model.noProducts = function () {
+            if (!model.orderProducts || model.orderProducts.length == 0) {
+                model.handleError("No report data has been retrieved.\r\nTry running the report with a different Data Filter.");
+                return true;
+            }
+            return false;
+        };
+
+        model.showExpendituresOverTime = function () {
+            if (model.noProducts()) return;
+            model.tab = 7;
+            model.grandTotal = 0;
+            var total = 0;
+            var filtered = model.getFilteredProducts();
+            for (var i = 0; i < filtered.length; i++) {
+                total += filtered[i].Total;                
+            }
+            model.grandTotal = total;
+            model.expendituresOverTime = filtered;
         };
 
         model.getFilteredProducts = function () {
@@ -86,7 +114,7 @@
 
         model.showExpendituresByProductType = function () {
             var context = model.initContext(2, "productTypeCanvas");
-
+            if (null == context) return;
             var total = 0.0;
             var hardwareTotal = 0;
             var softwareTotal = 0;
@@ -109,14 +137,14 @@
             model.drawLabels(context);
 
             var totalLabels = [];
-            totalLabels.push({ color: model.hardwareColor, text: "$" + model.toMoney(hardwareTotal) });
-            totalLabels.push({ color: model.softwareColor, text: "$" + model.toMoney(softwareTotal) });
-            totalLabels.push({ color: model.serviceColor, text: "$" + model.toMoney(serviceTotal) });
+            totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal) });
+            totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal) });
+            totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal) });
             model.drawCustomLabels(context, 10, 20, totalLabels);
         };
 
         model.toMoney = function (number) {
-            return number.toFixed(2).replace(/./g, function (c, i, a) {
+            return "$" + number.toFixed(2).replace(/./g, function (c, i, a) {
                 return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
         };
@@ -149,7 +177,7 @@
 
         model.showExpendituresByContractor = function () {
             var context = model.initContext(3, "contractorCanvas");
-
+            if (null == context) return;
             model.contractors = [];
             model.contractorColumnWidth = 0;
             var contractors = model.extractContractors();
@@ -234,6 +262,7 @@
         };
 
         model.initContext = function (canvasTab, canvasName) {
+            if (model.noProducts()) return null;
             model.tab = canvasTab;
             var canvas = document.getElementById(canvasName);
             var context = canvas.getContext("2d");
@@ -243,6 +272,7 @@
 
         model.showPurchaseTrends = function () {
             var context = model.initContext(6, "purchaseTrendsCanvas");
+            if (null == context) return;
             model.paymentAccounts = [];
             var accounts = model.extractAccounts();
             if (!accounts || accounts.length == 0)
@@ -256,6 +286,7 @@
 
         model.finalizeTrends = function () {
             var context = model.initContext(6, "purchaseTrendsCanvas");
+            if (null == context) return;
             var accounts = model.paymentAccounts;
             context.clearRect(0, model.height, model.width + model.moneyAxisPadding, model.trendDatePadding + 20 * accounts.length);
             var trends = model.initTrends(accounts);
@@ -289,7 +320,7 @@
                 }
                 if (dollarLevels[i] == 0)
                     continue;
-                context.fillText(dollarLevels[i], 5, y + 15);
+                context.fillText(model.toMoney(dollarLevels[i]), 5, y + 15);
             }
         };
 
@@ -462,7 +493,7 @@
 
         model.showPurchasesByAccount = function () {
             var context = model.initContext(4, "purchasesCanvas");
-
+            if (null == context) return;
             model.paymentAccounts = [];
             model.paymentAccountColumnWidth = 0;
             var accounts = model.extractAccounts();
@@ -504,15 +535,28 @@
         };
 
         model.showRawData = function () {
+            if (model.noProducts()) return;
             model.tab = 5;
         };
 
         model.fetchOrderProducts = function () {
+            model.orderProducts = [];
+            model.expendituresOverTime = [];
+            var start = new Date(model.orderProductQuery.Start);
+            if (start > Date.now()) {
+                model.handleError("The Data Filter Start Date cannot be in the future.");
+                return;
+            }
+            var end = new Date(model.orderProductQuery.End);
+            if (start > end) {
+                model.handleError("The Data Filter Start Date cannot be after the End Date.")
+                return;
+            }
             reportService.fetchOrderProducts(model.orderProductQuery);
         };
 
         model.handleError = function (error) {
-            model.tab = 6;
+            //model.tab = 8;
             if (error && error.toLowerCase().indexOf("<html", 0) >= 0) {
                 //try to find the error message returned from the server
                 try {

@@ -28,3 +28,20 @@ product-card input[type=checkbox] {
 product-card .compare {
   width: 100px;
 }
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  div.homepageProductContainer {
+    margin-bottom: 0 !important;
+  }
+  div.homepageProductContainer product-card {
+    margin-bottom: 20px !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  div.homepageProductContainer {
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+  }
+  div.homepageProductContainer product-card {
+    margin-bottom: 20px;
+  }
+}
