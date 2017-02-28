@@ -133,6 +133,12 @@ namespace ca_service.Services
 
             if (_orderItemRepository != null)
                 _orderItemRepository.Dispose();
+
+            if (_shoppingCartRepository != null)
+                _shoppingCartRepository.Dispose();
+
+            if (_shoppingCartItemRepository != null)
+                _shoppingCartItemRepository.Dispose();
         }
     }
 }

@@ -30,6 +30,10 @@ namespace ca_proto.Controllers
         {
             try
             {
+                if (null == query)
+                {
+                    throw new Exception("Invalid query. Please check the filter settings and try again.");
+                }
                 return Json(HydrateOrderProducts(reportService.GetOrderProducts(query.Start, query.End)));
             }
             catch (Exception x)

@@ -89,11 +89,15 @@
             model.page = 0;
             model.tab = 3;
             model.fetchProducts();
+            model.fetchPageCount();
         };
 
         model.clearFilter = function () {
             model.filter = {};
             model.activeFilter = {};
+            var img = document.getElementById("filterImage");
+            if (img)
+                img.src = "";
         };
 
         model.showFilter = function () {
@@ -141,6 +145,10 @@
                 inventoryService.addProduct(uploadData);
             }
         };
+
+        model.cancelAddEdit = function () {
+            model.showTable();
+        }
 
         model.onStartImport = function (text) {
             model.importProgress = text;
