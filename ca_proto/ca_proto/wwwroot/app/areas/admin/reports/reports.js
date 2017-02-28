@@ -406,7 +406,7 @@
             var coordinates = [];
             for (var i = 0; i < trend.points.length; i++) {
                 var point = trend.points[i];
-                var x = model.calculateTrendX(width, point.date) + xPadding;
+                var x = model.calculateTrendX(width - xPadding, point.date) + xPadding;
                 var y = model.calculateTrendY(height, point.total, maxTotal);
                 coordinates.push({ x: x, y: y });
             }
