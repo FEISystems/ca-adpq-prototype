@@ -4,7 +4,7 @@
         <h2 class="usa-heading">Your Cart</h2>
         <div class="usa-width-one-whole">
             <div class="items-in-cart-header">
-                ({{model.cart.Items.length}}) items in your cart
+                ({{model.cart.Items.length || 0}}) items in your cart
             </div>
 
             <div ng-repeat="item in model.cartItems" class="items-in-cart usa-grid">
