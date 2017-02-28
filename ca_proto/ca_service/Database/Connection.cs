@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ca_service.Interfaces;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Database
 {
-    public class Connection : IDisposable
+    public class Connection : IDbConnection, IDisposable
     {
         public readonly MySqlConnection connection;
         //https://mysql-net.github.io/MySqlConnector/overview/configuration/

@@ -26,6 +26,11 @@ namespace ca_proto.Helpers
                             result = attributes[0].Description;
                             descriptions.Add(value, result);
                         }
+                        else
+                        {
+                            result = value.ToString();
+                            descriptions.Add(value, result);
+                        }
                     }
                 }
             }

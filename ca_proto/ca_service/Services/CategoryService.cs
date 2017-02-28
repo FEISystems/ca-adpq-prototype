@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace ca_service.Services
 {
-    public class CategoryService : ICategoryService, IDisposable
+    public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository categoryRepository;
 
         public CategoryService(ICategoryRepository categoryRepository)
         {
             this.categoryRepository = categoryRepository;
-        }
-
-        public void Dispose()
-        {
-            if (categoryRepository != null)
-                categoryRepository.Dispose();
         }
 
         public void Add(Category category)

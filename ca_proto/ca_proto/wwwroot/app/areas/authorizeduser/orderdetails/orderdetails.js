@@ -40,12 +40,12 @@
                 model.products = [];
                 model.orderItems = model.order.Items;
 
-                for (var idx = 0; idx < model.order.Items; ++idx) {
+                for (var idx = 0; idx < model.order.Items.length; ++idx) {
                     var product = model.order.Items[idx];
                     model.getProduct(product.ProductId);
                 }
 
-                for (var idx = 0; idx < model.orderItems; ++idx) {
+                for (var idx = 0; idx < model.orderItems.length; ++idx) {
                     var item = model.orderItems[idx];
                     model.orderTotal += item.Price * item.Quantity;
                 }

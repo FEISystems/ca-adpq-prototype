@@ -40,27 +40,31 @@ WHERE";
             string whereClause = @"
     (Title LIKE {0} OR Manufacturer LIKE {0} OR ManufacturerPartNumber LIKE {0} OR SKU LIKE {0} OR Category LIKE {0})
 ";
-
-            var cmd = db.connection.CreateCommand();
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append(baseSql);
-
-            for (int i = 0; i < searchTerms.Length; ++i)
+            using (var db = new Connection(_configuration))
             {
-                var paramName = $"@P{i}";
-                cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(searchTerms[i]) });
-                sb.AppendFormat(whereClause, paramName);
-                if(i < searchTerms.Length - 1)
+                using (var cmd = db.connection.CreateCommand())
                 {
-                    sb.AppendLine(@"
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(baseSql);
+
+                    for (int i = 0; i < searchTerms.Length; ++i)
+                    {
+                        var paramName = $"@P{i}";
+                        cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(searchTerms[i]) });
+                        sb.AppendFormat(whereClause, paramName);
+                        if (i < searchTerms.Length - 1)
+                        {
+                            sb.AppendLine(@"
     OR");
+                        }
+                    }
+
+                    cmd.CommandText = sb.ToString();
+
+                    return GetProductsFromCommand(cmd);
                 }
             }
-
-            cmd.CommandText = sb.ToString();
-
-            return GetProductsFromCommand(cmd);
         }
 
         private List<Product> GetProductsFromCommand(DbCommand cmd)
@@ -208,44 +212,17 @@ WHERE
                 parms.Add(new MySqlParameter() { ParameterName = "@SKU", Value = ToSqlParameterValueForLike(sku) });
             }
 
-            using (var cmd = db.connection.CreateCommand())
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = sql.ToString();
+                using (var cmd = db.connection.CreateCommand())
+                {
+                    cmd.CommandText = sql.ToString();
 
-                cmd.Parameters.AddRange(parms.ToArray());
+                    cmd.Parameters.AddRange(parms.ToArray());
 
-                return GetProductsFromCommand(cmd);
+                    return GetProductsFromCommand(cmd);
+                }
             }
         }
-
-        //public IEnumerable<Product> FetchByCategories(int start, int count, string[] categories)
-        //{
-        //    if (null == categories || categories.Length == 0)
-        //        return Fetch(start, count);
-        //    categories = categories.Where(item => null != item && !string.IsNullOrWhiteSpace(item)).ToArray();
-        //    if (null == categories || categories.Length == 0)
-        //        return Fetch(start, count);
-
-        //    using (var cmd = db.connection.CreateCommand())
-        //    {
-        //        StringBuilder sql = new StringBuilder();
-        //        sql.Append("select * from Products where ");
-        //        string paramName = "@" + categories[0];
-        //        sql.Append(" Category like ");
-        //        sql.Append(paramName);
-        //        cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[0]) });
-        //        for (int i=1; i<categories.Length; i++)
-        //        {
-        //            paramName = "@" + categories[i];
-        //            sql.Append(" or Category like ");
-        //            sql.Append(paramName);
-        //            cmd.Parameters.Add(new MySqlParameter() { ParameterName = paramName, Value = ToSqlParameterValueForLike(categories[i]) });
-        //        }
-        //        sql.Append(" order by Category");
-        //        cmd.CommandText = sql.ToString();
-
-        //        return GetProductsFromCommand(cmd);
-        //    }
-        //}
     }
 }

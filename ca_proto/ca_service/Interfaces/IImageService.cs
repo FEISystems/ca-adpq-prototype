@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IImageService : IDisposable
+    public interface IImageService
     {
         void Add(string imageFileName, byte[] buffer);
         byte[] Get(string filename);

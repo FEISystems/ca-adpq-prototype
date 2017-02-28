@@ -24,7 +24,7 @@
             model.products = [];
             if (model.compareListIds.length > 0) {
                 for (var idx = 0; idx < model.compareListIds.length; ++idx) {
-                    var productId = model.compareListIds[i];
+                    var productId = model.compareListIds[idx];
                     model.getProduct(productId);
                 }
             }
@@ -32,7 +32,7 @@
 
         updateCompareList();
         
-            console.log($scope.compareProductId);
+            //console.log($scope.compareProductId);
 
         $scope.removeFromCompare = function(productId) {
             $sessionStorage.compareList = jQuery.grep($sessionStorage.compareList, function(value) {

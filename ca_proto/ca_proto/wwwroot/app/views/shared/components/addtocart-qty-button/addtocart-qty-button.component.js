@@ -4,8 +4,9 @@
 
     var controller = function ($scope, shoppingCartService) {
         var model = this;
+        var product = $scope.product;
         model.productId = $scope.product.Id;
-        model.qty = "";
+        model.qty = 1;
 
 
         $scope.addToCart = function () {
