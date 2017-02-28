@@ -6,7 +6,7 @@
         var model = this;
         model.provider = {};
         model.title = "Reports";
-        model.tab = 1;
+        model.tab = 0;
         model.height = 400;
         model.width = 750;
         model.orderProducts = [];
@@ -33,14 +33,15 @@
         model.grandTotal = 0;
         model.expendituresOverTime = [];
 
-        model.pieChart = function (context, height, width) {
-            var chart = this;
+        (model.pieChart = function (context, height, width, centerXOffset) {
+            if (!context) return;
+            var chart = {};
             chart.context = context;
             chart.height = height;
             chart.width = width;
-            chart.radius = Math.floor(Math.min(height, width) / 2);
-            chart.centerX = Math.floor(width / 2);
-            chart.centerY = Math.floor(height / 2);
+            chart.radius = Math.floor(Math.min(chart.height, chart.width) / 2);
+            chart.centerX = Math.floor(chart.width / 2) + centerXOffset;
+            chart.centerY = Math.floor(chart.height / 2);
 
             chart.fullSweep = 2.0 * Math.PI;
             chart.zero = -0.5 * Math.PI;
@@ -56,7 +57,7 @@
             };
 
             return chart;
-        };
+        })();
 
         model.setExpendituresOrder = function (columnName) {
             model.setOrder(columnName);
@@ -71,6 +72,10 @@
                 model.pageIndex = 0;
             }
             model.refreshTable();
+        };
+
+        model.showDashboard = function () {
+            model.tab = 0;
         };
 
         model.showFilter = function () {
@@ -112,8 +117,9 @@
             return result;
         };
 
-        model.showExpendituresByProductType = function () {
-            var context = model.initContext(2, "productTypeCanvas");
+        model.drawExpendituresByProductType = function (tab, canvasName, includeLabels) {
+            var canvas = document.getElementById(canvasName);
+            var context = model.initContext(tab, canvas);
             if (null == context) return;
             var total = 0.0;
             var hardwareTotal = 0;
@@ -130,17 +136,28 @@
                 else if (filtered[i].ProductType == "Service")
                     serviceTotal += row.Total;
             }
-            var pieChart = model.pieChart(context, model.height, model.width);
+            
+            var xOffset = 0;
+            if (!includeLabels)
+                xOffset = -50;
+            var pieChart = model.pieChart(context, canvas.height, canvas.width, xOffset);
             pieChart.drawSlice(0.0, hardwareTotal / total, model.hardwareColor);// "#6495ED");
             pieChart.drawSlice(hardwareTotal / total, (hardwareTotal + softwareTotal) / total, model.softwareColor);// "#FF7F50");
             pieChart.drawSlice((hardwareTotal + softwareTotal) / total, 1.0, model.serviceColor);// "#A9A9A9");
-            model.drawLabels(context);
+            model.drawLabels(context, canvas.width - 100);
 
+            if (!includeLabels)
+                return;
             var totalLabels = [];
             totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal) });
             totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal) });
             totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal) });
             model.drawCustomLabels(context, 10, 20, totalLabels);
+        };
+
+
+        model.showExpendituresByProductType = function () {
+            model.drawExpendituresByProductType(2, "productTypeCanvas", true);
         };
 
         model.toMoney = function (number) {
@@ -149,8 +166,8 @@
             });
         };
 
-        model.drawLabels = function (context) {
-            model.drawCustomLabels(context, model.width - 100, 20,
+        model.drawLabels = function (context, left) {
+            model.drawCustomLabels(context, left, 20,
                 [
                     { color: model.hardwareColor, text: "Hardware" },
                     { color: model.softwareColor, text: "Software" },
@@ -171,12 +188,9 @@
             context.fillText(text, left + 15, top + 10);
         };
 
-        model.clearCanvas = function (context) {
-            context.clearRect(0, 0, model.width + model.moneyAxisPadding, model.height);
-        };
-
-        model.showExpendituresByContractor = function () {
-            var context = model.initContext(3, "contractorCanvas");
+        model.drawExpendituresByContractor = function (tab, canvasName, includeLabels) {
+            var canvas = document.getElementById(canvasName);
+            var context = model.initContext(tab, canvas);
             if (null == context) return;
             model.contractors = [];
             model.contractorColumnWidth = 0;
@@ -184,33 +198,39 @@
             if (!contractors || contractors.length == 0)
                 return;
             model.contractors = contractors;
-            model.contractorColumnWidth = Math.floor(model.width / model.contractors.length);
+            model.contractorColumnWidth = Math.floor(canvas.width / model.contractors.length);
             var totals = model.initializeTotals(contractors.length);
             model.calculateTotals(totals, contractors, "Contractor");
             var max = model.normalizeTotals(totals);
-            model.drawTotals(context, totals);
-            model.drawMoneyLines(context, max);
-            model.drawLabels(context);
+            model.drawTotals(context, totals, canvas.width, canvas.height);
+            if (includeLabels) {
+                model.drawMoneyLines(context, max);
+            }
+            model.drawLabels(context, canvas.width - 100);
         };
 
-        model.drawTotals = function (context, totals) {
+        model.showExpendituresByContractor = function () {
+            model.drawExpendituresByContractor(3, "contractorCanvas", true);
+        };
+
+        model.drawTotals = function (context, totals, width, height) {
             //draw the data
             var padding = 20 * (totals.length + 1);
-            var usableWidth = model.width - padding;
+            var usableWidth = width - padding;
             var columnWidth = Math.floor(usableWidth / totals.length / 3) - 2;
             var left = 22;
             for (var i = 0; i < totals.length; i++) {
                 var values = totals[i];
-                var barHeight = Math.floor(model.height * values.hardwareTotal);
-                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.hardwareColor);
+                var barHeight = Math.floor(height * values.hardwareTotal);
+                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.hardwareColor);
 
                 left += columnWidth + 2;
-                barHeight = Math.floor(model.height * values.softwareTotal);
-                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.softwareColor);
+                barHeight = Math.floor(height * values.softwareTotal);
+                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.softwareColor);
 
                 left += columnWidth + 2;
-                var barHeight = Math.floor(model.height * values.serviceTotal);
-                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.serviceColor);
+                var barHeight = Math.floor(height * values.serviceTotal);
+                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.serviceColor);
 
                 left += columnWidth + 2 + 20;
             }
@@ -261,17 +281,17 @@
             return result;
         };
 
-        model.initContext = function (canvasTab, canvasName) {
+        model.initContext = function (canvasTab, canvas) {
             if (model.noProducts()) return null;
             model.tab = canvasTab;
-            var canvas = document.getElementById(canvasName);
             var context = canvas.getContext("2d");
-            model.clearCanvas(context);
+            context.clearRect(0, 0, canvas.width, canvas.height);
             return context;
         };
 
-        model.showPurchaseTrends = function () {
-            var context = model.initContext(6, "purchaseTrendsCanvas");
+        model.drawDataTrends = function (tab, canvasName, includeLabels) {
+            var canvas = document.getElementById(canvasName);
+            var context = model.initContext(tab, canvas);
             if (null == context) return;
             model.paymentAccounts = [];
             var accounts = model.extractAccounts();
@@ -280,23 +300,37 @@
             accounts = orderByFilter(accounts, "length", false);
             model.paymentAccounts = accounts;
             window.setTimeout(function () {
-                model.finalizeTrends();
+                model.finalizeTrends(tab, canvasName, includeLabels);
             }, 100);
         };
 
-        model.finalizeTrends = function () {
-            var context = model.initContext(6, "purchaseTrendsCanvas");
+        model.showPurchaseTrends = function () {
+            model.drawDataTrends(6, "purchaseTrendsCanvas", true);
+        };
+
+        model.finalizeTrends = function (tab, canvasName, includeLabels) {
+            var xPadding = 0;
+            if (includeLabels)
+                xPadding = model.moneyAxisPadding;
+            var canvas = document.getElementById(canvasName);
+            var context = model.initContext(tab, canvas);
             if (null == context) return;
             var accounts = model.paymentAccounts;
-            context.clearRect(0, model.height, model.width + model.moneyAxisPadding, model.trendDatePadding + 20 * accounts.length);
+            context.clearRect(0, 0, canvas.width, canvas.height);
             var trends = model.initTrends(accounts);
             model.fillTrendData(trends);
             var maxTotal = model.findMaxTotalInTrends(trends);
             var labels = model.getAccountLabels(accounts);
+            var height = canvas.height;
             //this canvas taller than the others for drawing the labels - need to give the ui a chance to expand before drawing labels
-            for (var i = 0; i < trends.length; i++) {
-                model.drawTrend(context, trends[i], maxTotal, labels[i].color);
+            if (includeLabels) {
+                height = model.height;
             }
+            for (var i = 0; i < trends.length; i++) {
+                model.drawTrend(context, trends[i], maxTotal, labels[i].color, canvas.width, height, xPadding);
+            }
+            if (!includeLabels)
+                return;
             model.drawMoneyLines(context, maxTotal);
             model.drawCustomLabels(context, 20, model.height + model.trendDatePadding, labels);
             var dateLabels = model.getDateLabels();
@@ -305,13 +339,14 @@
             }
         };
 
+        //only used for expanded chart, so model height and width are fine
         model.drawMoneyLines = function (context, max) {
             context.font = "16px Verdana";
             context.fillStyle = "Black";
             context.strokeStyle = "#D0D0D0";
             var dollarLevels = model.getDollarLevels(max);
             for (var i = 0; i < dollarLevels.length; i++) {
-                var y = model.calculateTrendY(dollarLevels[i], max);
+                var y = model.calculateTrendY(model.height, dollarLevels[i], max);
                 if (y > 10) {
                     context.beginPath();
                     context.moveTo(0, y);
@@ -365,14 +400,14 @@
             return result;
         };
 
-        model.drawTrend = function (context, trend, maxTotal, color) {
+        model.drawTrend = function (context, trend, maxTotal, color, width, height, xPadding) {
             if (trend.points.length == 0)
                 return;
             var coordinates = [];
             for (var i = 0; i < trend.points.length; i++) {
                 var point = trend.points[i];
-                var x = model.calculateTrendX(point.date) + model.moneyAxisPadding;
-                var y = model.calculateTrendY(point.total, maxTotal);
+                var x = model.calculateTrendX(width, point.date) + xPadding;
+                var y = model.calculateTrendY(height, point.total, maxTotal);
                 coordinates.push({ x: x, y: y });
             }
             context.beginPath();
@@ -390,19 +425,19 @@
             }
         };
 
-        model.calculateTrendX = function (date) {
+        model.calculateTrendX = function (width, date) {
             var min = new Date(model.orderProductQuery.Start).setHours(0, 0, 0, 0);
             var max = reportService.getEndOfDay(new Date(model.orderProductQuery.End));
             var range = max - min;
             var delta = date - min;
             var percent = delta / range;
-            return model.width * percent;
+            return width * percent;
         };
 
-        model.calculateTrendY = function (value, max) {
+        model.calculateTrendY = function (height, value, max) {
             var percent = value / max;
             //use model.height - 10 as the multiplier to pad the top by 10 pixels
-            return Math.floor(model.height - ((model.height - 10) * percent));
+            return Math.floor(height - ((height - 10) * percent));
         };
 
         model.findMaxTotalInTrends = function (trends) {
@@ -492,7 +527,8 @@
         };
 
         model.showPurchasesByAccount = function () {
-            var context = model.initContext(4, "purchasesCanvas");
+            var canvas = document.getElementById("purchasesCanvas");
+            var context = model.initContext(4, canvas);
             if (null == context) return;
             model.paymentAccounts = [];
             model.paymentAccountColumnWidth = 0;
@@ -504,9 +540,9 @@
             var totals = model.initializeTotals(accounts.length);
             model.calculateTotals(totals, accounts, "PaymentMethod");
             var max = model.normalizeTotals(totals);
-            model.drawTotals(context, totals);
+            model.drawTotals(context, totals, canvas.width, canvas.height);
             model.drawMoneyLines(context, max);
-            model.drawLabels(context);
+            model.drawLabels(context, canvas.width - 100);
         };
 
         model.calculateTotals = function (totals, list, key) {
@@ -540,6 +576,7 @@
         };
 
         model.fetchOrderProducts = function () {
+            model.clearDashboard();
             model.orderProducts = [];
             model.expendituresOverTime = [];
             var start = new Date(model.orderProductQuery.Start);
@@ -637,9 +674,25 @@
             reportService.downloadCsv(model.orderProductQuery);
         };
 
+        model.clearDashboard = function () {
+            var dashboardCanvases = ["productTypeCanvasDashboard", "contractorCanvasDashboard", "purchaseTrendsCanvasDashboard"];
+            for (var i = 0; i < dashboardCanvases.length; i++) {
+                var canvas = document.getElementById(dashboardCanvases[i]);
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        };
+
+        model.drawDashboard = function () {
+            model.drawDataTrends(0, "purchaseTrendsCanvasDashboard", false);
+            model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
+            model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
+        };
+
         messageService.subscribe('getOrderProductsSuccess', function (response) {
             model.orderProducts = response;
             model.refreshTable();
+            model.drawDashboard();
             model.responseMessage = "Found " + response.length + " matching records";
         });
 
