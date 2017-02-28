@@ -12,9 +12,9 @@ namespace ca_service.Services
 {
     public class UserService : IUserService
     {
-        
         private readonly IMemoryCache memoryCache;
         private readonly IUserRepository userRepository;
+
         public UserService(IUserRepository userRepository, IMemoryCache memoryCache)
         {
             this.memoryCache = memoryCache;
@@ -84,34 +84,5 @@ namespace ca_service.Services
         {
             this.memoryCache.Remove(token);
         }
-
-        #region IDisposable Support
-
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects).
-                    if (userRepository != null)
-                        userRepository.Dispose();
-                }
-
-                disposedValue = true;
-            }
-        }
-
-        // This code added to correctly implement the disposable pattern.
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        #endregion
     }
-
-    
 }

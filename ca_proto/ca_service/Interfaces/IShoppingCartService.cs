@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ca_service.Entities;
 namespace ca_service.Interfaces
 {
-    public interface IShoppingCartService : IDisposable
+    public interface IShoppingCartService
     {
         ShoppingCart GetActiveCart(int userId);
         ShoppingCart GetCart(int shoppingCartId);

@@ -10,7 +10,7 @@ using System.Data;
 
 namespace ca_service.Services
 {
-    public class InventoryService : IInventoryService, IDisposable
+    public class InventoryService : IInventoryService
     {
         private readonly IInventoryRepository inventoryRepository;
         private readonly ICategoryRepository categoryRepository;
@@ -26,21 +26,6 @@ namespace ca_service.Services
             this.categoryRepository = categoryRepository;
             this.contractRepository = contractRepository;
             this.contractorRepository = contractorRepository;
-        }
-
-        public void Dispose()
-        {
-            if (inventoryRepository != null)
-                inventoryRepository.Dispose();
-
-            if (categoryRepository != null)
-                categoryRepository.Dispose();
-
-            if (contractRepository != null)
-                contractRepository.Dispose();
-
-            if (contractorRepository != null)
-                contractorRepository.Dispose();
         }
 
         public List<Product> QuickSearch(string[] searchTerms)
