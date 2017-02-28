@@ -526,9 +526,9 @@
             return result;
         };
 
-        model.showPurchasesByAccount = function () {
-            var canvas = document.getElementById("purchasesCanvas");
-            var context = model.initContext(4, canvas);
+        model.drawPurchasesByAccount = function (tab, canvasName, includeLabels) {
+            var canvas = document.getElementById(canvasName);
+            var context = model.initContext(tab, canvas);
             if (null == context) return;
             model.paymentAccounts = [];
             model.paymentAccountColumnWidth = 0;
@@ -541,8 +541,14 @@
             model.calculateTotals(totals, accounts, "PaymentMethod");
             var max = model.normalizeTotals(totals);
             model.drawTotals(context, totals, canvas.width, canvas.height);
-            model.drawMoneyLines(context, max);
+            if (includeLabels) {
+                model.drawMoneyLines(context, max);
+            }
             model.drawLabels(context, canvas.width - 100);
+        };
+
+        model.showPurchasesByAccount = function () {
+            model.drawPurchasesByAccount(4, "purchasesCanvas", true);
         };
 
         model.calculateTotals = function (totals, list, key) {
@@ -688,6 +694,7 @@
             model.drawDataTrends(0, "purchaseTrendsCanvasDashboard", false);
             model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
             model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
+            model.drawPurchasesByAccount(0, "purchasesCanvasDashboard", false);
         };
 
         messageService.subscribe('getOrderProductsSuccess', function (response) {
