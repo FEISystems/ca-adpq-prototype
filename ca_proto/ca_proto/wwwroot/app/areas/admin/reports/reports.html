@@ -5,7 +5,7 @@
     <aside class="usa-width-one-fourth" permission="['Admin']">
         <ul class="usa-sidenav-list">
             <li><a href="" ng-click="model.showDashboard()" ng-class="{'usa-current' : model.tab == 0}">Dashboard</a></li>
-            <li><a href="" ng-click="model.showFilter()" ng-class="{'usa-current' : model.tab == 1}">Data Filter</a></li>
+            <!--<li><a href="" ng-click="model.showFilter()" ng-class="{'usa-current' : model.tab == 1}">Data Filter</a></li>-->
             <li><a href="" ng-click="model.showExpendituresByProductType()" ng-class="{'usa-current' : model.tab == 2}">Expenditures by Product Type</a></li>
             <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
             <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
@@ -17,7 +17,7 @@
 
     <div class="usa-width-two-thirds" permission="['Admin']" style="page-break-before:always;">
         <div ng-show="model.tab == 0">
-            <h3 class="usa-heading">Dashboard (beta)</h3>
+            <h3 class="usa-heading">Dashboard</h3>
             <table>
                 <tr>
                     <td>

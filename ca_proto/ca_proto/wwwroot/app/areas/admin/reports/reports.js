@@ -6,7 +6,7 @@
         var model = this;
         model.provider = {};
         model.title = "Reports";
-        model.tab = 1;
+        model.tab = 0;
         model.height = 400;
         model.width = 750;
         model.orderProducts = [];
@@ -33,14 +33,14 @@
         model.grandTotal = 0;
         model.expendituresOverTime = [];
 
-        (model.pieChart = function (context, height, width) {
+        (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
             var chart = {};
             chart.context = context;
             chart.height = height;
             chart.width = width;
             chart.radius = Math.floor(Math.min(chart.height, chart.width) / 2);
-            chart.centerX = Math.floor(chart.width / 2);
+            chart.centerX = Math.floor(chart.width / 2) + centerXOffset;
             chart.centerY = Math.floor(chart.height / 2);
 
             chart.fullSweep = 2.0 * Math.PI;
@@ -137,12 +137,17 @@
                     serviceTotal += row.Total;
             }
             
-            var pieChart = model.pieChart(context, canvas.height, canvas.width);
+            var xOffset = 0;
+            if (!includeLabels)
+                xOffset = -50;
+            var pieChart = model.pieChart(context, canvas.height, canvas.width, xOffset);
             pieChart.drawSlice(0.0, hardwareTotal / total, model.hardwareColor);// "#6495ED");
             pieChart.drawSlice(hardwareTotal / total, (hardwareTotal + softwareTotal) / total, model.softwareColor);// "#FF7F50");
             pieChart.drawSlice((hardwareTotal + softwareTotal) / total, 1.0, model.serviceColor);// "#A9A9A9");
             model.drawLabels(context, canvas.width - 100);
 
+            if (!includeLabels)
+                return;
             var totalLabels = [];
             totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal) });
             totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal) });
@@ -183,9 +188,9 @@
             context.fillText(text, left + 15, top + 10);
         };
 
-        model.showExpendituresByContractor = function () {
-            var canvas = document.getElementById("contractorCanvas");
-            var context = model.initContext(3, canvas);
+        model.drawExpendituresByContractor = function (tab, canvasName, includeLabels) {
+            var canvas = document.getElementById(canvasName);
+            var context = model.initContext(tab, canvas);
             if (null == context) return;
             model.contractors = [];
             model.contractorColumnWidth = 0;
@@ -197,12 +202,18 @@
             var totals = model.initializeTotals(contractors.length);
             model.calculateTotals(totals, contractors, "Contractor");
             var max = model.normalizeTotals(totals);
-            model.drawTotals(context, totals, canvas.width);
-            model.drawMoneyLines(context, max);
+            model.drawTotals(context, totals, canvas.width, canvas.height);
+            if (includeLabels) {
+                model.drawMoneyLines(context, max);
+            }
             model.drawLabels(context, canvas.width - 100);
         };
 
-        model.drawTotals = function (context, totals, width) {
+        model.showExpendituresByContractor = function () {
+            model.drawExpendituresByContractor(3, "contractorCanvas", true);
+        };
+
+        model.drawTotals = function (context, totals, width, height) {
             //draw the data
             var padding = 20 * (totals.length + 1);
             var usableWidth = width - padding;
@@ -210,16 +221,16 @@
             var left = 22;
             for (var i = 0; i < totals.length; i++) {
                 var values = totals[i];
-                var barHeight = Math.floor(model.height * values.hardwareTotal);
-                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.hardwareColor);
+                var barHeight = Math.floor(height * values.hardwareTotal);
+                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.hardwareColor);
 
                 left += columnWidth + 2;
-                barHeight = Math.floor(model.height * values.softwareTotal);
-                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.softwareColor);
+                barHeight = Math.floor(height * values.softwareTotal);
+                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.softwareColor);
 
                 left += columnWidth + 2;
-                var barHeight = Math.floor(model.height * values.serviceTotal);
-                model.drawBar(context, left, model.height - barHeight, columnWidth, barHeight, model.serviceColor);
+                var barHeight = Math.floor(height * values.serviceTotal);
+                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.serviceColor);
 
                 left += columnWidth + 2 + 20;
             }
@@ -529,7 +540,7 @@
             var totals = model.initializeTotals(accounts.length);
             model.calculateTotals(totals, accounts, "PaymentMethod");
             var max = model.normalizeTotals(totals);
-            model.drawTotals(context, totals, canvas.width);
+            model.drawTotals(context, totals, canvas.width, canvas.height);
             model.drawMoneyLines(context, max);
             model.drawLabels(context, canvas.width - 100);
         };
@@ -675,6 +686,7 @@
         model.drawDashboard = function () {
             model.drawDataTrends(0, "purchaseTrendsCanvasDashboard", false);
             model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
+            model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
         };
 
         messageService.subscribe('getOrderProductsSuccess', function (response) {
