@@ -5,7 +5,6 @@
         <h2 style="margin-top:25px">{{model.title}}</h2>
         <ul class="usa-sidenav-list">
             <li><a href="" ng-click="model.showDashboard()" ng-class="{'usa-current' : model.tab == 0}">Dashboard</a></li>
-            <!--<li><a href="" ng-click="model.showFilter()" ng-class="{'usa-current' : model.tab == 1}">Data Filter</a></li>-->
             <li><a href="" ng-click="model.showExpendituresByProductType()" ng-class="{'usa-current' : model.tab == 2}">Expenditures by Product Type</a></li>
             <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
             <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
@@ -17,8 +16,7 @@
 
     <div class="usa-width-two-thirds" permission="['Admin']" style="page-break-before:always;">
         <div ng-show="model.tab == 0">
-            <h3 class="usa-heading">Dashboard</h3>
-            <table style="margin-top:-15px;">
+            <table style="margin-top:5px;">
                 <tr>
                     <td style="padding:2px 10px;">
                         <form id="orderProductQueryFormDashboard" name="orderProductQueryFormDashboard"
@@ -38,45 +36,27 @@
                     </td>
                 <tr>
                     <td style="padding:2px 10px;">
-                        <h3 class="usa-heading">Expenditures by Product Type</h3>
+                        <h3 class="usa-heading" style="margin-top:10px;">Expenditures by Product Type</h3>
                         <canvas id="productTypeCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showExpendituresByProductType()"> </canvas>
                     </td>
                     <td style="padding:2px 10px;">
-                        <h3 class="usa-heading">Expenditures by Contractor</h3>
+                        <h3 class="usa-heading" style="margin-top:10px;">Expenditures by Contractor</h3>
                         <canvas id="contractorCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showExpendituresByContractor()"></canvas>
                     </td>
                 </tr>
                 <tr>
                     <td style="padding:2px 10px;">
-                        <h3 class="usa-heading">Purchases by Account</h3>
+                        <h3 class="usa-heading" style="margin-top:10px;">Purchases by Account</h3>
                         <canvas id="purchasesCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showPurchasesByAccount()"></canvas>
                     </td>
                     <td style="padding:2px 10px;">
-                        <h3 class="usa-heading">Purchase Trends by Account</h3>
+                        <h3 class="usa-heading" style="margin-top:10px;">Purchase Trends by Account</h3>
                         <canvas id="purchaseTrendsCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showPurchaseTrends()"></canvas>
                     </td>
                 </tr>
-                <tr><th colspan="2" style="text-align:center;">{{model.responseMessage}}</th></tr>
+                <tr><th colspan="2" style="text-align:center;padding:2px;">{{model.responseMessage}}</th></tr>
             </table>
         </div>
-        <!--<div ng-show="model.tab == 1">
-            <h3 class="usa-heading">Data Filter</h3>
-            <form id="orderProductQueryForm" name="orderProductQueryForm"
-                  ng-submit="orderProductQueryForm.$valid && model.fetchOrderProducts()" novalidate>
-                <table>
-                    <tr><th>Start Date</th><td><input type="text" ng-model="model.orderProductQuery.Start" required /></td></tr>
-                    <tr><th>End Date</th><td><input type="text" ng-model="model.orderProductQuery.End" required /></td></tr>
-                    <tr><th></th><td><input type="submit" value="Run Report" ng-disabled="!orderProductQueryForm.$valid" /></td></tr>
-                    <tr><th colspan="2" style="text-align:center;">{{model.responseMessage}}</th></tr>
-                    <tr>
-                        <th>Order Status [optional]<br />Note: does not impact raw results</th>
-                        <td>
-                            <select ng-model="model.orderProductQuery.OrderStatus" ng-options="status for status in model.orderStatuses" multiple style="height:90px;"></select>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>-->
 
         <div ng-show="model.tab == 2">
             <h3 class="usa-heading">Expenditures by Product Type</h3>
