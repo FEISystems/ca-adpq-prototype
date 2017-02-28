@@ -22,15 +22,18 @@
                 <tr>
                     <td>
                         <form id="orderProductQueryFormDashboard" name="orderProductQueryFormDashboard"
-                              ng-submit="orderProductQueryForm.$valid && model.fetchOrderProducts()" novalidate>
+                              ng-submit="orderProductQueryFormDashboard.$valid && model.fetchOrderProducts()" novalidate>
                             Start Date<br />
-                            <input type="text" ng-model="model.orderProductQuery.Start" required /><br />
+                            <input type="text" ng-model="model.orderProductQuery.Start" required />
                             End Date<br />
                             <input type="text" ng-model="model.orderProductQuery.End" required />
                             <center>
-                                <input type="submit" value="Run Report" ng-disabled="!orderProductQueryForm.$valid" />
+                                <input type="submit" value="Run Report" ng-disabled="!orderProductQueryFormDashboard.$valid" />
                             </center>
-                        </form>
+
+                            Order Status [optional] (Note: does not impact raw results)
+                            <select ng-model="model.orderProductQuery.OrderStatus" ng-options="status for status in model.orderStatuses" multiple style="height:90px;" ng-change="model.drawDashboard()"></select>
+                    </form>
                     </td>
                     <td>
                         <h3 class="usa-heading">Expenditures by Product Type</h3>
@@ -50,7 +53,7 @@
                 <tr><th colspan="2" style="text-align:center;">{{model.responseMessage}}</th></tr>
             </table>
         </div>
-        <div ng-show="model.tab == 1">
+        <!--<div ng-show="model.tab == 1">
             <h3 class="usa-heading">Data Filter</h3>
             <form id="orderProductQueryForm" name="orderProductQueryForm"
                   ng-submit="orderProductQueryForm.$valid && model.fetchOrderProducts()" novalidate>
@@ -67,7 +70,7 @@
                     </tr>
                 </table>
             </form>
-        </div>
+        </div>-->
 
         <div ng-show="model.tab == 2">
             <h3 class="usa-heading">Expenditures by Product Type</h3>

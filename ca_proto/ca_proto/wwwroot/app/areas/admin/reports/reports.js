@@ -684,6 +684,7 @@
         };
 
         model.drawDashboard = function () {
+            model.clearDashboard();
             model.drawDataTrends(0, "purchaseTrendsCanvasDashboard", false);
             model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
             model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
