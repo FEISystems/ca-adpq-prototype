@@ -11,9 +11,12 @@ header masthead a:visited {
   vertical-align: top;
 }
 header masthead .logo {
-  height: 100px;
+  height: 70px;
   width: 120px;
-  margin-top: -37px !important;
+  margin-top: -15px !important;
   display: inline-block;
   margin-left: -14px;
+}
+header masthead .logo img {
+  margin-top: -28px;
 }
