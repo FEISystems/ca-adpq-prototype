@@ -146,6 +146,10 @@
             }
         };
 
+        model.cancelAddEdit = function () {
+            model.showTable();
+        }
+
         model.onStartImport = function (text) {
             model.importProgress = text;
             model.tab = 6;
