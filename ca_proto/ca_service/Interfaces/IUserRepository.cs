@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IDisposable
     {
         User GetUser(string username);
         User CreateUser(string username, string password, int timeZoneOffset, bool isAdmin);

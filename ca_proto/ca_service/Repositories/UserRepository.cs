@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Repositories
 {
-    public class UserRepository: IUserRepository, IDisposable
+    public class UserRepository: IUserRepository
     {
         private readonly Connection db;
         public UserRepository(IConfiguration configuration)
@@ -78,7 +78,10 @@ namespace ca_service.Repositories
 
         public void Dispose()
         {
-            db.Dispose();
+            if (db != null)
+            {
+                db.Dispose();
+            }
         }
     }
 }

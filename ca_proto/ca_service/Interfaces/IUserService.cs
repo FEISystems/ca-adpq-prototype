@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ca_service.Entities;
 namespace ca_service.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IDisposable
     {
         List<User> GetUsers();
         Login Authenticate(string username, string password);
