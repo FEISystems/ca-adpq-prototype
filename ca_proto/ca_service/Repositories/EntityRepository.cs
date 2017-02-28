@@ -11,22 +11,14 @@ using System.Threading.Tasks;
 
 namespace ca_service.Repositories
 {
-    public abstract class EntityRepository<EntityType>: IEntityRepository, IDisposable where EntityType : Entity
+    public abstract class EntityRepository<EntityType>: IEntityRepository where EntityType : Entity
     {
-        protected Connection db;
+        protected readonly IConfiguration _configuration;
+
         protected EntityRepository(IConfiguration configuration)
         {
-            this.db = new Connection(configuration);
+            _configuration = configuration;
             this.OrderAscending = true;
-        }
-
-        public void Dispose()
-        {
-            if (null != db)
-            {
-                db.Dispose();
-                db = null;
-            }
         }
 
         private static readonly object commandSection = new object();
@@ -139,12 +131,16 @@ namespace ca_service.Repositories
         {
             if (null == entity)
                 return;
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = InsertCommandText;
-                BuildCommonParameters(cmd, entity);
-                var id = (ulong)cmd.ExecuteScalar();
-                entity.Id = (int)id;
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+                {
+                    cmd.CommandText = InsertCommandText;
+                    BuildCommonParameters(cmd, entity);
+                    var id = (ulong)cmd.ExecuteScalar();
+                    entity.Id = (int)id;
+                }
             }
         }
 
@@ -186,31 +182,41 @@ namespace ca_service.Repositories
         {
             if (null == entity)
                 return;
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = EditCommandText;
-                BuildCommonParameters(cmd, entity);
-                cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = entity.Id;
-                cmd.ExecuteNonQuery();
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+                {
+                    cmd.CommandText = EditCommandText;
+                    BuildCommonParameters(cmd, entity);
+                    cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = entity.Id;
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
         public void Delete(int id)
         {
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = string.Format("delete from {0} where id = @id", TableName);
-                cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = id;
-                cmd.ExecuteNonQuery();
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+                {
+                    cmd.CommandText = string.Format("delete from {0} where id = @id", TableName);
+                    cmd.Parameters.Add("@Id", System.Data.DbType.Int32).Value = id;
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
         public int DeleteAll()
         {
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = string.Format("delete from {0} where ID <> 0", TableName);
-                return cmd.ExecuteNonQuery();
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+                {
+                    cmd.CommandText = string.Format("delete from {0} where ID <> 0", TableName);
+                    return cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -237,18 +243,22 @@ namespace ca_service.Repositories
         /// <returns></returns>
         public virtual EntityType Get(int id)
         {
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = string.Format("select * from {0} where Id = {1}", TableName, id);
-                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
                 {
-                    if (reader.Read())
+                    cmd.CommandText = string.Format("select * from {0} where Id = {1}", TableName, id);
+                    using (var reader = cmd.ExecuteReader() as MySqlDataReader)
                     {
-                        EntityType result = ReadEntity(reader);
-                        return result;
+                        if (reader.Read())
+                        {
+                            EntityType result = ReadEntity(reader);
+                            return result;
+                        }
                     }
                 }
             }
+
             return null;
         }
 
@@ -260,17 +270,24 @@ namespace ca_service.Repositories
             {
                 if (!selectedFields.Contains(column.ColumnName.ToLower()))
                     continue;
-                if (column.DbType == System.Data.DbType.String && column.Property.PropertyType == typeof(List<int>))
+                if (column.DbType == System.Data.DbType.String)
                 {
-                    var values = reader[column.ColumnName] as string;
-                    if (null == values)
+                    var value = reader[column.ColumnName] as string;
+                    if (column.Property.PropertyType == typeof(List<int>))
                     {
-                        column.Property.SetValue(result, new List<int>(0));
+                        if (null == value)
+                        {
+                            column.Property.SetValue(result, new List<int>(0));
+                        }
+                        else
+                        {
+                            var list = new List<int>(value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
+                            column.Property.SetValue(result, list);
+                        }
                     }
                     else
-                    {
-                        var list = new List<int>(values.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(item => int.Parse(item)));
-                        column.Property.SetValue(result, list);
+                    {                        
+                        column.Property.SetValue(result, CleanText(value));
                     }
                 }
                 else
@@ -279,6 +296,17 @@ namespace ca_service.Repositories
                 }
             }
             return result;
+        }
+
+        private string CleanText(string value)
+        {
+            char[] chars = value.ToCharArray();
+            for (int i=0; i<value.Length; i++)
+            {
+                if (chars[i] > 127)
+                    chars[i] = ' ';
+            }
+            return new string(chars);
         }
 
         private List<string> GetFieldNames(MySqlDataReader reader)
@@ -309,24 +337,28 @@ namespace ca_service.Repositories
                     yield break;
                 filterColumns.Add(column);
             }
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+
+            using (var db = new Connection(_configuration))
             {
-                StringBuilder sqlBuilder = new StringBuilder();
-                DbColumnAttribute column = filterColumns[0];
-                sqlBuilder.AppendFormat("select * from {0} where {1} = @{1}", TableName, column.ColumnName);
-                BuildColumnParameter(column, cmd, entity);
-                for (int i=1; i<filterColumns.Count; i++)
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
                 {
-                    column = filterColumns[i];
-                    sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
+                    StringBuilder sqlBuilder = new StringBuilder();
+                    DbColumnAttribute column = filterColumns[0];
+                    sqlBuilder.AppendFormat("select * from {0} where {1} = @{1}", TableName, column.ColumnName);
                     BuildColumnParameter(column, cmd, entity);
-                }
-                cmd.CommandText = sqlBuilder.ToString();
-                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
-                {
-                    while (reader.Read())
+                    for (int i = 1; i < filterColumns.Count; i++)
                     {
-                        yield return ReadEntity(reader);
+                        column = filterColumns[i];
+                        sqlBuilder.AppendFormat(" and {0} = @{0}", column.ColumnName);
+                        BuildColumnParameter(column, cmd, entity);
+                    }
+                    cmd.CommandText = sqlBuilder.ToString();
+                    using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                    {
+                        while (reader.Read())
+                        {
+                            yield return ReadEntity(reader);
+                        }
                     }
                 }
             }
@@ -335,17 +367,21 @@ namespace ca_service.Repositories
         public List<EntityType> Fetch(int start, int count)
         {
             //SELECT * FROM ca.categories order by id desc LIMIT 0, 1000
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+
+            using (var db = new Connection(_configuration))
             {
-                cmd.CommandText = string.Format("select * from {0} order by {1} {2} limit {3}, {4}", TableName, OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
-                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
                 {
-                    List<EntityType> result = new List<EntityType>();
-                    while (reader.Read())
+                    cmd.CommandText = string.Format("select * from {0} order by {1} {2} limit {3}, {4}", TableName, OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
+                    using (var reader = cmd.ExecuteReader() as MySqlDataReader)
                     {
-                        result.Add(ReadEntity(reader));
+                        List<EntityType> result = new List<EntityType>();
+                        while (reader.Read())
+                        {
+                            result.Add(ReadEntity(reader));
+                        }
+                        return result;
                     }
-                    return result;
                 }
             }
         }
@@ -374,26 +410,38 @@ namespace ca_service.Repositories
                     yield break;
                 filterColumns.Add(column);
             }
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+
+            using (var db = new Connection(_configuration))
             {
-                StringBuilder sqlBuilder = new StringBuilder();
-                sqlBuilder.AppendFormat("select * from {0} where ", TableName);
-                BuildLikeParameter(cmd, sqlBuilder, filterColumns[0], filter[keys[0]]);
-                for (int i = 1; i < filterColumns.Count; i++)
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
                 {
-                    sqlBuilder.Append(" AND ");
-                    BuildLikeParameter(cmd, sqlBuilder, filterColumns[i], filter[keys[i]]);
-                }
-                sqlBuilder.AppendFormat(" order by {0} {1} limit {2}, {3}", OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
-                cmd.CommandText = sqlBuilder.ToString();
-                using (var reader = cmd.ExecuteReader() as MySqlDataReader)
-                {
-                    while (reader.Read())
+                    StringBuilder sqlBuilder = new StringBuilder();
+                    sqlBuilder.AppendFormat("select * from {0} where ", TableName);
+                    BuildLikeParameter(cmd, sqlBuilder, filterColumns[0], filter[keys[0]]);
+                    for (int i = 1; i < filterColumns.Count; i++)
                     {
-                        yield return ReadEntity(reader);
+                        sqlBuilder.Append(" AND ");
+                        BuildLikeParameter(cmd, sqlBuilder, filterColumns[i], filter[keys[i]]);
+                    }
+                    sqlBuilder.AppendFormat(" order by {0} {1} limit {2}, {3}", OrderColumnName, (OrderAscending ? "asc" : "desc"), start, count);
+                    cmd.CommandText = sqlBuilder.ToString();
+                    using (var reader = cmd.ExecuteReader() as MySqlDataReader)
+                    {
+                        while (reader.Read())
+                        {
+                            yield return ReadEntity(reader);
+                        }
                     }
                 }
             }
+        }
+
+        private static readonly char[] SpecialCharsInStrings = { ' ', '-', '%', '/' };
+        private static string ReplaceSpecialChars(string s)
+        {
+            foreach (char c in SpecialCharsInStrings)
+                s = s.Replace(c, '_');
+            return s;
         }
 
         private void BuildLikeParameter(MySqlCommand cmd, StringBuilder sqlBuilder, DbColumnAttribute column, object value)
@@ -409,12 +457,12 @@ namespace ca_service.Repositories
                         sqlBuilder.Append("(");
                         try
                         {
-                            string paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                            string paramName = "@" + ReplaceSpecialChars(values[0]);
                             BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[0]);
                             for (int i = 1; i < values.Length; i++)
                             {
                                 sqlBuilder.Append(" OR ");
-                                paramName = "@" + values[0].Replace(' ', '_').Replace('-', '_').Replace('%', '_');
+                                paramName = "@" + ReplaceSpecialChars(values[i]);
                                 BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[i]);
                             }
                         }
@@ -475,25 +523,28 @@ namespace ca_service.Repositories
                     return 0;
                 filterColumns.Add(column);
             }
-            using (var cmd = db.connection.CreateCommand() as MySqlCommand)
+
+            using (var db = new Connection(_configuration))
             {
-                StringBuilder sqlBuilder = new StringBuilder();
-                sqlBuilder.AppendFormat("select count('x') from {0}", TableName);
-                if (null != filter && filter.Count != 0)
+                using (var cmd = db.connection.CreateCommand() as MySqlCommand)
                 {
-                    sqlBuilder.Append(" where ");
-                    BuildLikeParameter(cmd, sqlBuilder, filterColumns[0], filter[keys[0]]);
-                    for (int i = 1; i < filterColumns.Count; i++)
+                    StringBuilder sqlBuilder = new StringBuilder();
+                    sqlBuilder.AppendFormat("select count('x') from {0}", TableName);
+                    if (null != filter && filter.Count != 0)
                     {
-                        sqlBuilder.Append(" AND ");
-                        BuildLikeParameter(cmd, sqlBuilder, filterColumns[i], filter[keys[i]]);
+                        sqlBuilder.Append(" where ");
+                        BuildLikeParameter(cmd, sqlBuilder, filterColumns[0], filter[keys[0]]);
+                        for (int i = 1; i < filterColumns.Count; i++)
+                        {
+                            sqlBuilder.Append(" AND ");
+                            BuildLikeParameter(cmd, sqlBuilder, filterColumns[i], filter[keys[i]]);
+                        }
                     }
+                    cmd.CommandText = sqlBuilder.ToString();
+                    long result = (long)cmd.ExecuteScalar();
+                    return (int)result;
                 }
-                cmd.CommandText = sqlBuilder.ToString();
-                long result = (long)cmd.ExecuteScalar();
-                return (int)result;
             }
         }
-
     }
 }

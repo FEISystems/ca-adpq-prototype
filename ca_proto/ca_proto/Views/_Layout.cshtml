@@ -5,7 +5,7 @@
     <title>@ViewData["Title"] - ca_proto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="@ViewData["Description"]" />
     <meta name="author" content="">
@@ -20,6 +20,7 @@
     <script src="js/vendor/angular-1.5.8/angular-resource.min.js"></script>
     <script src="js/vendor/angular-1.5.8/angular-animate.min.js"></script>
     <script src="js/vendor/angular_1_router/angular_1_router.js"></script>
+    <script src="js/vendor/ngStorage-0.3.10/ngStorage.min.js"></script>
     <script src="js/vendor/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="js/vendor/ui-bootstrap-tpls-1.3.2/ui-bootstrap-tpls-1.3.2.min.js"></script>
     <script src="js/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
@@ -28,8 +29,13 @@
     <script src="js/vendor/uswds-0.14.0/js/uswds.js"></script>
     <script src="js/vendor/swiper-3.4.1/js/swiper.min.js"></script>
 
+     <!-- Shims-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+    <script src="https://unpkg.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
     <!-- AREAS -->
-    <script src="app/areas/app.js"></script>
+    <script src="app/app.js"></script>
 
     <!-- AREA: Public Components -->
     <script src="app/areas/public/aboutus/aboutus.js"></script>
@@ -41,50 +47,11 @@
     <script src="app/areas/public/home/home.js"></script>
     <script src="app/areas/public/searchresults/searchresults.js"></script>
 
-    
-    <!-- AREA: Categories - Hardware - Accessories-->    
-    <script src="app/areas/public/categories/hardware/accessories/allaccessories/allaccessories.js"></script>
-    <script src="app/areas/public/categories/hardware/accessories/desktopaccessories/desktopaccessories.js"></script>
-    <script src="app/areas/public/categories/hardware/accessories/laptopaccessories/laptopaccessories.js"></script>
-    <script src="app/areas/public/categories/hardware/accessories/miscellaneous/miscellaneous.js"></script>
-    <script src="app/areas/public/categories/hardware/accessories/monitors/monitors.js"></script>
-    
-    <!-- AREA: Categories - Hardware - Desktops-->
-    <script src="app/areas/public/categories/hardware/desktops/alldesktops/alldesktops.js"></script>
-    <script src="app/areas/public/categories/hardware/desktops/allinonedesktops/allinonedesktops.js"></script>
-    <script src="app/areas/public/categories/hardware/desktops/powerdesktops/powerdesktops.js"></script>
-    <script src="app/areas/public/categories/hardware/desktops/standarddesktops/standarddesktops.js"></script>
-    <script src="app/areas/public/categories/hardware/desktops/thinclientdesktops/thinclientdesktops.js"></script>
-    <script src="app/areas/public/categories/hardware/desktops/workstations/workstations.js"></script>
+
+    <script src="app/areas/public/categories/categoryList.js"></script>
     <script src="app/areas/public/categories/shared/hardwaremenu/hardwaremenu.js"></script>
-    <!-- AREA: Categories - Hardware - Laptops-->
-    <script src="app/areas/public/categories/hardware/laptops/alllaptops/alllaptops.js"></script>
-    <script src="app/areas/public/categories/hardware/laptops/mobileworkstations/mobileworkstations.js"></script>
-    <script src="app/areas/public/categories/hardware/laptops/powerlaptops/powerlaptops.js"></script>
-    <script src="app/areas/public/categories/hardware/laptops/standardlaptops/standardlaptops.js"></script>
-    <script src="app/areas/public/categories/hardware/laptops/ultralightlaptops/ultralightlaptops.js"></script>
-    <!-- AREA: Categories - Software -->
-    <script src="app/areas/public/categories/software/allsoftware/allsoftware.js"></script>
-    <!-- AREA: Categories - Services - Desktops-->
-    <script src="app/areas/public/categories/services/desktopserviceoptions/alldesktopservices/alldesktopservices.js"></script>
-    <script src="app/areas/public/categories/services/desktopserviceoptions/allinonedesktopservices/allinonedesktopservices.js"></script>
-    <script src="app/areas/public/categories/services/desktopserviceoptions/powerdesktopservices/powerdesktopservices.js"></script>
-    <script src="app/areas/public/categories/services/desktopserviceoptions/standarddesktopservices/standarddesktopservices.js"></script>
-    <script src="app/areas/public/categories/services/desktopserviceoptions/thinclientdesktopservices/thinclientdesktopservices.js"></script>
-    <script src="app/areas/public/categories/services/desktopserviceoptions/workstationservices/workstationservices.js"></script>
-    <!-- AREA: Categories - Services - Desktops-->
-    <script src="app/areas/public/categories/services/laptopserviceoptions/alllaptopservices/alllaptopservices.js"></script>
-    <script src="app/areas/public/categories/services/laptopserviceoptions/mobileworkstationservices/mobileworkstationservices.js"></script>
-    <script src="app/areas/public/categories/services/laptopserviceoptions/powerlaptopservices/powerlaptopservices.js"></script>
-    <script src="app/areas/public/categories/services/laptopserviceoptions/standardlaptopservices/standardlaptopservices.js"></script>
-    <script src="app/areas/public/categories/services/laptopserviceoptions/ultralightlaptopservices/ultralightlaptopservices.js"></script>
     <script src="app/areas/public/categories/shared/servicesmenu/servicesmenu.js"></script>
-    <!-- AREA: Categories - Services - Value Added Services-->
-    <script src="app/areas/public/categories/services/valueaddedservices/allvalueaddedservices/allvalueaddedservices.js"></script>
-    <script src="app/areas/public/categories/services/valueaddedservices/desktopvalueaddedservices/desktopvalueaddedservices.js"></script>
-    <script src="app/areas/public/categories/services/valueaddedservices/laptopvalueaddedservices/laptopvalueaddedservices.js"></script>
     
-    <!-- AREA: Public/Categories Components -->
     <script src="app/areas/public/productdetails/productdetails.js"></script>
 
     
@@ -93,10 +60,11 @@
     <script src="app/areas/authorizeduser/cart/cart.js"></script>
     <script src="app/areas/authorizeduser/checkout/checkout.js"></script>
     <script src="app/areas/authorizeduser/myaccount/myaccount.js"></script>
-    <script src="app/areas/authorizeduser/orderconfirmation/orderconfirmation.js"></script>
     <script src="app/areas/authorizeduser/orderdetails/orderdetails.js"></script>
     <script src="app/areas/authorizeduser/orderhistory/orderhistory.js"></script>
     <script src="app/areas/authorizeduser/revieworder/revieworder.js"></script>
+    <script src="app/areas/authorizeduser/orderconfirmation/orderconfirmation.js"></script>
+    <script src="app/areas/authorizeduser/orderfailed/orderfailed.js"></script>
 
     
     <!-- AREA: Admin Components -->
@@ -123,7 +91,10 @@
     <script src="app/views/shared/components/product-card/product-card.component.js"></script>
     <script src="app/views/shared/components/footer/footer.component.js"></script>
     <script src="app/views/shared/components/addtocart-button/addtocart-button.component.js"></script>
+    <script src="app/views/shared/components/addtocart-qty-button/addtocart-qty-button.component.js"></script>
     <script src="app/views/shared/components/compareproduct-button/compareproduct-button.component.js"></script>
+    <script src="app/views/shared/components/permission-directive/permission-directive.js"></script>
+    <script src="app/views/shared/components/unauthorized-page/unauthorized-page.js"></script>
 
     <!-- SHARED: Layouts -->
     <script src="app/views/shared/layouts/left-navbar-layout/left-navbar.layout.js"></script>
@@ -145,6 +116,8 @@
     <script src="app/services/queueService.js"></script>
     <script src="app/services/shoppingCartService.js"></script>
     <script src="app/services/reportService.js"></script>
+    <script src="app/services/authenticationService.js"></script>
+    <script src="app/services/categoryService.js"></script>
 
     <!-- CSS -->
     <link href="js/vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet"/>

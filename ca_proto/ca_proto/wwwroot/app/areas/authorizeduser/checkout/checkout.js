@@ -86,19 +86,19 @@
 
         } 
         
-        // else {
-        //     model.name = "Joe";
-        //     model.department = "Technology";
-        //     model.phoneNumber = "301-123-4567";
-        //     model.emailAddress = "joe@something.com";
-        //     model.address1 = "1000 Main Street";
-        //     model.address2 = "Apt - 303";
-        //     model.address3 = "";
-        //     model.city = "Columbia";
-        //     model.state = "MD";
-        //     model.postalCode = "21470";
-        //     model.paymentAccount = 2;
-        // }
+        else {
+            model.name = "Joe";
+            model.department = "Technology";
+            model.phoneNumber = "301-123-4567";
+            model.emailAddress = "joe@something.com";
+            model.address1 = "1000 Main Street";
+            model.address2 = "Apt - 303";
+            model.address3 = "";
+            model.city = "Columbia";
+            model.state = "MD";
+            model.postalCode = "21470";
+            model.paymentAccount = 2;
+        }
 
 
         model.getActiveCart = function () {
@@ -142,11 +142,13 @@
         messageService.subscribe('getActiveCartSuccess', function (response) {
             model.cart = response;
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
             }
 
-            for (let item of model.cartItems) {
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
                 model.cartTotal += item.Price * item.Quantity;
             }
         })

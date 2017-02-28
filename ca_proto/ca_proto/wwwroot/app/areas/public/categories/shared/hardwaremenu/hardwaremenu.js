@@ -12,8 +12,6 @@
             return ($location.path() === path) ? 'usa-current' : '';
         }
 
-
-
     };
 
     module.component("hardwareMenu", {

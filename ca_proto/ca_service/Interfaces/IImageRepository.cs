@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IImageRepository : IEntityRepository, IDisposable
+    public interface IImageRepository : IEntityRepository
     {
         void Add(Image image);
         Image Get(string filename);

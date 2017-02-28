@@ -67,6 +67,7 @@ namespace ca_proto
             services.AddTransient<IPrototypeService, PrototypeService>();
             services.AddTransient<IReportService, ReportService>();
             services.AddSingleton<IConfiguration>(Configuration);
+
             services.AddMemoryCache();
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

@@ -38,6 +38,34 @@
         //    "Filter": { "Category":"Service|Computer", "ListPrice":"31|34"}
         //}
 
+        model.select = function (id) {
+            var product = model.findProduct(id);
+            if (null == product)
+                return;
+            if (product.isSelected)
+                product.isSelected = false;
+            else
+                product.isSelected = true;
+        };
+
+        model.deleteSelected = function () {
+            var selected = [];
+            for (var i = 0; i < model.products.length; i++) {
+                if (model.products[i].isSelected)
+                    selected.push(model.products[i].Id);
+            }
+            if (selected.length == 0) {
+                alert("Please select at least one product to delete.");
+                return;
+            }
+            if (confirm("This will delete " + selected.length + " selected product(s)!")) {
+                model.onStartImport("Deleting " + selected.length + " product(s)...");
+                for (var i = 0; i < selected.length; i++) {
+                    inventoryService.deleteProduct(selected[i]);
+                }
+            }
+        };
+
         model.setOrderByColumn = function (columnName) {
             if (model.orderByColumn == columnName)
             {
@@ -52,15 +80,24 @@
         };
 
         model.filterProducts = function () {
+            for (var propName in model.filter) { 
+                if (model.filter[propName] === null || model.filter[propName] === undefined || model.filter[propName] === "") {
+                    delete model.filter[propName];
+                }
+            }
             model.activeFilter = model.filter;
             model.page = 0;
             model.tab = 3;
-            model.fetchAll();
+            model.fetchProducts();
+            model.fetchPageCount();
         };
 
         model.clearFilter = function () {
             model.filter = {};
             model.activeFilter = {};
+            var img = document.getElementById("filterImage");
+            if (img)
+                img.src = "";
         };
 
         model.showFilter = function () {
@@ -108,6 +145,10 @@
                 inventoryService.addProduct(uploadData);
             }
         };
+
+        model.cancelAddEdit = function () {
+            model.showTable();
+        }
 
         model.onStartImport = function (text) {
             model.importProgress = text;
@@ -169,14 +210,20 @@
             }
         };
 
-        model.edit = function (id) {
+        model.findProduct = function (id) {
             for (var i = 0; i < model.products.length; i++) {
                 var item = model.products[i];
                 if (item.Id == id) {
-                    model.showAddEdit(model.buildProduct(item), true);
-                    return;
+                    return item;
                 }
             }
+            alert("Product " + id + " not found");
+        };
+
+        model.edit = function (id) {
+            var product = model.findProduct(id);
+            if (product)
+                model.showAddEdit(model.buildProduct(product), true);
         };
 
         model.resetDatabase = function () {
@@ -194,7 +241,9 @@
 
         model.fetchProducts = function () {
             var filter = model.activeFilter;
+            console.log(filter);
             inventoryService.fetchProducts(model.page * model.itemsPerPage, model.itemsPerPage, model.orderByColumn, model.orderAscending, filter);
+            model.filter = {};
         };
 
         model.buildProduct = function (item) {
@@ -222,10 +271,12 @@
             inventoryService.fetchContracts();
             inventoryService.fetchContractors();
             inventoryService.fetchImageFileNames();
+
             if (model.tab == 3) {
                 model.fetchProducts();
                 model.fetchPageCount();
             }
+
         };
 
         model.buildFilter = function () {
@@ -378,6 +429,10 @@
         })
 
         messageService.subscribe('deleteSuccess', function (response) {
+            if (model.tab == 6) {
+                model.importProgress += "\nDeleted Product";
+                return;
+            }
             model.showTable();
         })
 
@@ -402,7 +457,7 @@
         messageService.subscribe('generateOrdersFailure', function (response) {
             model.handleError(response);
         })
-        
+
         model.fetchAll();
     };
 

@@ -12,3 +12,55 @@
 .swiper-container .swiper-wrapper .swiper-slide {
   text-align: center;
 }
+.swiper-container .bg-img {
+  width: 100%;
+  height: 350px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.swiper-container .hero1 {
+  background-image: url(../../../../img/heroImage1_2500.jpg);
+}
+.swiper-container .hero1 .text {
+  float: right;
+  text-align: left;
+  margin-right: 20%;
+}
+.swiper-container .hero1 .text h2 {
+  font-size: 3em;
+}
+.swiper-container .hero1 .text p {
+  font-size: 1.25em;
+}
+.swiper-container .hero2 {
+  background-image: url(../../../../img/heroImage2_2500.jpg);
+}
+.swiper-container .hero3 {
+  background-image: url(../../../../img/heroImage3_2500.jpg);
+  background-position: left;
+}
+.swiper-container .hero3 .ribbon-image {
+  width: 100px;
+}
+.swiper-container .hero3 h3 {
+  font-size: 1.5em;
+  width: 485px;
+}
+.swiper-container .hero3 h3 span {
+  margin: 50px 0 0 10px;
+  display: inline-block;
+}
+.swiper-container .hero3 .text {
+  text-align: left;
+  margin-right: 20%;
+  padding: 100px 0 0 155px;
+}
+.state-agencies-wrapper {
+  padding: 20px;
+}
+.state-agencies {
+  border-top: 1px solid #B6B8BD;
+  border-bottom: 1px solid #B6B8BD;
+  padding-bottom: 20px;
+}

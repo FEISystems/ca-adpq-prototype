@@ -8,6 +8,7 @@
         model.title = "Cart";
         model.products = [];
         model.qtyOptions = [0,1,2,3,4,5,6];
+        model.cartTotal = 0;
         model.cart = {};
 
 
@@ -18,8 +19,9 @@
 
         model.getActiveCart();
 
-        $scope.updateCart = function() {
-            for (let item of model.cart.Items) {
+        $scope.updateCart = function () {
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var item = model.cart.Items[idx];
                 shoppingCartService.updateCart( { "ShoppingCartItemId" : item.Id, "Quantity" : item.Quantity } );
             }
         }
@@ -53,8 +55,15 @@
             model.cartItems =[];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
+            }
+
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
+                model.cartTotal += item.Price * item.Quantity;
             }
         })
 
@@ -76,7 +85,9 @@
             model.cartItems =[];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
             }
             
@@ -92,7 +103,9 @@
             model.cartItems =[];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
             }
         })

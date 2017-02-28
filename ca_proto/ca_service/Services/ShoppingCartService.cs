@@ -12,7 +12,7 @@ namespace ca_service.Services
         private readonly IShoppingCartRepository shoppingCartRepository;
         private readonly IShoppingCartItemRepository shoppingCartItemRepository;
         private readonly IInventoryRepository inventoryRepository;
-        public ShoppingCartService(IShoppingCartRepository shoppingCartRepository, 
+        public ShoppingCartService(IShoppingCartRepository shoppingCartRepository,
             IShoppingCartItemRepository shoppingCartItemRepository, IInventoryRepository inventoryRepository)
         {
             this.shoppingCartItemRepository = shoppingCartItemRepository;
@@ -66,7 +66,7 @@ namespace ca_service.Services
                 shoppingCartRepository.Add(cart);
 
             }
-            
+
 
             Product product = this.inventoryRepository.Get(productId);
             if (product == null)
@@ -79,14 +79,15 @@ namespace ca_service.Services
                 shoppingCartItemRepository.Update(item);
             }
             else
-                shoppingCartItemRepository.Add(new ShoppingCartItem() {
+                shoppingCartItemRepository.Add(new ShoppingCartItem()
+                {
                     Price = product.ContractPrice,
                     Description = product.Description,
                     ProductId = product.Id,
                     Quantity = quantity,
                     ShoppingCartId = cart.Id
                 });
-            
+
             cart.Items = shoppingCartItemRepository.Fetch(cart.Id);
             return cart;
         }

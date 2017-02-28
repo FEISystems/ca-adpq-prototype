@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface ICategoryRepository:IEntityRepository,IDisposable
+    public interface ICategoryRepository:IEntityRepository
     {
         void Add(Category product);
         void Update(Category product);

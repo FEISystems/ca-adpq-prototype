@@ -3,13 +3,28 @@
 <div id="hero" class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <img src="../../../../img/hero1_1366x400.jpg" alt="Featured Product 1">
+            <div class="bg-img hero1">
+                <div class="text">
+                    <h2>Welcome...</h2>
+                    <p>1. Browse, search, compare products<br>
+                    2. Add products to your cart.<br>
+                    3. Check out</p>
+                </div>
+            </div>
         </div>
         <div class="swiper-slide">
-            <img src="../../../../img/hero2_1366x400.jpg" alt="Featured Product 1">
+            <div class="bg-img hero2">
+                
+            </div>
         </div>
         <div class="swiper-slide">
-            <img src="../../../../img/hero3_1366x400.jpg" alt="Featured Product 1">
+            <div class="bg-img hero3">
+                <div class="text">
+                    <h3> <img src="../../../../img/ribbon.svg" alt="ribbon image" class="left ribbon-image" /> 
+                    <span>Shop from pre-established<br>
+                    state contracts with ease.</span></h3>
+                </div>
+            </div>
         </div>
     </div>
     <div class="swiper-button-prev"></div>
@@ -18,10 +33,21 @@
 <br/>
 <br/>
 <div class="usa-grid">
-    <h2>Recently Purchased</h2>
+    <h2>Featured Products</h2>
 </div>
-<div class="usa-grid" ng-repeat="rows in model.products | limitTo : 4" style="margin-bottom: 20px">
+<div class="usa-grid homepageProductContainer" ng-repeat="rows in model.products | limitTo : 4" style="margin-bottom: 20px">
     <div ng-repeat="product in rows" class="usa-width-one-fourth">
         <product-card class="usa-grid-full"></product-card>
+    </div>
+</div>
+
+<div class="usa-grid state-agencies-wrapper">
+    <div class="state-agencies">
+        <h3>Serving state agencies, including:</h3>
+        <img src="../../../../img/cdph-logo.png" alt="Department of Public Health" />
+        <img src="../../../../img/state-auditor-logo.png" alt="State Auditor" />
+        <img src="../../../../img/dept-of-education-logo.png" alt="Department of Education" />
+        <img src="../../../../img/student-aid-logo.png" alt="Student Aid Commission" />
+        <img src="../../../../img/ca-state-assembly-logo.png" alt="CA State Assembly" />
     </div>
 </div>
