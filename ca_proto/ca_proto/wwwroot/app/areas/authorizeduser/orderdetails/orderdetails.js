@@ -40,26 +40,29 @@
                 model.products = [];
                 model.orderItems = model.order.Items;
 
-                for (let order of model.order.Items) {
-                    model.getProduct(order.ProductId);
+                for (var idx = 0; idx < model.order.Items; ++idx) {
+                    var product = model.order.Items[idx];
+                    model.getProduct(product.ProductId);
                 }
 
-                for (let item of model.orderItems) {
-                    model.orderTotal += (item.Price * item.Quantity);
+                for (var idx = 0; idx < model.orderItems; ++idx) {
+                    var item = model.orderItems[idx];
+                    model.orderTotal += item.Price * item.Quantity;
                 }
-            })
+            });
+
             messageService.subscribe("getOrderFailure", function (response) {
                 model.order = {};
-            })
+            });
 
             messageService.subscribe('getProductSuccess', function (response) {
                 model.products.push(response);
-            })
+            });
 
             messageService.subscribe('getProductFailure', function (response) {
                 model.products = [];
 
-            })
+            });
             
 
             messageService.subscribe('cancelOrderSuccess', function (response) {
