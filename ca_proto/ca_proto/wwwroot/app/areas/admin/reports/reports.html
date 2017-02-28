@@ -4,6 +4,7 @@
     <unauthorized-page  authorized="['Admin']"></unauthorized-page>
     <aside class="usa-width-one-fourth" permission="['Admin']">
         <ul class="usa-sidenav-list">
+            <li><a href="" ng-click="model.showDashboard()" ng-class="{'usa-current' : model.tab == 0}">Dashboard</a></li>
             <li><a href="" ng-click="model.showFilter()" ng-class="{'usa-current' : model.tab == 1}">Data Filter</a></li>
             <li><a href="" ng-click="model.showExpendituresByProductType()" ng-class="{'usa-current' : model.tab == 2}">Expenditures by Product Type</a></li>
             <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
@@ -15,6 +16,40 @@
     </aside>
 
     <div class="usa-width-two-thirds" permission="['Admin']" style="page-break-before:always;">
+        <div ng-show="model.tab == 0">
+            <h3 class="usa-heading">Dashboard (beta)</h3>
+            <table>
+                <tr>
+                    <td>
+                        <form id="orderProductQueryFormDashboard" name="orderProductQueryFormDashboard"
+                              ng-submit="orderProductQueryForm.$valid && model.fetchOrderProducts()" novalidate>
+                            Start Date<br />
+                            <input type="text" ng-model="model.orderProductQuery.Start" required /><br />
+                            End Date<br />
+                            <input type="text" ng-model="model.orderProductQuery.End" required />
+                            <center>
+                                <input type="submit" value="Run Report" ng-disabled="!orderProductQueryForm.$valid" />
+                            </center>
+                        </form>
+                    </td>
+                    <td>
+                        <h3 class="usa-heading">Expenditures by Product Type</h3>
+                        <canvas id="productTypeCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showExpendituresByProductType()"> </canvas>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3 class="usa-heading">Expenditures by Contractor</h3>
+                        <canvas id="contractorCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showExpendituresByContractor()"></canvas>
+                    </td>
+                    <td>
+                        <h3 class="usa-heading">Purchase Trends by Account</h3>
+                        <canvas id="purchaseTrendsCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showPurchaseTrends()"></canvas>
+                    </td>
+                </tr>
+                <tr><th colspan="2" style="text-align:center;">{{model.responseMessage}}</th></tr>
+            </table>
+        </div>
         <div ng-show="model.tab == 1">
             <h3 class="usa-heading">Data Filter</h3>
             <form id="orderProductQueryForm" name="orderProductQueryForm"
