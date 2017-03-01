@@ -65,6 +65,7 @@
             model.cartItems = [];
             model.products = [];
             model.cartItems = model.cart.Items;
+            model.cartItemCount = 0;
             model.cartTotal = 0;
 
             if (model.cartItems) {
@@ -106,6 +107,7 @@
             model.cartItems = [];
             model.products = [];
             model.cartItems = model.cart.Items;
+            model.cartItemCount = 0;
             model.cartTotal = 0;
 
             for (var idx = 0; idx < model.cart.Items.length; ++idx) {
@@ -116,6 +118,10 @@
             for (var idx = 0; idx < model.cartItems.length; ++idx) {
                 var item = model.cartItems[idx];
                 model.cartTotal += item.Price * item.Quantity;
+            }
+
+            for (var i = 0; i < model.cartItems.length; ++i) {
+                model.cartItemCount += model.cartItems[i].Quantity;
             }
 
         })
@@ -130,6 +136,7 @@
             model.cartItems = [];
             model.products = [];
             model.cartItems = model.cart.Items;
+            model.cartItemCount = 0;
             model.cartTotal = 0;
 
             for (var idx = 0; idx < model.cart.Items.length; ++idx) {

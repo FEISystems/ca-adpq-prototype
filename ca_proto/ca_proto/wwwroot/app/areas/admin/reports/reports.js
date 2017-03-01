@@ -104,7 +104,7 @@
         };
 
         model.getFilteredProducts = function () {
-            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.len == 0) {
+            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.length == 0) {
                 //if no order status is chosen to filter then return all rows
                 return model.orderProducts;
             }
@@ -167,6 +167,9 @@
         };
 
         model.drawLabels = function (context, left) {
+            for (var i = 0; i < 3; i++) {
+                model.drawTextBackground(context, left - 3, 17 + i * 20, 100, 16);
+            }
             model.drawCustomLabels(context, left, 20,
                 [
                     { color: model.hardwareColor, text: "Hardware" },
@@ -355,9 +358,20 @@
                 }
                 if (dollarLevels[i] == 0)
                     continue;
-                context.fillText(model.toMoney(dollarLevels[i]), 5, y + 15);
+                var text = model.toMoney(dollarLevels[i]);
+                var textWidth = context.measureText(text).width;
+                model.drawTextBackground(context, 2, y + 1, textWidth + 5, 17);
+                context.fillText(text, 5, y +15);
             }
         };
+
+        model.drawTextBackground = function (context, left, top, width, height) {
+            context.globalAlpha = 0.6;
+            context.fillStyle = "#EEEEEE";
+            context.fillRect(left, top, width, height);
+            context.globalAlpha = 1;
+            context.fillStyle = "Black";
+        }
 
         model.getDateLabels = function () {
             var start = new Date(model.orderProductQuery.Start);
@@ -458,11 +472,7 @@
                 orderOfMagnitude *= 10;
             }
             orderOfMagnitude /= 100;
-            var temp = orderOfMagnitude;
-            while (temp < max) {
-                temp += orderOfMagnitude;
-            }
-            return temp;
+            return Math.ceil(max / orderOfMagnitude) * orderOfMagnitude;
         };
 
         model.findMaxTotalInTrend = function (trend) {
@@ -695,6 +705,13 @@
             model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
             model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
             model.drawPurchasesByAccount(0, "purchasesCanvasDashboard", false);
+        };
+
+        model.showAllCharts = function() {
+            model.drawDataTrends(10, "purchaseTrendsCanvas", true);
+            model.drawExpendituresByProductType(10, "productTypeCanvas", true);
+            model.drawExpendituresByContractor(10, "contractorCanvas", true);
+            model.drawPurchasesByAccount(10, "purchasesCanvas", true);
         };
 
         messageService.subscribe('getOrderProductsSuccess', function (response) {

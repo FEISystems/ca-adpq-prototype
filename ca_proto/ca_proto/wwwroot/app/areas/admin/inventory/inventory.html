@@ -34,9 +34,9 @@
         </div>
         <div ng-show="model.tab == 7">
             <h3 class="usa-heading">Prototype Tasks</h3>
-            <button ng-click="model.resetDatabase()">Reset Database</button>
-            <label for="demoorders" class="usa-sr-only">Create Demo Orders</label>
-            <input type="text" ng-model="model.createCount" id="demoorders" /> <button ng-click="model.createDemoOrders()">Create Demo Orders</button>
+            <button ng-click="model.resetDatabase()" class="usa-button usa-button-secondary">Reset Database</button>
+            <label for="demoorders" class="usa-sr-only ">Create Demo Orders</label>
+            <input type="text" ng-model="model.createCount" id="demoorders" /> <button ng-click="model.createDemoOrders()" class="usa-button usa-button-secondary">Create Demo Orders</button>
         </div>
         <div ng-show="model.tab == 2">
             <h3 class="usa-heading"><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>
@@ -164,7 +164,7 @@
                         <td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.Id)">Delete</a></td>
                     </tr>
                     <tr>
-                        <td><button ng-click="model.deleteSelected()">Delete<br/>Selected</button></td>
+                        <td><button ng-click="model.deleteSelected()" class="usa-button usa-button-secondary">Delete<br/>Selected</button></td>
                         <td colspan="5" style="text-align:center">
                             &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
                             &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>

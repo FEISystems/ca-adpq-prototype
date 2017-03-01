@@ -27,14 +27,15 @@
 .swiper-container .hero1 .text {
   float: right;
   text-align: left;
-  margin-right: 20%;
+  margin-right: 15%;
 }
-.swiper-container .hero1 .text h3 {
-  font-size: 1.5em;
+.swiper-container .hero1 .text h2 {
+  font-size: 2.5em;
   text-align: left;
 }
 .swiper-container .hero1 .text p {
   font-size: 1.25em;
+  font-family: "Merriweather", "Georgia", "Cambria", "Times New Roman", "Times", serif;
 }
 .swiper-container .hero2 {
   background-image: url(../../../../img/heroImage2_2500.jpg);
@@ -74,4 +75,7 @@
   border-top: 1px solid #B6B8BD;
   border-bottom: 1px solid #B6B8BD;
   padding-bottom: 20px;
+}
+.state-logos {
+  margin-right: 4%;
 }

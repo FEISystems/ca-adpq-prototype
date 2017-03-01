@@ -163,7 +163,7 @@
         })
 
         messageService.subscribe("placeOrderSuccess", function (response) {
-            $location.path("user/orderconfirmation");
+            $location.path("user/orderconfirmation/" + response.Id);
         });
 
         messageService.subscribe("placeOrderFailure", function (response) {
