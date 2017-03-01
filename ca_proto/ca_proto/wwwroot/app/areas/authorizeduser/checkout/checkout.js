@@ -11,63 +11,63 @@
         model.cartTotal = 0;
         model.paymentOptions = {
             1: "California Department of General Services",
-            2: "California Department of Technology" ,
-            3: "California Department of Health and Human Services" ,
-            4: "California Department of Education" 
+            2: "California Department of Technology",
+            3: "California Department of Health and Human Services",
+            4: "California Department of Education"
         }
 
         model.stateOptions = {
-                    AL : "Alabama",
-                    AK : "Alaska",
-                    AZ : "Arizona",
-                    AR : "Arkansas",
-                    CA : "California",
-                    CO : "Colorado",
-                    CT : "Connecticut",
-                    DE : "Delaware",
-                    DC : "District Of Columbia",
-                    FL : "Florida",
-                    GA : "Georgia",
-                    HI : "Hawaii",
-                    ID : "Idaho",
-                    IL : "Illinois",
-                    IN : "Indiana",
-                    IA : "Iowa",
-                    KS : "Kansas",
-                    KY : "Kentucky",
-                    LA : "Louisiana",
-                    ME : "Maine",
-                    MD : "Maryland",
-                    MA : "Massachusetts",
-                    MI : "Michigan",
-                    MN : "Minnesota",
-                    MS : "Mississippi",
-                    MO : "Missouri",
-                    MT : "Montana",
-                    NE : "Nebraska",
-                    NV : "Nevada",
-                    NH : "New Hampshire",
-                    NJ : "New Jersey",
-                    NM : "New Mexico",
-                    NY : "New York",
-                    NC : "North Carolina",
-                    ND : "North Dakota",
-                    OH : "Ohio",
-                    OK : "Oklahoma",
-                    OR : "Oregon",
-                    PA : "Pennsylvania",
-                    RI : "Rhode Island",
-                    SC : "South Carolina",
-                    SD : "South Dakota",
-                    TN : "Tennessee",
-                    TX : "Texas",
-                    UT : "Utah",
-                    VT : "Vermont",
-                    VA : "Virginia",
-                    WA : "Washington",
-                    WV : "West Virginia",
-                    WI : "Wisconsin",
-                    WY : "Wyoming"
+            AL: "Alabama",
+            AK: "Alaska",
+            AZ: "Arizona",
+            AR: "Arkansas",
+            CA: "California",
+            CO: "Colorado",
+            CT: "Connecticut",
+            DE: "Delaware",
+            DC: "District Of Columbia",
+            FL: "Florida",
+            GA: "Georgia",
+            HI: "Hawaii",
+            ID: "Idaho",
+            IL: "Illinois",
+            IN: "Indiana",
+            IA: "Iowa",
+            KS: "Kansas",
+            KY: "Kentucky",
+            LA: "Louisiana",
+            ME: "Maine",
+            MD: "Maryland",
+            MA: "Massachusetts",
+            MI: "Michigan",
+            MN: "Minnesota",
+            MS: "Mississippi",
+            MO: "Missouri",
+            MT: "Montana",
+            NE: "Nebraska",
+            NV: "Nevada",
+            NH: "New Hampshire",
+            NJ: "New Jersey",
+            NM: "New Mexico",
+            NY: "New York",
+            NC: "North Carolina",
+            ND: "North Dakota",
+            OH: "Ohio",
+            OK: "Oklahoma",
+            OR: "Oregon",
+            PA: "Pennsylvania",
+            RI: "Rhode Island",
+            SC: "South Carolina",
+            SD: "South Dakota",
+            TN: "Tennessee",
+            TX: "Texas",
+            UT: "Utah",
+            VT: "Vermont",
+            VA: "Virginia",
+            WA: "Washington",
+            WV: "West Virginia",
+            WI: "Wisconsin",
+            WY: "Wyoming"
 
         }
 
@@ -84,20 +84,20 @@
             model.postalCode = $rootScope.orderInfo.postalCode;
             model.paymentAccount = $rootScope.orderInfo.paymentAccount;
 
-        } 
-        
+        }
+
         else {
-            model.name = "Joe";
-            model.department = "Technology";
-            model.phoneNumber = "301-123-4567";
-            model.emailAddress = "joe@something.com";
-            model.address1 = "1000 Main Street";
-            model.address2 = "Apt - 303";
+            model.name = "";
+            model.department = "";
+            model.phoneNumber = "";
+            model.emailAddress = "";
+            model.address1 = "";
+            model.address2 = "";
             model.address3 = "";
-            model.city = "Columbia";
-            model.state = "MD";
-            model.postalCode = "21470";
-            model.paymentAccount = 2;
+            model.city = "";
+            model.state = "";
+            model.postalCode = "";
+            model.paymentAccount = 0;
         }
 
 

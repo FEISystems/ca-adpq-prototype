@@ -4,7 +4,7 @@
         <h2 class="usa-heading">Your Cart</h2>
         <div class="usa-width-one-whole">
             <div class="items-in-cart-header">
-                ({{model.cart.Items.length || 0}}) items in your cart
+                ({{model.cartItemCount}}) items in your cart
             </div>
 
             <div ng-repeat="item in model.cartItems" class="items-in-cart usa-grid">
@@ -30,7 +30,11 @@
                 
             </div>
 
-            <div class="usa-width-one-whole total">
+            <div class="usa-grid" ng-show="model.cartItemCount == 0" style="padding: 40px 20px">
+                <p class="h3">You have (0) items in your cart. <a ng-link="['Home']">Continue shopping</a>.</p>
+            </div>
+
+            <div class="usa-width-one-whole total" ng-hide="model.cartItemCount == 0">
                 <div class="usa-width-one-half">
                     <h4>Total</h4>
                 </div>
@@ -40,7 +44,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="buttons">
+            <div class="buttons" ng-hide="model.cartItemCount == 0">
                 <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
                 <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
             </div>
