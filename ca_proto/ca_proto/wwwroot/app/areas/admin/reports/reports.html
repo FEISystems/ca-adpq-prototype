@@ -68,25 +68,21 @@
 
         <div ng-show="model.tab == 2 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Expenditures by Product Type</h3>
-            <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width}}"> </canvas>
+            <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}"> </canvas>
         </div>
-
+        <div style="height:50px" ng-show="model.tab == 10" />
         <div ng-show="model.tab == 3 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Expenditures by Contractor</h3>
-            <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
-            <table style="width:{{model.width}}px;text-align:center;padding:0">
-                <tr style="width:{{model.width}}px;padding:0"><td ng-repeat="contractor in model.contractors" style="width:{{model.contractorColumnWidth}}px;">{{contractor}}</td></tr>
-            </table>
+            <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="contractorLabelCanvas" height="100" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
-
+        <div style="height:50px" ng-show="model.tab == 10" />
         <div ng-show="model.tab == 4 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Purchases by Account</h3>
-            <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
-            <table style="width:{{model.width}}px;text-align:center;padding:0">
-                <tr style="width:{{model.width}}px;padding:0"><td ng-repeat="account in model.paymentAccounts" style="width:{{model.paymentAccountColumnWidth}}px;">{{account}}</td></tr>
-            </table>
+            <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="accountLabelCanvas" height="100" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
-
+        <div style="height:50px" ng-show="model.tab == 10" />
         <div ng-show="model.tab == 6 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Purchase Trends by Account</h3>
             <canvas id="purchaseTrendsCanvas" height="{{model.height + model.trendDatePadding + (20 * model.paymentAccounts.length)}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
