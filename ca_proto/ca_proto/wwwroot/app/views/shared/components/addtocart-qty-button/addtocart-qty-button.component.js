@@ -21,7 +21,7 @@
         $scope.addToCart = function () {
             shoppingCartService.addProductToCart({"ProductId" : model.productId, "Quantity" : parseInt(model.qty) });
         }
-
+        $scope.onlyNumbers = /^\d+$/;
 
     };
 
