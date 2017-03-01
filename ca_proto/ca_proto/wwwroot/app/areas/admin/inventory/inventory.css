@@ -1,5 +1,6 @@
 .usa-heading {
   border-bottom: 1px solid #e31c3d;
+  margin-top: 14px;
 }
 .table-header {
   background: #f1f1f1;
@@ -22,15 +23,53 @@
   border-right: 5px solid transparent;
   border-top: 5px solid #000000;
 }
+div.table-responsive table {
+  margin: 0;
+}
+form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole,
+form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole {
+  padding-top: 15px;
+}
+form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:last-of-type,
+form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:last-of-type {
+  margin-top: 0;
+}
 @media screen and (min-width: 1201px) {
-  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half {
+  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half,
+  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-half {
     margin-right: 0;
     padding-right: 2.35765%;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 1200px) {
-  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half {
+  .usa-heading {
+    margin-top: -2px;
+  }
+  div#tabBody {
+    padding: 1.5rem;
+  }
+  div#tabBody form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half,
+  div#tabBody form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-half {
     margin-right: 0;
-    padding-left: 4.82916%;
+    padding-right: 4.82916%;
+  }
+}
+@media screen and (max-width: 599px) {
+  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half input,
+  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-half input,
+  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half select,
+  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-half select,
+  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half textarea,
+  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-half textarea {
+    max-width: none;
+  }
+  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input,
+  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input {
+    margin-right: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
+    float: none;
+    max-width: none;
   }
 }

@@ -1,6 +1,9 @@
 .advanced-search .usa-heading {
   border-bottom: 1px solid #e31c3d;
 }
+.advanced-search div#search-content {
+  padding: 3rem 1rem 3rem 4rem;
+}
 .advanced-search div.usa-grid-full div.usa-width-one-half {
   padding-right: 2.35765%;
   margin-right: 0;
@@ -50,6 +53,9 @@
   }
 }
 @media screen and (max-width: 600px) {
+  div.advanced-search div#search-content {
+    padding: 3rem;
+  }
   div.advanced-search div.usa-grid-full div.usa-width-one-sixth select {
     max-width: none;
   }

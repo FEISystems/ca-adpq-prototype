@@ -40,6 +40,18 @@
                 });
         }
 
+        var fetchPaymentMethods = function () {
+            $http.get("/api/Lookups/PaymentMethods")
+                .success(function (response) {
+                    messageService.publish('fetchPaymentMethodsSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('fetchPaymentMethodsFailure', response);
+                });
+        }
+
+        
+
         var placeOrder = function (shoppingCartId, paymentMethod, address1, address2, address3, city, state, zip, emailAddress) {
             var data = {
                 ShoppingCartId: shoppingCartId,
@@ -66,7 +78,8 @@
             cancelOrder: cancelOrder,
             placeOrder: placeOrder,
             getOrder: getOrder,
-            fetchOrderStatuses: fetchOrderStatuses
+            fetchOrderStatuses: fetchOrderStatuses,
+            fetchPaymentMethods: fetchPaymentMethods
         };
     }
 

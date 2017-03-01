@@ -14,9 +14,12 @@ header masthead .logo {
   height: 70px;
   width: 120px;
   margin-top: -15px !important;
+  overflow: hidden;
   display: inline-block;
   margin-left: -14px;
 }
 header masthead .logo img {
   margin-top: -28px;
+  z-index: 500;
+  position: relative;
 }
