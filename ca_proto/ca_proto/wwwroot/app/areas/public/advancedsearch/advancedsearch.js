@@ -63,13 +63,11 @@
         })
 
         messageService.subscribe('retrievedManufacturer', function (response) {
-            alert(JSON.stringify(response));
             model.manufacturers = [];
             model.manufacturers = response;
         })
 
         messageService.subscribe('retrievedManufacturerFail', function (response) {
-            alert(JSON.stringify(response));
             model.manufacturers = [];
         })
 
