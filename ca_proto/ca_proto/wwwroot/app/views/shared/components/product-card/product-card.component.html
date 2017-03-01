@@ -2,7 +2,9 @@
 
 <div class="usa-grid ca-image-wrapper" style="text-align: center">
     <div style="width:100%; min-height: 200px;">
-        <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+        <a ng-link="['Product Details', { id : product.Id }]">
+            <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+        </a>
     </div>
     <strong>{{product.Title}}</strong>
 </div>
