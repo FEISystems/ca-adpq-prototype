@@ -17,6 +17,7 @@
 }
 .ca-footer .ca-footer-menu a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 .ca-footer .ca-footer-info {
   background-color: #D6D7D9;

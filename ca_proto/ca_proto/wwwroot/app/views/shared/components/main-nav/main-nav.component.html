@@ -10,15 +10,17 @@
         </ul>
     </div>
     <div class="usa-width-one-fourth">
-        <ul class="usa-unstyled-list" permission="['Authorized User']">
+        <ul class="usa-unstyled-list" permission="['Authorized User', 'Admin']">
             <li><a ng-link="['Order History']">My Order History</a></li>
         </ul>
     </div>
     <div class="usa-width-eleven-twelfths">
         <ul class="usa-unstyled-list text-right">            
-            <li><a ng-link="['Cart']">Cart</a></li>
-            <li><a ng-link="['Compare List']">Compare List</a></li>
-            <li><a ng-click="model.logout()" class="logout">Logout</a></li>
+            <li><a ng-link="['Cart']">Cart</a> <span class="ca-badge">{{model.cartItemCount}}</span></li>
+            <li>
+                <a ng-link="['Compare List']">Compare List</a>&nbsp;<compare-popup></compare-popup>
+            </li>
+            <li><a ng-click="model.logout()">Logout</a></li>
         </ul>
     </div>
 </div>

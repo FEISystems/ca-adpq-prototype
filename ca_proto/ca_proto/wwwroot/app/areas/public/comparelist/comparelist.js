@@ -2,53 +2,31 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, $rootScope, messageService, inventoryService, $sessionStorage) {
+    var controller = function ($scope, $location, $rootScope, messageService, compareService, $sessionStorage, $timeout) {
         var model = this;
         model.provider = {};
         model.title = "Compare List";
         model.products = [];
 
-        if ($sessionStorage.compareList) {
-            model.compareListIds = $sessionStorage.compareList;
-        } else 
-        {
-            model.compareListIds = [];
-        }
+        
+        compareService.refreshCompareList();
 
-        
-        model.getProduct = function (productId) {
-            inventoryService.getProduct(productId);
-        };
-        
-        var updateCompareList = function(){
+
+        $rootScope.$on("clearCompareItems", function(){
             model.products = [];
-            if (model.compareListIds.length > 0) {
-                for (var idx = 0; idx < model.compareListIds.length; ++idx) {
-                    var productId = model.compareListIds[idx];
-                    model.getProduct(productId);
-                }
-            }
-        }
+            $timeout(function(){
+                $scope.$apply();
+            });
+        });
 
-        updateCompareList();
         
-            //console.log($scope.compareProductId);
-
-        $scope.removeFromCompare = function(productId) {
-            $sessionStorage.compareList = jQuery.grep($sessionStorage.compareList, function(value) {
-                                            return value != productId;
-                                        });;
-            model.compareListIds = $sessionStorage.compareList; 
-            updateCompareList();
+        model.removeFromCompare = function (productId) {
+           compareService.removeCompareItem(productId);
         };
 
-        messageService.subscribe('getProductSuccess', function (response) {
+        
+        messageService.subscribe('getCompareProductSuccess', function (response) {
             model.products.push(response);
-
-        })
-
-        messageService.subscribe('getProductFailure', function (response) {
-            model.products = [];
         })
 
     };
@@ -56,7 +34,7 @@
     module.component("compareList", {
         templateUrl: "app/areas/public/comparelist/comparelist.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "$rootScope", "messageService", "inventoryService", "$sessionStorage", controller]
+        controller: ["$scope", "$location", "$rootScope", "messageService", "compareService", "$sessionStorage", "$timeout", controller]
 
     });
 }())
