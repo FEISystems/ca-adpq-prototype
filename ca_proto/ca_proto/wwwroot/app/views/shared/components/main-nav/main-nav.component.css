@@ -22,6 +22,6 @@ main-nav ul.text-right li {
   margin-right: 0px;
   margin-left: 40px;
 }
-main-nav .logout:hover {
+main-nav a:hover {
   cursor: pointer;
 }
