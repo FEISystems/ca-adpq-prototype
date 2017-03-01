@@ -128,6 +128,10 @@
             fetchLookups("ImageFileNames");
         };
 
+        var fetchManufacturers = function () {
+            fetchLookups("Manufacturer");
+        };
+
         var fetchLookups = function (lookupName) {
             $http.get("/api/lookups/" + lookupName)
                 .success(function (response) {
@@ -223,7 +227,8 @@
             importImage: importImage,
             fetchImageFileNames: fetchImageFileNames,
             resetDatabase: resetDatabase,
-            createDemoOrders: createDemoOrders
+            createDemoOrders: createDemoOrders,
+            fetchManufacturers: fetchManufacturers,
         };
     }
 
