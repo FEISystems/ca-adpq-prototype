@@ -11,6 +11,35 @@ header {
     background-color: lightgray;
     background-image: url(../../../../../img/globalHeaderBG_1366x251.jpg) ;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
+    position: fixed; 
 } 
+
+ng-transclude.main-container{
+    padding-top: 192px;
+}
+
+@media screen and (min-width: 657px) and (max-width:950px){
+    ng-transclude.main-container{
+        padding-top: 172px;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 656px){
+    ng-transclude.main-container{
+        padding-top: 197px;
+    }
+}
+
+@media screen and (min-width:418px) and (max-width: 599px){
+    ng-transclude.main-container{
+        padding-top: 235px;
+    }   
+}
+
+@media screen and (max-width:417px){
+    ng-transclude.main-container{
+        padding-top: 257px;
+    }
+}
 
