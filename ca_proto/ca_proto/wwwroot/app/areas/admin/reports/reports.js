@@ -104,7 +104,7 @@
         };
 
         model.getFilteredProducts = function () {
-            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.len == 0) {
+            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.length == 0) {
                 //if no order status is chosen to filter then return all rows
                 return model.orderProducts;
             }
@@ -359,7 +359,12 @@
                 }
                 if (dollarLevels[i] == 0)
                     continue;
-                context.fillText(model.toMoney(dollarLevels[i]), 5, y + 15);
+                var text = model.toMoney(dollarLevels[i]);
+                var textWidth = context.measureText(text).width;
+                context.fillStyle = "White";
+                context.fillRect(2, y + 1, textWidth + 5, 17);
+                context.fillStyle = "Black";
+                context.fillText(text, 5, y +15);
             }
         };
 
@@ -699,6 +704,13 @@
             model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
             model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
             model.drawPurchasesByAccount(0, "purchasesCanvasDashboard", false);
+        };
+
+        model.showAllCharts = function() {
+            model.drawDataTrends(10, "purchaseTrendsCanvas", true);
+            model.drawExpendituresByProductType(10, "productTypeCanvas", true);
+            model.drawExpendituresByContractor(10, "contractorCanvas", true);
+            model.drawPurchasesByAccount(10, "purchasesCanvas", true);
         };
 
         messageService.subscribe('getOrderProductsSuccess', function (response) {

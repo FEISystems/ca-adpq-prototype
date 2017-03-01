@@ -38,7 +38,9 @@ namespace ca_proto.Helpers
                                 result = value.ToString();
                                 descriptions.Add(value, result);
                             }
+
                         } 
+
                     }
                 }
             }

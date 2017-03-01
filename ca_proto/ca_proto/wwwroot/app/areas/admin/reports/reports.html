@@ -9,6 +9,7 @@
             <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
             <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
             <li><a href="" ng-click="model.showPurchaseTrends()" ng-class="{'usa-current' : model.tab == 6}">Purchase Trends</a></li>
+            <li><a href="" ng-click="model.showAllCharts()" ng-class="{'usa-current' : model.tab == 10}">Expand All Charts</a></li>
             <li><a href="" ng-click="model.showExpendituresOverTime()" ng-class="{'usa-current' : model.tab == 7}">Expenditures Over Time</a></li>
             <li><a href="" ng-click="model.showRawData()" ng-class="{'usa-current' : model.tab == 5}">Raw Data</a></li>
         </ul>    
@@ -17,8 +18,11 @@
         canvas.clickable {
             cursor:pointer;
         }
+        div.pageBreak {
+            page-break-before:always;
+        }
     </style>
-    <div class="usa-width-two-thirds" permission="['Admin']" style="page-break-before:always;">
+    <div class="usa-width-two-thirds" permission="['Admin']">
         <div ng-show="model.tab == 0">
             <table style="margin-top:5px;">
                 <tr>
@@ -62,12 +66,12 @@
             </table>
         </div>
 
-        <div ng-show="model.tab == 2">
+        <div ng-show="model.tab == 2 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Expenditures by Product Type</h3>
             <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width}}"> </canvas>
         </div>
 
-        <div ng-show="model.tab == 3">
+        <div ng-show="model.tab == 3 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Expenditures by Contractor</h3>
             <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
             <table style="width:{{model.width}}px;text-align:center;padding:0">
@@ -75,7 +79,7 @@
             </table>
         </div>
 
-        <div ng-show="model.tab == 4">
+        <div ng-show="model.tab == 4 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Purchases by Account</h3>
             <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
             <table style="width:{{model.width}}px;text-align:center;padding:0">
@@ -83,7 +87,7 @@
             </table>
         </div>
 
-        <div ng-show="model.tab == 6">
+        <div ng-show="model.tab == 6 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Purchase Trends by Account</h3>
             <canvas id="purchaseTrendsCanvas" height="{{model.height + model.trendDatePadding + (20 * model.paymentAccounts.length)}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
@@ -133,7 +137,7 @@
             </table>
         </div>
 
-        <div ng-show="model.tab == 7">
+        <div ng-show="model.tab == 7" class="pageBreak">
             <h3 class="usa-heading">Expenditures Over a Period of Time</h3>
             <table style="font-size:small">
                 <thead>
