@@ -7,21 +7,17 @@
         model.provider = {};
         model.title = "Order Details";
         model.orderTotal = 0;
-
+        model.orderStatuses = [];
+        model.order = {};
 
         this.$routerOnActivate = function (next, previous) {
-
-
+            orderService.fetchOrderStatuses();
 
             model.orderId = parseInt(next.params.id);
-
-            
 
             model.cancelOrder = function() {
                 orderService.cancelOrder(model.orderId);
             };
-
-
 
             model.getOrder = function () {
                 orderService.getOrder(model.orderId);
@@ -32,7 +28,6 @@
             model.getProduct = function (productId) {
                 inventoryService.getProduct(productId);
             };
-
 
             messageService.subscribe("getOrderSuccess", function (response) {
                 model.order = response;
@@ -49,7 +44,18 @@
                     var item = model.orderItems[idx];
                     model.orderTotal += item.Price * item.Quantity;
                 }
+                model.updateOrderStatus();
             });
+
+            //create a function for this in case the order comes back before the order statuses
+            model.updateOrderStatus = function () {
+                for (var i = 0; i < model.orderStatuses.length; i++) {
+                    if (model.orderStatuses[i].Id == model.order.Status) {
+                        model.order.Status = model.orderStatuses[i].Description;
+                        break;
+                    }
+                }
+            }
 
             messageService.subscribe("getOrderFailure", function (response) {
                 model.order = {};
@@ -74,6 +80,13 @@
 
             })
 
+            messageService.subscribe("fetchOrderStatusSuccess", function (response) {
+                model.orderStatuses = response;
+                model.updateOrderStatus();
+            })
+            messageService.subscribe("fetchOrderStatusFailure", function (response) {
+                model.orderStatuses = [];
+            })
 
             $scope.showDivider = function () {
                 return model.orderItems.length > 1;
