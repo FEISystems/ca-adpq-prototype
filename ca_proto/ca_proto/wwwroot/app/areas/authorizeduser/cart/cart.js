@@ -7,7 +7,7 @@
         model.provider = {};
         model.title = "Cart";
         model.products = [];
-        model.qtyOptions = [0,1,2,3,4,5,6];
+        model.qtyOptions = [0, 1, 2, 3, 4, 5, 6];
         model.cartTotal = 0;
         model.cart = {};
 
@@ -19,46 +19,58 @@
 
         model.getActiveCart();
 
-        $scope.updateCart = function() {
-            for (let item of model.cart.Items) {
-                shoppingCartService.updateCart( { "ShoppingCartItemId" : item.Id, "Quantity" : item.Quantity } );
+        $scope.updateCart = function () {
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var item = model.cart.Items[idx];
+                shoppingCartService.updateCart({ "ShoppingCartItemId": item.Id, "Quantity": item.Quantity });
             }
+
+            if (model.cart.Items.length == 0)
+                model.cartTotal = 0;
         }
 
 
-        $scope.removeFromCart = function(itemId) {
-             //model.removeCartItem(itemId);
+        $scope.removeFromCart = function (itemId) {
+            //model.removeCartItem(itemId);
         }
 
         model.removeCartItem = function (itemId) {
             shoppingCartService.removeCartItem(itemId);
-        };  
+        };
 
 
         model.getProduct = function (productId) {
             inventoryService.getProduct(productId);
-        };  
+        };
 
 
         $scope.removeThisItem = function (itemId) {
             model.removeCartItem(itemId)
         }
 
-        $scope.proceedToCheckOut = function() {
+        $scope.proceedToCheckOut = function () {
             $location.path("user/checkout");
         }
 
 
         messageService.subscribe('getActiveCartSuccess', function (response) {
             model.cart = response;
-            model.cartItems =[];
+            model.cartItems = [];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
-                model.getProduct(product.ProductId);
-            }
-            for (let item of model.cartItems) {
-                model.cartTotal += item.Price * item.Quantity;
+            model.cartTotal = 0;
+
+            if (model.cartItems) {
+
+                for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                    var product = model.cart.Items[idx];
+                    model.getProduct(product.ProductId);
+                }
+
+                for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                    var item = model.cartItems[idx];
+                    model.cartTotal += item.Price * item.Quantity;
+                }
             }
         })
 
@@ -77,13 +89,21 @@
 
         messageService.subscribe('updateCartSuccess', function (response) {
             model.cart = response;
-            model.cartItems =[];
+            model.cartItems = [];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+            model.cartTotal = 0;
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
             }
-            
+
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
+                model.cartTotal += item.Price * item.Quantity;
+            }
+
         })
 
         messageService.subscribe('updateCartFailure', function (response) {
@@ -93,11 +113,19 @@
 
         messageService.subscribe('removeCartItemSuccess', function (response) {
             model.cart = response;
-            model.cartItems =[];
+            model.cartItems = [];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+            model.cartTotal = 0;
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
+            }
+
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
+                model.cartTotal += item.Price * item.Quantity;
             }
         })
 
@@ -112,8 +140,8 @@
         templateUrl: "app/areas/authorizeduser/cart/cart.html",
         controllerAs: "model",
         controller: ["$scope", "$location", "messageService", "shoppingCartService", "loginService", "inventoryService", controller],
-        bindings : {
-            item : "="
+        bindings: {
+            item: "="
         }
 
     });

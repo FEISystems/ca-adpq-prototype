@@ -17,6 +17,12 @@ main-nav {
             display: inline-block;
             margin-right: 40px;
         }
+        &:first-of-type{
+            li{
+                z-index: 501;
+                position: relative;
+            }
+        }
             
         &.text-right {
             li {                    
@@ -26,7 +32,7 @@ main-nav {
         }
 
     }
-    .logout:hover {
+    a:hover {
         cursor: pointer;
     }
 }

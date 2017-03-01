@@ -18,6 +18,7 @@
     <script src="js/vendor/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="js/vendor/angular-1.5.8/angular.min.js"></script>
     <script src="js/vendor/angular-1.5.8/angular-resource.min.js"></script>
+    <script src="js/vendor/angular-1.5.8/angular-messages.min.js"></script>
     <script src="js/vendor/angular-1.5.8/angular-animate.min.js"></script>
     <script src="js/vendor/angular_1_router/angular_1_router.js"></script>
     <script src="js/vendor/ngStorage-0.3.10/ngStorage.min.js"></script>
@@ -28,6 +29,10 @@
     <script src="js/vendor/lodash/lodash.js"></script>
     <script src="js/vendor/uswds-0.14.0/js/uswds.js"></script>
     <script src="js/vendor/swiper-3.4.1/js/swiper.min.js"></script>
+    <script src="js/vendor/angular-growl-2-master/growl.js"></script>
+    <script src="js/vendor/angular-growl-2-master/growlDirective.js"></script>
+    <script src="js/vendor/angular-growl-2-master/growlFactory.js"></script>
+    <script src="js/vendor/angular-growl-2-master/growlMessageService.js"></script>
 
      <!-- Shims-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
@@ -95,6 +100,7 @@
     <script src="app/views/shared/components/compareproduct-button/compareproduct-button.component.js"></script>
     <script src="app/views/shared/components/permission-directive/permission-directive.js"></script>
     <script src="app/views/shared/components/unauthorized-page/unauthorized-page.js"></script>
+    <script src="app/views/shared/components/compare-popup/compare-popup.js"></script>
 
     <!-- SHARED: Layouts -->
     <script src="app/views/shared/layouts/left-navbar-layout/left-navbar.layout.js"></script>
@@ -118,6 +124,7 @@
     <script src="app/services/reportService.js"></script>
     <script src="app/services/authenticationService.js"></script>
     <script src="app/services/categoryService.js"></script>
+    <script src="app/services/compareService.js"></script>
 
     <!-- CSS -->
     <link href="js/vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet"/>
@@ -130,8 +137,8 @@
     <link href="fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet"/>
     <link href="js/vendor/uswds-0.14.0/css/uswds.css" rel="stylesheet"/>
     <link rel="stylesheet" href="js/vendor/swiper-3.4.1/css/swiper.min.css">
+    <link rel="stylesheet" href="js/vendor/angular-growl-2-master/growl.css">
     <link href="css/app.css" rel="stylesheet"/>
-
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -150,3 +157,5 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+    

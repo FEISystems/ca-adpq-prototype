@@ -138,11 +138,14 @@
         messageService.subscribe('getActiveCartSuccess', function (response) {
             model.cart = response;
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
             }
 
-            for (let item of model.cartItems) {
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
                 model.cartTotal += item.Price * item.Quantity;
             }
         })

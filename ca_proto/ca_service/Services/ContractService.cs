@@ -7,7 +7,7 @@ using ca_service.Entities;
 
 namespace ca_service.Services
 {
-    public class ContractService : IContractService, IDisposable
+    public class ContractService : IContractService
     {
         private readonly IContractRepository contractRepository;
 
@@ -39,12 +39,6 @@ namespace ca_service.Services
         public ContractService(IContractRepository contractRepository)
         {
             this.contractRepository = contractRepository;
-        }
-
-        public void Dispose()
-        {
-            if (contractRepository != null)
-                contractRepository.Dispose();
         }
 
         public void Add(Contract contract)

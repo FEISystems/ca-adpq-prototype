@@ -12,10 +12,10 @@
                 <h3>{{model.product.Title}}</h3>
                 <h4 class="price">Price: {{model.product.ContractPrice | currency}}</h4>
                 <h5><em style="text-decoration: line-through">{{model.product.ListPrice | currency }}</em> <em>Save  {{model.product.ContractDiscount}}</em></h5>
-                <div class="usa-width-one-half add-to-cart">
+                <div class="usa-width-two-thirds add-to-cart">
                     <add-to-cart-qty-button product="model.product"></add-to-cart-qty-button>
                 </div>
-                <div class="usa-width-one-half compare">
+                <div class="usa-width-one-fourth compare">
                     <compare-product-button product-id="model.productId"></compare-product-button>
                 </div>
                 <p class="usa-width-one-whole">

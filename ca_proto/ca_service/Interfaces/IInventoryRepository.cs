@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IInventoryRepository : IEntityRepository, IDisposable
+    public interface IInventoryRepository : IEntityRepository
     {
         List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
 

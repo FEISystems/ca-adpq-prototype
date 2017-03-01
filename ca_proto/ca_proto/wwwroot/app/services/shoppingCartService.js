@@ -1,6 +1,6 @@
 (function () {
 
-    var shoppingCartService = function (messageService, $http) {
+    var shoppingCartService = function (messageService, $http, growl) {
         var model = this;
 
         model.shoppingCart = {};
@@ -16,7 +16,8 @@
         var addProductToCart = function (product) {
             $http.post("/api/ShoppingCart/AddItem", product)
                 .success(function (response) {
-                    messageService.publish('addProductToCartSuccess', response);
+                    messageService.publish('addProductToCartSuccess', response);          
+                    growl.success("<strong>Your item has been added to the Cart.</strong>");
                 })
                 .error(function (response) {
                     messageService.publish('addProductToCartFailure', response);
@@ -38,6 +39,7 @@
             $http.put("/api/ShoppingCart/UpdateItem", product)
                 .success(function (response) {
                     messageService.publish('updateCartSuccess', response);
+                    growl.success("<strong>Your cart has been updated.</strong>");
                 })
                 .error(function (response) {
                     messageService.publish('updateCartFailure', response);
@@ -48,6 +50,7 @@
             $http.delete("/api/ShoppingCart/RemovedItem/" + itemId)
                 .success(function (response) {
                     messageService.publish('removeCartItemSuccess', response);
+                    growl.warning("<strong>Your item has been removed from the Cart.</strong>");
                 })
                 .error(function (response) {
                     messageService.publish('removeCartItemFailure', response);

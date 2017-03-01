@@ -4,18 +4,56 @@
 
     var controller = function ($scope, $location, messageService, orderService) {
         var model = this;
+        model.orderStatuses = [];
+        model.paymentMethods = [];
 
         model.title = "Order History";
 
         orderService.getOrdersByUserId();
+        orderService.fetchOrderStatuses();
+        orderService.fetchPaymentMethods();
+
+        model.findStatus = function (statusId) {
+            for (var i = 0; i < model.orderStatuses.length; i++) {
+                if (model.orderStatuses[i].Id == statusId )
+                    return model.orderStatuses[i].Description;
+            }
+            return statusId;
+        };
+
+        model.findPaymentMethod = function (paymentMethodId) {
+            for (var i = 0; i < model.paymentMethods.length; i++) {
+                if (model.paymentMethods[i].Id == paymentMethodId)
+                    return model.paymentMethods[i].Description;
+            }
+            return paymentMethodId;
+        }
 
         messageService.subscribe("getOrdersByUserIdSuccess", function (response) {
             model.orders = response;
+            for (var i = 0; i < response.length; i++) {
+                response[i].Status = model.findStatus(response[i].Status);
+                response[i].PaymentMethod = model.findPaymentMethod(response[i].PaymentMethod);
+                
+            }
         })
         messageService.subscribe("getOrdersByUserIdFailure", function (response) {
             model.orders = [];
         })
 
+        messageService.subscribe("fetchOrderStatusSuccess", function (response) {
+            model.orderStatuses = response;
+        })
+        messageService.subscribe("fetchOrderStatusFailure", function (response) {
+            model.orderStatuses = [];
+        })
+        
+        messageService.subscribe("fetchPaymentMethodsSuccess", function(response) {
+            model.paymentMethods = response;
+        })
+        messageService.subscribe("fetchPaymentMethodsFailure", function(response) {
+            model.paymentMethods = [];
+        })
 
 
     };
