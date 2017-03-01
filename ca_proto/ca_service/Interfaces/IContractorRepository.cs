@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IContractorRepository : IEntityRepository, IDisposable
-    {
+    public interface IContractorRepository : IEntityRepository{
         void Add(Contractor contractor);
         void Update(Contractor contractor);
         Contractor Get(int id);

@@ -53,6 +53,7 @@ namespace ca_service.Entities
     public enum OrderStatus
     {
         Placed = 1,
+        [Description("User-Canceled")]
         UserCancelled = 2,
         Shipped = 3
     }

@@ -19,10 +19,14 @@
 
         model.getActiveCart();
 
-        $scope.updateCart = function() {
-            for (let item of model.cart.Items) {
+        $scope.updateCart = function () {
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var item = model.cart.Items[idx];
                 shoppingCartService.updateCart( { "ShoppingCartItemId" : item.Id, "Quantity" : item.Quantity } );
             }
+
+            if (model.cart.Items.length == 0)
+                model.cartTotal = 0;
         }
 
 
@@ -54,10 +58,15 @@
             model.cartItems =[];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+            model.cartTotal = 0;
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
             }
-            for (let item of model.cartItems) {
+
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
                 model.cartTotal += item.Price * item.Quantity;
             }
         })
@@ -80,8 +89,16 @@
             model.cartItems =[];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+            model.cartTotal = 0;
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
+            }
+
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
+                model.cartTotal += item.Price * item.Quantity;
             }
             
         })
@@ -96,8 +113,16 @@
             model.cartItems =[];
             model.products = [];
             model.cartItems = model.cart.Items;
-            for (let product of model.cart.Items) {                
+            model.cartTotal = 0;
+
+            for (var idx = 0; idx < model.cart.Items.length; ++idx) {
+                var product = model.cart.Items[idx];
                 model.getProduct(product.ProductId);
+            }
+
+            for (var idx = 0; idx < model.cartItems.length; ++idx) {
+                var item = model.cartItems[idx];
+                model.cartTotal += item.Price * item.Quantity;
             }
         })
 

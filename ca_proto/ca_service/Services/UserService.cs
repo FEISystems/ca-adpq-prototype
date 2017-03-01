@@ -12,9 +12,9 @@ namespace ca_service.Services
 {
     public class UserService : IUserService
     {
-        
         private readonly IMemoryCache memoryCache;
         private readonly IUserRepository userRepository;
+
         public UserService(IUserRepository userRepository, IMemoryCache memoryCache)
         {
             this.memoryCache = memoryCache;
@@ -85,6 +85,4 @@ namespace ca_service.Services
             this.memoryCache.Remove(token);
         }
     }
-
-    
 }

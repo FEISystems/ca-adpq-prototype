@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ca_service.Interfaces
 {
-    public interface IOrderRepository : IEntityRepository, IDisposable
+    public interface IOrderRepository : IEntityRepository
     {
         void Add(Order order);
 

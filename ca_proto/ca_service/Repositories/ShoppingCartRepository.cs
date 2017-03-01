@@ -21,7 +21,7 @@ namespace ca_service.Repositories
             this.OrderColumnName = "CreateDate";
             var filter = new Dictionary<string, object>();
             filter.Add("UserId", userId);
-            return base.Fetch(0, int.MaxValue);
+            return base.Fetch(0, int.MaxValue, filter)?.ToList();
         }        
     }
 }

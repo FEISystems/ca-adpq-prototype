@@ -4,7 +4,7 @@
         <h2 class="usa-heading">Your Cart</h2>
         <div class="usa-width-one-whole">
             <div class="items-in-cart-header">
-                ({{model.cart.Items.length}}) items in your cart
+                ({{model.cart.Items.length || 0}}) items in your cart
             </div>
 
             <div ng-repeat="item in model.cartItems" class="items-in-cart usa-grid">
@@ -19,8 +19,8 @@
                 <div class="usa-width-one-fourth">
                     <span class="cost-per-item">{{item.Price | currency}} each</span>
                     <span class="quantity">
-                        <input type="text" ng-model="item.Quantity" />
-                        <span>Quantity</span>
+                        <input id="quantity" min="1" type="number" type="text" ng-model="item.Quantity" />
+                        <label for="quantity">Qty</label>
                     </span>
                 </div>
                 <div class="usa-width-one-twelfth text-right">

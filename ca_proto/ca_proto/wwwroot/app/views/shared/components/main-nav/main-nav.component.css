@@ -14,7 +14,14 @@ main-nav ul li {
   display: inline-block;
   margin-right: 40px;
 }
+main-nav ul:first-of-type li {
+  z-index: 501;
+  position: relative;
+}
 main-nav ul.text-right li {
   margin-right: 0px;
   margin-left: 40px;
+}
+main-nav .logout:hover {
+  cursor: pointer;
 }

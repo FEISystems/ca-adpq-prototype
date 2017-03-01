@@ -1,6 +1,6 @@
 ﻿(function () {
     "use strict";
-    var module = angular.module("caWebApp", ["ngComponentRouter", 'ngAnimate', 'ngResource', 'ngStorage', 'ngQtip2']);
+    var module = angular.module("caWebApp", ["ngComponentRouter", 'ngAnimate', 'ngResource', 'ngStorage', 'ngMessages']);
     window.document.title = 'CA Prototype';
     module.value("$routerRootComponent", "caWebApp");
 

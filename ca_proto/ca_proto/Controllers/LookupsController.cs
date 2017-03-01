@@ -75,5 +75,18 @@ namespace ca_proto.Controllers
             var vals = Enum.GetValues(typeof(OrderPaymentMethod)).Cast<OrderPaymentMethod>();
             return Json(vals.Select(x => new { Id = (int)x, Description = x.Description() }));
         }
+
+        [HttpGet("OrderStatus")]
+        public IActionResult OrderStatus()
+        {
+            var vals = Enum.GetValues(typeof(OrderStatus)).Cast<OrderStatus>();
+            return Json(vals.Select(x => new { Id = (int)x, Description = x.Description() }));
+        }
+
+        [HttpGet("OrderStatusSimple")]
+        public IActionResult OrderStatusSimple()
+        {
+            return Json(Enum.GetValues(typeof(OrderStatus)).Cast<OrderStatus>().Select(item => item.ToString()));
+        }
     }
 }

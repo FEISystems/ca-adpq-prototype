@@ -36,8 +36,9 @@
             }
             
             var found = false;
-            
-            for (let permission of permissions) {
+
+            for (var idx = 0; idx < permissions.length; ++idx) {
+                var permission = permissions[idx];
                 if ($sessionStorage.user.indexOf(permission) >= 0){
                     found = true;
                     return found;

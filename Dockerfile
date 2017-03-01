@@ -12,6 +12,7 @@ WORKDIR /ca_proto
 
 # Open port
 EXPOSE 5000/tcp
+EXPOSE 5443/tcp
 
 # Run
 ENTRYPOINT ["dotnet", "ca_proto.dll"]
