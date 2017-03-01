@@ -147,10 +147,14 @@
                     <tbody>
                         <tr ng-repeat="row in model.products">
                         <td>
-                            <a href="" ng-click="model.select(row.Id)">
+                            
+                            <input id="deleteToggle_{{$id}}" ng-click="model.select(row.Id)" type="checkbox" >
+                            <label for="deleteToggle_{{$id}}" class="usa-sr-only">Toggle to Delete</label>
+                            
+                            <!--<a href="" ng-click="model.select(row.Id)">
                                 <span ng-show="row.isSelected">Selected</span>
                                 <spap ng-hide="row.isSelected">Unselected</spap>
-                            </a>
+                            </a>-->
                         </td>
                         <td title="{{row.Description}}">{{row.Title}}</td>
                         <td>{{row.Category}}</td>

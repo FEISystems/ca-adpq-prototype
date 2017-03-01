@@ -26,6 +26,14 @@
 div.table-responsive table {
   margin: 0;
 }
+div.table-responsive table input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  appearance: checkbox;
+  opacity: 1;
+  position: static;
+  height: 2.5rem;
+}
 form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole,
 form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole {
   padding-top: 15px;
