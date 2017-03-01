@@ -22,6 +22,10 @@
   border-right: 5px solid transparent;
   border-top: 5px solid #000000;
 }
+.btn-cancel {
+  margin: 0 10px !important;
+  float: right;
+}
 @media screen and (min-width: 1201px) {
   form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half {
     margin-right: 0;
