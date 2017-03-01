@@ -472,11 +472,7 @@
                 orderOfMagnitude *= 10;
             }
             orderOfMagnitude /= 100;
-            var temp = orderOfMagnitude;
-            while (temp < max) {
-                temp += orderOfMagnitude;
-            }
-            return temp;
+            return Math.ceil(max / orderOfMagnitude) * orderOfMagnitude;
         };
 
         model.findMaxTotalInTrend = function (trend) {
