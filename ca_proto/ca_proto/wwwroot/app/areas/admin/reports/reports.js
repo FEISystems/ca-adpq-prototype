@@ -167,9 +167,8 @@
         };
 
         model.drawLabels = function (context, left) {
-            context.fillStyle = "White";
             for (var i = 0; i < 3; i++) {
-                context.fillRect(left - 3, 17 + i*20, 100, 16)
+                model.drawTextBackground(context, left - 3, 17 + i * 20, 100, 16);
             }
             model.drawCustomLabels(context, left, 20,
                 [
@@ -361,12 +360,18 @@
                     continue;
                 var text = model.toMoney(dollarLevels[i]);
                 var textWidth = context.measureText(text).width;
-                context.fillStyle = "White";
-                context.fillRect(2, y + 1, textWidth + 5, 17);
-                context.fillStyle = "Black";
+                model.drawTextBackground(context, 2, y + 1, textWidth + 5, 17);
                 context.fillText(text, 5, y +15);
             }
         };
+
+        model.drawTextBackground = function (context, left, top, width, height) {
+            context.globalAlpha = 0.6;
+            context.fillStyle = "#EEEEEE";
+            context.fillRect(left, top, width, height);
+            context.globalAlpha = 1;
+            context.fillStyle = "Black";
+        }
 
         model.getDateLabels = function () {
             var start = new Date(model.orderProductQuery.Start);
@@ -467,11 +472,7 @@
                 orderOfMagnitude *= 10;
             }
             orderOfMagnitude /= 100;
-            var temp = orderOfMagnitude;
-            while (temp < max) {
-                temp += orderOfMagnitude;
-            }
-            return temp;
+            return Math.ceil(max / orderOfMagnitude) * orderOfMagnitude;
         };
 
         model.findMaxTotalInTrend = function (trend) {
