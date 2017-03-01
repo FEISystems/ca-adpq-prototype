@@ -2,7 +2,7 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, messageService, shoppingCartService, loginService, inventoryService) {
+    var controller = function ($scope, $location, messageService, shoppingCartService, loginService, inventoryService, $timeout) {
         var model = this;
         model.provider = {};
         model.title = "Cart";
@@ -10,6 +10,7 @@
         model.qtyOptions = [0, 1, 2, 3, 4, 5, 6];
         model.cartTotal = 0;
         model.cart = {};
+        model.cartItemCount = 0;
 
 
 
@@ -25,8 +26,13 @@
                 shoppingCartService.updateCart({ "ShoppingCartItemId": item.Id, "Quantity": item.Quantity });
             }
 
-            if (model.cart.Items.length == 0)
+            if (model.cart.Items.length == 0) {
                 model.cartTotal = 0;
+            }
+
+
+            model.getActiveCart();
+
         }
 
 
@@ -36,6 +42,7 @@
 
         model.removeCartItem = function (itemId) {
             shoppingCartService.removeCartItem(itemId);
+            model.getActiveCart();
         };
 
 
@@ -72,6 +79,13 @@
                     model.cartTotal += item.Price * item.Quantity;
                 }
             }
+
+            model.cart = response;
+            model.cartItemCount = 0;
+            for (var i = 0; i < model.cartItems.length; ++i) {
+                model.cartItemCount += model.cartItems[i].Quantity;
+            }
+
         })
 
         messageService.subscribe('getActiveCartFailure', function (response) {
@@ -139,7 +153,7 @@
     module.component("cart", {
         templateUrl: "app/areas/authorizeduser/cart/cart.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "messageService", "shoppingCartService", "loginService", "inventoryService", controller],
+        controller: ["$scope", "$location", "messageService", "shoppingCartService", "loginService", "inventoryService", "$timeout", controller],
         bindings: {
             item: "="
         }

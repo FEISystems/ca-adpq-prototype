@@ -1,6 +1,6 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/compare-popup/compare-popup.css" />
 
-<a role="button" ng-click="model.togglePopup()" aria-expanded="false" aria-controls="compareListPopup">({{model.products.length}})</a>
+<a role="button" class="ca-badge" ng-click="model.togglePopup()" aria-expanded="false" aria-controls="compareListPopup">{{model.products.length}}</a>
 
 <div class="compare-popup" id="compareListPopup" ng-show="model.showpopup" style="text-align: left">
     <div class="usa-grid-full text-right">

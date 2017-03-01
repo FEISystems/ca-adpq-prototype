@@ -2,37 +2,43 @@ main-nav {
     min-height: 50px;
     border-bottom: 1px solid #aeb0b5;
     padding: 11px 0px;
-
     a,
     a:link,
     a:hover,
     a:active,
     a:visited {
         color: black;
-        
     }
-
     ul {
         li {
             display: inline-block;
             margin-right: 40px;
         }
-        &:first-of-type{
-            li{
+        &:first-of-type {
+            li {
                 z-index: 501;
                 position: relative;
             }
         }
-            
         &.text-right {
-            li {                    
-            margin-right: 0px;
-            margin-left: 40px
+            li {
+                margin-right: 0px;
+                margin-left: 40px
             }
         }
-
     }
     a:hover {
         cursor: pointer;
+    }
+    .ca-badge {
+        background-color: #cd2026;
+        color: white !important;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 2px 10px;
+        text-align: center;
+        min-width: 26px;
+        font-weight: bold;
+        text-decoration: none !important;
     }
 }
