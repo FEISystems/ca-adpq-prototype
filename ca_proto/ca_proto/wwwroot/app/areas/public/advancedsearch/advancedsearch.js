@@ -8,6 +8,7 @@
         model.title = "Advanced Search";
         model.products = [];
         model.manufacturers = [];
+        model.categories = [];
 
         model.productName = "";
         model.category = "";
@@ -71,6 +72,15 @@
             model.manufacturers = [];
         })
 
+        messageService.subscribe('retrievedCategories', function (response) {
+            model.categories = [];
+            model.categories = response;
+        })
+
+        messageService.subscribe('retrievedCategoriesFail', function (response) {
+            model.categories = [];
+        })
+
         $scope.clear = function () {
             model.productName = "";
             model.category = "";
@@ -83,6 +93,7 @@
         }
 
         inventoryService.fetchManufacturers();
+        inventoryService.fetchCategories();
     };
 
     module.component("advancedSearch", {
