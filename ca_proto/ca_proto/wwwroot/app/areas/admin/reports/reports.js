@@ -359,7 +359,12 @@
                 }
                 if (dollarLevels[i] == 0)
                     continue;
-                context.fillText(model.toMoney(dollarLevels[i]), 5, y + 15);
+                var text = model.toMoney(dollarLevels[i]);
+                var textWidth = context.measureText(text).width;
+                context.fillStyle = "White";
+                context.fillRect(2, y + 1, textWidth + 5, 17);
+                context.fillStyle = "Black";
+                context.fillText(text, 5, y +15);
             }
         };
 
