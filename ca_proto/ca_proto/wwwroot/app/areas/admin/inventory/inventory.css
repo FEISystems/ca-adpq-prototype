@@ -41,10 +41,7 @@ form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole {
 form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input,
 form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input {
   float: right;
-}
-form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input.btn-cancel,
-form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input.btn-cancel {
-  margin-top: 25px;
+  margin-top: 0;
 }
 @media screen and (min-width: 1201px) {
   form#addProductForm fieldset div.usa-grid-full div.usa-width-one-half,
@@ -83,9 +80,5 @@ form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input.
     padding: 0;
     float: none;
     max-width: none;
-  }
-  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input.btn-cancel,
-  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input.btn-cancel {
-    margin: 0;
   }
 }
