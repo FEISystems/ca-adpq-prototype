@@ -42,10 +42,8 @@
                             <div class="usa-width-one-sixth mid-half mid-end">
                                 <div class="search-field">
                                     <label for="manufacturer">Manufacturer</label>
-                                    <select id="manufacturer" ng-model="model.manufacturer">
+                                    <select id="manufacturer" ng-model="model.manufacturer" ng-options="item for item in model.manufacturers">
                                         <option value=""></option>
-                                        <option value="Dell">Dell</option>
-                                        <option value="HP">HP</option>
                                     </select>
                                 </div>
                             </div>

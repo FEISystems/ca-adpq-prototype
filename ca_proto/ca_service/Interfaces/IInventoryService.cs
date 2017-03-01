@@ -25,5 +25,6 @@ namespace ca_service.Interfaces
         bool OrderAscending { get; set; }
         int Count(IDictionary<string, object> filter);
         List<Product> AdvancedSearch(string name, string category, decimal? minPrice, decimal? maxPrice, string manufacturer, string manufacturerPartNumber, string sku);
+        List<string> GetManufacturerNames();
     }
 }
