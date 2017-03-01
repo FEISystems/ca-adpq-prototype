@@ -204,6 +204,7 @@
                 });
         };
 
+
         return {
             addProduct: addProduct,
             importFile: importFile,
@@ -222,7 +223,7 @@
             importImage: importImage,
             fetchImageFileNames: fetchImageFileNames,
             resetDatabase: resetDatabase,
-            createDemoOrders: createDemoOrders,
+            createDemoOrders: createDemoOrders
         };
     }
 

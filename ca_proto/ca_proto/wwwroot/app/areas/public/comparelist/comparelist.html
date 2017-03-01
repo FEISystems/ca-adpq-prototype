@@ -11,7 +11,7 @@
             <tr>
                 <th style="max-width: 100px;" scope="row">&nbsp; <span class="usa-sr-only">product info header</span></th>
                 <td width="22%" ng-repeat="product in model.products" class="product-content">
-                    <a role="button"ng-click="removeFromCompare(product.Id)" class="text-right">Remove</a>
+                    <a role="button"ng-click="model.removeFromCompare(product.Id)" class="text-right">Remove</a>
                     <div style="width: auto; height: 200px;">
                         <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
                     </div style="margin-bottom: 20px">

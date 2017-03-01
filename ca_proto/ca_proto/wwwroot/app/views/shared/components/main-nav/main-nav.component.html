@@ -12,7 +12,9 @@
     <div class="usa-width-one-half">
         <ul class="usa-unstyled-list text-right">            
             <li><a ng-link="['Cart']">Cart</a></li>
-            <li><a ng-link="['Compare List']">Compare List</a></li>
+            <li>
+                <a ng-link="['Compare List']">Compare List</a>&nbsp;<compare-popup></compare-popup>
+            </li>
             <li><a ng-click="model.logout()">Logout</a></li>
         </ul>
     </div>
