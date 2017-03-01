@@ -701,6 +701,13 @@
             model.drawPurchasesByAccount(0, "purchasesCanvasDashboard", false);
         };
 
+        model.showAllCharts = function() {
+            model.drawDataTrends(10, "purchaseTrendsCanvas", true);
+            model.drawExpendituresByProductType(10, "productTypeCanvas", true);
+            model.drawExpendituresByContractor(10, "contractorCanvas", true);
+            model.drawPurchasesByAccount(10, "purchasesCanvas", true);
+        };
+
         messageService.subscribe('getOrderProductsSuccess', function (response) {
             model.orderProducts = response;
             model.refreshTable();
