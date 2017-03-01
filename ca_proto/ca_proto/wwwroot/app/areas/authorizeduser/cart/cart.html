@@ -45,8 +45,13 @@
                 </div>
             </div>
             <div class="buttons" ng-hide="model.cartItemCount == 0">
-                <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
-                <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
+                <div class="left">
+                    <button class="usa-button-secondary" ng-link="['Home']">Continue Shopping</button>
+                </div>
+                <div class="right">
+                    <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
+                    <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
+                </div>
             </div>
         </div>
     </div>
