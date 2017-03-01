@@ -20,16 +20,24 @@ namespace ca_proto.Helpers
                     if (!descriptions.TryGetValue(value, out result))
                     {
                         FieldInfo fi = value.GetType().GetField(value.ToString());
-                        DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-                        if (attributes != null && attributes.Length > 0)
+                        if (null == fi)
                         {
-                            result = attributes[0].Description;
+                            result = value.ToString();
                             descriptions.Add(value, result);
                         }
                         else
                         {
-                            result = value.ToString();
-                            descriptions.Add(value, result);
+                            DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                            if (attributes != null && attributes.Length > 0)
+                            {
+                                result = attributes[0].Description;
+                                descriptions.Add(value, result);
+                            }
+                            else
+                            {
+                                result = value.ToString();
+                                descriptions.Add(value, result);
+                            }
                         }
                     }
                 }
