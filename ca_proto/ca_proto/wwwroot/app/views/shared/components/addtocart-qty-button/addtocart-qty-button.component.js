@@ -6,7 +6,7 @@
         var model = this;
         var product = $scope.product;
         model.productId = $scope.product.Id;
-        model.qty = 1;
+        model.qty = "1";
 
 
         $scope.addToCart = function () {
