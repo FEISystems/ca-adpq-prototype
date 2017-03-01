@@ -8,6 +8,7 @@
         model.title = "Order Details";
         model.orderTotal = 0;
         model.orderStatuses = [];
+        model.order = {};
 
         this.$routerOnActivate = function (next, previous) {
             orderService.fetchOrderStatuses();
