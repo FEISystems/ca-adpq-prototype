@@ -25,3 +25,14 @@ main-nav ul.text-right li {
 main-nav a:hover {
   cursor: pointer;
 }
+main-nav .ca-badge {
+  background-color: #cd2026;
+  color: white !important;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 2px 10px;
+  text-align: center;
+  min-width: 26px;
+  font-weight: bold;
+  text-decoration: none !important;
+}
