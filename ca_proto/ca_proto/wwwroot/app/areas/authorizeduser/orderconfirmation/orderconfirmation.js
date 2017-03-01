@@ -4,27 +4,16 @@
 
     var controller = function ($scope, $location, messageService, orderService) {
         var model = this;
-        model.provider = {};
-        model.orderNumbers = [];
-        model.title = "Order Confirmation";
+        
+        this.$routerOnActivate = function (next, previous) {
+            model.productId = next.urlPath.substring(next.urlPath.lastIndexOf("/") + 1);
+            model.provider = {};
+            model.title = "Order Confirmation";
 
-        orderService.getOrdersByUserId();
-
-        model.findOrderNumber = function (orderNumberId) {
-            model.orderNumbers = response;
-        }
-
-        $scope.continueShopping = function() {
-            $location.path("home");
-        }
-
-        messageService.subscribe("getOrdersByUserIdSuccess", function (response) {
-            model.orderNumbers = response;
-            for (var i = 0; i < response.length; i++) {
-                response[i] = model.findOrderNumber(response[i]);
+            $scope.continueShopping = function () {
+                $location.path("home");
             }
-        })
-
+        };
     };
 
     module.component("orderConfirmation", {
