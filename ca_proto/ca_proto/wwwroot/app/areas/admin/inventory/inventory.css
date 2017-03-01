@@ -30,6 +30,10 @@ form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole,
 form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole {
   padding-top: 15px;
 }
+form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input,
+form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input {
+  float: right;
+}
 form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:last-of-type,
 form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:last-of-type {
   margin-top: 0;
@@ -71,5 +75,9 @@ form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:
     padding: 0;
     float: none;
     max-width: none;
+  }
+  form#addProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:last-of-type,
+  form#filterProductForm fieldset div.usa-grid-full div.usa-width-one-whole input:last-of-type {
+    margin-left: 0;
   }
 }

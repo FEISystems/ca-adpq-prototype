@@ -27,6 +27,7 @@
 	border-top:5px solid #000000;
 }
 
+
 div.table-responsive{
 	table{
 		margin: 0;
@@ -38,13 +39,17 @@ form#addProductForm, form#filterProductForm{
 		div.usa-grid-full{
 			div.usa-width-one-whole{
 				padding-top: 15px;
-				input:last-of-type{
-					margin-top: 0;
+				input{
+					float: right;
+					&:last-of-type{
+						margin-top: 0;
+					}
 				}
 			}
 		}
 	}
 }
+
 
 
 @media screen and (min-width: 1201px){
@@ -97,6 +102,9 @@ form#addProductForm, form#filterProductForm{
 						padding: 0;
 						float: none;
 						max-width: none;
+						&:last-of-type{
+							margin-left: 0;
+						}
 					}
 				}
 			}
