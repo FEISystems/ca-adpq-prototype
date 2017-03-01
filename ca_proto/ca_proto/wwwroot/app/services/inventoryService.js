@@ -207,6 +207,16 @@
                     messageService.publish('getProductFailure', response);
                 });
         };
+        
+        var getProductDetails = function (id) {
+            $http.get("/api/inventory/" + id)
+                .success(function (response) {
+                    messageService.publish('getProductDetailsSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('getProductDetailsFailure', response);
+                });
+        };
 
 
         return {
@@ -229,6 +239,7 @@
             resetDatabase: resetDatabase,
             createDemoOrders: createDemoOrders,
             fetchManufacturers: fetchManufacturers,
+            getProductDetails : getProductDetails
         };
     }
 
