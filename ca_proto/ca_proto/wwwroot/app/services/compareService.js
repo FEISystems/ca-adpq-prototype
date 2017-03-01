@@ -1,5 +1,5 @@
 (function () {
-    var compareService = function (messageService, $http, $sessionStorage, $rootScope) {
+    var compareService = function (messageService, $http, $sessionStorage, $rootScope, growl) {
 
 
 
@@ -49,6 +49,7 @@
                 }
                 $sessionStorage.compareList.push(newItem)
                 refreshCompareList();
+                growl.success("<strong>Your item has been added to the Compare List.</strong>");
 
             } else {
                 var errorMsg = "Item could not be added to Compare List.";
@@ -68,6 +69,7 @@
 
                 $rootScope.$broadcast("updateCheckboxes");
                 refreshCompareList();
+                growl.warning("<strong>Your item has been removed from the Compare List.</strong>");
 
             } else {
                 var errorMsg = "Item could not be removed from Compare List.";
@@ -76,13 +78,14 @@
         };
 
 
-        var clearAllCompareItems = function (itemId) {
+        var clearAllCompareItems = function () {
             var items = [];
 
             if ($sessionStorage.compareList) {
 
                 delete $sessionStorage.compareList;
                 refreshCompareList();
+                growl.warning("<strong>Your items has been cleared from the Compare List.</strong>");
 
             } else {
                 var errorMsg = "Item could not be removed from Compare List.";

@@ -316,7 +316,7 @@
 
         model.createDemoOrders = function () {
             if (model.createCount > 0) {
-                model.onStartImport("Preparing to import " + model.createCount + " items");
+                model.onStartImport("Preparing to create " + model.createCount + " orders");
                 inventoryService.createDemoOrders(model.createCount);
             }
             else {

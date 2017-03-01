@@ -2,7 +2,7 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, shoppingCartService, $element, $rootScope, $sessionStorage, compareService, messageService) {
+    var controller = function ($scope, shoppingCartService, $element, $rootScope, $sessionStorage, compareService, messageService, growl) {
         var model = this;
         model.products = [];
         model.productId = $scope.productId;
@@ -22,6 +22,10 @@
 
         updateCheckboxes();
 
+        model.clearAll = function() {
+            compareService.clearAllCompareItems();
+        }   
+
 
         $($element).find("input").on("change", function () {
             var checkbox = this;
@@ -29,10 +33,10 @@
                 if (!($.inArray(model.productId, $sessionStorage.compareList) > -1) && $sessionStorage.compareList.length < 4) {
 
                     compareService.addCompareItem(model.productId);
-
                 } else {
                     $($element).find("input").prop('checked', false);
-                    alert("Only 4 items can be compared at a time.");
+                    //alert("Only 4 items can be compared at a time.");
+                    growl.warning("<strong>Only 4 items can be compared at a time. <a ng-cllick='model.clearAll()'>Clear all</a></strong>");
                 }
 
             } else {
@@ -40,15 +44,15 @@
             }
         });
 
-        $rootScope.$on("updateCheckboxes", function(product){
+        $rootScope.$on("updateCheckboxes", function (product) {
             updateCheckboxes();
         });
     };
 
     module.directive("compareProductButton", function () {
         return {
-            template: '<div><input type="checkbox" id="compareItem{{$id}}"><label for="compareItem{{$id}}">Compare</label></div>',
-            controller: ["$scope", "shoppingCartService", "$element", "$rootScope", "$sessionStorage", "compareService", "messageService", controller],
+            templateUrl: 'app/views/shared/components/compareproduct-button/compareproduct-button.component.html',
+            controller: ["$scope", "shoppingCartService", "$element", "$rootScope", "$sessionStorage", "compareService", "messageService", "growl", controller],
             replace: true,
             scope: { productId: '=' }
         }
