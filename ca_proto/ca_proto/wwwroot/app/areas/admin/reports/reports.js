@@ -104,7 +104,7 @@
         };
 
         model.getFilteredProducts = function () {
-            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.len == 0) {
+            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.length == 0) {
                 //if no order status is chosen to filter then return all rows
                 return model.orderProducts;
             }
