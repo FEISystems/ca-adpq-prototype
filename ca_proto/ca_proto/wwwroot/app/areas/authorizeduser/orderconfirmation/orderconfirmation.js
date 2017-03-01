@@ -5,11 +5,13 @@
     var controller = function ($scope, $location, messageService, orderService) {
         var model = this;
         model.provider = {};
+        model.orderNumbers = [];
         model.title = "Order Confirmation";
 
         orderService.getOrdersByUserId();
 
         model.findOrderNumber = function (orderNumberId) {
+            model.orderNumbers = response;
         }
 
         $scope.continueShopping = function() {

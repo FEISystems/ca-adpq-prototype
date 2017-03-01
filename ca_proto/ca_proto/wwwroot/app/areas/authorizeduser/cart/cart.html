@@ -24,7 +24,7 @@
                     </span>
                 </div>
                 <div class="usa-width-one-twelfth text-right">
-                    <span><strong>{{item.Price * item.Quantity | currency}}</strong></span><br>
+                    <span><strong>{{item.Price * (item.Quantity || 0) | currency}}</strong></span><br>
                     <a role="button" ng-click="removeThisItem(item.Id)">Remove</a>
                 </div>
                 

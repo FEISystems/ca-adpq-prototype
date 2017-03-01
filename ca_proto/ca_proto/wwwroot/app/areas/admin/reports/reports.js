@@ -167,6 +167,10 @@
         };
 
         model.drawLabels = function (context, left) {
+            context.fillStyle = "White";
+            for (var i = 0; i < 3; i++) {
+                context.fillRect(left - 3, 17 + i*20, 100, 16)
+            }
             model.drawCustomLabels(context, left, 20,
                 [
                     { color: model.hardwareColor, text: "Hardware" },
