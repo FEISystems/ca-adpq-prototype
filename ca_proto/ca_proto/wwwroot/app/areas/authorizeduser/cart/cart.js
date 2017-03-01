@@ -120,6 +120,10 @@
                 model.cartTotal += item.Price * item.Quantity;
             }
 
+            for (var i = 0; i < model.cartItems.length; ++i) {
+                model.cartItemCount += model.cartItems[i].Quantity;
+            }
+
         })
 
         messageService.subscribe('updateCartFailure', function (response) {

@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>Order Date</th>
-                            <th>Number of Items</th>
+                            <th>Order Number</th>
                             <th>Payment Account</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -24,7 +24,7 @@
                     <tbody>
                         <tr ng-repeat="order in model.orders" ng-show="model.orders.length > 0">
                             <td>{{order.CreateDate | date}}</td>
-                            <td>{{order.Items.length}}</td>
+                            <td><a ng-href="/#/user/orderdetails?id={{order.Id}}">{{order.Id}}</a></td>
                             <td>{{order.PaymentMethod}}</td>
                             <td>{{order.Status}}</td>
                             <td>
