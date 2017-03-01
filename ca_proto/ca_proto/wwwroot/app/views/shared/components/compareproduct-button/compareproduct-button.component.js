@@ -40,27 +40,9 @@
             }
         });
 
-        //compareService.refreshCompareList();
-
         $rootScope.$on("updateCheckboxes", function(product){
             updateCheckboxes();
         });
-
-        // messageService.subscribe("addCompareItemSuccess", function (response) {
-        //     model.products = response;
-        //     updateCheckboxes();
-        // });
-
-        // messageService.subscribe("removeCompareItem", function (response) {
-        //     model.products = response;
-        //     updateCheckboxes();
-        // });
-
-        // messageService.subscribe("clearCompareItems", function (response) {
-        //     model.products = response;
-        //     updateCheckboxes();
-        // });
-
     };
 
     module.directive("compareProductButton", function () {
