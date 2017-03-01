@@ -224,5 +224,25 @@ WHERE
                 }
             }
         }
+
+        public List<string> GetManufacturerNames()
+        {
+            using (var db = new Connection(_configuration))
+            {
+                using (var cmd = db.connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT Manufacturer FROM ca.products group by Manufacturer;";
+                    List<string> result = new List<string>();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(reader.GetString(0));
+                        }
+                    }
+                    return result;
+                }
+            }
+        }
     }
 }

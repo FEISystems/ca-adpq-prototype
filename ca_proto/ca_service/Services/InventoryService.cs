@@ -341,6 +341,10 @@ namespace ca_service.Services
             return inventoryRepository.AdvancedSearch(name, category, minPrice, maxPrice, manufacturer, manufacturerPartNumber, sku);
         }
 
+        public List<string> GetManufacturerNames()
+        {
+            return inventoryRepository.GetManufacturerNames();
+        }
     }
 }
 

@@ -7,6 +7,7 @@
         model.provider = {};
         model.title = "Advanced Search";
         model.products = [];
+        model.manufacturers = [];
 
         model.productName = "";
         model.category = "";
@@ -61,6 +62,17 @@
             model.products = [];
         })
 
+        messageService.subscribe('retrievedManufacturer', function (response) {
+            alert(JSON.stringify(response));
+            model.manufacturers = [];
+            model.manufacturers = response;
+        })
+
+        messageService.subscribe('retrievedManufacturerFail', function (response) {
+            alert(JSON.stringify(response));
+            model.manufacturers = [];
+        })
+
         $scope.clear = function () {
             model.productName = "";
             model.category = "";
@@ -72,7 +84,7 @@
             model.priceRange = "";
         }
 
-
+        inventoryService.fetchManufacturers();
     };
 
     module.component("advancedSearch", {
