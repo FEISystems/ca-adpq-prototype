@@ -23,6 +23,21 @@
         messageService.subscribe('logoutSuccess', function (response) {
             model.showModal = true;
         })
+        document.getElementById("Password")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode == 13) {
+                document.getElementById("loginBtn").click();
+            }
+        });
+        document.getElementById("username")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode == 13) {
+                document.getElementById("loginBtn").click();
+            }
+        });
+        
     };
 
     module.component('modal', {
