@@ -79,3 +79,8 @@
 .state-logos {
   margin-right: 4%;
 }
+@media screen and (max-width: 414px) {
+  .swiper-container {
+    display: none;
+  }
+}
