@@ -41,7 +41,7 @@
         </div>
         <div ng-show="model.tab == 2">
             <h3 class="usa-heading"><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>
-            <form name="addProductForm" id="addProductForm" novalidate ng-submit="model.addProduct()">
+            <form name="addProductForm" id="addProductForm" novalidate ng-submit="model.addProduct(addProductForm)">
                 <fieldset>
                     <div class="usa-grid-full">
                         <div class="usa-width-one-half">

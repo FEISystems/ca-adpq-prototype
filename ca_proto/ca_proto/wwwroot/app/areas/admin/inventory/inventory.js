@@ -135,10 +135,11 @@
             return JSON.parse(JSON.stringify(item));
         };
 
-        model.addProduct = function () {
+        model.addProduct = function (addProductForm) {
             //preserve the model.product in case the add operation fails
             $scope.submitted = true;
             if (addProductForm.$valid) {
+                
                 var uploadData = model.clone(model.product);
                 if (uploadData.Id) {
                     inventoryService.editProduct(uploadData);
