@@ -33,11 +33,11 @@
                         </tr>
                         <tr  ng-show="model.orders.length > 0">
                             <td colspan="5" style="text-align:center;">
-                                <a href="" ng-click="model.firstPage()">|&lt;</a>
-                                &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
+                                <a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a>
+                                &nbsp;<a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a>
                                 &nbsp;<span>Page {{model.pageIndex + 1}} of {{model.numberOfPages}}</span>
-                                &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
-                                &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
+                                &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
+                                &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
                                 <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.pageCount" ng-options="count for count in model.pageCounts" ng-change="model.firstPage()"></select>
                             </td>
