@@ -21,7 +21,7 @@
         model.itemsPerPage = 10;
         model.pageCounts = [5, 10, 25, 50];
         model.pageCount = 1;
-        model.filter = {};
+        model.filter = {imageFileName:""};
         model.activeFilter = {};
         model.tab = 3;
         model.importProgress = "";
@@ -39,6 +39,13 @@
         //    "Fuzzy": false,
         //    "Filter": { "Category":"Service|Computer", "ListPrice":"31|34"}
         //}
+
+        model.showNoImage = function () {
+            if (typeof model.filter.ImageFileName == 'undefined')
+                return true;
+
+            return false;
+        }
 
         model.select = function (id) {
             var product = model.findProduct(id);
