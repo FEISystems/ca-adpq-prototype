@@ -2,7 +2,7 @@
     "use strict";
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, loginService, messageService, shoppingCartService) {
+    var controller = function ($scope, $location, loginService, messageService, shoppingCartService, $rootScope) {
         var model = this;
         model.data = {};
         model.showNavMenu = true;
@@ -50,15 +50,15 @@
          messageService.subscribe('placeOrderSuccess', function (response) {
             model.getActiveCart();
         })
-
-
-
+        $rootScope.$on("userLoggedOut", function() {
+            $location.path("public/home");
+       });
     }
 
     module.component("mainNav", {
         templateUrl: "app/views/shared/components/main-nav/main-nav.component.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "loginService", "messageService", "shoppingCartService", controller]
+        controller: ["$scope", "$location", "loginService", "messageService", "shoppingCartService", "$rootScope", controller]
     });
 
 }())

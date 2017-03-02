@@ -67,12 +67,12 @@
                 .success(function (response) {
                     messageService.publish('logoutSuccess', response);
                     delete $sessionStorage.user;     
-                    $rootScope.$broadcast("userLoggedIn");
+                    $rootScope.$broadcast("userLoggedOut");
                 })
             .error(function (response) {
                 messageService.publish('logoutFailure', response);
                 delete $sessionStorage.user;     
-                $rootScope.$broadcast("userLoggedIn");
+                $rootScope.$broadcast("userLoggedOut");
             });
         }
 
