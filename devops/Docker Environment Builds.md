@@ -9,7 +9,7 @@ QC servers are hosted on the internal FEi cloud and not accessible from outside 
 
 **MySQL**
 
-docker run --name ca-adpq-db-latest -p 3306:3306 -v /var/mysql-data/ca-adpq-db-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="Letmein1!" -d mysql:8
+docker run --name ca-adpq-db-latest -p 3306:3306 -v /var/mysql-data/ca-adpq-db-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
 
 **Prototype Website**
 
@@ -21,18 +21,17 @@ docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock -d cen
 
 **Docker Dash**
 
-docker run --name dockerdash -p 5050:5050 -v /var/run/docker.sock:/var/run/docker.sock -e DOCKERDASH_USER='admin' -e DOCKERDASH_PASSWORD='Letmein1!' -d stefanprodan/dockerdash
+docker run --name dockerdash -p 5050:5050 -v /var/run/docker.sock:/var/run/docker.sock -e DOCKERDASH_USER='XXXXXX' -e DOCKERDASH_PASSWORD='XXXXXXX' -d stefanprodan/dockerdash
 
 #QC:Stable
 QC servers are hosted on the internal FEi cloud and not accessible from outside of our network
 
 **MySQL**
 
-docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-stable:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="Letmein1!" -d mysql:8
+docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-stable:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
 
 **Prototype Website**
 
-[CA ADPQ Prototype](http://ca-adpq-prototype.eastus2.cloudapp.azure.com)
 docker run --name ca-adpq-web-stable --link ca-adpq-db-stable:mysql -p 5001:5000 -d feidevops/ca_adpq_proto:stable
 
 #Production
@@ -40,9 +39,11 @@ Production servers are available to the public.  Links are provided below for re
 
 **MySQL**
 
-docker run --name ca-adpq-db-production -p 3306:3306 -v /var/mysql-data/ca-adpq-db-production:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="Letmein1!" -d mysql:8
+docker run --name ca-adpq-db-production -p 3306:3306 -v /var/mysql-data/ca-adpq-db-production:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
 
 **Prototype Website**
+
+[CA ADPQ Prototype](http://ca-adpq-prototype.eastus2.cloudapp.azure.com)
 
 docker run --name ca-adpq-web-production --link ca-adpq-db-production:mysql -p 80:5000 -d feidevops/ca_adpq_proto:production
 
@@ -50,7 +51,7 @@ docker run --name ca-adpq-web-production --link ca-adpq-db-production:mysql -p 8
 
 [DockerDash Docker Engine Dashboard](http://ca-adpq-prototype.eastus2.cloudapp.azure.com:5050)
 
-docker run --name dockerdash -p 5050:5050 -v /var/run/docker.sock:/var/run/docker.sock -e DOCKERDASH_USER='admin' -e DOCKERDASH_PASSWORD='Letmein1!' -d stefanprodan/dockerdash
+docker run --name dockerdash -p 5050:5050 -v /var/run/docker.sock:/var/run/docker.sock -e DOCKERDASH_USER='XXXXXX' -e DOCKERDASH_PASSWORD='XXXXXXX' -d stefanprodan/dockerdash
 
 **Watchtower**
 
@@ -68,7 +69,7 @@ docker run --name prom-container-exporter -p 9102:9104 -v /sys/fs/cgroup:/cgroup
 
 docker run --name prom-collectd-exporter -p 9103:9103 -p 25826:25826/udp -d prom/collectd-exporter -collectd.listen-address=":25826"
 
-docker run --name prom-mysqld-exporter -p 9104:9104 --link=ca-adpq-db-production:bdd -e DATA_SOURCE_NAME='root:Letmein1!@(bdd:3306)/ca' -d prom/mysqld-exporter
+docker run --name prom-mysqld-exporter -p 9104:9104 --link=ca-adpq-db-production:bdd -e DATA_SOURCE_NAME='XXXXXX:XXXXXXX@(bdd:3306)/ca' -d prom/mysqld-exporter
 
 docker run --name prom-node-exporter -p 9100:9100 -v "/proc:/host/proc" -v "/sys:/host/sys" -v "/:/rootfs" --net="host" -d quay.io/prometheus/node-exporter -collector.procfs /host/proc -collector.sysfs /host/sys -collector.filesystem.ignored-mount-points "^/(sys|proc|dev|host|etc)($|/)"
 
@@ -76,6 +77,6 @@ docker run --name prom-node-exporter -p 9100:9100 -v "/proc:/host/proc" -v "/sys
 
 [Grafana Metric and Analytic Dashboard](http://ca-adpq-prototype.eastus2.cloudapp.azure.com:3000)
 
-docker run --name grafana -p 3000:3000 -e 'GF_SERVER_ROOT_URL=ca-adpq-prototype.eastus2.cloudapp.azure.com:3000' -e 'GF_SECURITY_ADMIN_PASSWORD=Letmein1!' -v /var/grafana-data:/var/lib/grafana -d grafana/grafana
+docker run --name grafana -p 3000:3000 -e 'GF_SERVER_ROOT_URL=ca-adpq-prototype.eastus2.cloudapp.azure.com:3000' -e 'GF_SECURITY_ADMIN_PASSWORD=XXXXXXXX' -v /var/grafana-data:/var/lib/grafana -d grafana/grafana
 
 
