@@ -7,16 +7,16 @@
         model.shoppingCart.UserId = 0;
         model.shoppingCart.CreateDate = "";
         model.shoppingCart.Status = 1,
-        model.shoppingCart.Total = "";
+            model.shoppingCart.Total = "";
         model.shoppingCart.Items = []
-        
+
 
 
 
         var addProductToCart = function (product) {
             $http.post("/api/ShoppingCart/AddItem", product)
                 .success(function (response) {
-                    messageService.publish('addProductToCartSuccess', response);          
+                    messageService.publish('addProductToCartSuccess', response);
                     growl.success("<strong>Your item has been added to the Cart.</strong>");
                 })
                 .error(function (response) {
@@ -34,7 +34,16 @@
                 });
         };
 
-    
+        var getCheckOutCart = function (product) {
+            $http.get("/api/ShoppingCart/GetActive")
+                .success(function (response) {
+                    messageService.publish('getCheckOutCartSuccess', response);
+                })
+                .error(function (response) {
+                    messageService.publish('getCheckOutCartFailure', response);
+                });
+        };
+
         var updateCart = function (product) {
             $http.put("/api/ShoppingCart/UpdateItem", product)
                 .success(function (response) {
@@ -45,7 +54,7 @@
                     messageService.publish('updateCartFailure', response);
                 });
         };
-        
+
         var removeCartItem = function (itemId) {
             $http.delete("/api/ShoppingCart/RemovedItem/" + itemId)
                 .success(function (response) {
@@ -56,13 +65,14 @@
                     messageService.publish('removeCartItemFailure', response);
                 });
         };
-        
+
 
         return {
-            addProductToCart : addProductToCart,
-            getActiveCart : getActiveCart,
-            updateCart : updateCart,
-            removeCartItem : removeCartItem
+            addProductToCart: addProductToCart,
+            getActiveCart: getActiveCart,
+            updateCart: updateCart,
+            removeCartItem: removeCartItem,
+            getCheckOutCart : getCheckOutCart
         };
     }
 
