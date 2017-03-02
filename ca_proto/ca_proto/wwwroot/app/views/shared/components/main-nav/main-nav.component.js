@@ -50,9 +50,9 @@
          messageService.subscribe('placeOrderSuccess', function (response) {
             model.getActiveCart();
         })
-        $rootScope.$on("userLoggedOut", function() {
-            $location.path("public/home");
-       });
+        //$rootScope.$on("userLoggedOut", function() {
+            //$location.path("public/home");
+       //});
     }
 
     module.component("mainNav", {
