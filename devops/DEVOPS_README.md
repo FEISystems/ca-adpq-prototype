@@ -3,7 +3,7 @@
 # company: FEi Systems Inc.
 
 This readme will serve as an outline to Plays 9, 10, and 12
-in the Digital Services Playbook located at below.
+in the Digital Services Playbook located below.
 
 https://playbook.cio.gov/#play9
 
