@@ -171,6 +171,8 @@
                             &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
                             &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
                             &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
+                            <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.itemsPerPage" ng-options="count for count in model.pageCounts" ng-change="model.fetchPageCount()"></select>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
