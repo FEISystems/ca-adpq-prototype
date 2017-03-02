@@ -10,6 +10,8 @@ namespace ca_service.Entities
     [DbTable("ca.orders")]
     public class Order : Entity
     {
+        private const int ShippingThreshold = 15;
+
         public Order(int id) : base(id) { }
 
         public Order() : base(0) { }
@@ -48,6 +50,17 @@ namespace ca_service.Entities
 
         [DbColumn(System.Data.DbType.String)]
         public string EmailAddress { get; set; }
+
+        public static OrderStatus DisplayStatus(OrderStatus status, DateTime createDate)
+        {
+            if (status == OrderStatus.UserCancelled)
+                return OrderStatus.UserCancelled;
+
+            if (DateTime.UtcNow >= createDate.AddMinutes(ShippingThreshold))
+                return OrderStatus.Shipped;
+
+            return status;
+        }
     }
 
     public enum OrderStatus

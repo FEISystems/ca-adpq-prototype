@@ -13,5 +13,7 @@ The following open source technologies will be used:
 1.  .Net Core 1.0.0
 2.  [MySQL 8](https://hub.docker.com/_/mysql/)
 3.  My Sql Connector https://mysql-net.github.io/MySqlConnector/overview/configuration/
-4.  Bootstrap
+4.  Docker Engine and Client
 5.  AngularJS 1.5
+
+Information on how Development Operations were applied to this poject can be found in the [DevOps Readme.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/DevOps%20Readme.md) and the [Docker Environment Builds.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/Docker%20Environment%20Builds.md)

@@ -15,12 +15,17 @@
                         messageService.publish('showError', 'Login Failed')
                     }
                     else {
-                        if (response.IsAdmin == true) {  
-                            delete $sessionStorage.user;                                   
-                            $sessionStorage.user = "Admin";    
-                        } else {                             
-                            delete $sessionStorage.user;                                 
-                            $sessionStorage.user = "Authorized User";    
+                        if (response.IsAdmin == true) {
+                            delete $sessionStorage.user;
+                            delete $sessionStorage.userName;
+                            $sessionStorage.user = "Admin";
+                            $sessionStorage.userName = response.UserName;
+                        }
+                        else {
+                            delete $sessionStorage.user;
+                            delete $sessionStorage.userName;
+                            $sessionStorage.user = "Authorized User";
+                            $sessionStorage.userName = response.UserName;
                         }
                         messageService.publish('loginSuccess', response);
                     }
@@ -50,9 +55,14 @@
 
         var isLoggedIn = function(){        
             var val = readCookie("AuthToken");
+            var z = unescape(val);
+            var userName = z.substring(z.indexOf("|") + 1);
             $http.get("/api/authentication/" + val)
                 .success(function (response) {
-                    messageService.publish('isLoggedInSuccess', response);
+                    if (response === "False")
+                        messageService.publish('isLoggedInFailure', response);
+                    else
+                        messageService.publish('isLoggedInSuccess', { response: response, userName: userName });
                     return true;
             })
             .error(function (response) {
@@ -66,12 +76,14 @@
             $http.delete("/api/authentication/")
                 .success(function (response) {
                     messageService.publish('logoutSuccess', response);
-                    delete $sessionStorage.user;     
+                    delete $sessionStorage.user;
+                    delete $sessionStorage.userName;
                     $rootScope.$broadcast("userLoggedOut");
                 })
             .error(function (response) {
                 messageService.publish('logoutFailure', response);
-                delete $sessionStorage.user;     
+                delete $sessionStorage.user;
+                delete $sessionStorage.userName;
                 $rootScope.$broadcast("userLoggedOut");
             });
         }

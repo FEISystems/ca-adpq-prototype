@@ -4,7 +4,7 @@
         <h2 class="usa-heading">Order Details</h2>
         <div class="clear">
             <button class="usa-button-secondary left" ng-link="['Order History']">Back to Order History</button>
-            <button class="usa-button-secondary right" ng-click="model.cancelOrder()">Cancel Order</button>
+            <button class="usa-button-secondary right" ng-show="model.canCancelOrder()" ng-click="model.cancelOrder()">Cancel Order</button>
         </div>
         <div class="order-content clear">
             <div class="field">
