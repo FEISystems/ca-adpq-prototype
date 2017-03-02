@@ -12,17 +12,67 @@ sub-nav {
         }
         li {
             margin-right: 60px;
+            .ca-megamenu-header {
+                color: white;
+                display: block;
+                border-bottom: 2px solid white;
+                margin-bottom: 5px;
+                font-size: 1.5em;
+            }
         }
     }
     .usa-nav {
         background-color: transparent;
         border: none !important;
-        .ca-megamenu-header {
-            color: white;
-            display: block;
-            border-bottom: 2px solid white;
-            margin-bottom: 5px;
-            font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .usa-megamenu::after {
+        background-color: #112e51 !important;
+        content: '';
+        display: block;
+        height: 100%;
+        position: static;
+        top: 0;
+        width: 1000%;
+        left: 100%;
+    }
+    .usa-megamenu::before {
+        background-color: #112e51 !important;
+        content: '';
+        display: block;
+        height: 100%;
+        position: static;
+        top: 0;
+        width: 1000%;
+        right: 100%;
+    }
+
+    
+    div.usa-nav-inner {
+        border-bottom: 1px solid black;
+        ul.usa-nav-primary.usa-accordion {
+            
+            li {
+                margin-right: 0;
+                button[aria-expanded]{
+                    background-position: right 18px center;
+                }
+                ul#sub-nav-2, ul#sub-nav-3 {
+                    background: #112e51;
+                    li.usa-megamenu-col {
+                        padding: 0 1rem;
+                        ul {
+                            li {
+                                a {
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

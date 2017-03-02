@@ -30,6 +30,9 @@
         $($element).find("input").on("change", function () {
             var checkbox = this;
             if ($(checkbox).is(":checked")) {
+                if (!$sessionStorage.compareList) {
+                    $sessionStorage.compareList = [];
+                }
                 if (!($.inArray(model.productId, $sessionStorage.compareList) > -1) && $sessionStorage.compareList.length < 4) {
 
                     compareService.addCompareItem(model.productId);
