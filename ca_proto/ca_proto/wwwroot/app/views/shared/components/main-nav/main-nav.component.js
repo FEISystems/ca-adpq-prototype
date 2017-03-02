@@ -34,6 +34,7 @@
         messageService.subscribe('loginSuccess', function (response) {
             model.isLoggedIn = true;
             model.userName = response.UserName;
+            shoppingCartService.getActiveCart();
         });
 
         model.getActiveCart = function () {
