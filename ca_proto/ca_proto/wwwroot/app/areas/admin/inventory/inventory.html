@@ -1,7 +1,7 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/areas/admin/inventory/inventory.css" />
 <standard-layout>
     <h2>{{model.title}}</h2>
-    <unauthorized-page  authorized="['Admin']"></unauthorized-page>
+    <unauthorized-page authorized="['Admin']"></unauthorized-page>
     <aside class="usa-width-one-sixth" permission="['Admin']">
         <ul class="usa-sidenav-list">
             <li><a href="" ng-click="model.showTable()" ng-class="{'usa-current' : model.tab == 3}">Catalog</a></li>
@@ -36,83 +36,133 @@
             <h3 class="usa-heading">Prototype Tasks</h3>
             <button ng-click="model.resetDatabase()" class="usa-button usa-button-secondary">Reset Database</button>
             <label for="demoorders" class="usa-sr-only ">Create Demo Orders</label>
-            <input type="text" ng-model="model.createCount" id="demoorders" /> <button ng-click="model.createDemoOrders()" class="usa-button usa-button-secondary">Create Demo Orders</button>
+            <input type="text" ng-model="model.createCount" id="demoorders" /> <button ng-click="model.createDemoOrders()"
+                class="usa-button usa-button-secondary">Create Demo Orders</button>
         </div>
         <div ng-show="model.tab == 2">
             <h3 class="usa-heading"><span ng-show="model.editing">Edit</span><span ng-show="!model.editing">Add</span> Product</h3>
-            <form name="addProductForm" id="addProductForm" novalidate
-                ng-submit="addProductForm.$valid && model.addProduct()">
+            <form name="addProductForm" id="addProductForm" novalidate ng-submit="model.addProduct()">
                 <fieldset>
                     <div class="usa-grid-full">
                         <div class="usa-width-one-half">
-                            <label for="title">Title</label></td>
-                            <input type="text" ng-model="model.product.Title" id="title" required />
+                            <label for="title">Title<strong style="color: red" title="Required field">*</strong></label></td>
+                            <input type="text" ng-model="model.product.Title" name="Title" id="title" required />
+                            <div class="help-block" ng-messages="addProductForm.Title.$error" ng-if="addProductForm.Title.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="contract">Contract</label>
-                            <select id="contract" ng-model="model.product.ContractNumber" ng-options="contract for contract in model.contracts" required>
+                            <label for="contract">Contract<strong style="color: red" title="Required field">*</strong></label>
+                            <select id="contract" ng-model="model.product.ContractNumber" name="ContractNumber" ng-options="contract for contract in model.contracts" required>
                                 <option value="">Select Contract</option>
                             </select>
+                            <div class="help-block" ng-messages="addProductForm.ContractNumber.$error" ng-if="addProductForm.ContractNumber.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="contractor">Contractor</label></td>
-
-                            <select id="contractor" ng-model="model.product.Contractor" ng-options="contractor for contractor in model.contractors" required>
-                                <option value="">Select Contractor</option>
+                            <label for="contractor">Contractor<strong style="color: red" title="Required field">*</strong></label></td>
+                            <select id="contractor" ng-model="model.product.Contractor" name="Contractor" ng-options="contractor for contractor in model.contractors" required>
+                                <option value="">Select Contractor<strong style="color: red" title="Required field">*</strong></option>
                             </select>
+                            <div class="help-block" ng-messages="addProductForm.Contractor.$error" ng-if="addProductForm.Contractor.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="clin">CLIN</label>
-                            <input id="clin" type="text" ng-model="model.product.CLIN" required />
+                            <label for="clin">CLIN<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="clin" type="text" ng-model="model.product.CLIN" name="CLIN" required />
+                            <div class="help-block" ng-messages="addProductForm.CLIN.$error" ng-if="addProductForm.CLIN.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="contractdiscount">Contract Discount</label>
-                            <input id="contractdiscount" type="text" ng-model="model.product.ContractDiscount" required />
+                            <label for="contractdiscount">Contract Discount<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="contractdiscount" type="text" ng-model="model.product.ContractDiscount" name="ContractDiscount" required />
+                            <div class="help-block" ng-messages="addProductForm.ContractDiscount.$error" ng-if="addProductForm.ContractDiscount.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="contractexpiration">Contract Expiration</label>
-                            <input id="contractexpiration" type="text" ng-model="model.product.ContractExpiration" required />
+                            <label for="contractexpiration">Contract Expiration<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="contractexpiration" type="text" ng-model="model.product.ContractExpiration" name="ContractExpiration" required />
+                            <div class="help-block" ng-messages="addProductForm.ContractExpiration.$error" ng-if="addProductForm.ContractExpiration.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="listprice">List Price</label>
-                            <input id="listprice" type="text" ng-model="model.product.ListPrice" required />
+                            <label for="listprice">List Price<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="listprice" type="text" ng-model="model.product.ListPrice" name="ListPrice" required />
+                            <div class="help-block" ng-messages="addProductForm.ListPrice.$error" ng-if="addProductForm.ListPrice.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="contractprice">Contract Price</label>
-                            <input id="contractprice" type="text" ng-model="model.product.ContractPrice" required />
+                            <label for="contractprice">Contract Price<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="contractprice" type="text" ng-model="model.product.ContractPrice" name="ContractPrice" required />
+                            <div class="help-block" ng-messages="addProductForm.ContractPrice.$error" ng-if="addProductForm.ContractPrice.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="manufacturer">Manufacturer</label>
-                            <input id="manufacturer" type="text" ng-model="model.product.Manufacturer" required />
+                            <label for="manufacturer">Manufacturer<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="manufacturer" type="text" ng-model="model.product.Manufacturer" name="Manufacturer" required />
+                            <div class="help-block" ng-messages="addProductForm.Manufacturer.$error" ng-if="addProductForm.Manufacturer.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
                         </div>
 
                         <div class="usa-width-one-half">
-                            <label for="partnumber">Part Number</label>
-                            <input id="partnumber" type="text" ng-model="model.product.ManufacturerPartNumber" required />
+                            <label for="partnumber">Part Number<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="partnumber" type="text" ng-model="model.product.ManufacturerPartNumber" name="ManufacturerPartNumber" required />
+                            <div class="help-block" ng-messages="addProductForm.ManufacturerPartNumber.$error" ng-if="addProductForm.ManufacturerPartNumber.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="sku">SKU</label>
-                            <input id="sku" type="text" ng-model="model.product.SKU" required />
+                            <label for="sku">SKU<strong style="color: red" title="Required field">*</strong></label>
+                            <input id="sku" type="text" ng-model="model.product.SKU" name="SKU" required />
+                            <div class="help-block" ng-messages="addProductForm.SKU.$error" ng-if="addProductForm.SKU.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
                             <label for="unspsc">UNSPSC</label>
-                            <input id="unspsc" type="text" ng-model="model.product.UNSPSC"  />
+                            <input id="unspsc" type="text" ng-model="model.product.UNSPSC" />
 
-                            <label for="producttype">Product Type</label>
-                            <select id="producttype" ng-model="model.product.ProductType" ng-options="prod for prod in model.productTypes" required>
+                            <label for="producttype">Product Type<strong style="color: red" title="Required field">*</strong></label>
+                            <select id="producttype" ng-model="model.product.ProductType" name="ProductType" ng-options="prod for prod in model.productTypes" required>
                                 <option value="">Select Product Type</option>
                             </select>
+                            <div class="help-block" ng-messages="addProductForm.ProductType.$error" ng-if="addProductForm.ProductTypes.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="category">Category</label>
-                            <select id="category" ng-model="model.product.Category" ng-options="category for category in model.categories" required>
+                            <label for="category">Category<strong style="color: red" title="Required field">*</strong></label>
+                            <select id="category" ng-model="model.product.Category" name="Category" ng-options="category for category in model.categories" required>
                                 <option value="">Select Category</option>
                             </select>
+                            <div class="help-block" ng-messages="addProductForm.Category.$error" ng-if="addProductForm.Category.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="unitofmeasure">Unit of Measure</label>
-                            <select id="unitofmeasure" ng-model="model.product.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" required>
+                            <label for="unitofmeasure">Unit of Measure<strong style="color: red" title="Required field">*</strong></label>
+                            <select id="unitofmeasure" ng-model="model.product.UnitOfMeasure" name="UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" required>
                                 <option value="">Select Unit of Measure</option>
                             </select>
+                            <div class="help-block" ng-messages="addProductForm.UnitOfMeasure.$error" ng-if="addProductForm.UnitOfMeasure.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="quantityperoum">Quantity per UOM</label></td>
-                            <input id="quantityperoum" type="text" ng-model="model.product.QuantityPerUnitOfMeasure" required />
+                            <label for="quantityperoum">Quantity per UOM<strong style="color: red" title="Required field">*</strong></label></td>
+                            <input id="quantityperoum" type="text" ng-model="model.product.QuantityPerUnitOfMeasure" name="QuantityPerUnitOfMeasure" required />
+                            <div class="help-block" ng-messages="addProductForm.QuantityPerUnitOfMeasure.$error" ng-if="addProductForm.QuantityPerUnitOfMeasure.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="description">Description</label>
-                            <textarea id="description" ng-model="model.product.Description" required></textarea>
+                            <label for="description">Description<strong style="color: red" title="Required field">*</strong></label>
+                            <textarea id="description" ng-model="model.product.Description" name="Description" required></textarea>
+                            <div class="help-block" ng-messages="addProductForm.Description.$error" ng-if="addProductForm.Description.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
-                            <label for="imagefilename">Image File Name</label>
-                            <select id="imagefilename" ng-model="model.product.ImageFileName" ng-options="name for name in model.imageFileNames" required>
+                            <label for="imagefilename">Image File Name<strong style="color: red" title="Required field">*</strong></label>
+                            <select id="imagefilename" ng-model="model.product.ImageFileName" name="ImageFileName" ng-options="name for name in model.imageFileNames" required>
                                 <option value="">Select Image File Name</option>
                             </select>
+                            <div class="help-block" ng-messages="addProductForm.ImageFileName.$error" ng-if="addProductForm.ImageFileName.$dirty || submitted" role="alert">
+                                <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                            </div>
 
                             <label for="noimage" class="usa-sr-only">No image</label></td>
                             <input id="noimage" type="hidden" ng-model="model.product.Id" />
@@ -120,12 +170,14 @@
                         </div>
 
                         <div class="usa-width-one-whole">
-                            <input type="submit" value="Add Item" ng-disabled="!addProductForm.$valid" ng-hide="model.editing" class="usa-button-secondary right" />
-                            <input type="submit" value="Save Changes" ng-disabled="!addProductForm.$valid" ng-show="model.editing" class="usa-button-secondary right" />
+                            <input type="submit" value="Add Item" ng-hide="model.editing" class="usa-button-secondary right"
+                            />
+                            <input type="submit" value="Save Changes" ng-show="model.editing" class="usa-button-secondary right"
+                            />
                             <input type="submit" value="Cancel" ng-click="model.cancelAddEdit()" class="btn-cancel usa-button-secondary" />
                         </div>
                     </div>
-                    
+
                 </fieldset>
             </form>
         </div>
@@ -133,7 +185,7 @@
             <h3 class="usa-heading">Catalog</h3>
             <div class="table-responsive">
                 <table>
-                    <thead> 
+                    <thead>
                         <tr>
                             <th>Select</th>
                             <th><a href="" ng-click="model.setOrderByColumn('Title')">Title</a></th>
@@ -146,40 +198,41 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="row in model.products">
-                        <td>
-                            
-                            <input id="deleteToggle_{{$id}}" ng-click="model.select(row.Id)" type="checkbox" >
-                            <label for="deleteToggle_{{$id}}" class="usa-sr-only">Toggle to Delete</label>
-                            
-                            <!--<a href="" ng-click="model.select(row.Id)">
+                            <td>
+
+                                <input id="deleteToggle_{{$id}}" ng-click="model.select(row.Id)" type="checkbox">
+                                <label for="deleteToggle_{{$id}}" class="usa-sr-only">Toggle to Delete</label>
+
+                                <!--<a href="" ng-click="model.select(row.Id)">
                                 <span ng-show="row.isSelected">Selected</span>
                                 <spap ng-hide="row.isSelected">Unselected</spap>
                             </a>-->
-                        </td>
-                        <td title="{{row.Description}}">{{row.Title}}</td>
-                        <td>{{row.Category}}</td>
-                        <td>{{row.ProductType}}</td>
-                        <td>{{row.Manufacturer}}</td>
-                        <td>{{row.ContractDiscount}}</td>
-                        <td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.Id)">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td><button ng-click="model.deleteSelected()" class="usa-button usa-button-secondary">Delete<br/>Selected</button></td>
-                        <td colspan="5" style="text-align:center">
-                            &nbsp;<a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a>
-                            &nbsp;<a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a>
-                            &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
-                            &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
-                            &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></i></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
-                            <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.itemsPerPage" ng-options="count for count in model.pageCounts" ng-change="model.fetchPageCount()"></select>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
+                            </td>
+                            <td title="{{row.Description}}">{{row.Title}}</td>
+                            <td>{{row.Category}}</td>
+                            <td>{{row.ProductType}}</td>
+                            <td>{{row.Manufacturer}}</td>
+                            <td>{{row.ContractDiscount}}</td>
+                            <td><a href="" ng-click="model.edit(row.Id)">Edit</a>&nbsp;&nbsp;<a href="" ng-click="model.delete(row.Id)">Delete</a></td>
+                        </tr>
+                        <tr>
+                            <td><button ng-click="model.deleteSelected()" class="usa-button usa-button-secondary">Delete<br/>Selected</button></td>
+                            <td colspan="5" style="text-align:center">
+                                &nbsp;<a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a> &nbsp;
+                                <a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a> &nbsp;
+                                <span>Page {{model.page + 1}} of {{model.pageCount}}</span> &nbsp;
+                                <a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a> &nbsp;
+                                <a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items
+                                Per Page:
+                                <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.itemsPerPage" ng-options="count for count in model.pageCounts"
+                                    ng-change="model.fetchPageCount()"></select>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
         <div ng-show="model.tab == 4">
             <h3 class="usa-heading">Search Products</h3>
@@ -191,12 +244,12 @@
                             <input id="search-title" type="text" ng-model="model.filter.Title" />
 
                             <label for="search-contract">Contract</label>
-                            <select id="search-contract" ng-model="model.filter.ContractNumber" ng-options="contract for contract in model.contracts" >
+                            <select id="search-contract" ng-model="model.filter.ContractNumber" ng-options="contract for contract in model.contracts">
                                 <option value="">Select Contract</option>
                             </select>
 
                             <label for="search-contractor">Contractor</label>
-                            <select id="search-contractor" ng-model="model.filter.Contractor" ng-options="contractor for contractor in model.contractors" >
+                            <select id="search-contractor" ng-model="model.filter.Contractor" ng-options="contractor for contractor in model.contractors">
                                 <option value="">Select Contractor</option>
                             </select>
 
@@ -230,17 +283,17 @@
                             <input id="search-unspsc" type="text" ng-model="model.filter.UNSPSC" />
 
                             <label for="search-producttype">Product Type</label>
-                            <select id="search-producttype" ng-model="model.filter.ProductType" ng-options="prod for prod in model.productTypes" >
+                            <select id="search-producttype" ng-model="model.filter.ProductType" ng-options="prod for prod in model.productTypes">
                                 <option value="">Select Product Type</option>
                             </select>
 
                             <label for="search-category">Category</label>
-                            <select id="search-category" ng-model="model.filter.Category" ng-options="category for category in model.categories" >
+                            <select id="search-category" ng-model="model.filter.Category" ng-options="category for category in model.categories">
                                 <option value="">Select Category</option>
                             </select>
 
                             <label for="search-unitofmeasure">Unit of Measure</label></td>
-                            <select id="search-unitofmeasure" ng-model="model.filter.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure" >
+                            <select id="search-unitofmeasure" ng-model="model.filter.UnitOfMeasure" ng-options="unit for unit in model.unitsOfMeasure">
                                 <option value="">Select Unit of Measure</option>
                             </select>
 
@@ -251,18 +304,20 @@
                             <textarea id="search-description" ng-model="model.filter.Description" required></textarea>
 
                             <label for="filterImagefilename">Image File Name</label>
-                            <select id="filterImagefilename" ng-model="model.filter.ImageFileName" ng-options="name for name in model.imageFileNames" required>
+                            <select id="filterImagefilename" ng-model="model.filter.ImageFileName" ng-options="name for name in model.imageFileNames"
+                                required>
                                 <option value="">Select Image File Name</option>
                             </select>
 
                             <label for="noimage" class="usa-sr-only">No image</label></td>
                             <input id="noimage" type="hidden" ng-model="model.filter.Id" />
-                            <img id="filterImage" height="100" width="100" ng-src="/api/image/{{model.filter.ImageFileName}}" alt="No Image Selected" />
+                            <img id="filterImage" height="100" width="100" ng-src="/api/image/{{model.filter.ImageFileName}}" alt="No Image Selected"
+                            />
                         </div>
 
                         <div class="usa-width-one-whole">
-                          <input type="button" value="Search" ng-click="model.filterProducts()" class="usa-button-secondary right" />
-                          <input type="button" value="Clear Search" ng-click="model.clearFilter()" class="usa-button-secondary right" />
+                            <input type="button" value="Search" ng-click="model.filterProducts()" class="usa-button-secondary right" />
+                            <input type="button" value="Clear Search" ng-click="model.clearFilter()" class="usa-button-secondary right" />
                         </div>
                     </div>
                 </fieldset>

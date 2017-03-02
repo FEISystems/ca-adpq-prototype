@@ -2,7 +2,7 @@
     'use strict';
     var module = angular.module("caWebApp");
 
-    var controller = function ($scope, $location, messageService, inventoryService) {
+    var controller = function ($scope, $location, messageService, inventoryService, growl) {
         var model = this;
         model.editing = false;
         model.product = {};
@@ -19,13 +19,14 @@
         model.orderAscending = true;
         model.page = 0;
         model.itemsPerPage = 10;
-        model.pageCounts = [5,10,25,50];
+        model.pageCounts = [5, 10, 25, 50];
         model.pageCount = 1;
         model.filter = {};
         model.activeFilter = {};
         model.tab = 3;
         model.importProgress = "";
         model.imageFileNames = [];
+        $scope.submitted = false;
 
         //sample query model
         //for strings, "A|B" converts to "column like '%A%' or column like '%B%'
@@ -68,12 +69,10 @@
         };
 
         model.setOrderByColumn = function (columnName) {
-            if (model.orderByColumn == columnName)
-            {
+            if (model.orderByColumn == columnName) {
                 model.orderAscending = !model.orderAscending;
             }
-            else
-            {
+            else {
                 model.orderByColumn = columnName;
                 model.page = 0;
             }
@@ -81,7 +80,7 @@
         };
 
         model.filterProducts = function () {
-            for (var propName in model.filter) { 
+            for (var propName in model.filter) {
                 if (model.filter[propName] === null || model.filter[propName] === undefined || model.filter[propName] === "") {
                     delete model.filter[propName];
                 }
@@ -138,12 +137,15 @@
 
         model.addProduct = function () {
             //preserve the model.product in case the add operation fails
-            var uploadData = model.clone(model.product);
-            if (uploadData.Id) {
-                inventoryService.editProduct(uploadData);
-            }
-            else {
-                inventoryService.addProduct(uploadData);
+            $scope.submitted = true;
+            if (addProductForm.$valid) {
+                var uploadData = model.clone(model.product);
+                if (uploadData.Id) {
+                    inventoryService.editProduct(uploadData);
+                }
+                else {
+                    inventoryService.addProduct(uploadData);
+                }
             }
         };
 
@@ -179,20 +181,17 @@
         };
 
         model.importFile = function () {
-            try
-            {
+            try {
                 var fileinfo = document.getElementById("selectedfile").files[0];
-                if (fileinfo == undefined)
-                {
+                if (fileinfo == undefined) {
                     alert("Please select a file.");
                     return;
                 }
                 model.onStartImport("Importing " + fileinfo.name);
                 inventoryService.importFile(fileinfo);
             }
-            catch (error)
-            {
-                alert (error);
+            catch (error) {
+                alert(error);
             }
         };
 
@@ -203,8 +202,7 @@
                 return;
             }
             model.onStartImport("Importing " + files.length + " image(s)");
-            for (var i = 0; i < files.length; i++)
-            {
+            for (var i = 0; i < files.length; i++) {
                 var fileInfo = files[i];
                 model.importProgress += "\nImporting " + fileInfo.name;
                 inventoryService.importImage(fileInfo);
@@ -235,7 +233,7 @@
         };
 
         model.delete = function (id) {
-            if (confirm("This will delete the selected item!"))            {
+            if (confirm("This will delete the selected item!")) {
                 inventoryService.deleteProduct(id);
             }
         };
@@ -257,8 +255,7 @@
         }
 
         model.FindLookup = function (list, id) {
-            for (var i=0; i<list.length; i++)
-            {
+            for (var i = 0; i < list.length; i++) {
                 if (list[i].Id == id)
                     return list[i];
             }
@@ -356,7 +353,8 @@
         })
 
         messageService.subscribe('addProductSuccess', function (response) {
-            alert('Add Product Success');
+            growl.success("Product has been added to the catalog.");
+            //alert('Add Product Success');
             model.showTable();
         })
 
@@ -365,7 +363,8 @@
         })
 
         messageService.subscribe('updateProductSuccess', function (response) {
-            alert('Update Product Success');
+            growl.success("Product has been added to the catalog.");
+            //alert('Update Product Success');
             model.showTable();
         })
 
@@ -413,8 +412,7 @@
             model.contractors = [];
         })
 
-        messageService.subscribe('retrievedImageFileNames', function(response)
-        {
+        messageService.subscribe('retrievedImageFileNames', function (response) {
             model.imageFileNames = response;
         })
 
@@ -466,7 +464,7 @@
     module.component("inventory", {
         templateUrl: "app/areas/admin/inventory/inventory.html",
         controllerAs: "model",
-        controller: ["$scope", "$location", "messageService", "inventoryService", controller]
+        controller: ["$scope", "$location", "messageService", "inventoryService", "growl", controller]
 
     });
 
