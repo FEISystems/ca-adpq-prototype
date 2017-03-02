@@ -1,10 +1,13 @@
 # ca-adpq-prototype
 
-**latest web**
+**latest**
 [![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/Dev?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/Dev)
 
-**stable web**
+**stable**
 [![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/stable/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/stable/web/b)
+
+**production**
+[![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/production/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/production/web/b)
 
 This prototype will be utilizing .Net Core with MySQL as the database backend. 
 
