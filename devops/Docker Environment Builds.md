@@ -35,7 +35,7 @@ docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-s
 docker run --name ca-adpq-web-stable --link ca-adpq-db-stable:mysql -p 5001:5000 -d feidevops/ca_adpq_proto:stable
 
 #Production
-Production servers are available to the public.  Links are provided below for relevant tools with their login information.
+Production servers are available to the public.  Links are provided below.
 
 **MySQL**
 
