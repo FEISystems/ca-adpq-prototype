@@ -31,7 +31,8 @@
         model.trendDatePadding = 100;
         model.moneyAxisPadding = 100;
         model.grandTotal = 0;
-        model.expendituresOverTime = [];        
+        model.expendituresOverTime = [];
+        model.font = "14px Verdana";
 
         (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
@@ -179,7 +180,7 @@
         };
 
         model.drawCustomLabels = function (context, left, top, labels) {
-            context.font = "16px Verdana";
+            context.font = model.font;
             for (var i = 0; i < labels.length; i++)
                 model.drawLabel(context, left, top + (i * 20), labels[i].color, labels[i].text);
         };
@@ -223,7 +224,7 @@
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.textAlign = "center";
             context.fillStyle = "Black";
-            context.font = "16px Verdana";
+            context.font = model.font;
             for (var i = 0; i < items.length; i++) {
                 model.drawWrappedLabel(context, items[i], widthPerItem * i, widthPerItem);
             }            
@@ -343,8 +344,7 @@
             var accounts = model.extractAccounts();
             if (!accounts || accounts.length == 0)
                 return;
-            accounts = orderByFilter(accounts, "length", false);
-            model.paymentAccounts = accounts;
+            model.paymentAccounts = orderByFilter(accounts, "length", false);
             window.setTimeout(function () {
                 model.finalizeTrends(tab, canvasName, includeLabels);
             }, 100);
@@ -361,7 +361,7 @@
             var canvas = document.getElementById(canvasName);
             var context = model.initContext(tab, canvas);
             if (null == context) return;
-            var accounts = model.paymentAccounts;
+            var accounts = orderByFilter(model.paymentAccounts, "length", false);
             context.clearRect(0, 0, canvas.width, canvas.height);
             var trends = model.initTrends(accounts);
             model.fillTrendData(trends);
@@ -378,16 +378,27 @@
             if (!includeLabels)
                 return;
             model.drawMoneyLines(context, maxTotal);
-            model.drawCustomLabels(context, 20, model.height + model.trendDatePadding, labels);
+            model.drawAccountLabels(context, labels, 0, 5);
+            model.drawAccountLabels(context, labels, 1, Math.floor((model.width + model.moneyAxisPadding) / 2 + 5));
             var dateLabels = model.getDateLabels();
             for (var i = 0; i < dateLabels.length; i++) {
                 model.drawDateLabel(context, dateLabels[i].x, 0, dateLabels[i].text);
             }
         };
 
+        model.drawAccountLabels = function (context, labels, start, left) {
+            var sideLabels = [];
+            for (var i = start; i < labels.length; i+=2) {
+                sideLabels.push(labels[i]);
+            }
+            if (sideLabels.length == 0)
+                return;
+            model.drawCustomLabels(context, left, model.height + model.trendDatePadding, sideLabels);
+        };
+
         //only used for expanded chart, so model height and width are fine
         model.drawMoneyLines = function (context, max) {
-            context.font = "16px Verdana";
+            context.font = model.font;
             context.fillStyle = "Black";
             context.strokeStyle = "#D0D0D0";
             var dollarLevels = model.getDollarLevels(max);
@@ -439,7 +450,7 @@
         };
 
         model.drawDateLabel = function (context, x, y, text) {
-            context.font = "16px Verdana";
+            context.font = model.font;
             context.fillStyle = "Black";
             context.save();
             context.translate(x + model.moneyAxisPadding, model.height + y);
