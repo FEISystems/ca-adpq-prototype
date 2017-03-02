@@ -19,6 +19,7 @@
         model.orderAscending = true;
         model.page = 0;
         model.itemsPerPage = 10;
+        model.pageCounts = [5,10,25,50];
         model.pageCount = 1;
         model.filter = {};
         model.activeFilter = {};
@@ -326,6 +327,7 @@
 
         messageService.subscribe('countSuccess', function (response) {
             model.pageCount = Math.ceil(response / model.itemsPerPage);
+            model.firstPage();
         })
 
         messageService.subscribe('countFailure', function (response) {
