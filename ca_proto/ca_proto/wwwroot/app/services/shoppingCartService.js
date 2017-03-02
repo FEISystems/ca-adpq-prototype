@@ -1,6 +1,6 @@
 (function () {
 
-    var shoppingCartService = function (messageService, $http, growl) {
+    var shoppingCartService = function (messageService, $http, growl, loginService) {
         var model = this;
 
         model.shoppingCart = {};
@@ -14,6 +14,8 @@
 
 
         var addProductToCart = function (product) {
+            if (!loginService.hasAuthenticationCookie())
+                return null;
             $http.post("/api/ShoppingCart/AddItem", product)
                 .success(function (response) {
                     messageService.publish('addProductToCartSuccess', response);
@@ -25,6 +27,9 @@
         };
 
         var getActiveCart = function (product) {
+            if (!loginService.hasAuthenticationCookie())
+                return null;
+
             $http.get("/api/ShoppingCart/GetActive")
                 .success(function (response) {
                     messageService.publish('getActiveCartSuccess', response);
@@ -35,6 +40,8 @@
         };
 
         var getCheckOutCart = function (product) {
+            if (!loginService.hasAuthenticationCookie())
+                return null;
             $http.get("/api/ShoppingCart/GetActive")
                 .success(function (response) {
                     messageService.publish('getCheckOutCartSuccess', response);
@@ -45,6 +52,8 @@
         };
 
         var updateCart = function (product) {
+            if (!loginService.hasAuthenticationCookie())
+                return null;
             $http.put("/api/ShoppingCart/UpdateItem", product)
                 .success(function (response) {
                     messageService.publish('updateCartSuccess', response);
@@ -56,6 +65,8 @@
         };
 
         var removeCartItem = function (itemId) {
+            if (!loginService.hasAuthenticationCookie())
+                return null;
             $http.delete("/api/ShoppingCart/RemovedItem/" + itemId)
                 .success(function (response) {
                     messageService.publish('removeCartItemSuccess', response);
