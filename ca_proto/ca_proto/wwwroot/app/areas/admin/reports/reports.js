@@ -261,10 +261,10 @@
 
         model.drawTotals = function (context, totals, width, height) {
             //draw the data
-            var padding = 20 * (totals.length + 1);
+            var padding = 20 * totals.length ;
             var usableWidth = width -padding;
             var columnWidth = Math.floor(usableWidth / totals.length / 3) - 2;
-            var left = 22;
+            var left = 11;
             for (var i = 0; i < totals.length; i++) {
                 var values = totals[i];
                 var barHeight = Math.floor(height * values.hardwareTotal);
