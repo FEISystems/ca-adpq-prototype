@@ -56,10 +56,11 @@ namespace ca_service.Services
             User user = userRepository.GetUser(username);
             if (user != null && user.Password == password)
             {
-                login.Token = Guid.NewGuid().ToString();
+                login.Token = $"{Guid.NewGuid().ToString()}|{user.UserName}";
                 login.Message = "Success";
                 login.IsAdmin = user.IsAdmin;
                 login.UserId = user.Id;
+                login.UserName = user.UserName;
                 this.memoryCache.Set(login.Token, login);
             }
             

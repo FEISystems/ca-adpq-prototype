@@ -7,19 +7,53 @@
         model.data = {};
         model.showNavMenu = true;
         model.cartItemCount = 0;
+        model.isLoggedIn = false;
+        model.userName = '';
 
 
         model.$onInit = function () {
+            loginService.isLoggedIn();
         }
 
+        messageService.subscribe('isLoggedInSuccess', function (response) {
+            model.isLoggedIn = true;
+            model.userName = response.userName || '';
+        });
+
+        messageService.subscribe('isLoggedInFailure', function (response) {
+            model.isLoggedIn = false;
+            model.userName = '';
+        });
+
         model.logout = function () {
+            model.isLoggedIn = false;
+            model.userName = '';
             loginService.logout();
         }
 
+        messageService.subscribe('loginSuccess', function (response) {
+            model.isLoggedIn = true;
+            model.userName = response.UserName;
+        });
 
         model.getActiveCart = function () {
             shoppingCartService.getActiveCart();
         };
+
+        model.isAuthenticated = function () {
+            return model.isLoggedIn;
+        }
+
+        messageService.subscribe('logoutSuccess', function (response) {
+            model.isLoggedIn = false;
+            model.userName = '';
+            $location.path("public/home");
+        });
+
+        model.LogoutText = function () {
+
+            return "Logout (" + model.userName + ")";
+        }
 
         model.getActiveCart();
 
@@ -34,28 +68,28 @@
             }
         })
 
-        
+
         messageService.subscribe('updateCartSuccess', function (response) {
             model.getActiveCart();
         })
-        
+
         messageService.subscribe('addProductToCartSuccess', function (response) {
             model.getActiveCart();
         })
 
-         messageService.subscribe('removeCartItemSuccess', function (response) {
+        messageService.subscribe('removeCartItemSuccess', function (response) {
             model.getActiveCart();
         })
 
-         messageService.subscribe('placeOrderSuccess', function (response) {
+        messageService.subscribe('placeOrderSuccess', function (response) {
             model.getActiveCart();
         })
-        $rootScope.$on("userLoggedOut", function() {
+        $rootScope.$on("userLoggedOut", function () {
             delete $sessionStorage.compareList;
             $location.path("public/home");
-       });
+        });
     }
-
+    
     module.component("mainNav", {
         templateUrl: "app/views/shared/components/main-nav/main-nav.component.html",
         controllerAs: "model",
