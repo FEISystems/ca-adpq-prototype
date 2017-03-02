@@ -17,7 +17,7 @@ namespace ca_service.Entities
         [DbColumn(System.Data.DbType.String)]
         public string CLIN { get; set; }
 
-        [DbColumn(System.Data.DbType.String)]
+        [DbColumn(System.Data.DbType.String, IsOptional =true)]
         public string UNSPSC { get; set; }
 
         [DbColumn(System.Data.DbType.String)]
