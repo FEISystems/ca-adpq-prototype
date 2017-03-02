@@ -7,7 +7,7 @@ dotnet build .\ca_proto\ca_proto --configuration Debug
 
 dotnet publish .\ca_proto\ca_proto\project.json --output .\release --configuration Debug
 
-copy-item .\ca_proto\ca_proto\appSettings.release.json .\release\appSettings.json
+copy-item .\ca_proto\ca_proto\appSettings.production.json .\release\appSettings.json
 copy-item .\ca_proto\ca_proto\wwwroot .\release\wwwroot -recurse
 copy-item .\ca_proto\ca_proto\Views .\release\Views -recurse
 
