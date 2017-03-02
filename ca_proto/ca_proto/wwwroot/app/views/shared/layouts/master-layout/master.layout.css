@@ -14,23 +14,12 @@ header {
 ng-transclude.main-container {
   padding-top: 192px;
 }
-@media screen and (min-width: 657px) and (max-width: 950px) {
-  ng-transclude.main-container {
-    padding-top: 172px;
+@media screen and (max-width: 950px) {
+  header {
+    background-repeat: repeat;
+    position: static;
   }
-}
-@media screen and (min-width: 600px) and (max-width: 656px) {
   ng-transclude.main-container {
-    padding-top: 197px;
-  }
-}
-@media screen and (min-width: 418px) and (max-width: 599px) {
-  ng-transclude.main-container {
-    padding-top: 235px;
-  }
-}
-@media screen and (max-width: 417px) {
-  ng-transclude.main-container {
-    padding-top: 257px;
+    padding-top: 0;
   }
 }
