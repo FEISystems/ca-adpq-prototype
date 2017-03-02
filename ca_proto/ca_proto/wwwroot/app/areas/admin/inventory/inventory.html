@@ -166,11 +166,11 @@
                     <tr>
                         <td><button ng-click="model.deleteSelected()" class="usa-button usa-button-secondary">Delete<br/>Selected</button></td>
                         <td colspan="5" style="text-align:center">
-                            &nbsp;<a href="" ng-click="model.firstPage()">|&lt;</a>
-                            &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
+                            &nbsp;<a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a>
+                            &nbsp;<a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a>
                             &nbsp;<span>Page {{model.page + 1}} of {{model.pageCount}}</span>
-                            &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
-                            &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
+                            &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
+                            &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></i></a>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
