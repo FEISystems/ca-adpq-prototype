@@ -1,56 +1,83 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/checkout/checkout.css" />
 <standard-layout>
-    <form class="checkout">
+    <form class="checkout" name="checkoutForm" novalidate>
         <h2 class="usa-heading">Checkout Information</h2>
         <div class="usa-width-one-half">
-            <h3>Order Information</h3>
+            <h3>Order Information&nbsp;&nbsp;
+                <span class="h5" style="color: red; float: right"><strong>*</strong>required</span></h3>
             <div class="name">
-                <label for="input-type-name">Name</label>
-                <input id="input-type-name" ng-model="model.name" name="input-type-name" required type="text">
+                <label for="input-type-name">Name<strong style="color: red" title="Required field">*</strong></label>
+                <input id="input-type-name" ng-model="model.name" name="name" required type="text">
+                <div class="help-block" ng-messages="checkoutForm.name.$error" ng-if="checkoutForm.name.$dirty || submitted" role="alert">
+                    <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                </div>
             </div>
             <!--<div class="department">
                 <label for="input-type-department">Department</label>
                 <input id="input-type-department" ng-model="model.department" name="input-type-department" required type="text">
             </div>-->
             <div class="phone">
-                <label for="input-type-phone">Phone Number</label>
-                <input id="input-type-phone" ng-model="model.phoneNumber" name="input-type-phone" required type="text">
+                <label for="input-type-phone">Phone Number<strong style="color: red" title="Required field">*</strong></label>
+                <input id="input-type-phone" ng-model="model.phoneNumber" name="phone" required type="text">
+                <div class="help-block" ng-messages="checkoutForm.phone.$error" ng-if="checkoutForm.phone.$dirty || submitted" role="alert">
+                    <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                </div>
             </div>
             <div class="email">
-                <label for="input-type-email">Email Address</label>
-                <input id="input-type-email" ng-model="model.emailAddress" name="input-type-email" required type="text">
+                <label for="input-type-email">Email Address<strong style="color: red" title="Required field">*</strong></label>
+                <input id="input-type-email" ng-model="model.emailAddress" name="email" required email type="email">
+                <div class="help-block" ng-messages="checkoutForm.email.$error" ng-if="checkoutForm.email.$dirty || submitted" role="alert">
+                    <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                </div>
             </div>
+            <h3>Ship to</h3>
             <div class="delivery-address1">
-                <label for="input-type-delivery-address1">Address 1</label>
-                <input id="input-type-delivery-address1" ng-model="model.address1" name="input-type-delivery-address1" required type="text">
+                <label for="input-type-delivery-address1">Address 1<strong style="color: red" title="Required field">*</strong></label>
+                <input id="input-type-delivery-address1" ng-model="model.address1" name="address1" required type="text">
+                <div class="help-block" ng-messages="checkoutForm.address1.$error" ng-if="checkoutForm.address1.$dirty || submitted" role="alert">
+                    <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                </div>
             </div>
             <div class="delivery-address2">
                 <label for="input-type-delivery-address2">Address 2</label>
-                <input id="input-type-delivery-address2" ng-model="model.address2" name="input-type-delivery-address2"  type="text">
+                <input id="input-type-delivery-address2" ng-model="model.address2" name="input-type-delivery-address2" type="text">
             </div>
             <div class="delivery-address3">
                 <label for="input-type-delivery-address3">Address 3</label>
-                <input id="input-type-delivery-address3" ng-model="model.address3" name="input-type-delivery-address3"  type="text">
+                <input id="input-type-delivery-address3" ng-model="model.address3" name="input-type-delivery-address3" type="text">
             </div>
             <div class="delivery-city">
-                <label for="input-type-delivery-city">City</label>
-                <input id="input-type-delivery-city" ng-model="model.city" name="input-type-delivery-city" required type="text">
+                <label for="input-type-delivery-city">City<strong style="color: red" title="Required field">*</strong></label>
+                <input id="input-type-delivery-city" ng-model="model.city" name="city" required type="text">
+                <div class="help-block" ng-messages="checkoutForm.city.$error" ng-if="checkoutForm.city.$dirty || submitted" role="alert">
+                    <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                </div>
             </div>
             <div class="delivery-state">
-                <label for="input-type-delivery-state">State</label>
-                <select id="input-type-delivery-state" ng-model="model.state" name="input-type-delivery-state" ng-options="key as value for (key,value) in model.stateOptions" required type="text">
-                   
-               </select>
+                <label for="input-type-delivery-state">State<strong style="color: red" title="Required field">*</strong></label>
+                <select id="input-type-delivery-state" ng-model="model.state" name="state" ng-options="key as value for (key,value) in model.stateOptions"
+                    required type="text">
+                    </select>
+                    <div class="help-block" ng-messages="checkoutForm.state.$error" ng-if="checkoutForm.state.$dirty || submitted" role="alert">
+                        <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                    </div>
             </div>
             <div class="delivery-postalcode">
-                <label for="input-type-delivery-postalcode">Zip Code</label>
-                <input id="input-type-delivery-postalcode" ng-model="model.postalCode" name="input-type-delivery-postalcode" required type="text">
+                <label for="input-type-delivery-postalcode">Zip Code<strong style="color: red" title="Required field">*</strong></label>
+                <input id="input-type-delivery-postalcode" ng-model="model.postalCode" name="postalcode" required type="text">
+                <div class="help-block" ng-messages="checkoutForm.postalcode.$error" ng-if="checkoutForm.postalcode.$dirty || submitted" role="alert">
+                    <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                </div>
             </div>
             <div class="payment">
-                <label for="input-type-payment">Payment Account</label>
-                <select id="input-type-payment" ng-model="model.paymentAccount" name="input-type-payment" ng-options="key*1 as value for (key,value) in model.paymentOptions" required type="text">
-                   
-               </select>
+                <label for="input-type-payment">Payment Account<strong style="color: red" title="Required field">*</strong></label>
+                <select id="input-type-payment" ng-model="model.paymentAccount" name="payment" ng-options="key*1 as value for (key,value) in model.paymentOptions"
+                    required type="text">
+
+                    </select>
+                    <div class="help-block" ng-messages="checkoutForm.payment.$error" ng-if="checkoutForm.payment.$dirty || submitted" role="alert">
+                        <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
+                    </div>
             </div>
         </div>
         <div class="usa-width-one-half order-summary">
@@ -70,7 +97,8 @@
                 </div>
 
                 <div class="usa-grid-full text-right">
-                    {{item.Price * item.Quantity | currency}}/ea.
+                    <strong class="">{{item.Price * item.Quantity | currency}}</strong><br>   
+                    <i class="h5">{{item.Price | currency}} /ea.</i>
                 </div>
                 <div class="clear" ng-show="model.cartItems.length > 1">
                     <hr ng-show="model.cartItems.length != $index + 1" />
@@ -82,10 +110,10 @@
                 <div class="usa-width-one-half">Total:</div>
                 <div class="usa-width-one-half text-right">{{model.cartTotal | currency}}</div>
             </div>
-        </form>
+    </form>
     </div>
     <div class="clear usa-width-one-whole" style="margin-top: 20px; text-align: right">
         <button class="usa-button-secondary" ng-click="backToCart()">Back to Cart</button>
-        <button class="usa-button-secondary" type="submit" ng-click="continueCheckout()">Continue</button>
+        <button class="usa-button-secondary" type="submit" ng-click="continueCheckout(checkoutForm)">Continue</button>
     </div>
 </standard-layout>

@@ -8,7 +8,7 @@
         model.title = "Reports";
         model.tab = 0;
         model.height = 400;
-        model.width = 750;
+        model.width = 700;
         model.orderProducts = [];
         model.orderProductsOnPage = [];
         model.orderProductQuery = { Start: 0, End: 0 };
@@ -31,7 +31,7 @@
         model.trendDatePadding = 100;
         model.moneyAxisPadding = 100;
         model.grandTotal = 0;
-        model.expendituresOverTime = [];
+        model.expendituresOverTime = [];        
 
         (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
@@ -39,7 +39,7 @@
             chart.context = context;
             chart.height = height;
             chart.width = width;
-            chart.radius = Math.floor(Math.min(chart.height, chart.width) / 2);
+            chart.radius = Math.floor(Math.min(chart.height, chart.width) / 2) - 5;
             chart.centerX = Math.floor(chart.width / 2) + centerXOffset;
             chart.centerY = Math.floor(chart.height / 2);
 
@@ -104,7 +104,7 @@
         };
 
         model.getFilteredProducts = function () {
-            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.len == 0) {
+            if (!model.orderProductQuery.OrderStatus || model.orderProductQuery.OrderStatus.length == 0) {
                 //if no order status is chosen to filter then return all rows
                 return model.orderProducts;
             }
@@ -167,6 +167,9 @@
         };
 
         model.drawLabels = function (context, left) {
+            for (var i = 0; i < 3; i++) {
+                model.drawTextBackground(context, left - 3, 17 + i * 20, 100, 16);
+            }
             model.drawCustomLabels(context, left, 20,
                 [
                     { color: model.hardwareColor, text: "Hardware" },
@@ -211,28 +214,71 @@
 
         model.showExpendituresByContractor = function () {
             model.drawExpendituresByContractor(3, "contractorCanvas", true);
+            model.drawWrappedLabels("contractorLabelCanvas", model.contractors, model.contractorColumnWidth);
+        };
+
+        model.drawWrappedLabels = function (canvasName, items, widthPerItem) {
+            var canvas = document.getElementById(canvasName);
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.textAlign = "center";
+            context.fillStyle = "Black";
+            context.font = "16px Verdana";
+            for (var i = 0; i < items.length; i++) {
+                model.drawWrappedLabel(context, items[i], widthPerItem * i, widthPerItem);
+            }            
+            context.textAlign = "left";
+        };
+
+        model.drawWrappedLabel = function (context, text, left, width) {
+            if (left != 0) {
+                context.moveTo(left, 0);
+                context.lineTo(left, 100);
+                context.strokeStyle = "#d3d3d3";
+                context.stroke();
+            }
+            var parts = text.split(" ");
+            if (parts.length < 1)
+                return;
+            var center = left + width / 2;
+            var top = 20;
+            var drawText = parts[0];
+            for (var i = 1; i < parts.length; i++) {
+                var textWidth = context.measureText(drawText + " " + parts[i]).width;
+                if (textWidth > (width - 10)) {
+                    context.fillText(drawText, center, top);
+                    top += 20;
+                    drawText = parts[i];
+                }
+                else {
+                    drawText += " " + parts[i];
+                }
+            }
+            if (drawText.length != 0) {
+                context.fillText(drawText, center, top);
+            }
         };
 
         model.drawTotals = function (context, totals, width, height) {
             //draw the data
-            var padding = 20 * (totals.length + 1);
-            var usableWidth = width - padding;
+            var padding = 20 * totals.length ;
+            var usableWidth = width -padding;
             var columnWidth = Math.floor(usableWidth / totals.length / 3) - 2;
-            var left = 22;
+            var left = 11;
             for (var i = 0; i < totals.length; i++) {
                 var values = totals[i];
                 var barHeight = Math.floor(height * values.hardwareTotal);
-                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.hardwareColor);
+                model.drawBar(context, left, height -barHeight, columnWidth, barHeight, model.hardwareColor);
 
-                left += columnWidth + 2;
+                left += columnWidth +2;
                 barHeight = Math.floor(height * values.softwareTotal);
-                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.softwareColor);
+                model.drawBar(context, left, height -barHeight, columnWidth, barHeight, model.softwareColor);
 
-                left += columnWidth + 2;
+                left += columnWidth +2;
                 var barHeight = Math.floor(height * values.serviceTotal);
-                model.drawBar(context, left, height - barHeight, columnWidth, barHeight, model.serviceColor);
+                model.drawBar(context, left, height -barHeight, columnWidth, barHeight, model.serviceColor);
 
-                left += columnWidth + 2 + 20;
+                left += columnWidth +2 +20;
             }
 
         };
@@ -355,9 +401,20 @@
                 }
                 if (dollarLevels[i] == 0)
                     continue;
-                context.fillText(model.toMoney(dollarLevels[i]), 5, y + 15);
+                var text = model.toMoney(dollarLevels[i]);
+                var textWidth = context.measureText(text).width;
+                model.drawTextBackground(context, 2, y + 1, textWidth + 5, 17);
+                context.fillText(text, 5, y +15);
             }
         };
+
+        model.drawTextBackground = function (context, left, top, width, height) {
+            context.globalAlpha = 0.6;
+            context.fillStyle = "#EEEEEE";
+            context.fillRect(left, top, width, height);
+            context.globalAlpha = 1;
+            context.fillStyle = "Black";
+        }
 
         model.getDateLabels = function () {
             var start = new Date(model.orderProductQuery.Start);
@@ -458,11 +515,7 @@
                 orderOfMagnitude *= 10;
             }
             orderOfMagnitude /= 100;
-            var temp = orderOfMagnitude;
-            while (temp < max) {
-                temp += orderOfMagnitude;
-            }
-            return temp;
+            return Math.ceil(max / orderOfMagnitude) * orderOfMagnitude;
         };
 
         model.findMaxTotalInTrend = function (trend) {
@@ -536,7 +589,7 @@
             if (!accounts || accounts.length == 0)
                 return;
             model.paymentAccounts = accounts;
-            model.paymentAccountColumnWidth = Math.floor(model.width / model.paymentAccounts.length);
+            model.paymentAccountColumnWidth = Math.floor(canvas.width / model.paymentAccounts.length);
             var totals = model.initializeTotals(accounts.length);
             model.calculateTotals(totals, accounts, "PaymentMethod");
             var max = model.normalizeTotals(totals);
@@ -549,6 +602,7 @@
 
         model.showPurchasesByAccount = function () {
             model.drawPurchasesByAccount(4, "purchasesCanvas", true);
+            model.drawWrappedLabels("accountLabelCanvas", model.paymentAccounts, model.paymentAccountColumnWidth);
         };
 
         model.calculateTotals = function (totals, list, key) {
@@ -695,6 +749,15 @@
             model.drawExpendituresByProductType(0, "productTypeCanvasDashboard", false);
             model.drawExpendituresByContractor(0, "contractorCanvasDashboard", false);
             model.drawPurchasesByAccount(0, "purchasesCanvasDashboard", false);
+        };
+
+        model.showAllCharts = function() {
+            model.drawDataTrends(10, "purchaseTrendsCanvas", true);
+            model.drawExpendituresByProductType(10, "productTypeCanvas", true);
+            model.drawExpendituresByContractor(10, "contractorCanvas", true);
+            model.drawPurchasesByAccount(10, "purchasesCanvas", true);
+            model.drawWrappedLabels("contractorLabelCanvas", model.contractors, model.contractorColumnWidth);
+            model.drawWrappedLabels("accountLabelCanvas", model.paymentAccounts, model.paymentAccountColumnWidth);
         };
 
         messageService.subscribe('getOrderProductsSuccess', function (response) {

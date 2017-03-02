@@ -4,15 +4,21 @@
         <h2 class="usa-heading">Your Cart</h2>
         <div class="usa-width-one-whole">
             <div class="items-in-cart-header">
-                ({{model.cart.Items.length}}) items in your cart
+                ({{model.cartItemCount}}) items in your cart
             </div>
 
             <div ng-repeat="item in model.cartItems" class="items-in-cart usa-grid">
                 <div class="usa-width-one-sixth">
-                    <img ng-src="api/image/{{model.products[$index].ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
+                    <a ng-link="['Product Details', { id : item.Id }]">
+                        <img ng-src="api/image/{{model.products[$index].ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
+                    </a>
                 </div>
                 <div class="usa-width-one-half">
-                    <div><strong>{{model.products[$index].Title}}</strong></div>
+                    <div>
+                        <a ng-link="['Product Details', { id : item.ProductId }]">
+                            <strong>{{model.products[$index].Title}}</strong>
+                        </a>
+                    </div>
                     <div class="item-info">{{item.SKU}}</div>
                     <div class="item-info">{{item.Category}}</div>
                 </div>
@@ -24,13 +30,17 @@
                     </span>
                 </div>
                 <div class="usa-width-one-twelfth text-right">
-                    <span><strong>{{item.Price * item.Quantity | currency}}</strong></span><br>
+                    <span><strong>{{item.Price * (item.Quantity || 0) | currency}}</strong></span><br>
                     <a role="button" ng-click="removeThisItem(item.Id)">Remove</a>
                 </div>
-                
+
             </div>
 
-            <div class="usa-width-one-whole total">
+            <div class="usa-grid" ng-show="model.cartItemCount == 0" style="padding: 40px 20px">
+                <p class="h3">You have (0) items in your cart. <a ng-link="['Home']">Continue shopping</a>.</p>
+            </div>
+
+            <div class="usa-width-one-whole total" ng-hide="model.cartItemCount == 0">
                 <div class="usa-width-one-half">
                     <h4>Total</h4>
                 </div>
@@ -40,9 +50,14 @@
                     </h4>
                 </div>
             </div>
-            <div class="buttons">
-                <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
-                <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
+            <div class="buttons" ng-hide="model.cartItemCount == 0">
+                <div class="left">
+                    <button class="usa-button-secondary" ng-link="['Home']">Continue Shopping</button>
+                </div>
+                <div class="right">
+                    <button class="usa-button-secondary" ng-click="updateCart()">Update Cart</button>
+                    <button class="usa-button-secondary" ng-click="proceedToCheckOut()">Proceed to Checkout</button>
+                </div>
             </div>
         </div>
     </div>

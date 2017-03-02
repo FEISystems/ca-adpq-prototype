@@ -9,12 +9,20 @@
             <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
             <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
             <li><a href="" ng-click="model.showPurchaseTrends()" ng-class="{'usa-current' : model.tab == 6}">Purchase Trends</a></li>
+            <li><a href="" ng-click="model.showAllCharts()" ng-class="{'usa-current' : model.tab == 10}">Expand All Charts</a></li>
             <li><a href="" ng-click="model.showExpendituresOverTime()" ng-class="{'usa-current' : model.tab == 7}">Expenditures Over Time</a></li>
             <li><a href="" ng-click="model.showRawData()" ng-class="{'usa-current' : model.tab == 5}">Raw Data</a></li>
         </ul>    
     </aside>
-
-    <div class="usa-width-two-thirds" permission="['Admin']" style="page-break-before:always;">
+    <style>
+        canvas.clickable {
+            cursor:pointer;
+        }
+        div.pageBreak {
+            page-break-before:always;
+        }
+    </style>
+    <div class="usa-width-two-thirds" permission="['Admin']">
         <div ng-show="model.tab == 0">
             <table style="margin-top:5px;">
                 <tr>
@@ -37,49 +45,45 @@
                 <tr>
                     <td style="padding:2px 10px;">
                         <h3 class="usa-heading" style="margin-top:10px;">Expenditures by Product Type</h3>
-                        <canvas id="productTypeCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showExpendituresByProductType()"> </canvas>
+                        <canvas id="productTypeCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showExpendituresByProductType()"> </canvas>
                     </td>
                     <td style="padding:2px 10px;">
                         <h3 class="usa-heading" style="margin-top:10px;">Expenditures by Contractor</h3>
-                        <canvas id="contractorCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showExpendituresByContractor()"></canvas>
+                        <canvas id="contractorCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showExpendituresByContractor()"></canvas>
                     </td>
                 </tr>
                 <tr>
                     <td style="padding:2px 10px;">
                         <h3 class="usa-heading" style="margin-top:10px;">Purchases by Account</h3>
-                        <canvas id="purchasesCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showPurchasesByAccount()"></canvas>
+                        <canvas id="purchasesCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showPurchasesByAccount()"></canvas>
                     </td>
                     <td style="padding:2px 10px;">
                         <h3 class="usa-heading" style="margin-top:10px;">Purchase Trends by Account</h3>
-                        <canvas id="purchaseTrendsCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-click="model.showPurchaseTrends()"></canvas>
+                        <canvas id="purchaseTrendsCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showPurchaseTrends()"></canvas>
                     </td>
                 </tr>
                 <tr><th colspan="2" style="text-align:center;padding:2px;">{{model.responseMessage}}</th></tr>
             </table>
         </div>
 
-        <div ng-show="model.tab == 2">
+        <div ng-show="model.tab == 2 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Expenditures by Product Type</h3>
-            <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width}}"> </canvas>
+            <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}"> </canvas>
         </div>
-
-        <div ng-show="model.tab == 3">
+        <div style="height:50px" ng-show="model.tab == 10" />
+        <div ng-show="model.tab == 3 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Expenditures by Contractor</h3>
-            <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
-            <table style="width:{{model.width}}px;text-align:center;padding:0">
-                <tr style="width:{{model.width}}px;padding:0"><td ng-repeat="contractor in model.contractors" style="width:{{model.contractorColumnWidth}}px;">{{contractor}}</td></tr>
-            </table>
+            <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="contractorLabelCanvas" height="100" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
-
-        <div ng-show="model.tab == 4">
+        <div style="height:50px" ng-show="model.tab == 10" />
+        <div ng-show="model.tab == 4 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Purchases by Account</h3>
-            <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width}}" style="border:1px solid #d3d3d3;"></canvas>
-            <table style="width:{{model.width}}px;text-align:center;padding:0">
-                <tr style="width:{{model.width}}px;padding:0"><td ng-repeat="account in model.paymentAccounts" style="width:{{model.paymentAccountColumnWidth}}px;">{{account}}</td></tr>
-            </table>
+            <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="accountLabelCanvas" height="100" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
-
-        <div ng-show="model.tab == 6">
+        <div style="height:50px" ng-show="model.tab == 10" />
+        <div ng-show="model.tab == 6 || model.tab == 10" class="pageBreak">
             <h3 class="usa-heading">Purchase Trends by Account</h3>
             <canvas id="purchaseTrendsCanvas" height="{{model.height + model.trendDatePadding + (20 * model.paymentAccounts.length)}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
         </div>
@@ -114,11 +118,11 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="6" style="text-align:center;">
-                        <a href="" ng-click="model.firstPage()">|&lt;</a>
-                        &nbsp;<a href="" ng-click="model.priorPage()">&lt;&lt;</a>
+                        <a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a>
+                        &nbsp;<a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a>
                         &nbsp;<span>Page {{model.pageIndex + 1}} of {{model.numberOfPages}}</span>
-                        &nbsp;<a href="" ng-click="model.nextPage()">&gt;&gt;</a>
-                        &nbsp;<a href="" ng-click="model.lastPage()">&gt;|</a>
+                        &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
+                        &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
                         <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.pageCount" ng-options="count for count in model.pageCounts" ng-change="model.firstPage()"></select>
                     </td>
@@ -129,7 +133,7 @@
             </table>
         </div>
 
-        <div ng-show="model.tab == 7">
+        <div ng-show="model.tab == 7" class="pageBreak">
             <h3 class="usa-heading">Expenditures Over a Period of Time</h3>
             <table style="font-size:small">
                 <thead>

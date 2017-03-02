@@ -2,7 +2,8 @@
 <standard-layout>
    <div class="order-confirmation">
        <h2 class="usa-heading">Order Confirmation</h2>
-       <p>Thank you for your purchase. You may visit your <a ng-link="['Order History']">Order History</a> to review all orders.</p>
+       <p>Thank you for shopping with us. A confirmation of this purchase will be sent by email.
+        Your order number is <a ng-href="/#/user/orderdetails?id={{model.productId}}">{{model.productId}}</a> . To review all orders, visit your <a ng-link="['Order History']">Order History</a>.</p>
        <button ng-click="continueShopping()" class="usa-button-secondary right">Continue Shopping</button>
    </div>
 </standard-layout>

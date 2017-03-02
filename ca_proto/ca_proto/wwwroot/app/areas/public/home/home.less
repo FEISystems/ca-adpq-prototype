@@ -1,12 +1,14 @@
 .swiper-container {
-    height: 400px;
+    height: 350px;
     .swiper-button-prev,
     .swiper-container-rtl .swiper-button-next {
         left: 5%;
+        margin-top: -40px;
     }
     .swiper-button-next,
     .swiper-container-rtl .swiper-button-prev {
         right: 5%;
+        margin-top: -40px;
     }
     .swiper-wrapper {
         .swiper-slide {
@@ -25,19 +27,31 @@
         background-image: url(../../../../img/heroImage1_2500.jpg);
         .text {
             h2 {
-                font-size: 3em;
+                font-size: 2.5em;
+                text-align: left;
             }
             p {
                 font-size: 1.25em;
+                font-family: "Merriweather", "Georgia", "Cambria", "Times New Roman", "Times", serif;
             }
             float: right;
             text-align: left;
-            margin-right: 20%;
+            margin-right: 15%;
         }
     }
     
     .hero2 {
         background-image: url(../../../../img/heroImage2_2500.jpg);
+        .text {
+            h3 {
+                font-size: 2em;
+                color: #fff;
+                text-align: left;
+                margin-left: 10%;
+                padding-top: 5%;
+                margin-top: 0;
+            }
+        }
     }
     
     .hero3 {
@@ -68,4 +82,8 @@
     border-top: 1px solid #B6B8BD;
     border-bottom: 1px solid #B6B8BD;
     padding-bottom: 20px;
+}
+
+.state-logos {
+    margin-right: 4%;
 }

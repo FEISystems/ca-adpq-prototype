@@ -26,6 +26,7 @@
                 <label for="input-type-email">Email Address</label>
                 <input id="input-type-email" ng-model="model.emailAddress" name="input-type-email" required type="text" readonly="readonly">
             </div>
+            <h3>Ship to</h3>
             <div class="delivery-address1">
                 <label for="input-type-delivery-address1">Address 1</label>
                 <input id="input-type-delivery-address1" ng-model="model.address1" name="input-type-delivery-address1" required type="text" readonly="readonly">
@@ -77,7 +78,8 @@
                 </div>
 
                 <div class="usa-grid-full text-right">
-                    {{item.Price * item.Quantity | currency}}/ea.
+                    <strong class="">{{item.Price * item.Quantity | currency}}</strong><br>   
+                    <i class="h5">{{item.Price | currency}} /ea.</i>
                 </div>
                 <div class="clear" ng-show="model.cartItems.length > 1">
                     <hr ng-show="model.cartItems.length != $index + 1" />

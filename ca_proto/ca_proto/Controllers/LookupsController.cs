@@ -19,14 +19,16 @@ namespace ca_proto.Controllers
         private readonly ICategoryService categoryService;
         private readonly IContractorService contractorService;
         private readonly IImageService imageService;
+        private readonly IInventoryService inventoryService;
 
         public LookupsController(IContractService contractService, ICategoryService categoryService,
-            IContractorService contractorService, IImageService imageService)
+            IContractorService contractorService, IImageService imageService, IInventoryService inventoryService)
         {
             this.contractService = contractService;
             this.categoryService = categoryService;
             this.contractorService = contractorService;
             this.imageService = imageService;
+            this.inventoryService = inventoryService;
         }
 
         [HttpGet("ProductTypes")]
@@ -87,6 +89,12 @@ namespace ca_proto.Controllers
         public IActionResult OrderStatusSimple()
         {
             return Json(Enum.GetValues(typeof(OrderStatus)).Cast<OrderStatus>().Select(item => item.ToString()));
+        }
+
+        [HttpGet("Manufacturer")]
+        public IActionResult Manufacturer()
+        {
+            return Json(inventoryService.GetManufacturerNames().OrderBy(item => item));
         }
     }
 }

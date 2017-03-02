@@ -14,10 +14,25 @@ main-nav ul li {
   display: inline-block;
   margin-right: 40px;
 }
+main-nav ul:first-of-type li {
+  z-index: 501;
+  position: relative;
+}
 main-nav ul.text-right li {
   margin-right: 0px;
   margin-left: 40px;
 }
-main-nav .logout:hover {
+main-nav a:hover {
   cursor: pointer;
+}
+main-nav .ca-badge {
+  background-color: #cd2026;
+  color: white !important;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 2px 10px;
+  text-align: center;
+  min-width: 26px;
+  font-weight: bold;
+  text-decoration: none !important;
 }

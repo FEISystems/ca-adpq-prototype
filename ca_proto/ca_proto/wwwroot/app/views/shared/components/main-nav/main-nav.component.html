@@ -1,19 +1,27 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/main-nav/main-nav.component.css" />
 
 <div id="main-nav" role="navigation" class="usa-grid">
-    <div class="usa-width-one-twelfth">
-        <ul class="usa-unstyled-list" permission="['Admin']">
-            <li><a ng-link="['Admin Home']" >Admin</a></li>
+    <div class="usa-width-one-third">
+        <ul class="usa-unstyled-list" >
+            <li permission="['Admin']"><a ng-link="['Admin Home']" >Admin</a></li>
             <!--<li><a ng-link="['Login Register']">Login/Register</a></li>-->
             <!--<li><a ng-link="['About Us']">About Us</a></li>-->
             <!--<li><a ng-link="['Help']">Help Desk</a></li>-->
+            <li permission="['Authorized User', 'Admin']"><a ng-link="['Order History']" >My Order History</a></li>
         </ul>
     </div>
-    <div class="usa-width-eleven-twelfths">
+    <!--<div class="usa-width-one-fourth">
+        <ul class="usa-unstyled-list" permission="['Authorized User', 'Admin']">
+          
+        </ul>
+    </div>-->
+    <div class="usa-width-two-thirds ">
         <ul class="usa-unstyled-list text-right">            
-            <li><a ng-link="['Cart']">Cart</a></li>
-            <li><a ng-link="['Compare List']">Compare List</a></li>
-            <li><a ng-click="model.logout()" class="logout">Logout</a></li>
+            <li><a ng-link="['Cart']">Cart</a> <span class="ca-badge">{{model.cartItemCount}}</span></li>
+            <li>
+                <a ng-link="['Compare List']">Compare List</a>&nbsp;<compare-popup></compare-popup>
+            </li>
+            <li><a ng-click="model.logout()">Logout</a></li>
         </ul>
     </div>
 </div>

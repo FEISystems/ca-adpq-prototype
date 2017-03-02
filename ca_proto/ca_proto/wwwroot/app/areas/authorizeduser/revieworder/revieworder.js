@@ -17,7 +17,7 @@
             4: "California Department of Education"
         }
 
-        
+
         model.stateOptions = {
             "AL": "Alabama",
             "AK": "Alaska",
@@ -91,15 +91,15 @@
             return $rootScope.orderInfo == null
         }
 
-        model.getActiveCart = function () {
-            shoppingCartService.getActiveCart();
+        model.getCheckOutCart = function () {
+            shoppingCartService.getCheckOutCart();
         };
 
-        model.getActiveCart();
+        model.getCheckOutCart();
 
 
-        model.getProduct = function (productId) {
-            inventoryService.getProduct(productId);
+        model.getProductDetails = function (productId) {
+            inventoryService.getProductDetails(productId);
         };
 
         $scope.backToCart = function () {
@@ -122,48 +122,52 @@
                 paymentAccount: model.paymentAccount
             };
             $location.path("user/checkout");
-            
+
         }
 
         $scope.placeOrder = function () {
             orderService.placeOrder(model.cart.Id, model.paymentAccount, model.address1, model.address2, model.address3, model.city, model.state, model.postalCode, model.emailAddress)
-            
-    }
+
+        }
 
         $scope.showDivider = function () {
             return model.cartItems.length > 1;
         }
 
 
-        messageService.subscribe('getActiveCartSuccess', function (response) {
+        messageService.subscribe('getCheckOutCartSuccess', function (response) {
             model.cart = response;
             model.cartItems = model.cart.Items;
 
             for (var idx = 0; idx < model.cart.Items.length; ++idx) {
                 var product = model.cart.Items[idx];
-                model.getProduct(product.ProductId);
+                model.getProductDetails(product.ProductId);
             }
 
             for (var idx = 0; idx < model.cartItems.length; ++idx) {
                 var item = model.cartItems[idx];
-                model.cartTotal += item.Price * item.Quantity;
+                model.cartTotal += (item.Price * item.Quantity);
             }
         })
 
-        messageService.subscribe('getActiveCartFailure', function (response) {
+        messageService.subscribe('getCheckOutCartFailure', function (response) {
             model.cart = [];
         })
 
-        messageService.subscribe('getProductSuccess', function (response) {
+        messageService.subscribe('getProductDetailsSuccess', function (response) {
             model.products.push(response);
         })
 
-        messageService.subscribe('getProductFailure', function (response) {
+        messageService.subscribe('getProductDetailsFailure', function (response) {
             model.product = [];
         })
 
         messageService.subscribe("placeOrderSuccess", function (response) {
-            $location.path("user/orderconfirmation");
+
+            delete $rootScope.orderInfo
+
+            $location.path("user/orderconfirmation/" + response.Id);
+
         });
 
         messageService.subscribe("placeOrderFailure", function (response) {

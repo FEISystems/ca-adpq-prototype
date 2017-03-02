@@ -17,11 +17,8 @@
                             <div class="usa-width-one-sixth mid-half mid-end">
                                 <div class="search-field">
                                     <label for="category">Category</label>
-                                    <select id="category" ng-model="model.category">
+                                    <select id="category" ng-model="model.category" ng-options="item for item in model.categories">
                                         <option value=""></option>
-                                        <option value="Hardware">Hardware</option>
-                                        <option value="Software">Software</option>
-                                        <option value="Service">Service</option>
                                     </select>
                                 </div>
                             </div>
@@ -42,10 +39,8 @@
                             <div class="usa-width-one-sixth mid-half mid-end">
                                 <div class="search-field">
                                     <label for="manufacturer">Manufacturer</label>
-                                    <select id="manufacturer" ng-model="model.manufacturer">
+                                    <select id="manufacturer" ng-model="model.manufacturer" ng-options="item for item in model.manufacturers">
                                         <option value=""></option>
-                                        <option value="Dell">Dell</option>
-                                        <option value="HP">HP</option>
                                     </select>
                                 </div>
                             </div>
@@ -105,7 +100,7 @@
                 <tr ng-repeat="product in model.products" ng-show="model.products.length > 0">
                     <td scope="col">{{product.Title}}</td>
                     <td scope="col">{{product.Category}}</td>
-                    <td scope="col">{{product.ContractPrice}}</td>
+                    <td scope="col">{{product.ContractPrice|currency}}</td>
                     <td scope="col">{{product.Manufacturer}}</td>
                     <td scope="col">{{product.ManufacturerPartNumber}}</td>
                     <td scope="col">{{product.SKU}}</td>
