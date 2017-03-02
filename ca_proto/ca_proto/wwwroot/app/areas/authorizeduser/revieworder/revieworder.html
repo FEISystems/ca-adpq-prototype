@@ -78,7 +78,8 @@
                 </div>
 
                 <div class="usa-grid-full text-right">
-                    {{item.Price * item.Quantity | currency}}/ea.
+                    <strong class="">{{item.Price * item.Quantity | currency}}</strong><br>   
+                    <i class="h5">{{item.Price | currency}} /ea.</i>
                 </div>
                 <div class="clear" ng-show="model.cartItems.length > 1">
                     <hr ng-show="model.cartItems.length != $index + 1" />

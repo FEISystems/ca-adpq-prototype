@@ -47,6 +47,10 @@
             model.getActiveCart();
         })
 
+         messageService.subscribe('placeOrderSuccess', function (response) {
+            model.getActiveCart();
+        })
+
 
 
     }

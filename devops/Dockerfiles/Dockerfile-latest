@@ -1,7 +1,7 @@
 FROM microsoft/aspnetcore:1.0
 
 # Set ASP.NET Core environment variables
-ENV ASPNETCORE_URLS="http://*:5000"
+ENV ASPNETCORE_URLS="http://*:5000;https://*:5443"
 ENV ASPNETCORE_ENVIRONMENT="Development"
 
 # Copy files to app directory
