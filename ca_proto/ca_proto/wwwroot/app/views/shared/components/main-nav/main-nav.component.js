@@ -58,8 +58,8 @@
 
         model.getActiveCart();
 
-
-        messageService.subscribe('getActiveCartSuccess', function (response) {
+        function processResponse(response)
+        {
             model.cart = response;
             model.cartItemCount = 0;
             if (model.cart.Items) {
@@ -67,20 +67,15 @@
                     model.cartItemCount += model.cart.Items[i].Quantity;
                 }
             }
-        })
+        }
 
+        messageService.subscribe('getActiveCartSuccess', processResponse)
 
-        messageService.subscribe('updateCartSuccess', function (response) {
-            model.getActiveCart();
-        })
+        messageService.subscribe('updateCartSuccess', processResponse)
 
-        messageService.subscribe('addProductToCartSuccess', function (response) {
-            model.getActiveCart();
-        })
+        messageService.subscribe('addProductToCartSuccess', processResponse)
 
-        messageService.subscribe('removeCartItemSuccess', function (response) {
-            model.getActiveCart();
-        })
+        messageService.subscribe('removeCartItemSuccess', processResponse)
 
         messageService.subscribe('placeOrderSuccess', function (response) {
             model.getActiveCart();
