@@ -9,7 +9,7 @@ QC servers are hosted on the internal FEi cloud and not accessible from outside 
 
 **MySQL**
 
-docker run --name ca-adpq-db-latest -p 3306:3306 -v /var/mysql-data/ca-adpq-db-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
+docker run --name ca-adpq-db-latest -p 3306:3306 -v /var/mysql-data/ca-adpq-db-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 
@@ -28,7 +28,7 @@ QC servers are hosted on the internal FEi cloud and not accessible from outside 
 
 **MySQL**
 
-docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-stable:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
+docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-stable:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 
@@ -39,7 +39,7 @@ Production servers are available to the public.  Links are provided below.
 
 **MySQL**
 
-docker run --name ca-adpq-db-production -p 3306:3306 -v /var/mysql-data/ca-adpq-db-production:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
+docker run --name ca-adpq-db-production -p 3306:3306 -v /var/mysql-data/ca-adpq-db-production:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 
