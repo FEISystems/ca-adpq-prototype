@@ -1,0 +1,171 @@
+﻿<link rel='stylesheet' type="text/css" href="app/areas/admin/inventory/inventory.css" />
+<standard-layout>
+    <unauthorized-page  authorized="['Admin']"></unauthorized-page>
+    <aside class="usa-width-one-fourth" permission="['Admin']">
+        <h2 style="margin-top:25px">{{model.title}}</h2>
+        <ul class="usa-sidenav-list">
+            <li><a href="" ng-click="model.showDashboard()" ng-class="{'usa-current' : model.tab == 0}">Dashboard</a></li>
+            <li><a href="" ng-click="model.showExpendituresByProductType()" ng-class="{'usa-current' : model.tab == 2}">Expenditures by Product Type</a></li>
+            <li><a href="" ng-click="model.showExpendituresByContractor()" ng-class="{'usa-current' : model.tab == 3}">Expenditures by Contractor</a></li>
+            <li><a href="" ng-click="model.showPurchasesByAccount()" ng-class="{'usa-current' : model.tab == 4}">Purchases by Account</a></li>
+            <li><a href="" ng-click="model.showPurchaseTrends()" ng-class="{'usa-current' : model.tab == 6}">Purchase Trends</a></li>
+            <li><a href="" ng-click="model.showAllCharts()" ng-class="{'usa-current' : model.tab == 10}">Expand All Charts</a></li>
+            <li><a href="" ng-click="model.showExpendituresOverTime()" ng-class="{'usa-current' : model.tab == 7}">Expenditures Over Time</a></li>
+            <li><a href="" ng-click="model.showRawData()" ng-class="{'usa-current' : model.tab == 5}">Report Data</a></li>
+        </ul>    
+    </aside>
+    <style>
+        canvas.clickable {
+            cursor:pointer;
+        }
+        div.pageBreak {
+            page-break-before:always;
+        }
+    </style>
+    <div class="usa-width-two-thirds" permission="['Admin']">
+        <div ng-show="model.tab == 0">
+            <table style="margin-top:5px;">
+                <tr>
+                    <td style="padding:2px 10px;">
+                        <form id="orderProductQueryFormDashboard" name="orderProductQueryFormDashboard"
+                              ng-submit="orderProductQueryFormDashboard.$valid && model.fetchOrderProducts()" novalidate>
+                            Start Date<br />
+                            <input type="text" ng-model="model.orderProductQuery.Start" required />
+                            End Date<br />
+                            <input type="text" ng-model="model.orderProductQuery.End" required />
+                            <center>
+                                <input type="submit" value="Run Report" style="margin:2px 0px;" ng-disabled="!orderProductQueryFormDashboard.$valid" />
+                            </center>
+                        </form>
+                    </td>
+                    <td>
+                        Order Status [optional] (Note: does not impact raw results)
+                        <select ng-model="model.orderProductQuery.OrderStatus" ng-options="status for status in model.orderStatuses" multiple style="height:90px;" ng-change="model.drawDashboard()"></select>
+                    </td>
+                <tr>
+                    <td style="padding:2px 10px;">
+                        <h3 class="usa-heading" style="margin-top:10px;">Expenditures by Product Type</h3>
+                        <canvas id="productTypeCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showExpendituresByProductType()"> </canvas>
+                    </td>
+                    <td style="padding:2px 10px;">
+                        <h3 class="usa-heading" style="margin-top:10px;">Expenditures by Contractor</h3>
+                        <canvas id="contractorCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showExpendituresByContractor()"></canvas>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:2px 10px;">
+                        <h3 class="usa-heading" style="margin-top:10px;">Purchases by Account</h3>
+                        <canvas id="purchasesCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showPurchasesByAccount()"></canvas>
+                    </td>
+                    <td style="padding:2px 10px;">
+                        <h3 class="usa-heading" style="margin-top:10px;">Purchase Trends by Account</h3>
+                        <canvas id="purchaseTrendsCanvasDashboard" height="{{model.height/2}}" width="{{model.width/2}}" style="border:1px solid #d3d3d3;" ng-class="model.orderProducts.length && 'clickable'" ng-click="model.showPurchaseTrends()"></canvas>
+                    </td>
+                </tr>
+                <tr><th colspan="2" style="text-align:center;padding:2px;">{{model.responseMessage}}</th></tr>
+            </table>
+        </div>
+
+        <div ng-show="model.tab == 2 || model.tab == 10" class="pageBreak">
+            <h3 class="usa-heading">Expenditures by Product Type</h3>
+            <canvas id="productTypeCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"> </canvas>
+        </div>
+        <div style="height:50px" ng-show="model.tab == 10" />
+        <div ng-show="model.tab == 3 || model.tab == 10" class="pageBreak">
+            <h3 class="usa-heading">Expenditures by Contractor</h3>
+            <canvas id="contractorCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="contractorLabelCanvas" height="100" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+        </div>
+        <div style="height:50px" ng-show="model.tab == 10" />
+        <div ng-show="model.tab == 4 || model.tab == 10" class="pageBreak">
+            <h3 class="usa-heading">Purchases by Account</h3>
+            <canvas id="purchasesCanvas" height="{{model.height}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+            <canvas id="accountLabelCanvas" height="100" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+        </div>
+        <div style="height:50px" ng-show="model.tab == 10" />
+        <div ng-show="model.tab == 6 || model.tab == 10" class="pageBreak">
+            <h3 class="usa-heading">Purchase Trends by Account</h3>
+            <canvas id="purchaseTrendsCanvas" height="{{model.height + model.trendDatePadding + (20 * model.paymentAccounts.length)}}" width="{{model.width + model.moneyAxisPadding}}" style="border:1px solid #d3d3d3;"></canvas>
+        </div>
+
+        <div ng-show="model.tab == 5">
+            <h3 class="usa-heading">Report Data</h3>
+            <table style="font-size:small">
+                <thead>
+                    <tr>
+                        <!--<th><a href="" ng-click="model.setOrder('OrderId')">OrderId</a></th>-->
+                        <th><a href="" ng-click="model.setOrder('CreateDate')">Create Date</a></th>
+                        <th><a href="" ng-click="model.setOrder('PaymentMethod')">Payment Account</a></th>
+                        <th><a href="" ng-click="model.setOrder('Status')">Status</a></th>
+                        <th><a href="" ng-click="model.setOrder('Price')">Price</a></th>
+                        <th><a href="" ng-click="model.setOrder('Quantity')">Quantity</a></th>
+                        <th><a href="" ng-click="model.setOrder('Total')">Total</a></th>
+                        <th><a href="" ng-click="model.setOrder('ProductType')">Product Type</a></th>
+                        <th><a href="" ng-click="model.setOrder('Contractor')">Contractor</a></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="row in model.orderProductsOnPage">
+                    <!--<td>{{row.OrderId}}</td>-->
+                    <td>{{row.CreateDate}}</td>
+                    <td>{{row.PaymentMethod}}</td>
+                    <td>{{row.Status}}</td>
+                    <td>{{row.Price|currency}}</td>
+                    <td>{{row.Quantity}}</td>
+                    <td>{{row.Total|currency}}</td>
+                    <td>{{row.ProductType}}</td>
+                    <td>{{row.Contractor}}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="6" style="text-align:center;">
+                        <a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a>
+                        &nbsp;<a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a>
+                        &nbsp;<span>Page {{model.pageIndex + 1}} of {{model.numberOfPages}}</span>
+                        &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
+                        &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
+                        <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.pageCount" ng-options="count for count in model.pageCounts" ng-change="model.firstPage()"></select>
+                    </td>
+                    <td>
+                        <a href="" ng-click="model.downloadCsv()">Download</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-show="model.tab == 7" class="pageBreak">
+            <h3 class="usa-heading">Expenditures Over a Period of Time</h3>
+            <table style="font-size:small">
+                <thead>
+                    <tr>
+                        <th colspan="4">Expenditures over {{model.orderProductQuery.Start|date}} - {{model.orderProductQuery.End|date}}</th>
+                    </tr>
+                    <tr>
+                        <th><a href="" ng-click="model.setExpendituresOrder('CreateDate')">Date</a></th>
+                        <th><a href="" ng-click="model.setExpendituresOrder('OrderId')">Order #</a></th>
+                        <th><a href="" ng-click="model.setExpendituresOrder('PaymentMethod')">Account</a></th>
+                        <th><a href="" ng-click="model.setExpendituresOrder('Total')">Total</a></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="row in model.expendituresOverTime">
+                    <td>{{row.CreateDate|date}}</td>
+                    <td>{{row.OrderId}}</td>
+                    <td>{{row.PaymentMethod}}</td>
+                    <td>{{row.Total|currency}}</td>
+                </tr>
+                <thead>
+                    <tr>
+                        <th>Grand Total</th>
+                        <td colspan="2">&nbsp;</td>
+                        <th>{{model.grandTotal|currency}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div ng-show="model.tab == 8">
+            <h3 class="usa-heading">Error Encountered</h3>
+            <h3>{{model.responseMessage}}</h3>
+        </div>
+    </div>
+</standard-layout>

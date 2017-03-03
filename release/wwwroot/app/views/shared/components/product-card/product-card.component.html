@@ -1,0 +1,33 @@
+<link rel='stylesheet' type="text/css" href="app/views/shared/components/product-card/product-card.component.css" />
+
+<div class="usa-grid ca-image-wrapper" style="text-align: center">
+    <div style="width:100%; min-height: 200px;">
+        <a ng-link="['Product Details', { id : product.Id }]">
+            <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-height: 100%;">
+        </a>
+    </div>
+    <strong>{{product.Title}}</strong>
+</div>
+<div class="usa-grid" style="padding-top: 0px; padding-bottom: 0px;">
+    <span class="price">{{product.ContractPrice | currency}}</span>
+</div>
+<div class="usa-grid">
+    <div class="button_wrapper">
+        <add-to-cart-button product="product"></add-to-cart-button>
+    </div>
+</div>
+<div class="usa-grid">
+    <div class="usa-width-one-half">
+        <fieldset class="usa-fieldset-inputs usa-sans">
+            <legend class="usa-sr-only">Select to Compare Product</legend>
+            <ul class="usa-unstyled-list">
+                <li>
+                    <compare-product-button product-id="product.Id" class="compare"></compare-product-button>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+    <div class="usa-width-one-half text-right">
+        <a ng-link="['Product Details', { id : product.Id }]">View Details</a>
+    </div>
+</div>

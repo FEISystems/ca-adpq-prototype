@@ -1,0 +1,55 @@
+﻿<link rel='stylesheet' type="text/css" href="app/areas/public/home/home.css" />
+
+<div id="hero" class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="bg-img hero1">
+                <div class="text">
+                    <h2>Welcome...</h2>
+                    <p>1. Browse, search, compare products<br>
+                    2. Add products to your cart.<br>
+                    3. Check out</p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="bg-img hero2">
+                <div class="text">
+                    <h3>Improve acquisition efficiency</h3>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="bg-img hero3">
+                <div class="text">
+                    <h3> <img src="../../../../img/ribbon.svg" alt="ribbon image" class="left ribbon-image" /> 
+                    <span>Shop from pre-established<br>
+                    state contracts with ease.</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-prev" tabindex="0"></div>
+    <div class="swiper-button-next" tabindex="0"></div>
+</div>
+<br/>
+<br/>
+<div class="usa-grid">
+    <h2>Featured Products</h2>
+</div>
+<div class="usa-grid homepageProductContainer" ng-repeat="rows in model.products | limitTo : 4" style="margin-bottom: 20px">
+    <div ng-repeat="product in rows" class="usa-width-one-fourth">
+        <product-card class="usa-grid-full"></product-card>
+    </div>
+</div>
+
+<div class="usa-grid state-agencies-wrapper">
+    <div class="state-agencies">
+        <h3>Serving state agencies, including:</h3>
+        <span class="state-logos"><img src="../../../../img/cdph-logo.png" alt="Department of Public Health" /></span>
+         <span class="state-logos"><img src="../../../../img/state-auditor-logo.png" alt="State Auditor" /></span>
+         <span class="state-logos"><img src="../../../../img/dept-of-education-logo.png" alt="Department of Education" /></span>
+         <span class="state-logos"><img src="../../../../img/student-aid-logo.png" alt="Student Aid Commission" /></span>
+        <img src="../../../../img/ca-state-assembly-logo.png" alt="CA State Assembly" />
+    </div>
+</div>

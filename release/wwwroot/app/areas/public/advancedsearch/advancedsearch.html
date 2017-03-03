@@ -1,0 +1,121 @@
+﻿<link rel='stylesheet' type="text/css" href="app/areas/public/advancedsearch/advancedsearch.css" />
+<standard-layout>
+    <div class="advanced-search">
+        <h2 class="usa-heading">Advanced Search</h2>
+        <ul class="usa-accordion-bordered">
+            <li>
+                <button class="usa-accordion-button" aria-expanded="" aria-controls="search-content">Search</button>
+                <div id="search-content" class="usa-accordion-content" aria-hidden="false">
+                    <form ng-submit="submit()">
+                        <div class="usa-grid-full">
+                            <div class="usa-width-one-half">
+                                <div class="search-field">
+                                    <label for="product-name">Product Name</label>
+                                    <input type="text" id="product-name" ng-model="model.productName" />
+                                </div>
+                            </div>
+                            <div class="usa-width-one-sixth mid-half mid-end">
+                                <div class="search-field">
+                                    <label for="category">Category</label>
+                                    <select id="category" ng-model="model.category" ng-options="item for item in model.categories">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="usa-width-one-sixth mid-half">
+                                <div class="search-field">
+                                    <label for="price">Price</label>
+                                        <select id="price" ng-model="model.priceRange">
+                                        <option value=""></option>
+                                        <option value="$100 and Under">$100 and Under</option>
+                                        <option value="$500 and Under">$500 and Under</option>
+                                        <option value="$1000 and Under">$1000 and Under</option>
+                                        <option value="$1500 and Under">$1500 and Under</option>
+                                        <option value="$2000 and Under">$2000 and Under</option>
+                                        <option value="$2500 and Under">$2500 and Under</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="usa-width-one-sixth mid-half mid-end">
+                                <div class="search-field">
+                                    <label for="manufacturer">Manufacturer</label>
+                                    <select id="manufacturer" ng-model="model.manufacturer" ng-options="item for item in model.manufacturers">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="usa-width-one-half">
+                                <div class="search-field">
+                                    <label for="oem">Manufacturer Part Number (OEM #)</label>
+                                    <input type="text" id="oem" ng-model="model.manfacturerPartNumber" />
+                                </div>
+                            </div>
+                            <div class="usa-width-one-half end">
+                                <div class="search-field">
+                                    <label for="sku">SKU #</label>
+                                    <input type="text" id="sku" ng-model="model.sku" />
+                                </div>        
+                            </div>
+                            <div class="usa-width-one-whole">
+                                <div class="right">
+                                    <button ng-click="doAdvancedSearch()" class="usa-button-secondary ">Search</button>                                    
+                                </div>
+                                <div class="right">
+                                    <button ng-click="clear()" class="usa-button-secondary ">Clear</button>                                    
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!--<div class="search-field">
+                            <label for="contract-number">Contract Number</label>
+                            <input type="text" id="contract-number" ng-model="contractNumber" />
+                        </div>-->
+                        
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="search-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">OEM #</th>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in model.products" ng-show="model.products.length > 0">
+                    <td scope="col">{{product.Title}}</td>
+                    <td scope="col">{{product.Category}}</td>
+                    <td scope="col">{{product.ContractPrice|currency}}</td>
+                    <td scope="col">{{product.Manufacturer}}</td>
+                    <td scope="col">{{product.ManufacturerPartNumber}}</td>
+                    <td scope="col">{{product.SKU}}</td>
+                    <td scope="col">
+                        <a ng-link="['Product Details', { id : product.Id }]">View Details</a>
+                    </td>
+                </tr>
+                <tr ng-hide="model.products.length > 0">
+                    <td aria-colspan="7" colspan="7" style="text-align: center">
+                        No results to show.
+                    </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+</standard-layout>

@@ -1,0 +1,35 @@
+.text-right {
+  text-align: right !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.no-padding {
+  padding: 0px !important;
+}
+.no-margin {
+  margin: 0px !important;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.clear {
+  clear: both;
+}
+.usa-grid,
+.usa-grid-full {
+  max-width: 1200px;
+}
+[ng-message=required],
+.required {
+  color: red;
+}
