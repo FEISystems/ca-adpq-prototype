@@ -254,7 +254,7 @@ Our team relied on the following artifacts to create the prototype:
 
 *   **GitHub:** The prototype framework and libraries are included in GitHub, https://github.com/FEISystems/ca-adpq-prototype
 
-*   **Survey Results:** In addition to the interviews, we fielded a brief online survey to gather usability feedback. The survey can be found: https://www.surveymonkey.com/r/7DXQ58L.  Survey results are shown [here](./artifacts/Survey Results/Survey.pdf).
+*   **Survey Results:** In addition to the interviews, we fielded a brief online survey to gather usability feedback. The survey can be found: https://www.surveymonkey.com/r/7DXQ58L.  Survey results are shown [here](./artifacts/Survey.pdf).
 
 *   **Test Scripts and Test Cases:** Quality Assurance (QA) activities included creating test cases (actors, preconditions, and test steps) as well as test scripts (actions, expected results, and test results in a Pass/Fail format) are shown [here](./artifacts/Test Cases/Test_Cases.xlsx).
 
@@ -301,7 +301,7 @@ Axure, a rapid prototyping tool, was used to design the application including th
 
 [User Testing Notes](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf)
 
-[Survey Results](./artifacts/Survey Results/Survey.pdf)
+[Survey Results](./artifacts/Survey.pdf)
 
 ### d.  Used at least a minimum of three (3) “user-centric design” techniques and/or tools
 
