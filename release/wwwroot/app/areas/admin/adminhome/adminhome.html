@@ -1,0 +1,31 @@
+<link rel='stylesheet' type="text/css" href="app/areas/admin/adminhome/adminhome.css" />
+<standard-layout>
+    <h2 class="usa-heading">{{model.title}}</h1>
+    <unauthorized-page  authorized="['Admin']"></unauthorized-page>
+    <div class="usa-grid" permission="['Admin']">
+        <div class="usa-width-one-half">
+            <ul class="usa-unstyled-list">
+                <!--<li><a ng-link="['Vendors']">Vendors</a></li>-->
+                <!--<li><a ng-link="['Admin Users']">Admin Users</a></li>-->
+                <!--<li><a ng-link="['Authorized Users']">Authroized Users</a></li>-->
+                <!--<li><a ng-link="['Admin Login']">Admin Login</a></li>-->
+            </ul>
+            <div class="content-block">
+                <div class="content-heading">
+                    <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                    <a ng-link="['Inventory']">Catalog</a>
+                </div>
+                <p>View, search, add, edit and delete products currently within your catalog.</p>
+            </div>
+        </div>
+        <div class="usa-width-one-half">
+            <div class="content-block">
+                <div class="content-heading">
+                    <i class="fa fa-area-chart fa-2x" aria-hidden="true"></i>
+                    <a ng-link="['Reports']">Reports</a>
+                </div>
+                <p>View reports based on expenditures and purchases</p>
+            </div>
+        </div>
+    </div>
+</standard-layout>

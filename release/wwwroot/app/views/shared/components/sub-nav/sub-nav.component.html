@@ -1,0 +1,154 @@
+﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/sub-nav/sub-nav.component.css" />
+
+<nav id="sub-nav" role="navigation" class="usa-nav-extended" ng-click="model.hide();">
+    <div class="usa-nav-inner">
+        <ul class="usa-nav-primary usa-accordion">
+            <li>
+                <a ng-link="['Home']" class="usa-nav-link">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sub-nav-2">
+                    <span>Hardware</span>
+                </button>
+                <ul id="sub-nav-2" class="usa-nav-submenu usa-megamenu usa-grid-full">
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Desktops</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'alldesktops' }]">All Desktops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'standarddesktops' }]">Standard Desktops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'powerdesktops' }]">Power Desktops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'workstations' }]">Workstations</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'thinclientdesktops' }]">Thin Client Desktops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'allinonedesktops' }]">All in One Desktops</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Laptops</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'alllaptops' }]">All Laptops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'standardlaptops' }]">Standard Laptops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'powerlaptops' }]">Power Laptops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'ultralightlaptops' }]">Ultralight Laptops</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'mobileworkstations' }]">Mobile Workstations</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Accessories & Upgrades</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'allaccessories' }]">All Accessories & Upgrades</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'monitors' }]">Monitors</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'desktopaccessories' }]">Desktop Accessories</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Hardware List', { category : 'laptopaccessories' }]">Laptop Accessories</a>
+                            </li>
+                            <!--<li>
+                                <a ng-link="['Miscellaneous']">Miscellaneous</a>
+                            </li>-->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a ng-link="['Software List', { category : 'allsoftware' }]" class="usa-nav-link">
+                    <span>Software</span>
+                </a>
+            </li>
+            <li>
+                <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sub-nav-3">
+                    <span>Services</span>
+                </button>
+                <ul id="sub-nav-3" class="usa-nav-submenu usa-megamenu usa-grid-full">
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Desktop Services</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['Services List', { category : 'alldesktopservices' }]">All Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'standarddesktopservices' }]">Standard Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'powerdesktopservices' }]">Power Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'workstationservices' }]">Workstation Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'thinclientdesktopservices' }]">Thin Client Desktop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'allinonedesktopservices' }]">All in One Desktop Services</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Laptop Services</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['Services List', { category : 'alllaptopservices' }]">All Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'standardlaptopservices' }]">Standard Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'powerlaptopservices' }]">Power Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'ultralightlaptopservices' }]">Ultralight Laptop Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'mobileworkstationservices' }]">Mobile Workstation Services</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-megamenu-col">
+                        <span class="ca-megamenu-header">Value Added Services</span>
+                        <ul>
+                            <li>
+                                <a ng-link="['Services List', { category : 'allvalueaddedservices' }]">All Value Added Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'desktopvalueaddedservices' }]">Desktop Value Added Services</a>
+                            </li>
+                            <li>
+                                <a ng-link="['Services List', { category : 'laptopvalueaddedservices' }]">Laptop Value Added Services</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="js/vendor/uswds-0.14.0/js/uswds.js"></script>

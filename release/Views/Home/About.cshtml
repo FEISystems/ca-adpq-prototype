@@ -1,0 +1,27 @@
+﻿@using ca_service.Entities;
+@model IEnumerable<User>
+@{
+    ViewData["Title"] = "About Page";
+    ViewData["Description"] = "The about page of my website";
+}
+
+<p>This is the about.cshtml</p>
+
+<h2>Employees</h2>
+
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+
+@section Scripts {
+    @*Insert any script tags for this page here*@
+}
+
+<form method="post" asp-action="Import" asp-controller="api/inventory" enctype="multipart/form-data">
+    Select file to import:
+    <input type="file" name="file"/><br/>
+    <input type="submit" value="Import"/>
+</form>

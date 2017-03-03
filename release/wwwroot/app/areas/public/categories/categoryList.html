@@ -1,0 +1,42 @@
+
+<link rel='stylesheet' type="text/css" href="app/areas/public/categories/categories.css" />
+<div >
+    <aside-layout  ng-hide="model.isSoftware()">
+        <aside-panel>
+            <hardware-menu ng-show="model.showHardwareMenu()"></hardware-menu>
+            <services-menu ng-show="model.showServicesMenu()"></services-menu>
+        </aside-panel>
+        <body-panel>
+            <!-- I used a span instead of a h2 to prevent the line break -->
+            <div class="usa-grid-full" >
+                <h2 style="display:inline;">{{model.title}}</h2>
+                <span style="float:right;font-size:20px;padding-top:10px;" ng-show="model.pageCount > 1">
+                    &nbsp;&nbsp;
+                    <a href="" ng-click="model.setPage(0)"><i class="fa fa-fast-backward"></i></a> &nbsp;
+                    <a href="" ng-click="model.setPage(model.page - 1)"><i class="fa fa-backward"></i></a> &nbsp;
+                    <span>Page {{model.page + 1}} of {{model.pageCount}}</span> &nbsp;
+                    <a href="" ng-click="model.setPage(model.page + 1)"><i class="fa fa-forward"></i></a> &nbsp;
+                    <a href="" ng-click="model.setPage(model.pageCount)"><i class="fa fa-fast-forward"></i></a>
+                </span>
+                <select style="float:right;width:200px;font-size:16px;" ng-model="model.customSorter" ng-options="sorter.description for sorter in model.customSorters" ng-change="model.sortChanged()"></select>
+            </div>
+            <div class="usa-grid-full categoryListContainer" ng-repeat="rows in model.products">
+                <div ng-repeat="product in rows" class="usa-width-one-fourth" >
+                    <product-card></product-card>
+                </div>
+            </div>  
+        </body-panel>
+    </aside-layout>
+    
+    <standard-layout ng-show="model.isSoftware()">
+            <h2>{{model.title}}</h2>
+
+            <div class="usa-grid-full categoryListContainer" ng-repeat="rows in model.products">
+                <div ng-repeat="product in rows" class="usa-width-one-fourth" >
+                    <product-card></product-card>
+                </div>
+            </div>  
+    </standard-layout>
+
+
+</div>

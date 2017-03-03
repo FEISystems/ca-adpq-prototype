@@ -1,0 +1,117 @@
+.usa-heading {
+        border-bottom: 1px solid #e31c3d;
+		margin-top: 14px;
+		
+    }
+.table-header {
+    background: #f1f1f1;
+    font-weight: bold;
+    a {
+        color: #0071bc;
+    }
+}
+.sort-arrow-up {
+	width:0px; 
+	height:0px; 
+	border-left:5px solid transparent;
+	border-right:5px solid transparent;
+	border-bottom:5px solid #000000;
+}
+.sort-arrow-down {
+	width:0px; 
+	height:0px; 
+	border-left:5px solid transparent;  
+	border-right:5px solid transparent;
+	
+	border-top:5px solid #000000;
+}
+
+
+div.table-responsive{
+	table{
+		margin: 0;
+		input[type="checkbox"]{
+			-webkit-appearance: checkbox;
+			-moz-appearance: checkbox;
+			appearance: checkbox;
+			opacity: 1;
+			position: static;
+			height: 2.5rem;
+		}
+	}
+}
+
+form#addProductForm, form#filterProductForm{
+	fieldset{
+		div.usa-grid-full{
+			div.usa-width-one-whole{
+				padding-top: 15px;
+				input{
+					float: right;
+					margin-top: 0;
+				}
+			}
+		}
+	}
+}
+
+
+
+@media screen and (min-width: 1201px){
+	
+	form#addProductForm, form#filterProductForm{
+		fieldset{
+			div.usa-grid-full{
+				div.usa-width-one-half{
+					margin-right: 0;
+					padding-right: 2.35765%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 1200px){
+	.usa-heading{
+		margin-top: -2px;
+	}
+	div#tabBody{
+		padding: 1.5rem;
+		form#addProductForm, form#filterProductForm{
+			fieldset{
+				div.usa-grid-full{
+					div.usa-width-one-half{
+						margin-right: 0;
+						padding-right: 4.82916%;
+					}
+				}
+			}
+		}
+	}	
+}
+
+@media screen and (max-width: 599px){
+	form#addProductForm, form#filterProductForm{
+		fieldset{
+			div.usa-grid-full{
+				div.usa-width-one-half{
+					input, select, textarea{
+						max-width: none;
+					}
+				}
+				div.usa-width-one-whole{
+					input{
+						margin-right: 0;
+						display: block;
+						width: 100%;
+						padding: 0;
+						float: none;
+						max-width: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+

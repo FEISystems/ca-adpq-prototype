@@ -1,0 +1,55 @@
+﻿<standard-layout>
+    <link rel="stylesheet" href="app/areas/authorizeduser/orderhistory/orderhistory.css">
+    <h2 class="usa-heading">{{model.title}}</h2>
+    <div class="usa-grid-full">
+        <!--<div class="usa-width-one-third">
+            <ul class="usa-unstyled-list">
+                <h3>Test Links</h3>
+                <li><a ng-link="['Cancel Order']">Cancel Order</a></li>
+            </ul>
+        </div>-->
+        <div class="usa-width-one-whole">
+            <div class="table-responsive">
+                <table>
+                    <caption class="usa-sr-only">Order History Table</caption>
+                    <thead>
+                        <tr>
+                            <th><a href="" ng-click="model.setOrder('CreateDate')">Order Date</a></th>
+                            <th><a href="" ng-click="model.setOrder('Id')">Order Number</a></th>
+                            <th><a href="" ng-click="model.setOrder('PaymentMethod')">Payment Account</a></th>
+                            <th><a href="" ng-click="model.setOrder('Status')">Status</a></th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in model.ordersOnPage" ng-show="model.orders.length > 0">
+                            <td>{{order.CreateDate | date}}</td>
+                            <td><a ng-href="/#/user/orderdetails?id={{order.Id}}">{{order.Id}}</a></td>
+                            <td>{{order.PaymentMethod}}</td>
+                            <td>{{order.Status}}</td>
+                            <td>
+                                <a ng-link="['Order Details', { id : order.Id }]">View Order</a>
+                            </td>
+                        </tr>
+                        <tr  ng-show="model.orders.length > 0">
+                            <td colspan="5" style="text-align:center;">
+                                <a href="" ng-click="model.firstPage()"><i class="fa fa-fast-backward"></i></a>
+                                &nbsp;<a href="" ng-click="model.priorPage()"><i class="fa fa-backward"></i></a>
+                                &nbsp;<span>Page {{model.pageIndex + 1}} of {{model.numberOfPages}}</span>
+                                &nbsp;<a href="" ng-click="model.nextPage()"><i class="fa fa-forward"></i></a>
+                                &nbsp;<a href="" ng-click="model.lastPage()"><i class="fa fa-fast-forward"></i></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items Per Page:
+                                <select style="width:100px;min-width:0px;display:initial" id="pageCount" ng-model="model.pageCount" ng-options="count for count in model.pageCounts" ng-change="model.firstPage()"></select>
+                            </td>
+                        </tr>
+                        <tr ng-show="model.orders.length == 0">
+                            <td colspan="5" style="text-align: center">
+                                No orders to display.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</standard-layout>
