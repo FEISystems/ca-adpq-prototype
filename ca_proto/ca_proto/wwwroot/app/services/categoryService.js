@@ -652,7 +652,6 @@
         var allValueAddedServices = function () {
             var categoryFilters = [
                 "NON-Core VAS - D Deployment & Logistics",
-                "P1917s P2217 P2417H Service Options Upgrades",
                 "Value added services",
                 "VAS  Imaging",
                 "VAS Asset Tagging - Bidder administration of State provided tag (with number)",
