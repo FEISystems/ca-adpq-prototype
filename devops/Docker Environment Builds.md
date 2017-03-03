@@ -8,6 +8,17 @@ The Prototyp is split into two Docker Images feidevops/ca_adpq_proto and feidevo
 
 The first contains the .Net Core web application.  The second contains a MySQL based image that creates the starting database for the web application.
 
+#DEV
+Local development install.
+
+**MySQL**
+
+docker run --name ca-adpq-db-devlocal -p 3306:3306 --e MYSQL_ROOT_PASSWORD="Letmein1!" -d feidevops/ca_adpq_proto_db:latest
+
+**Prototype Website**
+
+docker run --name ca-adpq-web-devlocal --link ca-adpq-db-devlocal:mysql -p 5000:5000 -d feidevops/ca_adpq_proto:devlocal
+
 #QC:Latest
 QC servers are hosted on the internal FEi cloud and not accessible from outside of our network
 
