@@ -8,6 +8,10 @@ The Prototyp is split into two Docker Images feidevops/ca_adpq_proto and feidevo
 
 The first contains the .Net Core web application.  The second contains a MySQL based image that creates the starting database for the web application.
 
+In order to clean up the influx of stale Docker Images due to refreshing from remote repositories with Watchtower we implemented a cron job.  We added a one line cron job to the crontab of the user that manages the Docker Engine.  'sudo crontab -e' will allow you to edit said users crontab.  The command follows:
+
+@daily docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
 #QC:Latest
 QC servers are hosted on the internal FEi cloud and not accessible from outside of our network
 
