@@ -36,12 +36,11 @@
 
         model.listeners =[];
 
-        this.$routerOnDeactivate = function (next, previous) {
-            for (var i = 0; i < model.listeners.length; i++) {
-                model.listeners[i]();
-            };
-            model.listeners = [];
-        };
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
 
         (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
@@ -234,7 +233,7 @@
         model.drawWrappedLabels = function (canvasName, items, widthPerItem) {
             var canvas = document.getElementById(canvasName);
             var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            model.clear(context, canvas.width, canvas.height);
             context.textAlign = "center";
             context.fillStyle = "Black";
             context.font = model.font;
@@ -345,7 +344,7 @@
             if (model.noProducts()) return null;
             model.tab = canvasTab;
             var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            model.clear(context, canvas.width, canvas.height);
             return context;
         };
 
@@ -375,7 +374,7 @@
             var context = model.initContext(tab, canvas);
             if (null == context) return;
             var accounts = orderByFilter(model.paymentAccounts, "length", false);
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            model.clear(context, canvas.width, canvas.height);
             var trends = model.initTrends(accounts);
             model.fillTrendData(trends);
             var maxTotal = model.findMaxTotalInTrends(trends);
@@ -758,12 +757,17 @@
             reportService.downloadCsv(model.orderProductQuery);
         };
 
+        model.clear = function (context, width, height) {
+            context.fillStyle = "White";
+            context.fillRect(0, 0, width, height);
+        };
+
         model.clearDashboard = function () {
             var dashboardCanvases = ["productTypeCanvasDashboard", "contractorCanvasDashboard", "purchaseTrendsCanvasDashboard"];
             for (var i = 0; i < dashboardCanvases.length; i++) {
                 var canvas = document.getElementById(dashboardCanvases[i]);
                 var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                model.clear(context, canvas.width, canvas.height);
             }
         };
 

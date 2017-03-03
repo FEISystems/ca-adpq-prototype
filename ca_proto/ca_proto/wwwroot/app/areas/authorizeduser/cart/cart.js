@@ -185,7 +185,13 @@
             model.listeners = [];
         };
 
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
 
+        
     };
 
     module.component("cart", {
