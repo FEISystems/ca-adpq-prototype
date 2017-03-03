@@ -8,41 +8,47 @@
         model.qty = 1;
         $scope.showAddButton = true;
 
-
+        var myId = $scope.$id;
         $scope.addToCart = function () {
-            shoppingCartService.addProductToCart({ "ProductId": model.productId, "Quantity": model.qty });
+            shoppingCartService.addProductToCart({ "ProductId": model.productId, "Quantity": model.qty }, myId);
         }
 
 
-        shoppingCartService.getActiveCart();
+        shoppingCartService.getActiveCart(myId);
 
-        messageService.subscribe("getActiveCartSuccess", function (response) {
-            if (response) {
-                model.cart = {};
-                model.cart = response;
-                model.cartItems = model.cart.Items;
+        function processCart(response)
+        {
+            model.cart = {};
+            model.cart = response;
+            model.cartItems = model.cart.Items;
 
-                for (var i = 0; i < model.cartItems.length; ++i) {
-                    var cartItem = model.cartItems[i];
-                    var productId = parseInt(model.productId);
+            for (var i = 0; i < model.cartItems.length; ++i) {
+                var cartItem = model.cartItems[i];
+                var productId = parseInt(model.productId);
 
-                    if (productId === cartItem.ProductId) {
-                        $scope.showAddButton = false;
+                if (productId === cartItem.ProductId) {
+                    $scope.showAddButton = false;
 
-                        // $timeout(function () {
-                        //     $scope.$apply();
-                        // });
-                    }
-
+                    // $timeout(function () {
+                    //     $scope.$apply();
+                    // });
                 }
 
+            }
+        };
+
+        messageService.subscribe("getActiveCartSuccess", function (response) {
+            if (response && response.sourceId == myId) {
+                processCart(response);
             }
 
         })
 
 
         messageService.subscribe("addProductToCartSuccess", function (response) {
-            shoppingCartService.getActiveCart();
+            if (response.sourceId != myId)
+                return;
+            processCart(response);
             $timeout(function () {
                 $scope.$apply();
             });

@@ -88,11 +88,19 @@ namespace ca_service.Services
             if (order == null)
                 return null;
 
-            var orderItems = _orderItemRepository.GetByOrderId(id);
+            UpdateOrderWithItems(order);
+
+            return order;
+        }
+
+        private void UpdateOrderWithItems(Order order)
+        {
+            var orderItems = _orderItemRepository.GetByOrderId(order.Id);
 
             order.Items = orderItems;
 
-            return order;
+            //update the order status to fake being shipped
+            order.Status = Order.DisplayStatus(order.Status, order.CreateDate);
         }
 
         public List<Order> GetOrdersForUser(int userId)
@@ -101,9 +109,7 @@ namespace ca_service.Services
 
             foreach(var order in orders)
             {
-                var orderItems = _orderItemRepository.GetByOrderId(order.Id);
-
-                order.Items = orderItems;
+                UpdateOrderWithItems(order);
             }
 
             return orders;

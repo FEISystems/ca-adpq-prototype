@@ -21,7 +21,8 @@
             <li>
                 <a ng-link="['Compare List']">Compare List</a>&nbsp;<compare-popup></compare-popup>
             </li>
-            <li><a ng-click="model.logout()">Logout</a></li>
+            <li ng-hide="!model.isAuthenticated()"><a ng-click="model.logout()" ng-bind="model.LogoutText()"></a></li>
+            <li ng-hide="model.isAuthenticated()"><a ng-click="model.logout()">Login</a></li>
         </ul>
     </div>
 </div>
