@@ -1,5 +1,7 @@
 # ca-adpq-prototype
 
+[![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/devlocal/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/devlocal/web/b)  **devlocal**
+
 [![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/Dev?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/Dev)  **latest**
 
 [![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/stable/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/stable/web/b)  **stable**
@@ -61,6 +63,8 @@ After logging in, users can browse each category to select products. Alternative
 *   SKU #
 
 The Home Page also includes space to highlight “Featured Products.” We anticipate this portion of the site could contribute to improved efficiency in the acquisition process by streamlining the products that are displayed for the users and expediting the shopping process.
+
+*Note: You cannot add items to your cart or compare list unless you are logged in.*
 
 ### 1.2.2   Comparing Products
 Users can add up to four items to a Compare List by selecting the “Compare” box found in each item. 
@@ -136,7 +140,9 @@ Admins can upload images by clicking “Import Images” from the left menu, sel
 
 ####    1.2.5.2 Editing or Deleting Items
 
-To edit or delete a catalog item, select “Catalog” from the Admin Product Management page. Then, find the row containing the item to be edited or deleted and click either “Edit” or “Delete” from the Options column.  LINK to: ReadMe Repository | Images | Narrative_Edit_Delete_Items.png
+To edit or delete a catalog item, select “Catalog” from the Admin Product Management page. Then, find the row containing the item to be edited or deleted and click either “Edit” or “Delete” from the Options column.
+
+![Narrative Edit](./artifacts/Images/Narrative_Edit_Delete_Items.png?raw=true "Narrative Edit")
 
 To delete multiple items from the catalog, select the checkbox next to the item and click “Delete selected”.
 
@@ -191,10 +197,11 @@ Additionally, the left menu contains the following report functions:
 
 
 
-#   2. Technical Approach Requirements
+#   2. Technical Approach
 ##  2.1 Overall Agile Development Approach
 
-When developing the prototype, FEi used an Agile Scrum process that is detaied in this [diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf).
+When developing the prototype, FEi used an Agile Scrum process that is detailed in this [diagram](./artifacts/Agile Scrum Process Diagram/Agile_Development_Scrum_Process_Diagram.png).
+
 
 During the planning stage, we analyzed the RFI requirements and selected Prototype A.  Then, we identified the roles and skillsets needed to complete the prototype and assembled a multi-disciplinary team based on the requirements of the project and Agile methodology. We developed a project budget and a schedule with three, one-week sprints. Throughout the sprints, the team worked as a single unit with daily stand-up meetings, frequent touchpoints, and demonstrations. More information is provided in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf).
 
@@ -237,21 +244,21 @@ Our team relied on the following artifacts to create the prototype:
 *   **Images:** Images linked to this ReadMe file are located [here](./artifacts/Images/).
 
 
-*   **Section 508 Compliance Scorecard:** The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Results were captured in the [Section 508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) 
+*   **Section 508 Compliance Scorecard:** The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Results were captured in the [Section 508 Compliance Scorecard](./artifacts/508%20Compliance%20Scorecard.pdf) 
 
-*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail in [section](./artifacts/Digital Services Playlist/Digital_Services_Playlist.pdf).
+*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail  [here](./artifacts/Digital_Services_Playbook.pdf).
 
 *   **Design Process:** Design notes, user testing notes, and wireframes can be found [here](./artifacts/Design Process/).
 
 *   **User Stories and Acceptance Criteria:** We expanded the vendor challenge user story to include additional scenarios and for each user story and we also developed acceptance criteria for all [User Stories](./artifacts/User Stories). 
 
-*   **Definition of Done:** We used a [checklist](./artifacts/Definition of Done Checklist/Definition_of_Done_Checkist.pdf) for the definition of done.
+*   **Definition of Done:** We used a [checklist](./artifacts/Definition of Done Checklist/Definition_of_Done_Checklist.pdf) for the definition of done.
 
 *   **Meeting Pictures:** We captured images from one of our [daily standup meetings](./artifacts/Meeting Pictures/).
 
 *   **GitHub:** The prototype framework and libraries are included in GitHub, https://github.com/FEISystems/ca-adpq-prototype
 
-*   **Survey Results:** In addition to the interviews, we fielded a brief online survey to gather usability feedback. The survey can be found: https://www.surveymonkey.com/r/7DXQ58L.  Survey results are shown [here](./artifacts/Survey Results/Survey.pdf).
+*   **Survey Results:** In addition to the interviews, we fielded a brief online survey to gather usability feedback. The survey can be found: https://www.surveymonkey.com/r/7DXQ58L.  Survey results are shown [here](./artifacts/Survey.pdf).
 
 *   **Test Scripts and Test Cases:** Quality Assurance (QA) activities included creating test cases (actors, preconditions, and test steps) as well as test scripts (actions, expected results, and test results in a Pass/Fail format) are shown [here](./artifacts/Test Cases/Test_Cases.xlsx).
 
@@ -296,9 +303,9 @@ GitHub Issue #46
 
 Axure, a rapid prototyping tool, was used to design the application including the required features sets. The rapid prototype contained the necessary screens and features with sufficient detail to be tested by people. As a result, we were able to gain a better understanding of how people used the application including their needs and any pain points encountered. The information gathered from the user testing allowed our team to improve the application in subsequent iterations. 
 
-[User Testing Notes](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf)
+[User Testing Notes](./artifacts/Design%20Process/User%20testing%20notes_all%20combined.pdf)
 
-[Survey Results](./artifacts/Survey Results/Survey.pdf)
+[Survey Results](./artifacts/Survey.pdf)
 
 ### d.  Used at least a minimum of three (3) “user-centric design” techniques and/or tools
 
@@ -308,7 +315,7 @@ GitHub Issue #61
 
 *   **Rapid Prototyping:** In order to build an application designed to meet the user needs, our team created fully functional [rapid prototypes](./artifacts/Design Process/Wireframes and Prototyping/) that were tested with users. The feedback collected from the users allowed our team to make improvements to the application early in the design phase, resulting in a better user experience and usability for the user. 
 
-*   **User Testing:** To validate our designs and ensure that our application designing was consistent with user expectations and needs, we tested with users early and often. As a result of our testing, we were able to identify usability issues early and make corrections to the UI where necessary. The user testing allowed our team to better understand the users’ needs, and improve the application. We documented the [user testing feedback](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf). 
+*   **User Testing:** To validate our designs and ensure that our application designing was consistent with user expectations and needs, we tested with users early and often. As a result of our testing, we were able to identify usability issues early and make corrections to the UI where necessary. The user testing allowed our team to better understand the users’ needs, and improve the application. We documented the [user testing feedback](./artifacts/Design%20Process/User%20testing%20notes_all%20combined.pdf). 
 
 ### e.  Used GitHub to document code commits
 
@@ -360,7 +367,7 @@ To ensure compliance without incurring refactoring costs, our team weaves Sectio
     *   Content that is accessible when displayed on hover
     *   Visual focus that moves with keyboard navigation
 
-The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) for details. 
+The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/508%20Compliance%20Scorecard.pdf) for details. 
 
 
 ### h.  Created or used a design style guide and/or a pattern library
@@ -388,7 +395,7 @@ Our team used scrum, an Agile approach to iterative application development. Scr
 
 GitHub Issue #52
 
-Our Frontend Web Developers initially created wireframes and screen mockups, see LINK ReadMe Repository | Wireframes and Prototyping, and discussed the view of web components and layout in different types of devices. Once the wireframes and Axure prototyping were completed, the team developed the interactive code with selected technologies and frameworks (U.S. Web Design Standards UI and AngularJS), and tested using different types of devices, such as PC, Phones, and Tablets; we also used browser built-in tools to simulate devices. The use of the U.S. Web Design Standard UI framework allowed our frontend code to be fully responsive and tested across multiple browsers and device sizes, as well as to support accessibility needs.
+Our Frontend Web Developers initially created [wireframes and screen mockups](./artifacts/Design Process/Wireframes and Prototyping/), and discussed the view of web components and layout in different types of devices. Once the wireframes and Axure prototyping were completed, the team developed the interactive code with selected technologies and frameworks (U.S. Web Design Standards UI and AngularJS), and tested using different types of devices, such as PC, Phones, and Tablets; we also used browser built-in tools to simulate devices. The use of the U.S. Web Design Standard UI framework allowed our frontend code to be fully responsive and tested across multiple browsers and device sizes, as well as to support accessibility needs.
 The prototype has been tested using the following browsers: Internet Explorer 11, Google Chrome, and Firefox. In addition, the use of responsive web design desktop allows web pages to be viewed in response to the size of the device. FEi tested the prototype using the following devices and operating systems: PC (Windows 7 OS), Surface Pro (Windows 10), iPad (iOS9), Samsung Galaxy S5, and iPhone 6 (iOS9).
 
 ### l.  Used at least five (5) modern and open-source technologies, regardless of architectural layer (frontend, backend, etc.) 
@@ -396,12 +403,13 @@ The prototype has been tested using the following browsers: Internet Explorer 11
 GitHub Issue #52
 
 FEi’s prototype uses modern, open technologies, and we used Agile (Scrum) processes to manage, design, develop, test, and deploy the prototype. The following standards and guidance are used or referred to in this prototype.
-1.  Ubuntu Server 16.10
-2.  dotnet core
-3.  Docker Engine and Client
-4.  MySQL 8
-5.  AngularJS
-6.  CenturyLink/Watchtower
+
+*   Ubuntu Server 16.10
+*   .Net Core
+*   Docker Engine and Client
+*   MySQL 8
+*   AngularJS
+*   CenturyLink/Watchtower
 
 ### m.  Deployed the prototype on an Infrastructure as a Service (IaaS) or Platform as Service (PaaS) provider, and indicated which provider they used 
 
@@ -413,7 +421,7 @@ Azure provides simple CI that can deploy a project from GitHub to Azure App Serv
 
 GitHub Issue #55
 
-The FEi  Team used X-Unit to write unit tests for the ASP.Net Core Business Logic. Our unit tests can be found in https://github.com/FEISystems/ca-adpq-prototype/tree/master/ca_proto/ca_proto_tests.
+The FEi  Team used [xUnit](https://xunit.github.io/) to write unit tests for the ASP.Net Core Business Logic. Our unit tests can be found in https://github.com/FEISystems/ca-adpq-prototype/tree/master/ca_proto/ca_proto_tests.
 
 Unit Test Runner results are shown below.
 
@@ -486,7 +494,16 @@ The Prometheus server gathers metrics from multiple locations. Each integration
 *   Node Exporter – more system resources and HTTP
 *   Containers Exporter – covers anything that implements libcontainer and includes Docker resource usage per container
 
-In order to create meaningful dashboards, we coupled Prometheus with Grafana. This tool allows for customized dashboards based on gathered metrics from Prometheus.
+In order to create meaningful dashboards, we coupled Prometheus with Grafana. This tool allows for customized dashboards based on gathered metrics from Prometheus as shown below.
+
+**Host Monitoring Dashboard**
+
+![System Monitoring Host](./artifacts/Images/Grafana Host Dashboard.png?raw=true "System Monitoring Host")
+
+**Docker Monitoring Dashboard**
+
+![System Monitoring Docker](./artifacts/Images/Grafana Docker Dashboard.png?raw=true "System Monitoring Docker")
+
 
 Links for the tools in our Production environment and login information below:
 
@@ -519,17 +536,28 @@ The environment build guides for QC and Production can be found in the [Docker E
 
 GitHub Issue #: 167 
 
-The following steps were used to install and configure Visual Studio Code:
+The following steps were used to setup a development environment to install and run this prototype on another machine.
 
-**Install Visual Studio Code**
+**Setup Tools**
 
-1.  Download the branch from Github, https://github.com/FEISystems/ca-adpq-prototype
-2.  Download and Install MySQL
-3.  Open MySQL Workbench
-4.  Create a database named CA
-5.  Execute the database creation ca_proto\ca_service\DbScripts\BuildDatabase.txt in MySQL Workbench
-6.  Open the prototype in Visual Studio Code
-7.  Modify the connection string in the ca_proto\ca_proto\appSetting.json file
+1.  Download and install Visual Studio Code from https://code.visualstudio.com/. 
+2.  Download and install a git client. For examples https://git-scm.com/.
+3.  Download and Install MySQL from https://www.mysql.com/.
+
+*Note:Based on your OS, the tools above may have various downloads and install instructions.*
+
+**Configure DEV Environment**
+
+1. Download or clone the source code from Github, https://github.com/FEISystems/ca-adpq-prototype
+    
+    `
+    git clone https://github.com/FEISystems/ca-adpq-prototype.git
+    `
+2.  Open MySQL Workbench
+3.  Create a database named CA
+4.  Execute the database creation ca_proto\ca_service\DbScripts\BuildDatabase.txt in MySQL Workbench
+5.  Open the prototype in Visual Studio Code
+6.  Modify the connection string in the ca_proto\ca_proto\appSetting.json file
 
 **Configure Visual Studio Code**
 
