@@ -30,12 +30,11 @@
 
         model.listeners = [];
 
-        this.$routerOnDeactivate = function (next, previous) {
-            for (var i = 0; i < model.listeners.length; i++) {
-                model.listeners[i]();
-            };
-            model.listeners = [];
-        };
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
 
         //sample query model
         //for strings, "A|B" converts to "column like '%A%' or column like '%B%'
