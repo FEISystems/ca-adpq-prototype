@@ -8,8 +8,6 @@
 
 You can access the site [here](http://ca-adpq-prototype.eastus2.cloudapp.azure.com).
 
-Information on how Development Operations were applied to this poject can be found in the [DevOps Readme.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/DevOps%20Readme.md) and the [Docker Environment Builds.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/Docker%20Environment%20Builds.md)
-
 #   1. Narrative Description/Release Notes
 FEi Systems (FEi), a leading Information Technology (IT) services and analysis organization, headquartered in Columbia, MD, is pleased to respond to the California Department of Technology (DoT), Request for Interest (RFI) Number CDT-ADPQ-0117: “Pre-Qualified Vendor Pool for Digital Services-Agile Development” for Prototype A. 
 
@@ -515,6 +513,7 @@ FEi deployed the Docker Hub Repository for our containers as below.
     
     https://hub.docker.com/u/feidevops/
 
+The environment build guides for QC and Production can be found in the [Docker Environment Builds.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/Docker%20Environment%20Builds.md)
 
 ### s.  Provided sufficient documentation to install and run their prototype on another machine
 
