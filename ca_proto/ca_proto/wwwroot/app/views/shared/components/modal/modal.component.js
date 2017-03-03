@@ -23,6 +23,7 @@
             model.showModal = false;
             model.loginInfo.username = '';
             model.loginInfo.password = '';
+            window.location.reload();
         });
 
         messageService.subscribe('logoutSuccess', function (response) {
