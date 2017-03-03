@@ -11,23 +11,41 @@ global:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
-
     static_configs:
       - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9090']
         labels:
           group: 'prometheus'
-
-      - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9100','ca-adpq-prototype.eastus2.cloudapp.azure.com:9103']
-        labels:
-          group: 'system'
-
-      - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9104']
-        labels:
+  
+  - job_name: 'collectd'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    static_configs:
+       - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9103']
+         labels:
+           group: 'collectd'
+           
+   - job_name: 'node'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    static_configs:
+       - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9100']
+         labels:
+           group: 'node'
+           
+  - job_name: 'mysqld'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    static_configs:
+       - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9104']
+         labels:
           group: 'mysql'
-
-      - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9102']
+          
+  - job_name: 'containers'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    static_configs:
+       - targets: ['ca-adpq-prototype.eastus2.cloudapp.azure.com:9102']
         labels:
           group: 'containers'
