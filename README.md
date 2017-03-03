@@ -4,9 +4,9 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/stable/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/stable/web/b)  **stable**
 
-[![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/production/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/production/web/b)  
+[![Build status](https://ci.appveyor.com/api/projects/status/y66ddywcfi3mpn21/branch/production/web/b?svg=true)](https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype/branch/production/web/b)  **production**
 
-You can access the site [here](http://ca-adpq-prototype.eastus2.cloudapp.azure.com)
+You can access the site [here](http://ca-adpq-prototype.eastus2.cloudapp.azure.com).
 
 Information on how Development Operations were applied to this poject can be found in the [DevOps Readme.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/DevOps%20Readme.md) and the [Docker Environment Builds.md](https://github.com/FEISystems/ca-adpq-prototype/blob/master/devops/Docker%20Environment%20Builds.md)
 
@@ -186,3 +186,18 @@ Additionally, the left menu contains the following report functions:
 *Note for the purposed of the prototype, the FEi Team developed tools to create orders for testing purposes and so that report data would be visible.* 
 
 
+
+#   2. Technical Approach Requirements
+##  2.1 Overall Agile Development Approach
+
+When developing the prototype, FEi used an Agile Scrum process that is detaied in this [diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf).
+
+! **PDF cannot be embedded**
+
+![Agile Process Diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf?raw=true "Agile Process Diagram")
+
+During the planning stage, we analyzed the RFI requirements and selected Prototype A.  Then, we identified the roles and skillsets needed to complete the prototype and assembled a multi-disciplinary team based on the requirements of the project and Agile methodology. We developed a project budget and a schedule with three, one-week sprints. Throughout the sprints, the team worked as a single unit with daily stand-up meetings, frequent touchpoints, and demonstrations. More information is provided in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf)
+
+! **PDF cannot be embedded**
+
+The overall project team was divided into the following functional teams to seamlessly perform like functions and responsibilities:
