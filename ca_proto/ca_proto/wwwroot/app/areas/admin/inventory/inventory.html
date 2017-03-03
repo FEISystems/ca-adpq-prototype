@@ -309,10 +309,14 @@
                                 <option value="">Select Image File Name</option>
                             </select>
 
-                            <label for="noimage" class="usa-sr-only">No image</label></td>
-                            <input id="noimage" type="hidden" ng-model="model.filter.Id" />
-                            <img id="filterImage" height="100" width="100" ng-src="/api/image/{{model.filter.ImageFileName}}" alt="No Image Selected"
-                            />
+                            <div ng-show="model.showNoImage()">
+                                <label for="noimage" class="usa-sr-only">No image</label>
+                                <input id="noimage" type="hidden" ng-model="model.filter.Id" />
+                                <img id="filterImageNoImage" height="100" width="100" src="" alt="No Image Selected" />
+                            </div>
+                            <div ng-show="!model.showNoImage()">
+                                <img id="filterImage" height="100" width="100" ng-src="/api/image/{{model.filter.ImageFileName}}" alt="No Image Selected" />
+                            </div>
                         </div>
 
                         <div class="usa-width-one-whole">

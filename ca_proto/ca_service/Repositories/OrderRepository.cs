@@ -21,7 +21,7 @@ namespace ca_service.Repositories
 
             filter.Add("UserId", userId);
 
-            var result = base.Fetch(1, 100, filter);
+            var result = base.Fetch(0, 100, filter);
 
             return result?.ToList() ?? new List<Order>();
         }

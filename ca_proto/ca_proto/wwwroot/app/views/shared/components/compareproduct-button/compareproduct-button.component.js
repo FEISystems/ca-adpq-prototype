@@ -50,6 +50,12 @@
         $rootScope.$on("updateCheckboxes", function (product) {
             updateCheckboxes();
         });
+        $('input:checkbox').keypress(function(e){
+            if((e.keyCode ? e.keyCode : e.which) == 13){
+            $(this).trigger('click');
+            }
+        });
+        
     };
 
     module.directive("compareProductButton", function () {

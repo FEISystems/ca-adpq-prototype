@@ -18,7 +18,7 @@
             </div>-->
             <div class="phone">
                 <label for="input-type-phone">Phone Number<strong style="color: red" title="Required field">*</strong></label>
-                <input id="input-type-phone" ng-model="model.phoneNumber" name="phone" required type="text">
+                <input id="input-type-phone" ng-model="model.phoneNumber" name="phone" required type="text" pattern="(^\d{10}$)|(^\d{3}-\d{3}-\d{4}$)">
                 <div class="help-block" ng-messages="checkoutForm.phone.$error" ng-if="checkoutForm.phone.$dirty || submitted" role="alert">
                     <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
                 </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="delivery-postalcode">
                 <label for="input-type-delivery-postalcode">Zip Code<strong style="color: red" title="Required field">*</strong></label>
-                <input id="input-type-delivery-postalcode" ng-model="model.postalCode" name="postalcode" required type="text">
+                <input id="input-type-delivery-postalcode" ng-model="model.postalCode" name="postalcode" required type="text" pattern="(^\d{5}$)" ng-maxlength="5">
                 <div class="help-block" ng-messages="checkoutForm.postalcode.$error" ng-if="checkoutForm.postalcode.$dirty || submitted" role="alert">
                     <div ng-messages-include="app/views/shared/components/form-error-messages/form-error-messages.html"></div>
                 </div>
