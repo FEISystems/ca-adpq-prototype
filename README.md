@@ -400,12 +400,12 @@ GitHub Issue #52
 
 FEi’s prototype uses modern, open technologies, and we used Agile (Scrum) processes to manage, design, develop, test, and deploy the prototype. The following standards and guidance are used or referred to in this prototype.
 
-1.  Ubuntu Server 16.10
-2.  .Net Core
-3.  Docker Engine and Client
-4.  MySQL 8
-5.  AngularJS
-6.  CenturyLink/Watchtower
+*   Ubuntu Server 16.10
+*   .Net Core
+*   Docker Engine and Client
+*   MySQL 8
+*   AngularJS
+*   CenturyLink/Watchtower
 
 ### m.  Deployed the prototype on an Infrastructure as a Service (IaaS) or Platform as Service (PaaS) provider, and indicated which provider they used 
 
