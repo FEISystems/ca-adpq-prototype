@@ -34,6 +34,15 @@
         model.expendituresOverTime = [];
         model.font = "14px Verdana";
 
+        model.listeners =[];
+
+        this.$routerOnDeactivate = function (next, previous) {
+            for (var i = 0; i < model.listeners.length; i++) {
+                model.listeners[i]();
+            };
+            model.listeners = [];
+        };
+
         (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
             var chart = {};
@@ -150,9 +159,9 @@
             if (!includeLabels)
                 return;
             var totalLabels = [];
-            totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal) });
-            totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal) });
-            totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal) });
+            totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal, true) });
+            totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal, true) });
+            totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal, true) });
             model.drawCustomLabels(context, 10, 20, totalLabels);
         };
 
@@ -161,8 +170,12 @@
             model.drawExpendituresByProductType(2, "productTypeCanvas", true);
         };
 
-        model.toMoney = function (number) {
-            return "$" + number.toFixed(2).replace(/./g, function (c, i, a) {
+        model.toMoney = function (number, includeDecimals) {
+            if (includeDecimals)
+                number = number.toFixed(2);
+            else
+                number = new String(number);
+            return "$" + number.replace(/./g, function (c, i, a) {
                 return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
         };
@@ -771,25 +784,25 @@
             model.drawWrappedLabels("accountLabelCanvas", model.paymentAccounts, model.paymentAccountColumnWidth);
         };
 
-        messageService.subscribe('getOrderProductsSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('getOrderProductsSuccess', function (response) {
             model.orderProducts = response;
             model.refreshTable();
             model.drawDashboard();
             model.responseMessage = "Found " + response.length + " matching records";
-        });
+        }));
 
-        messageService.subscribe('getOrderProductsFailure', function (response) {
+        model.listeners.push(messageService.subscribe('getOrderProductsFailure', function (response) {
             model.orderProducts = [];
             model.handleError(response);
-        });
+        }));
 
-        messageService.subscribe('retrievedOrderStatusSimple', function(response) {
+        model.listeners.push(messageService.subscribe('retrievedOrderStatusSimple', function(response) {
             model.orderStatuses = response;
-        });
+        }));
 
-        messageService.subscribe('retrievedOrderStatusSimpleFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedOrderStatusSimpleFail', function (response) {
             model.orderStatuses = [];
-        });
+        }));
 
         model.initDateRange();
         reportService.fetchOrderStatuses();
