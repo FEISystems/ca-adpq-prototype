@@ -2,7 +2,11 @@
 # author:  Ryan Chadwick
 # company: FEi Systems Inc.
 
-This document covers standing up each environment's Docker containres
+This document covers standing up each environment's Docker containers.
+
+The Prototyp is split into two Docker Images feidevops/ca_adpq_proto and feidevops/ca_adpq_proto_db.
+
+The first contains the .Net Core web application.  The second contains a MySQL based image that creates the starting database for the web application.
 
 #QC:Latest
 QC servers are hosted on the internal FEi cloud and not accessible from outside of our network

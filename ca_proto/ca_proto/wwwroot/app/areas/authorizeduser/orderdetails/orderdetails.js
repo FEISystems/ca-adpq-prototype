@@ -58,14 +58,14 @@
             }
 
             model.canCancelOrder = function () {
-                //cancelled is 2
-                var cancelledId = 2;
-                var cancelledStatus = _.find(model.orderStatuses, function (s) { return s.Id === cancelledId; });
-                if (typeof cancelledStatus == 'undefined')
+                //pending is 1
+                var pendingId = 1;
+                var pendingStatus = _.find(model.orderStatuses, function (s) { return s.Id === pendingId; });
+                if (typeof pendingStatus == 'undefined')
                     return false;
-                if (model.order.Status === cancelledStatus.Description)
-                    return false;
-                return true;
+                if (model.order.Status === pendingStatus.Description)
+                    return true;
+                return false;
             }
 
             messageService.subscribe("getOrderFailure", function (response) {

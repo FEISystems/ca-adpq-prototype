@@ -436,22 +436,6 @@ namespace ca_service.Repositories
             }
         }
 
-        private static string ConvertToParamName(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                return "";
-            var result = new StringBuilder(s);
-            for (int i = 0; i < result.Length; i++)
-            {
-                var c = result[i];
-                if (!CharIsInRange(c, 'a', 'z') && !CharIsInRange(c, 'A', 'Z') && !CharIsInRange(c, '0', '9'))
-                    result[i] = '_';
-            }
-            if (CharIsInRange(result[0], '0', '9'))
-                result.Insert(0, '_');
-            return result.ToString();
-        }
-
         private static bool CharIsInRange(char c, char low, char high)
         {
             return low <= c && c <= high;
@@ -470,12 +454,12 @@ namespace ca_service.Repositories
                         sqlBuilder.Append("(");
                         try
                         {
-                            string paramName = "@" + ConvertToParamName(values[0]);
+                            string paramName = string.Format("@param__{0}", cmd.Parameters.Count);// + ConvertToParamName(values[0]);
                             BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[0]);
                             for (int i = 1; i < values.Length; i++)
                             {
                                 sqlBuilder.Append(" OR ");
-                                paramName = "@" + ConvertToParamName(values[i]);
+                                paramName = string.Format("@param__{0}", cmd.Parameters.Count);//paramName = "@" + ConvertToParamName(values[i]);
                                 BuildFuzzyOrLiteralCommand(sqlBuilder, cmd, paramName, column, values[i]);
                             }
                         }
