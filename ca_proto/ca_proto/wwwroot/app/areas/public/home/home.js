@@ -23,7 +23,6 @@
             angular.forEach(model.listeners, function (l) {
                 l();
             });
-            categoryService.setSorter(model.customSorter);
         });
 
         this.$routerOnActivate = function (next, previous) {
