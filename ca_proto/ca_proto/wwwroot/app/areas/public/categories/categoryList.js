@@ -30,7 +30,7 @@
             model.products = [];
             model.page = 0;
             model.pageCount = 1;
-            model.itempPerPage = 20;
+            model.itempPerPage = 8;
             model.filter = model.category.filter;
 
 
