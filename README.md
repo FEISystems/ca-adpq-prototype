@@ -301,7 +301,7 @@ GitHub Issue #46
 
 Axure, a rapid prototyping tool, was used to design the application including the required features sets. The rapid prototype contained the necessary screens and features with sufficient detail to be tested by people. As a result, we were able to gain a better understanding of how people used the application including their needs and any pain points encountered. The information gathered from the user testing allowed our team to improve the application in subsequent iterations. 
 
-[User Testing Notes](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf)
+[User Testing Notes](./artifacts/Design%20Process/User%20testing%20notes_all%20combined.pdf)
 
 [Survey Results](./artifacts/Survey.pdf)
 
@@ -313,7 +313,7 @@ GitHub Issue #61
 
 *   **Rapid Prototyping:** In order to build an application designed to meet the user needs, our team created fully functional [rapid prototypes](./artifacts/Design Process/Wireframes and Prototyping/) that were tested with users. The feedback collected from the users allowed our team to make improvements to the application early in the design phase, resulting in a better user experience and usability for the user. 
 
-*   **User Testing:** To validate our designs and ensure that our application designing was consistent with user expectations and needs, we tested with users early and often. As a result of our testing, we were able to identify usability issues early and make corrections to the UI where necessary. The user testing allowed our team to better understand the users’ needs, and improve the application. We documented the [user testing feedback](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf). 
+*   **User Testing:** To validate our designs and ensure that our application designing was consistent with user expectations and needs, we tested with users early and often. As a result of our testing, we were able to identify usability issues early and make corrections to the UI where necessary. The user testing allowed our team to better understand the users’ needs, and improve the application. We documented the [user testing feedback](./artifacts/Design%20Process/User%20testing%20notes_all%20combined.pdf). 
 
 ### e.  Used GitHub to document code commits
 
@@ -365,7 +365,7 @@ To ensure compliance without incurring refactoring costs, our team weaves Sectio
     *   Content that is accessible when displayed on hover
     *   Visual focus that moves with keyboard navigation
 
-The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) for details. 
+The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/508%20Compliance%20Scorecard.pdf) for details. 
 
 
 ### h.  Created or used a design style guide and/or a pattern library
