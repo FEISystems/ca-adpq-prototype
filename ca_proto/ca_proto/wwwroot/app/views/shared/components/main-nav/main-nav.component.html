@@ -3,11 +3,11 @@
 <div id="main-nav" role="navigation" class="usa-grid">
     <div class="usa-width-one-third">
         <ul class="usa-unstyled-list" >
-            <li permission="['Admin']"><a ng-link="['Admin Home']" >Admin</a></li>
+            <li permission="['Admin']"><a ng-link="['Admin Home']" tabindex="0">Admin</a></li>
             <!--<li><a ng-link="['Login Register']">Login/Register</a></li>-->
             <!--<li><a ng-link="['About Us']">About Us</a></li>-->
             <!--<li><a ng-link="['Help']">Help Desk</a></li>-->
-            <li permission="['Authorized User', 'Admin']"><a ng-link="['Order History']" >My Order History</a></li>
+            <li permission="['Authorized User', 'Admin']"><a ng-link="['Order History']"  tabindex="0">My Order History</a></li>
         </ul>
     </div>
     <!--<div class="usa-width-one-fourth">
@@ -17,12 +17,12 @@
     </div>-->
     <div class="usa-width-two-thirds ">
         <ul class="usa-unstyled-list text-right">            
-            <li><a ng-link="['Cart']">Cart</a> <span class="ca-badge">{{model.cartItemCount}}</span></li>
+            <li><a ng-link="['Cart']" tabindex="0">Cart</a> <span class="ca-badge">{{model.cartItemCount}}</span></li>
             <li>
-                <a ng-link="['Compare List']">Compare List</a>&nbsp;<compare-popup></compare-popup>
+                <a ng-link="['Compare List']" tabindex="0">Compare List</a>&nbsp;<compare-popup></compare-popup>
             </li>
-            <li ng-hide="!model.isAuthenticated()"><a ng-click="model.logout()" ng-bind="model.LogoutText()"></a></li>
-            <li ng-hide="model.isAuthenticated()"><a ng-click="model.logout()">Login</a></li>
+            <li ng-hide="!model.isAuthenticated()"><a ng-click="model.logout()" ng-bind="model.LogoutText()" tabindex="0"></a></li>
+            <li ng-hide="model.isAuthenticated()"><a ng-click="model.logout()" tabindex="0">Login</a></li>
         </ul>
     </div>
 </div>
