@@ -22,9 +22,10 @@
 
         updateCheckboxes();
 
-        model.clearAll = function() {
+        model.clearAll = function () {
             compareService.clearAllCompareItems();
-        }   
+            console.log("hey");
+        }
 
 
         $($element).find("input").on("change", function () {

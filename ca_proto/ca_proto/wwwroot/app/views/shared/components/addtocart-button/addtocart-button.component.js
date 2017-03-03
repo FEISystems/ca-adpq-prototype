@@ -15,7 +15,7 @@
 
 
         shoppingCartService.getActiveCart(myId);
-
+        var listeners = [];
         function processCart(response)
         {
             model.cart = {};
@@ -36,25 +36,32 @@
 
             }
         };
+        listeners.push(
+            messageService.subscribe("getActiveCartSuccess", function (response) {
+                if (response && response.sourceId == myId) {
+                    processCart(response);
+                }
 
-        messageService.subscribe("getActiveCartSuccess", function (response) {
-            if (response && response.sourceId == myId) {
+            })
+        );
+
+        listeners.push(
+            messageService.subscribe("addProductToCartSuccess", function (response) {
+                if (response.sourceId != myId)
+                    return;
                 processCart(response);
-            }
+                $timeout(function () {
+                    $scope.$apply();
+                });
+            })
+        );
 
-        })
-
-
-        messageService.subscribe("addProductToCartSuccess", function (response) {
-            if (response.sourceId != myId)
-                return;
-            processCart(response);
-            $timeout(function () {
-                $scope.$apply();
+        $scope.$on('$destroy', function () {
+            angular.forEach(listeners, function (l)
+            {
+                l();
             });
-        })
-
-
+        });
     };
 
     module.directive("addToCartButton", function () {
