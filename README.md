@@ -254,5 +254,110 @@ Our team relied on the following artifacts to create the prototype:
 
 *   **Survey Results:** In addition to the interviews, we fielded a brief online survey to gather usability feedback. The survey can be found: https://www.surveymonkey.com/r/7DXQ58L.  Survey results are shown [here](./artifacts/Survey Results/Survey.pdf).
 
-*   **Test Scripts and Test Cases:** Quality Assurance (QA) activities included creating test cases (actors, preconditions, and test steps) as well as test scripts (actions, expected results, and test results in a Pass/Fail format) are shown [here](./artifacts/Test Cases/Test_Cases.xlxs).
+*   **Test Scripts and Test Cases:** Quality Assurance (QA) activities included creating test cases (actors, preconditions, and test steps) as well as test scripts (actions, expected results, and test results in a Pass/Fail format) are shown [here](./artifacts/Test Cases/Test_Cases.xlsx).
 
+
+##  2.3 Code Flow from Client UI, to JavaScript Library, to REST Service to Database, Pointing to Code in the GitHub Repository
+The code uses a multi-tier approach. The User Interface (UI) Layer consists of AngularJS components that communicate to AngularJS services. These services utilize Ajax calls to access the Web.API controllers in the controller layer. The controller layer accesses the service layer which has the business logic embedded. When needed, the service layer accesses the MySQL Database via the repository layer. IoC injection is utilized through all the layers enabling unit testing. An [interactive code flow diagram](http://htmlpreview.github.com/?https://github.com/FEISystems/ca-adpq-prototype/blob/master/artifacts/Images/Code%20Flow.html) presents more details.
+
+
+##  2.4 Technical Approach Requirements
+In the following sections, we address each of the technical requirements described in the RFI and reference the corresponding GitHub issue number.
+
+1.  Assigned one (1) leader and gave that person authority and responsibility and held that person accountable for the quality of the prototype submitted
+
+    GitHub Issue #63
+
+    When we assembled the team, the Product Manager, Mr. Terry Boswell, was given the authority and responsibility for the quality of the prototype submitted. 
+
+2.  Assembled a multidisciplinary and collaborative team that includes, at a minimum, five (5) of the labor categories as identified in Attachment B: PQVP DS-AD Labor Category Descriptions
+
+    GitHub Issue #64
+
+    We assembled a multidisciplinary and collaborative team that included:
+*   Leadership, Product Definition, and Requirements Team
+    *   Product Manager – Terry Boswell
+    *   Scrum Master – Claire Reinken 
+    *   Business Analysts – Lisa Lin-Freeman, Chris Gordon, and Ting Zhang
+*   Visual and Frontend Development Team
+    *   Technical Architect – Jonas Bush
+    *   Visual Designer – Jenny Ho
+    *   Interaction Designers/User Researchers/Usability Testers – Ludwing Najera (Interaction Designer), Mike Wilburn (Usability Tester), Neelu Singh (Usability Tester), and Kristie Callander (Usability Tester)
+    *   Frontend Web Developers – Luis Najera and Christian Heyd
+*   Backend Development Team
+    *   Backend Web Developer – David Lorek
+*   DevOps Team
+    *   DevOps Engineer – Ryan Chadwick
+
+
+3.  Understood what people needed, by including people in the prototype development and design process
+
+    GitHub Issue #46
+
+    Axure, a rapid prototyping tool, was used to design the application including the required features sets. The rapid prototype contained the necessary screens and features with sufficient detail to be tested by people. As a result, we were able to gain a better understanding of how people used the application including their needs and any pain points encountered. The information gathered from the user testing allowed our team to improve the application in subsequent iterations. 
+
+    [User Testing Notes](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf)
+
+    [Survey Results](./artifacts/Survey Results/Survey.pdf)
+
+4.  Used at least a minimum of three (3) “user-centric design” techniques and/or tools
+
+    GitHub Issue #61
+
+*   **Journey Maps:** Early in the requirements gathering phase, our team of Business Analysts and Interaction Designer/User Researcher/Usability Testers held a series of ideation sessions to gain a better understanding of the users’ needs and requirements. The journey map illustrates the users’ workflow and tasks they must complete in order to reach their goal. Our team of developers and designers use the [journey map](./artifacts/Design Process/Journey Maps/) as a reference for designing for the user’s needs. 
+
+*   **Rapid Prototyping:** In order to build an application designed to meet the user needs, our team created fully functional [rapid prototypes](./artifacts/Design Process/Wireframes and Prototyping/) that were tested with users. The feedback collected from the users allowed our team to make improvements to the application early in the design phase, resulting in a better user experience and usability for the user. 
+
+*   **User Testing:** To validate our designs and ensure that our application designing was consistent with user expectations and needs, we tested with users early and often. As a result of our testing, we were able to identify usability issues early and make corrections to the UI where necessary. The user testing allowed our team to better understand the users’ needs, and improve the application. We documented the [user testing feedback](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf). 
+
+5.  Used GitHub to document code commits
+
+    GitHub Issue #68
+
+    GitHub was used as our source control system. Tickets were associated with commits as they were executed, https://github.com/FEISystems/ca-adpq-prototype 
+
+6.  Used Swagger to document the RESTful API, and provided a link to the Swagger API
+
+    GitHub Issue #47
+
+    Swagger was used to document the RESTful API. The links to the User Interface and JSON data are included below.
+
+    User Interface:
+    http://ca-adpq-prototype.eastus2.cloudapp.azure.com/swagger/index.html
+
+    JSON Data:
+    http://ca-adpq-prototype.eastus2.cloudapp.azure.com/swagger/v1/swagger.json
+
+7.  Complied with Section 508 of the Americans with Disabilities Act and WCAG 2.0
+
+    GitHub Issues #48, #120, #121, #122, #123, and #185
+
+    Section 508 of the Rehabilitation Act of 1973, as amended (29 U.S.C. § 794 (d)) provides accessibility guidelines for the development, procurement, maintenance, or use of Electronic and Information Technology (EIT). The amendment mandates that federal agencies must give disabled employees and members of the public access to information that is comparable to access available to others (Section 508 Law and Related Laws and Policies. (n.d.). Retrieved from https://www.section508.gov/content/learn/laws-and-policies). Based on Section 508 accessibility requirements, the U.S. Access Board established standards and guidelines as to how all federal agencies can ensure Section 508 compliance for web-based applications and information, software applications, operating systems, computers, telecommunication, multimedia products, documentation, and more. At FEi, Section 508 compliance is not an afterthought, and our team advocates for users with disabilities at every stage. When validating applications and documentation for Section 508 compliance, we address the concerns of individuals with disabilities by using manual and automated testing techniques to confirm full accessibility and usability.
+
+    To ensure compliance without incurring refactoring costs, our team weaves Section 508 requirements into design, development, and testing at the beginning of every project. FEi also carefully considered the design of the prototype to ensure 508 compliance up to WCAG AA level through utilizing the following guidelines and technology: 
+
+*   W3C accessibility recommendations
+*   WAI-ARIA (technology that makes advanced web applications accessible and usable to people with disabilities)
+*   Americans with Disabilities Act (ADA) laws and regulations
+*   Web Content Accessibility Guidelines (WCAG) 2.0
+*   Principles of Accessibility: Perceivable, Operable, Understandable, Robust (POUR)
+*   Assistive technology (e.g., screen readers, magnification, assistive listening devices)
+*   Text, graphics, images, menus, breadcrumbs, forms, navigation, buttons, tables, accessibility tags, fonts, plugins, links, scripts, and applets
+*   Code and markup that define page structure and presentation
+*   Evaluation with web accessibility checkers, HTML and WCAG evaluators, and CSS validators
+*   HTML elements (name, role, state, value)
+*   HTML markup that conveys logical hierarchy
+*   HTML tables (data, complex, simple, layout)
+*   Proper header, cell, row, and column associations
+*   Tables constructed to read logically from left to right and top to bottom
+*   Tables containing attributes to define meaning in the absence of context
+*   Layout, color, contrast, and cascading style sheets (CSS), including the disabling of CSS during testing
+*   Form fields (FIELDSET, LEGEND, TABINDEX), radio buttons, checkboxes, labels (with FOR attribute), title attribute, order
+*   Keyboard accessibility
+*   Logical tab order
+*   Accessible links
+*   Forms that can be navigated and completed
+*   Content that is accessible when displayed on hover
+*   Visual focus that moves with keyboard navigation
+
+    The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) for details. 
