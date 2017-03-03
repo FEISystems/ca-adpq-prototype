@@ -13,7 +13,7 @@ Local development install.
 
 **MySQL**
 
-docker run --name ca-adpq-db-devlocal -e MYSQL_ROOT_PASSWORD="Letmein1!" -d feidevops/ca_adpq_proto_db:latest
+docker run --name ca-adpq-db-devlocal -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 
