@@ -36,12 +36,11 @@
 
         model.listeners =[];
 
-        this.$routerOnDeactivate = function (next, previous) {
-            for (var i = 0; i < model.listeners.length; i++) {
-                model.listeners[i]();
-            };
-            model.listeners = [];
-        };
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
 
         (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
