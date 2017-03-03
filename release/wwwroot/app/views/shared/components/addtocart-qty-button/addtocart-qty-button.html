@@ -1,0 +1,11 @@
+<div style="display:inline-block;">
+    <div>
+        <label for="add_to_cart" class="left" style="margin: 23px 10px 0 0;">Qty</label>
+        <input type="number" min="1" id="add_to_cart" class="usa-input-medium left" ng-model="model.qty" style="margin-right: 10px;" ng-pattern="onlyNumbers" />
+        <button class="usa-button-secondary left" ng-click="addToCart()" ng-show="model.showAddButton" ng-disabled="model.isInvalidQuantity()">Add to Cart</button>
+        <button class="usa-button-secondary left" ng-click="updateCart()" ng-show="model.showUpdateButton" ng-disabled="model.isInvalidQuantity()">Update Cart</button>
+    </div>
+    <div ng-show="model.showUpdateButton" class="text-center">
+        <i>Item is already in cart.</i>
+    </div>
+</div>

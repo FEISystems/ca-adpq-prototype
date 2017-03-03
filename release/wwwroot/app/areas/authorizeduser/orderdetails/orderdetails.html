@@ -1,0 +1,65 @@
+﻿<link rel='stylesheet' type="text/css" href="app/areas/authorizeduser/orderdetails/orderdetails.css" />
+<standard-layout>
+    <div class="order-details">
+        <h2 class="usa-heading">Order Details</h2>
+        <div class="clear">
+            <button class="usa-button-secondary left" ng-link="['Order History']">Back to Order History</button>
+            <button class="usa-button-secondary right" ng-show="model.canCancelOrder()" ng-click="model.cancelOrder()">Cancel Order</button>
+        </div>
+        <div class="order-content clear">
+            <div class="field">
+                <table>
+                    <caption class="usa-sr-only">Order Information</caption>
+                    <tr>
+                        <th>Order Date</th>
+                        <td>{{model.order.CreateDate | date}}</td>
+                    </tr>
+                    <tr>
+                        <th>Order #</th>
+                        <td>{{model.order.Id}}</td>
+                    </tr>
+                    <!--<tr>
+                       <th>Order placed by</th>
+                       <td>department name</td>
+                   </tr>-->
+                    <tr>
+                        <th>Status</th>
+                        <td>{{model.order.Status}}</td>
+                    </tr>
+                </table>
+                <h3 class="usa-heading">Product List</h3>
+
+                <div class="usa-grid-full order-item-list" ng-repeat="item in model.order.Items">
+                    <div class="usa-grid-full">
+                        <div class="usa-width-one-sixth">
+                            <img ng-src="api/image/{{model.products[$index].ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
+                        </div>
+                        <div class="usa-width-one-half">
+                            <div><strong>{{model.products[$index].Title}}</strong></div>
+                            <div class="item-info">{{model.products[$index].SKU}}</div>
+                            <div class="item-info">{{model.products[$index].Category}}</div>
+                        </div>
+                        <div class="usa-width-one-sixth">
+                            <span>Qty: {{item.Quantity}}</span>
+                        </div>
+                        <div class="usa-width-one-sixth text-right">
+                            <span><strong>{{model.products[$index].ContractPrice | currency}}/ea.</strong></span><br>
+                        </div>
+                    </div>
+                    <div class="usa-grid-full" ng-show="model.orderItems.length > 1">
+                        <hr ng-show="model.orderItems.length != $index + 1" />
+                    </div>
+                </div>
+
+                <div class="usa-width-one-whole" style="border-top: 1px solid black; margin: 20px 0 ; padding-top:20px">
+                    <div class="usa-width-one-half">
+                        <span class="h3"><strong>Total Cost:</strong></span>
+                    </div>
+                    <div class="usa-width-one-half text-right">
+                        <span class="h3">{{model.orderTotal | currency}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</standard-layout>
