@@ -52,6 +52,7 @@ Users order selected products by checking out from their shopping cart
 
 ### 1.2.1   Home Page
 The Home Page was designed so that users can easily browse for products across three categories: Hardware, Software, and Services. We grouped items so that each menu displays products from the corresponding category in the dataset provided in the Prototype A resources file.  
+
 After logging in, users can browse each category to select products. Alternatively, users can perform a general keyword search to find the desired product.  The Home Page also features an Advanced Search feature, where users can enter more granular search parameters, such as:
 
 *   Product Name
@@ -86,10 +87,13 @@ Users can view the following information about the products:
 
 ### 1.2.3   Shopping
 Users can add items to the shopping cart by clicking the red “Add to Cart” button for each item. The button grays out once an item has been added to the cart and updates to read, “Added to Cart.” As with the compare feature, a counter on the Shopping Cart prominently displays the number of items that have been added to the cart. 
+
 Users can view their cart at any time and adjust the quantities of the items they would like to purchase. To remove an item, users can enter a quantity of “0” and click “Update Cart” or click the “Remove” link next to the desired item. The cart provides a subtotal of the order and also allows the user to continue shopping via the “Continue Shopping” button, which returns the user to the Home Page. 
 
 From the cart, the user can checkout by clicking “Proceed to Checkout.” On the Checkout Information page, the user will enter their contact information (Name, Phone Number, and Email Address, their Shipping Address, and select a Payment Account. For the purposes of the prototype, we created payment accounts for four state agencies to which users could attribute their order.  
+
 Clicking “Back to Cart” allow the user to make any additional revisions to their cart if necessary. The user will click “Continue” when they are ready to proceed with the order. From the Review Order page, the user can click “Place Order” and an Order Confirmation page displays the order number. 
+
 Users can view, track, and cancel placed orders from the “My Order History” page. For the purposes of the prototype, an order’s status will change from “Placed” to “Shipped” 15 minutes after the order was placed. The user can cancel the order while it is still in the “Placed” status by first clicking “View Order” from the Order History page and then “Cancel Order” from the Order Details page. 
 
 ### 1.2.4   Administrator’s (Admin) Tools
@@ -129,6 +133,7 @@ Click “Add Product” from the left menu to add items individually and enter t
 *   Image file name
 
 Multiple items can be added by using clicking “Import Products” from the left menu and click “Choose File” to select a .CSV file to upload. Finally, click “Import CSV Inventory File.” We anticipate this feature could contribute to improved efficiency in maintaining the catalog by reducing the time it takes to upload items. Note the columns on the file correspond to the columns in the Prototype A resource data set. 
+
 Admins can upload images by clicking “Import Images” from the left menu, selecting “Choose Files,” and then finally “Import Images.” 
 
 ####    1.2.5.2 Editing or Deleting Items
@@ -178,6 +183,7 @@ The reports “Dashboard” is driven by start and end dates of the desired repo
 The admin can also optionally filter data by selecting the order status (Placed, UserCancelled, and/or Shipped) from the top right of the Dashboard. Be aware that items in the Placed status transition to Shipped status 15 minutes after the order was placed for the purpose of the prototype. 
 
 Click on any of the reports in the dashboard for a larger view. Alternatively, the user can click any of the reports from the left menu or “Expand All Charts.” To print a report, right-click any of the reports and select print. 
+
 Additionally, the left menu contains the following report functions: 
 
 *   **Expenditures Over time:** List of all orders placed in the reference period
@@ -192,17 +198,12 @@ Additionally, the left menu contains the following report functions:
 
 When developing the prototype, FEi used an Agile Scrum process that is detaied in this [diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf).
 
-! **PDF cannot be embedded**
-
-![Agile Process Diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf?raw=true "Agile Process Diagram")
-
 During the planning stage, we analyzed the RFI requirements and selected Prototype A.  Then, we identified the roles and skillsets needed to complete the prototype and assembled a multi-disciplinary team based on the requirements of the project and Agile methodology. We developed a project budget and a schedule with three, one-week sprints. Throughout the sprints, the team worked as a single unit with daily stand-up meetings, frequent touchpoints, and demonstrations. More information is provided in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf).
-
-! **PDF cannot be embedded**
 
 The overall project team was divided into the following functional teams to seamlessly perform like functions and responsibilities:
 
 1.  **Leadership, Product Definition, and Requirements Team** – This team consisted of the Product Owner (PO) (Labor Category: Product Manager), Scrum Master (Labor Category: Delivery Manager), and Business Analysts. As the leader of the team, the PO was responsible for defining the scope, prioritizing the work items, and ensuring completeness of the work items. The Scrum Master fostered an Agile team environment by demonstrating Scrum tools and techniques. Additionally, the Scrum Master facilitated the development process by removing any impediments identified by the team members and asking each member what they completed yesterday and what they will perform today. Business Analysts created user stories and acceptance criteria. 
+
     -   Product Manager – Terry Boswell
     -   Scrum Master – Claire Reinken 
     -   Business Analysts – Lisa Lin-Freeman, Chris Gordon, and Ting Zhang
@@ -491,8 +492,6 @@ In order to create meaningful dashboards, we coupled Prometheus with Grafana. T
 
 Links for the tools in our Production environment and login information below:
 
-!!*Suggest to put screenshots here*
-
 **DockerDash**
 
     http://ca-adpq-prototype.eastus2.cloudapp.azure.com:5050
@@ -524,6 +523,7 @@ GitHub Issue #: 167
 The following steps were used to install and configure Visual Studio Code:
 
 **Install Visual Studio Code**
+
 1.  Download the branch from Github, https://github.com/FEISystems/ca-adpq-prototype
 2.  Download and Install MySQL
 3.  Open MySQL Workbench
@@ -533,36 +533,33 @@ The following steps were used to install and configure Visual Studio Code:
 7.  Modify the connection string in the ca_proto\ca_proto\appSetting.json file
 
 **Configure Visual Studio Code**
+
 1.  On the left side of VS Code, from the menu options, select the bottom icon which represents extensions. To run the prototype in VS Code you will need the C# extension to be installed.
 
-![VS Code Step 1](./artifacts/Images/S_Install_Doc_Step_1.png?raw=true "VS Code Step 1")
+    ![VS Code Step 1](./artifacts/Images/S_Install_Doc_Step_1.png?raw=true "VS Code Step 1")
  
-
 2.  Once that extension is installed, go to the next menu icon up (Debug), and click on the Gear at the top (the tooltip will say “Configure or Fix launch.json”). 
 
-![VS Code Step 2](./artifacts/Images/S_Install_Doc_Step_2.png?raw=true "VS Code Step 2")
-
+    ![VS Code Step 2](./artifacts/Images/S_Install_Doc_Step_2.png?raw=true "VS Code Step 2")
 
 3.  Select “.NET Core”, and VS Code will create a launch.json file. Once that is done, click the green “play” button. VS Code will show the following: 
 
-![VS Code Step 3](./artifacts/Images/S_Install_Doc_Step_3.png?raw=true "VS Code Step 3")
-
+    ![VS Code Step 3](./artifacts/Images/S_Install_Doc_Step_3.png?raw=true "VS Code Step 3")
 
 4.  Select “Configure Task Runner,” then select “.NET Core” from the option list that follows. VS Code will create a “tasks.json” file. The tasks.json file needs to be modified to pass the location of the “project.json” file, modify the “args” property underneath the “tasks” property as follows: 
 
-![VS Code Step 4](./artifacts/Images/S_Install_Doc_Step_4.png?raw=true "VS Code Step 4")
+    ![VS Code Step 4](./artifacts/Images/S_Install_Doc_Step_4.png?raw=true "VS Code Step 4")
 
 5.  Once this change is made, switch back to the “launch.json” file.  Under the entry for “.NET Core Launch (web)”, change the “program” and “cwd” attributes as follows: 
 
-![VS Code Step 5](./artifacts/Images/S_Install_Doc_Step_5.png?raw=true "VS Code Step 5")
-
+    ![VS Code Step 5](./artifacts/Images/S_Install_Doc_Step_5.png?raw=true "VS Code Step 5")
 
 6.  The dependencies will then need to be restored. Go to the View | Integrated Terminal menu option. That should open a command prompt at the root of the repository. Change into the ca_proto directory and run “dotnet restore”: 
 
-![VS Code Step 6](./artifacts/Images/S_Install_Doc_Step_6.png?raw=true "VS Code Step 6")
-
+    ![VS Code Step 6](./artifacts/Images/S_Install_Doc_Step_6.png?raw=true "VS Code Step 6")
 
 7.  Once this is done, go back to the Debug tab on the left, make sure that “.NET Core Launch (web)” is selected, and hit the play button.
+
 
 ### t.  Prototype and underlying platforms used to create and run the prototype are openly licensed and free of charge 
 
