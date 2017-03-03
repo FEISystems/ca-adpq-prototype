@@ -62,6 +62,8 @@ After logging in, users can browse each category to select products. Alternative
 
 The Home Page also includes space to highlight “Featured Products.” We anticipate this portion of the site could contribute to improved efficiency in the acquisition process by streamlining the products that are displayed for the users and expediting the shopping process.
 
+*Note: You cannot add items to your cart or compare list unless you are logged in.*
+
 ### 1.2.2   Comparing Products
 Users can add up to four items to a Compare List by selecting the “Compare” box found in each item. 
 
