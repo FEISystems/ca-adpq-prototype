@@ -14,13 +14,6 @@
 
         model.listeners = [];
 
-        this.$routerOnDeactivate = function (next, previous) {
-            for (var i = 0; i < model.listeners.length; i++) {
-                model.listeners[i]();
-            };
-            model.listeners = [];
-        };
-
         model.getActiveCart = function () {
             shoppingCartService.getActiveCart();
         };
@@ -160,7 +153,13 @@
             model.product = {};
         }));
 
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
 
+        
     };
 
     module.component("cart", {
