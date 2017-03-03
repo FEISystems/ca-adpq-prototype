@@ -28,6 +28,15 @@
         model.imageFileNames = [];
         $scope.submitted = false;
 
+        model.listeners = [];
+
+        this.$routerOnDeactivate = function (next, previous) {
+            for (var i = 0; i < model.listeners.length; i++) {
+                model.listeners[i]();
+            };
+            model.listeners = [];
+        };
+
         //sample query model
         //for strings, "A|B" converts to "column like '%A%' or column like '%B%'
         //for currency, "A|B" converts to "A <= column and column <= B"
@@ -292,7 +301,7 @@
             if (!newPage || newPage < 0)
                 newPage = 0;
             if (newPage > model.pageCount - 1)
-                newPage = model.pageCount - 1;
+                newPage = Math.max(0, model.pageCount - 1);
             model.page = newPage;
             model.fetchProducts();
         };
@@ -323,141 +332,141 @@
             }
         };
 
-        messageService.subscribe('countSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('countSuccess', function (response) {
             model.pageCount = Math.ceil(response / model.itemsPerPage);
             model.firstPage();
-        })
+        }));
 
-        messageService.subscribe('countFailure', function (response) {
+        model.listeners.push(messageService.subscribe('countFailure', function (response) {
             model.pageCount = 1;
-        })
+        }));
 
-        messageService.subscribe('importSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('importSuccess', function (response) {
             //alert('Import Success\r\n' + response);
             model.importProgress += "\n" + response;
             document.getElementById("fileImportForm").reset();
             model.fetchAll();
-        })
+        }));
 
-        messageService.subscribe('importFailure', function (response) {
+        model.listeners.push(messageService.subscribe('importFailure', function (response) {
             model.handleError(response);
             //model.importProgress += "\nImport Failure: " + response;
-        })
+        }));
 
-        messageService.subscribe('importImageSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('importImageSuccess', function (response) {
             model.importProgress += "\n" + response;
             model.fetchImageFileNames();
-        })
+        }));
 
-        messageService.subscribe('importImageFailure', function (response) {
+        model.listeners.push(messageService.subscribe('importImageFailure', function (response) {
             model.handleError(response);
-        })
+        }));
 
-        messageService.subscribe('addProductSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('addProductSuccess', function (response) {
             growl.success("Product has been added to the catalog.");
             //alert('Add Product Success');
             model.showTable();
-        })
+        }));
 
-        messageService.subscribe('addProductFailure', function (response) {
+        model.listeners.push(messageService.subscribe('addProductFailure', function (response) {
             model.handleError(response);
-        })
+        }));
 
-        messageService.subscribe('updateProductSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('updateProductSuccess', function (response) {
             growl.success("Product has been added to the catalog.");
             //alert('Update Product Success');
             model.showTable();
-        })
+        }));
 
-        messageService.subscribe('updateProductFailure', function (response) {
+        model.listeners.push(messageService.subscribe('updateProductFailure', function (response) {
             model.handleError(response);
-        })
+        }));
 
-        messageService.subscribe('retrievedUnitsOfMeasure', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedUnitsOfMeasure', function (response) {
             model.unitsOfMeasure = response;
-        })
+        }));
 
-        messageService.subscribe('retrievedUnitsOfMeasureFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedUnitsOfMeasureFail', function (response) {
             model.unitsOfMeasure = [];
-        })
+        }));
 
-        messageService.subscribe('retrievedProductTypes', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedProductTypes', function (response) {
             model.productTypes = response;
-        })
+        }));
 
-        messageService.subscribe('retrievedProductTypesFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedProductTypesFail', function (response) {
             model.productTypes = [];
-        })
+        }));
 
-        messageService.subscribe('retrievedCategories', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedCategories', function (response) {
             model.categories = response;
-        })
+        }));
 
-        messageService.subscribe('retrievedCategoriesFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedCategoriesFail', function (response) {
             model.categories = [];
-        })
+        }));
 
-        messageService.subscribe('retrievedContracts', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedContracts', function (response) {
             model.contracts = response;
-        })
+        }));
 
-        messageService.subscribe('retrievedContractsFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedContractsFail', function (response) {
             model.contracts = [];
-        })
+        }));
 
-        messageService.subscribe('retrievedContractors', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedContractors', function (response) {
             model.contractors = response;
-        })
+        }));
 
-        messageService.subscribe('retrievedContractorsFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedContractorsFail', function (response) {
             model.contractors = [];
-        })
+        }));
 
-        messageService.subscribe('retrievedImageFileNames', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedImageFileNames', function (response) {
             model.imageFileNames = response;
-        })
+        }));
 
-        messageService.subscribe('retrievedImageFileNamesFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedImageFileNamesFail', function (response) {
             model.imageFileNames = [];
-        })
+        }));
 
-        messageService.subscribe('querySuccess', function (response) {
+        model.listeners.push(messageService.subscribe('querySuccess', function (response) {
             model.products = response;
-        })
+        }));
 
-        messageService.subscribe('queryFailure', function (response) {
+        model.listeners.push(messageService.subscribe('queryFailure', function (response) {
             model.products = [];
-        })
+        }));
 
-        messageService.subscribe('deleteSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('deleteSuccess', function (response) {
             if (model.tab == 6) {
                 model.importProgress += "\nDeleted Product";
                 return;
             }
             model.showTable();
-        })
+        }));
 
-        messageService.subscribe('deleteFailure', function (response) {
+        model.listeners.push(messageService.subscribe('deleteFailure', function (response) {
             model.handleError(response);
-        })
+        }));
 
-        messageService.subscribe('deleteAllSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('deleteAllSuccess', function (response) {
             model.importProgress += "\n" + response;
             model.fetchAll();
             model.products = [];
-        })
+        }));
 
-        messageService.subscribe('deleteAllFailure', function (response) {
+        model.listeners.push(messageService.subscribe('deleteAllFailure', function (response) {
             model.handleError(response);
-        })
+        }));
 
-        messageService.subscribe('generateOrdersSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('generateOrdersSuccess', function (response) {
             model.importProgress += "\n" + response;
-        })
+        }));
 
-        messageService.subscribe('generateOrdersFailure', function (response) {
+        model.listeners.push(messageService.subscribe('generateOrdersFailure', function (response) {
             model.handleError(response);
-        })
+        }));
 
         model.fetchAll();
     };

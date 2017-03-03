@@ -12,7 +12,14 @@
         model.cart = {};
         model.cartItemCount = 0;
 
+        model.listeners = [];
 
+        this.$routerOnDeactivate = function (next, previous) {
+            for (var i = 0; i < model.listeners.length; i++) {
+                model.listeners[i]();
+            };
+            model.listeners = [];
+        };
 
         model.getActiveCart = function () {
             shoppingCartService.getActiveCart();
@@ -34,7 +41,6 @@
             model.getActiveCart();
 
         }
-
 
         $scope.removeFromCart = function (itemId) {
             //model.removeCartItem(itemId);
@@ -60,7 +66,7 @@
         }
 
 
-        messageService.subscribe('getActiveCartSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('getActiveCartSuccess', function (response) {
             model.cart = response;
             model.cartItems = [];
             model.products = [];
@@ -87,22 +93,22 @@
                 model.cartItemCount += model.cartItems[i].Quantity;
             }
 
-        })
+        }));
 
-        messageService.subscribe('getActiveCartFailure', function (response) {
+        model.listeners.push(messageService.subscribe('getActiveCartFailure', function (response) {
             model.cart = [];
-        })
+        }));
 
 
-        messageService.subscribe('getProductSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('getProductSuccess', function (response) {
             model.products.push(response);
-        })
+        }));
 
-        messageService.subscribe('getProductFailure', function (response) {
+        model.listeners.push(messageService.subscribe('getProductFailure', function (response) {
             model.product = [];
-        })
+        }));
 
-        messageService.subscribe('updateCartSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('updateCartSuccess', function (response) {
             model.cart = response;
             model.cartItems = [];
             model.products = [];
@@ -124,14 +130,14 @@
                 model.cartItemCount += model.cartItems[i].Quantity;
             }
 
-        })
+        }));
 
-        messageService.subscribe('updateCartFailure', function (response) {
+        model.listeners.push(messageService.subscribe('updateCartFailure', function (response) {
             model.product = [];
-        })
+        }));
 
 
-        messageService.subscribe('removeCartItemSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('removeCartItemSuccess', function (response) {
             model.cart = response;
             model.cartItems = [];
             model.products = [];
@@ -148,11 +154,11 @@
                 var item = model.cartItems[idx];
                 model.cartTotal += item.Price * item.Quantity;
             }
-        })
+        }));
 
-        messageService.subscribe('removeCartItemFailure', function (response) {
+        model.listeners.push(messageService.subscribe('removeCartItemFailure', function (response) {
             model.product = {};
-        })
+        }));
 
 
     };
