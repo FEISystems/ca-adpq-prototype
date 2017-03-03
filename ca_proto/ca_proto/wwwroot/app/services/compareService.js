@@ -1,42 +1,55 @@
 (function () {
     var compareService = function (messageService, $http, $sessionStorage, $rootScope, growl) {
 
+        var compareProducts = [];
 
-
-        var getCompareProduct = function (id) {
+        var getCompareProduct = function (id, scopeId, length, index) {
+            var lengthCount = length;
             $http.get("/api/inventory/" + id)
                 .success(function (response) {
-                    messageService.publish('getCompareProductSuccess', response);
+
+                    compareProducts.push(response);
+                    if (index === length) {
+                        var response = {};
+                        response.compareProducts = compareProducts;
+                        response.scopeId = scopeId;
+                        response.lengthCount = lengthCount;
+                        messageService.publish('refreshCompareListSuccess', response);
+                        compareProducts = [];
+                    }
                 })
                 .error(function (response) {
                     messageService.publish('getCompareProductFailure', response);
                 });
         };
 
-        messageService.subscribe('getCompareProductSuccess', function (response) {
-            $rootScope.compareProducts.push(response);
-        })
+        var refreshCompareList = function (scopeId) {
+            compareProducts = [];
 
-        var refreshCompareList = function () {
-            $rootScope.$broadcast("clearCompareItems", []);
-            $rootScope.compareProducts = [];
+            var scopeId = scopeId;
+
             if ($sessionStorage.compareList) {
                 var itemIds = $sessionStorage.compareList;
+                if (itemIds.length > 0) {
+                    for (var i = 0; i < itemIds.length; ++i) {
+                        var idx = 1 + i;
+                        var itemId = itemIds[i];
+                        getCompareProduct(itemId, scopeId, itemIds.length, idx);
+                    }
 
-                for (var i in itemIds) {
-                    var itemId = itemIds[i];
-                    getCompareProduct(itemId)
+                } else {
+                    messageService.publish('refreshCompareListSuccess');
                 }
 
-                messageService.publish('refreshCompareListSuccess');
+
 
             } else {
                 var errorMsg = "There are no compare items to gets.";
                 messageService.publish('refreshCompareListFailure', errorMsg);
             }
-        };
+        }
 
-        var addCompareItem = function (newItem) {
+        var addCompareItem = function (newItem, scopeId) {
             var items = [];
 
             if (newItem) {
@@ -44,9 +57,9 @@
                 if (!$sessionStorage.compareList) {
                     $sessionStorage.compareList = [];
                 }
-                
+
                 $sessionStorage.compareList.push(newItem)
-                refreshCompareList();
+                messageService.publish('addCompareItemSucess');
                 growl.success("<strong>Your item has been added to the Compare List.</strong>");
 
             } else {
@@ -58,7 +71,7 @@
         };
 
 
-        var removeCompareItem = function (itemId) {
+        var removeCompareItem = function (itemId, scopeId) {
             if (itemId && $sessionStorage.compareList) {
 
                 $sessionStorage.compareList = jQuery.grep($sessionStorage.compareList, function (value) {
@@ -66,8 +79,8 @@
                 });
 
                 $rootScope.$broadcast("updateCheckboxes");
-                refreshCompareList();
                 growl.warning("<strong>Your item has been removed from the Compare List.</strong>");
+                $rootScope.$broadcast("removeCompareItemSuccess", scopeId);
 
             } else {
                 var errorMsg = "Item could not be removed from Compare List.";

@@ -34,6 +34,14 @@
         model.expendituresOverTime = [];
         model.font = "14px Verdana";
 
+        model.listeners =[];
+
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
+
         (model.pieChart = function (context, height, width, centerXOffset) {
             if (!context) return;
             var chart = {};
@@ -150,9 +158,9 @@
             if (!includeLabels)
                 return;
             var totalLabels = [];
-            totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal) });
-            totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal) });
-            totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal) });
+            totalLabels.push({ color: model.hardwareColor, text: model.toMoney(hardwareTotal, true) });
+            totalLabels.push({ color: model.softwareColor, text: model.toMoney(softwareTotal, true) });
+            totalLabels.push({ color: model.serviceColor, text: model.toMoney(serviceTotal, true) });
             model.drawCustomLabels(context, 10, 20, totalLabels);
         };
 
@@ -161,8 +169,12 @@
             model.drawExpendituresByProductType(2, "productTypeCanvas", true);
         };
 
-        model.toMoney = function (number) {
-            return "$" + number.toFixed(2).replace(/./g, function (c, i, a) {
+        model.toMoney = function (number, includeDecimals) {
+            if (includeDecimals)
+                number = number.toFixed(2);
+            else
+                number = new String(number);
+            return "$" + number.replace(/./g, function (c, i, a) {
                 return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
             });
         };
@@ -221,7 +233,7 @@
         model.drawWrappedLabels = function (canvasName, items, widthPerItem) {
             var canvas = document.getElementById(canvasName);
             var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            model.clear(context, canvas.width, canvas.height);
             context.textAlign = "center";
             context.fillStyle = "Black";
             context.font = model.font;
@@ -332,7 +344,7 @@
             if (model.noProducts()) return null;
             model.tab = canvasTab;
             var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            model.clear(context, canvas.width, canvas.height);
             return context;
         };
 
@@ -362,7 +374,7 @@
             var context = model.initContext(tab, canvas);
             if (null == context) return;
             var accounts = orderByFilter(model.paymentAccounts, "length", false);
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            model.clear(context, canvas.width, canvas.height);
             var trends = model.initTrends(accounts);
             model.fillTrendData(trends);
             var maxTotal = model.findMaxTotalInTrends(trends);
@@ -745,12 +757,17 @@
             reportService.downloadCsv(model.orderProductQuery);
         };
 
+        model.clear = function (context, width, height) {
+            context.fillStyle = "White";
+            context.fillRect(0, 0, width, height);
+        };
+
         model.clearDashboard = function () {
             var dashboardCanvases = ["productTypeCanvasDashboard", "contractorCanvasDashboard", "purchaseTrendsCanvasDashboard"];
             for (var i = 0; i < dashboardCanvases.length; i++) {
                 var canvas = document.getElementById(dashboardCanvases[i]);
                 var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                model.clear(context, canvas.width, canvas.height);
             }
         };
 
@@ -771,25 +788,25 @@
             model.drawWrappedLabels("accountLabelCanvas", model.paymentAccounts, model.paymentAccountColumnWidth);
         };
 
-        messageService.subscribe('getOrderProductsSuccess', function (response) {
+        model.listeners.push(messageService.subscribe('getOrderProductsSuccess', function (response) {
             model.orderProducts = response;
             model.refreshTable();
             model.drawDashboard();
             model.responseMessage = "Found " + response.length + " matching records";
-        });
+        }));
 
-        messageService.subscribe('getOrderProductsFailure', function (response) {
+        model.listeners.push(messageService.subscribe('getOrderProductsFailure', function (response) {
             model.orderProducts = [];
             model.handleError(response);
-        });
+        }));
 
-        messageService.subscribe('retrievedOrderStatusSimple', function(response) {
+        model.listeners.push(messageService.subscribe('retrievedOrderStatusSimple', function(response) {
             model.orderStatuses = response;
-        });
+        }));
 
-        messageService.subscribe('retrievedOrderStatusSimpleFail', function (response) {
+        model.listeners.push(messageService.subscribe('retrievedOrderStatusSimpleFail', function (response) {
             model.orderStatuses = [];
-        });
+        }));
 
         model.initDateRange();
         reportService.fetchOrderStatuses();

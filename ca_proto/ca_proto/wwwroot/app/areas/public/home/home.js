@@ -17,7 +17,14 @@
         model.page = 0;
         model.pageCount = 20;
 
-        
+        model.listeners = [];
+
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
+
         this.$routerOnActivate = function (next, previous) {
             function createRows(arr, size) {
                 var newRow = [];
@@ -30,31 +37,27 @@
             model.fetchProducts = function () {
                 inventoryService.fetchProducts(model.page * model.pageCount, model.pageCount, model.orderByColumn, model.orderAscending);
             };
-            
+
             model.fetchProducts();
 
 
-            messageService.subscribe('querySuccess', function (response) {
+            model.listeners.push(messageService.subscribe('querySuccess', function (response) {
                 model.products = createRows(response, 4);
-            })
+            }));
 
-            messageService.subscribe('queryFailure', function (response) {
+            model.listeners.push(messageService.subscribe('queryFailure', function (response) {
                 model.products = [];
+            }));
+        };
+
+        model.$onInit = function () {
+            var mySwiper = new Swiper('.swiper-container', {
+                loop: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
             })
-
-
-        }
-
-        model.$onInit = function() {
-
-            var mySwiper = new Swiper ('.swiper-container', {
-                                loop: true,
-                                nextButton: '.swiper-button-next',
-                                prevButton: '.swiper-button-prev',
-                            })     
-
             $("#test").multiselect();
-        }
+        };
 
     };
 

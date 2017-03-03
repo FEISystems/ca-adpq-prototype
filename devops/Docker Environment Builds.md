@@ -2,14 +2,29 @@
 # author:  Ryan Chadwick
 # company: FEi Systems Inc.
 
-This document covers standing up each environment's Docker containres
+This document covers standing up each environment's Docker containers.
+
+The Prototyp is split into two Docker Images feidevops/ca_adpq_proto and feidevops/ca_adpq_proto_db.
+
+The first contains the .Net Core web application.  The second contains a MySQL based image that creates the starting database for the web application.
+
+#DEV
+Local development install.
+
+**MySQL**
+
+docker run --name ca-adpq-db-devlocal -e MYSQL_ROOT_PASSWORD="Letmein1!" -d feidevops/ca_adpq_proto_db:latest
+
+**Prototype Website**
+
+docker run --name ca-adpq-web-devlocal --link ca-adpq-db-devlocal:mysql -p 5000:5000 -d feidevops/ca_adpq_proto:devlocal
 
 #QC:Latest
 QC servers are hosted on the internal FEi cloud and not accessible from outside of our network
 
 **MySQL**
 
-docker run --name ca-adpq-db-latest -p 3306:3306 -v /var/mysql-data/ca-adpq-db-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
+docker run --name ca-adpq-db-latest -p 3306:3306 -v /var/mysql-data/ca-adpq-db-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 
@@ -28,7 +43,7 @@ QC servers are hosted on the internal FEi cloud and not accessible from outside 
 
 **MySQL**
 
-docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-stable:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
+docker run --name ca-adpq-db-stable -p 3307:3306 -v /var/mysql-data/ca-adpq-db-stable:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 
@@ -39,7 +54,7 @@ Production servers are available to the public.  Links are provided below.
 
 **MySQL**
 
-docker run --name ca-adpq-db-production -p 3306:3306 -v /var/mysql-data/ca-adpq-db-production:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d mysql:8
+docker run --name ca-adpq-db-production -p 3306:3306 -v /var/mysql-data/ca-adpq-db-production:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="XXXXXXX" -d feidevops/ca_adpq_proto_db:latest
 
 **Prototype Website**
 

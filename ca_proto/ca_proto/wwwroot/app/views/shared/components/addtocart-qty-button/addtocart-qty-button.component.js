@@ -56,10 +56,15 @@
 
         $scope.onlyNumbers = /^\d+$/;
         shoppingCartService.getActiveCart();
-
-        messageService.subscribe("getActiveCartSuccess", processResponse)
-        messageService.subscribe("addProductToCartSuccess", processResponse)
-        messageService.subscribe("updateCartSuccess", processResponse)
+        var listeners = [];
+        listeners.push(messageService.subscribe("getActiveCartSuccess", processResponse));
+        listeners.push(messageService.subscribe("addProductToCartSuccess", processResponse));
+        listeners.push(messageService.subscribe("updateCartSuccess", processResponse));
+        $scope.$on('$destroy', function () {
+            angular.forEach(listeners, function (l) {
+                l();
+            });
+        });
     };
 
     module.directive("addToCartQtyButton", function () {
