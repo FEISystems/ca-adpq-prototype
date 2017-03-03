@@ -23,7 +23,8 @@ namespace ca_service.Entities
             result.OrderId = Read<int>(reader, "OrderID");
             result.CreateDate = Read<DateTime>(reader, "CreateDate");
             result.PaymentMethod = Read<OrderPaymentMethod>(reader, "PaymentMethod");
-            result.Status = Read<OrderStatus>(reader, "Status");
+            var status = Read<OrderStatus>(reader, "Status");
+            result.Status = Order.DisplayStatus(status, result.CreateDate); //for reports - show shipping status
             result.Price = Read<decimal>(reader, "Price");
             result.Quantity = Read<int>(reader, "Quantity");
             result.ProductType = Read<string>(reader, "ProductType");

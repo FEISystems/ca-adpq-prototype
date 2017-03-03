@@ -57,6 +57,17 @@
                 }
             }
 
+            model.canCancelOrder = function () {
+                //cancelled is 2
+                var cancelledId = 2;
+                var cancelledStatus = _.find(model.orderStatuses, function (s) { return s.Id === cancelledId; });
+                if (typeof cancelledStatus == 'undefined')
+                    return false;
+                if (model.order.Status === cancelledStatus.Description)
+                    return false;
+                return true;
+            }
+
             messageService.subscribe("getOrderFailure", function (response) {
                 model.order = {};
             });
@@ -91,12 +102,7 @@
             $scope.showDivider = function () {
                 return model.orderItems.length > 1;
             }
-
-
         }
-
-
-
     };
 
     module.component("orderDetails", {

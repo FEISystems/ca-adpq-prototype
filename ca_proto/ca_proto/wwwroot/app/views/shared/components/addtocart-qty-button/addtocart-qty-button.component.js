@@ -20,20 +20,7 @@
             return theQuantity <= 0;
         }
 
-
-        $scope.addToCart = function () {
-            shoppingCartService.addProductToCart({ "ProductId": model.productId, "Quantity": parseInt(model.qty) });
-        }
-
-        $scope.updateCart = function () {
-            shoppingCartService.updateCart({ "ShoppingCartItemId": model.cartItemId, "Quantity": parseInt(model.qty) });
-        }
-
-        $scope.onlyNumbers = /^\d+$/;
-        shoppingCartService.getActiveCart();
-
-        messageService.subscribe("getActiveCartSuccess", function (response) {
-            
+        function processResponse(response) {
             if (response) {
                 model.cart = {};
                 model.cart = response;
@@ -57,9 +44,22 @@
                 }
 
             }
+        }
 
-        })
+        $scope.addToCart = function () {
+            shoppingCartService.addProductToCart({ "ProductId": model.productId, "Quantity": parseInt(model.qty) });
+        }
 
+        $scope.updateCart = function (response) {
+            shoppingCartService.updateCart({ "ShoppingCartItemId": model.cartItemId, "Quantity": parseInt(model.qty) });
+        }
+
+        $scope.onlyNumbers = /^\d+$/;
+        shoppingCartService.getActiveCart();
+
+        messageService.subscribe("getActiveCartSuccess", processResponse)
+        messageService.subscribe("addProductToCartSuccess", processResponse)
+        messageService.subscribe("updateCartSuccess", processResponse)
     };
 
     module.directive("addToCartQtyButton", function () {

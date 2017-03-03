@@ -20,7 +20,7 @@ namespace ca_service.Repositories
             this.OrderAscending = true;
             var filter = new Dictionary<string, object>();
             filter.Add("ShoppingCartId", shoppingCartId);
-            return base.Fetch(0, int.MaxValue);
+            return base.Fetch(0, int.MaxValue, filter).ToList();
         }
     }
 }

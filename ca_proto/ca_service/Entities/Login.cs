@@ -13,5 +13,7 @@ namespace ca_service.Entities
         public bool IsAdmin { get; set; }
 
         public int UserId { get; set; }
+
+        public string UserName { get; set; }
     }
 }

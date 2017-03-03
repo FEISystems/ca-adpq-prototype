@@ -44,9 +44,7 @@
                 if (!$sessionStorage.compareList) {
                     $sessionStorage.compareList = [];
                 }
-                if (!$sessionStorage.compareProducts) {
-                    $sessionStorage.compareProducts = [];
-                }
+                
                 $sessionStorage.compareList.push(newItem)
                 refreshCompareList();
                 growl.success("<strong>Your item has been added to the Compare List.</strong>");
