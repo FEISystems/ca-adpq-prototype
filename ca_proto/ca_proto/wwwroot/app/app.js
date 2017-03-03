@@ -15,9 +15,20 @@
 
     };
 
-    module.config(['growlProvider', function(growlProvider) {
-         growlProvider.globalTimeToLive(3000);
-         growlProvider.globalPosition('top-center');
+    module.config(['growlProvider', '$httpProvider', function (growlProvider, $httpProvider) {
+        growlProvider.globalTimeToLive(3000);
+        growlProvider.globalPosition('top-center');
+
+
+        //FOR IE CACHING ISSUE
+        $httpProvider.defaults.cache = false;
+        if (!$httpProvider.defaults.headers.get) {
+            $httpProvider.defaults.headers.get = {};
+        }
+        // disable IE ajax request caching
+        $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+
+
     }]);
 
     module.component("caWebApp", {
