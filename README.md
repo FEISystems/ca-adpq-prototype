@@ -538,6 +538,15 @@ GitHub Issue #: 167
 
 The following steps were used to setup a development environment to install and run this prototype on another machine.
 
+**Docker Version**
+
+1.  Install Docker Engine for your platform.
+2.  Run:  docker run --name ca-adpq-db-devlocal -e MYSQL_ROOT_PASSWORD="Letmein1!" -d feidevops/ca_adpq_proto_db:latest
+3.  Run:  docker run --name ca-adpq-web-devlocal --link ca-adpq-db-devlocal:mysql -p 5000:5000 -d feidevops/ca_adpq_proto:devlocal
+4.  Naviagate to http://localhost:5000 and you're all set!
+
+** or the other way ... **
+
 **Setup Tools**
 
 1.  Download and install Visual Studio Code from https://code.visualstudio.com/. 
