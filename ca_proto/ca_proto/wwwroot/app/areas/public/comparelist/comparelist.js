@@ -6,28 +6,40 @@
         var model = this;
         model.provider = {};
         model.title = "Compare List";
-        model.products = [];
-
-        
-        compareService.refreshCompareList();
+        model.provider = {};
+        model.scopeId = $scope.$id;
 
 
-        $rootScope.$on("clearCompareItems", function(){
-            model.products = [];
-            $timeout(function(){
-                $scope.$apply();
-            });
-        });
+        this.$routerOnActivate = function () {
 
-        
-        model.removeFromCompare = function (productId) {
-           compareService.removeCompareItem(productId);
-        };
 
-        
-        messageService.subscribe('getCompareProductSuccess', function (response) {
-            model.products.push(response);
-        })
+            compareService.refreshCompareList($scope.$id);
+
+            model.removeFromCompare = function (productId) {
+                compareService.removeCompareItem(productId, $scope.$id);
+            };
+
+            var processResponse = function (response) {
+                if (response) {
+                    if (response.scopeId == $scope.$id) {
+                        model.products = response.compareProducts;
+                        $timeout(function () {
+                            $scope.$apply();
+                        });
+                    }
+                } else {
+                    model.products = {};
+                    $timeout(function () {
+                        $scope.$apply();
+                    });
+                }
+            }
+
+
+            messageService.subscribe('refreshCompareListSuccess', processResponse)
+
+        }
+
 
     };
 

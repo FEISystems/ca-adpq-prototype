@@ -1,36 +1,38 @@
 ﻿<link rel='stylesheet' type="text/css" href="app/views/shared/components/compare-popup/compare-popup.css" />
+<div style="display: inline" ng-controller="CompareController">
 
-<a role="button" class="ca-badge" ng-click="model.togglePopup()" aria-expanded="false" aria-controls="compareListPopup">{{model.products.length}}</a>
+    <a role="button" class="ca-badge" ng-click="model.togglePopup()" aria-expanded="false" aria-controls="compareListPopup">{{lengthCount || 0}}</a>
 
-<div class="compare-popup" id="compareListPopup" ng-show="model.showpopup" style="text-align: left">
-    <div class="usa-grid-full text-right">
-        <a role="button" class="compare-close-button" ng-click="model.togglePopup()">x</a>
-    </div>
-    <div class="compare-popup-container">
-        <div ng-repeat="product in model.products track by $index">
-            <div class="usa-grid-full">
+    <div class="compare-popup" id="compareListPopup" ng-show="model.showpopup" style="text-align: left">
+        <div class="usa-grid-full text-right">
+            <a role="button" class="compare-close-button" ng-click="model.togglePopup()">x</a>
+        </div>
+        <div class="compare-popup-container">
+            <div ng-repeat="product in products track by $index">
                 <div class="usa-grid-full">
-                    <div class="usa-width-one-fourth" style="text-align: center">
-                        <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
-                        <a role="button" ng-click="model.removeFromCompare(product.Id)" style="font-size: 1.3rem">Remove</a>
-                    </div>
-                    <div class="usa-width-three-fourths">
-                        <strong style="font-size: 1.4rem">{{product.Title}}</strong>
-                        <br>
-                        <br>
-                        <div style="font-size: 1.3rem" class="text-right">
-                            Price:
-                            <span class="h4" style="font-weight: bold; font-size: 1.4rem">{{product.ContractPrice | currency}}</span>
+                    <div class="usa-grid-full">
+                        <div class="usa-width-one-fourth" style="text-align: center">
+                            <img ng-src="api/image/{{product.ImageFileName}}" alt="Image of {{product.Title}}" style="min-width: 100%;">
+                            <a role="button" ng-click="model.removeFromCompare(product.Id)" style="font-size: 1.3rem">Remove</a>
+                        </div>
+                        <div class="usa-width-three-fourths">
+                            <strong style="font-size: 1.4rem">{{product.Title}}</strong>
+                            <br>
+                            <br>
+                            <div style="font-size: 1.3rem" class="text-right">
+                                Price:
+                                <span class="h4" style="font-weight: bold; font-size: 1.4rem">{{product.ContractPrice | currency}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="clear" ng-show="model.products.length > 1">
-                    <hr ng-show="model.product.length != $index + 1" />
+                    <div class="clear" ng-show="lengthCount > 1">
+                        <hr ng-show="product.length != $index + 1" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div ng-show="model.products.length < 1">
-            No products in your compare list.
+            <div ng-show="lengthCount < 1">
+                No products in your compare list.
+            </div>
         </div>
     </div>
 </div>
