@@ -399,8 +399,9 @@ The prototype has been tested using the following browsers: Internet Explorer 11
 GitHub Issue #52
 
 FEi’s prototype uses modern, open technologies, and we used Agile (Scrum) processes to manage, design, develop, test, and deploy the prototype. The following standards and guidance are used or referred to in this prototype.
+
 1.  Ubuntu Server 16.10
-2.  dotnet core
+2.  .Net Core
 3.  Docker Engine and Client
 4.  MySQL 8
 5.  AngularJS
