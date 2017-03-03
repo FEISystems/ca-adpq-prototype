@@ -40,7 +40,7 @@
                 } else {
                     $($element).find("input").prop('checked', false);
                     //alert("Only 4 items can be compared at a time.");
-                    growl.warning("<strong>Only 4 items can be compared at a time. <a ng-cllick='model.clearAll()'>Clear all</a></strong>");
+                    growl.warning("<strong>Only 4 items can be compared at a time.</strong>");
                 }
 
             } else {
@@ -51,12 +51,6 @@
         $rootScope.$on("updateCheckboxes", function (product) {
             updateCheckboxes();
         });
-        $('input:checkbox').keypress(function(e){
-            if((e.keyCode ? e.keyCode : e.which) == 13){
-            $(this).trigger('click');
-            }
-        });
-        
     };
 
     module.directive("compareProductButton", function () {

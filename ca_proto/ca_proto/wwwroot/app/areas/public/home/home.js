@@ -19,12 +19,11 @@
 
         model.listeners = [];
 
-        this.$routerOnDeactivate = function (next, previous) {
-            for (var i = 0; i < model.listeners.length; i++) {
-                model.listeners[i]();
-            };
-            model.listeners = [];
-        };
+        $scope.$on('$destroy', function () {
+            angular.forEach(model.listeners, function (l) {
+                l();
+            });
+        });
 
         this.$routerOnActivate = function (next, previous) {
             function createRows(arr, size) {
