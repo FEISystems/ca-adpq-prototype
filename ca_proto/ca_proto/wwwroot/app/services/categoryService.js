@@ -1,6 +1,7 @@
 (function() {
     
-    var categoryService = function() {
+    var categoryService = function () {
+        var service = this;
         var getProductCategories = function(categoryId) {
             switch (categoryId) {
                 case "alldesktops" :
@@ -650,8 +651,7 @@
         //Value Added Services
         var allValueAddedServices = function () {
             var categoryFilters = [
-                "NON-Core VAS - D Deployment & Logistics", 
-                "P1917s P2217 P2417H Service Options Upgrades",
+                "NON-Core VAS - D Deployment & Logistics",
                 "Value added services",
                 "VAS  Imaging",
                 "VAS Asset Tagging - Bidder administration of State provided tag (with number)",
@@ -667,26 +667,47 @@
             categoryFilters.push(desktopValueAddedServices());
             categoryFilters.push(laptopValueAddedServices());
             return categoryFilters.join("|");
-        }
+        };
 
-        var desktopValueAddedServices = function (){  
+        var desktopValueAddedServices = function () {
             var categories = [
                 "VAS Standard Desktop",
-            ];            
+            ];
             return categories.join("|");
-        }
+        };
 
-        var laptopValueAddedServices = function (){ 
+        var laptopValueAddedServices = function () {
             var categories = [
                 "Value Added Services All Laptops",
             ];
             return categories.join("|");
+        };
+
+        var customSorters = [
+            { column: "Title", ascending: true, description: "Title" },
+            { column: "ContractPrice", ascending: true, description: "Price - Lowest First" },
+            { column: "ContractPrice", ascending: false, description: "Price - Highest First" }
+        ];
+
+        var customSorter = customSorters[0];
+
+        var setSorter = function(sorter) {
+            customSorter = sorter;
         }
 
-        
+        var getSorter = function () {
+            return customSorter;
+        };
+
+        var getCustomSorters = function () {
+            return customSorters;
+        };
 
         return {
-            getProductCategories : getProductCategories
+            getProductCategories: getProductCategories,
+            setSorter: setSorter,
+            getSorter: getSorter,
+            getCustomSorters: getCustomSorters,
         };
     }
 
