@@ -62,6 +62,8 @@ After logging in, users can browse each category to select products. Alternative
 
 The Home Page also includes space to highlight “Featured Products.” We anticipate this portion of the site could contribute to improved efficiency in the acquisition process by streamlining the products that are displayed for the users and expediting the shopping process.
 
+*Note: You cannot add items to your cart or compare list unless you are logged in.*
+
 ### 1.2.2   Comparing Products
 Users can add up to four items to a Compare List by selecting the “Compare” box found in each item. 
 
@@ -193,7 +195,7 @@ Additionally, the left menu contains the following report functions:
 
 
 
-#   2. Technical Approach Requirements
+#   2. Technical Approach
 ##  2.1 Overall Agile Development Approach
 
 When developing the prototype, FEi used an Agile Scrum process that is detailed in this [diagram](./artifacts/Agile Scrum Process Diagram/Agile_Development_Scrum_Process_Diagram.png).
@@ -532,17 +534,28 @@ The environment build guides for QC and Production can be found in the [Docker E
 
 GitHub Issue #: 167 
 
-The following steps were used to install and configure Visual Studio Code:
+The following steps were used to setup a development environment to install and run this prototype on another machine.
 
-**Install Visual Studio Code**
+**Setup Tools**
 
-1.  Download the branch from Github, https://github.com/FEISystems/ca-adpq-prototype
-2.  Download and Install MySQL
-3.  Open MySQL Workbench
-4.  Create a database named CA
-5.  Execute the database creation ca_proto\ca_service\DbScripts\BuildDatabase.txt in MySQL Workbench
-6.  Open the prototype in Visual Studio Code
-7.  Modify the connection string in the ca_proto\ca_proto\appSetting.json file
+1.  Download and install Visual Studio Code from https://code.visualstudio.com/. 
+2.  Download and install a git client. For examples https://git-scm.com/.
+3.  Download and Install MySQL from https://www.mysql.com/.
+
+*Note:Based on your OS, the tools above may have various downloads and install instructions.*
+
+**Configure DEV Environment**
+
+1. Download or clone the source code from Github, https://github.com/FEISystems/ca-adpq-prototype
+    
+    `
+    git clone https://github.com/FEISystems/ca-adpq-prototype.git
+    `
+2.  Open MySQL Workbench
+3.  Create a database named CA
+4.  Execute the database creation ca_proto\ca_service\DbScripts\BuildDatabase.txt in MySQL Workbench
+5.  Open the prototype in Visual Studio Code
+6.  Modify the connection string in the ca_proto\ca_proto\appSetting.json file
 
 **Configure Visual Studio Code**
 
