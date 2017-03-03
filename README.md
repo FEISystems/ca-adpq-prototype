@@ -136,7 +136,9 @@ Admins can upload images by clicking “Import Images” from the left menu, sel
 
 ####    1.2.5.2 Editing or Deleting Items
 
-To edit or delete a catalog item, select “Catalog” from the Admin Product Management page. Then, find the row containing the item to be edited or deleted and click either “Edit” or “Delete” from the Options column.  LINK to: ReadMe Repository | Images | Narrative_Edit_Delete_Items.png
+To edit or delete a catalog item, select “Catalog” from the Admin Product Management page. Then, find the row containing the item to be edited or deleted and click either “Edit” or “Delete” from the Options column.
+
+![Narrative Edit](./artifacts/Images/Narrative_Edit_Delete_Items.png?raw=true "Narrative Edit")
 
 To delete multiple items from the catalog, select the checkbox next to the item and click “Delete selected”.
 
@@ -194,7 +196,8 @@ Additionally, the left menu contains the following report functions:
 #   2. Technical Approach Requirements
 ##  2.1 Overall Agile Development Approach
 
-When developing the prototype, FEi used an Agile Scrum process that is detaied in this [diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf).
+When developing the prototype, FEi used an Agile Scrum process that is detailed in this [diagram](./artifacts/Agile Scrum Process Diagram/Agile_Development_Scrum_Process_Diagram.png).
+
 
 During the planning stage, we analyzed the RFI requirements and selected Prototype A.  Then, we identified the roles and skillsets needed to complete the prototype and assembled a multi-disciplinary team based on the requirements of the project and Agile methodology. We developed a project budget and a schedule with three, one-week sprints. Throughout the sprints, the team worked as a single unit with daily stand-up meetings, frequent touchpoints, and demonstrations. More information is provided in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf).
 
@@ -239,13 +242,13 @@ Our team relied on the following artifacts to create the prototype:
 
 *   **Section 508 Compliance Scorecard:** The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Results were captured in the [Section 508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) 
 
-*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail in [section](./artifacts/Digital Services Playlist/Digital_Services_Playlist.pdf).
+*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail in [section](./artifacts/Digital_Services_Playbook.pdf).
 
 *   **Design Process:** Design notes, user testing notes, and wireframes can be found [here](./artifacts/Design Process/).
 
 *   **User Stories and Acceptance Criteria:** We expanded the vendor challenge user story to include additional scenarios and for each user story and we also developed acceptance criteria for all [User Stories](./artifacts/User Stories). 
 
-*   **Definition of Done:** We used a [checklist](./artifacts/Definition of Done Checklist/Definition_of_Done_Checkist.pdf) for the definition of done.
+*   **Definition of Done:** We used a [checklist](./artifacts/Definition of Done Checklist/Definition_of_Done_Checklist.pdf) for the definition of done.
 
 *   **Meeting Pictures:** We captured images from one of our [daily standup meetings](./artifacts/Meeting Pictures/).
 
@@ -413,7 +416,7 @@ Azure provides simple CI that can deploy a project from GitHub to Azure App Serv
 
 GitHub Issue #55
 
-The FEi  Team used X-Unit to write unit tests for the ASP.Net Core Business Logic. Our unit tests can be found in https://github.com/FEISystems/ca-adpq-prototype/tree/master/ca_proto/ca_proto_tests.
+The FEi  Team used [xUnit](https://xunit.github.io/) to write unit tests for the ASP.Net Core Business Logic. Our unit tests can be found in https://github.com/FEISystems/ca-adpq-prototype/tree/master/ca_proto/ca_proto_tests.
 
 Unit Test Runner results are shown below.
 
@@ -486,7 +489,16 @@ The Prometheus server gathers metrics from multiple locations. Each integration
 *   Node Exporter – more system resources and HTTP
 *   Containers Exporter – covers anything that implements libcontainer and includes Docker resource usage per container
 
-In order to create meaningful dashboards, we coupled Prometheus with Grafana. This tool allows for customized dashboards based on gathered metrics from Prometheus.
+In order to create meaningful dashboards, we coupled Prometheus with Grafana. This tool allows for customized dashboards based on gathered metrics from Prometheus as shown below.
+
+**Host Monitoring Dashboard**
+
+![System Monitoring Host](./artifacts/Images/Grafana Host Dashboard.png?raw=true "System Monitoring Host")
+
+**Docker Monitoring Dashboard**
+
+![System Monitoring Docker](./artifacts/Images/Grafana Docker Dashboard.png?raw=true "System Monitoring Docker")
+
 
 Links for the tools in our Production environment and login information below:
 
