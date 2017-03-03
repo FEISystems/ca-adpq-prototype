@@ -1,0 +1,69 @@
+sub-nav {
+  min-height: 40px;
+}
+sub-nav ul .usa-nav-link {
+  text-transform: uppercase;
+  font-size: 2rem !important;
+  text-decoration: none;
+  font-weight: normal !important;
+}
+sub-nav ul .usa-nav-link:not([aria-expanded=true]) {
+  color: black !important;
+}
+sub-nav ul li {
+  margin-right: 60px;
+}
+sub-nav ul li .ca-megamenu-header {
+  color: white;
+  display: block;
+  border-bottom: 2px solid white;
+  margin-bottom: 5px;
+  font-size: 1.5em;
+}
+sub-nav .usa-nav {
+  background-color: transparent;
+  border: none !important;
+}
+@media screen and (max-width: 950px) {
+  .usa-megamenu::after {
+    background-color: #112e51 !important;
+    content: '';
+    display: block;
+    height: 100%;
+    position: static;
+    top: 0;
+    width: 1000%;
+    left: 100%;
+  }
+  .usa-megamenu::before {
+    background-color: #112e51 !important;
+    content: '';
+    display: block;
+    height: 100%;
+    position: static;
+    top: 0;
+    width: 1000%;
+    right: 100%;
+  }
+  div.usa-nav-inner {
+    border-bottom: 1px solid black;
+  }
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li {
+    margin-right: 0;
+  }
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li button[aria-expanded] {
+    background-position: right 18px center;
+  }
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li ul#sub-nav-2,
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li ul#sub-nav-3 {
+    background: #112e51;
+  }
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li ul#sub-nav-2 li.usa-megamenu-col,
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li ul#sub-nav-3 li.usa-megamenu-col {
+    padding: 0 1rem;
+  }
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li ul#sub-nav-2 li.usa-megamenu-col ul li a,
+  div.usa-nav-inner ul.usa-nav-primary.usa-accordion li ul#sub-nav-3 li.usa-megamenu-col ul li a {
+    color: #fff;
+  }
+}

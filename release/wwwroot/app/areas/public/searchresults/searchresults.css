@@ -1,0 +1,38 @@
+.search-details {
+  /*-------------------remove these once actual images are implemented----------------------------*/
+  /*----------------------------------------------------------------------------------------------*/
+}
+.search-details .usa-heading {
+  border-bottom: 1px solid #cd2026;
+}
+.search-details .add-to-cart {
+  margin: 0;
+}
+.search-details .add-to-cart select {
+  float: left;
+  width: 30%;
+}
+.search-details .add-to-cart button {
+  margin-top: 3px;
+  height: 44px;
+  border-radius: 0;
+}
+.search-details .compare {
+  margin: 0;
+}
+.search-details .compare label {
+  margin: 15px 0;
+}
+.search-details .product-placeholder {
+  width: 100%;
+  min-height: 200px;
+  background-color: lightgray;
+  border: 1px solid darkgray;
+}
+.search-details .product-thumbnail {
+  width: 31.5%;
+  min-height: 50px;
+  background-color: lightgray;
+  border: 1px solid darkgray;
+  margin-top: 10px;
+}

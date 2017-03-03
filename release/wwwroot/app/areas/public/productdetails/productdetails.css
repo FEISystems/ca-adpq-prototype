@@ -1,0 +1,24 @@
+.product-details .usa-heading {
+  border-bottom: 1px solid #cd2026;
+}
+.product-details .add-to-cart {
+  margin: 0;
+}
+.product-details .add-to-cart select {
+  float: left;
+  width: 30%;
+}
+.product-details .add-to-cart button {
+  margin-top: 3px;
+  height: 44px;
+  border-radius: 0;
+}
+.product-details .compare {
+  margin: 0;
+}
+.product-details .compare label {
+  margin: 15px 0;
+}
+.product-details h5 {
+  margin-top: 0;
+}
