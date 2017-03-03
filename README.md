@@ -242,7 +242,7 @@ Our team relied on the following artifacts to create the prototype:
 
 *   **Section 508 Compliance Scorecard:** The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Results were captured in the [Section 508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) 
 
-*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail in [section](./artifacts/Digital_Services_Playbook.pdf).
+*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail  [here](./artifacts/Digital_Services_Playbook.pdf).
 
 *   **Design Process:** Design notes, user testing notes, and wireframes can be found [here](./artifacts/Design Process/).
 
