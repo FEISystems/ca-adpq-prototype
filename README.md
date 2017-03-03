@@ -196,8 +196,63 @@ When developing the prototype, FEi used an Agile Scrum process that is detaied i
 
 ![Agile Process Diagram](./artifacts/Agile Scrum Process/Agile_Development_Scrum_Process_Diagram.pdf?raw=true "Agile Process Diagram")
 
-During the planning stage, we analyzed the RFI requirements and selected Prototype A.  Then, we identified the roles and skillsets needed to complete the prototype and assembled a multi-disciplinary team based on the requirements of the project and Agile methodology. We developed a project budget and a schedule with three, one-week sprints. Throughout the sprints, the team worked as a single unit with daily stand-up meetings, frequent touchpoints, and demonstrations. More information is provided in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf)
+During the planning stage, we analyzed the RFI requirements and selected Prototype A.  Then, we identified the roles and skillsets needed to complete the prototype and assembled a multi-disciplinary team based on the requirements of the project and Agile methodology. We developed a project budget and a schedule with three, one-week sprints. Throughout the sprints, the team worked as a single unit with daily stand-up meetings, frequent touchpoints, and demonstrations. More information is provided in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf).
 
 ! **PDF cannot be embedded**
 
 The overall project team was divided into the following functional teams to seamlessly perform like functions and responsibilities:
+
+1.  **Leadership, Product Definition, and Requirements Team** – This team consisted of the Product Owner (PO) (Labor Category: Product Manager), Scrum Master (Labor Category: Delivery Manager), and Business Analysts. As the leader of the team, the PO was responsible for defining the scope, prioritizing the work items, and ensuring completeness of the work items. The Scrum Master fostered an Agile team environment by demonstrating Scrum tools and techniques. Additionally, the Scrum Master facilitated the development process by removing any impediments identified by the team members and asking each member what they completed yesterday and what they will perform today. Business Analysts created user stories and acceptance criteria. 
+    -   Product Manager – Terry Boswell
+    -   Scrum Master – Claire Reinken 
+    -   Business Analysts – Lisa Lin-Freeman, Chris Gordon, and Ting Zhang
+
+2.  **Visual and Frontend Development Team** – This team consisted of the Technical Architect, Visual Designer, Interaction Designers/User Researchers/Usability Testers, and Frontend Web Developers, and was responsible for designing the entire user experience, information architecture, journey maps, wireframes, and style guides. This team worked closely with the PO and the rest of the Requirements Team and the Backend Development Team to ensure working end-to-end functionality that is robust and satisfies the product requirements.
+    -   Technical Architect – Jonas Bush
+    -   Visual Designer – Jenny Ho
+    -   Interaction Designers/User Researchers/Usability Testers – Ludwing Najera (Interaction Designer), Mike Wilburn (Usability Tester), Neelu Singh (Usability Tester), and Kristie Callander (Usability Tester)
+    -   Frontend Web Developers – Luis Najera and Christian Heyd
+
+3.  Backend Development Team – This team consisted of Backend Web Developer who performed database design (including augmenting the sample data provided by the State), created the search functions and other ancillary functions. The Backend Development Team also worked closely with the Requirements Team and the Visual and Frontend Team to ensure a working end-to-end functionality that is robust and satisfies the product requirements.
+
+    -   Backend Web Developer – David Lorek
+
+4.  DevOps Team – This team consisted of the DevOps Engineer who was responsible for writing the automation of infrastructure and maintaining it.
+    -   DevOps Engineer – Ryan Chadwick
+
+The FEi Team collaborated daily, using the Agile Scrum board to assess progress and assign work items. The Continuous Integration (CI) process established also helped with team interaction and with team (and work) integration, so that issues would be resolved in a timely manner. 
+
+![Narrative Sprint3 Board](./artifacts/Images/Narrative_Sprint3_Board.png?raw=true "Narrative Sprint3 Board")
+
+
+When bugs were found, the team immediately created issues and assigned them to the right team member, or the assignment was made during the stand-up meeting the next day. 
+
+![Narrative Issues](./artifacts/Images/Narrative_Issues.png?raw=true "Narrative Issues")
+
+##  2.2 List of Artifacts Used to Create the Prototype
+Our team relied on the following artifacts to create the prototype:
+*   **Sprint Schedule:** After an initial planning sprint, we conducted three, one-week sprints. A summary of sprint schedule and activities are included in the [Sprint Schedule](./artifacts/Sprint Schedule/Sprint_Schedule.pdf).
+
+*   **Data Set:** The catalog product [data set](./artifacts/Data Set/Data Set_ADPQ_v5.csv) was based on the Prototype A data set provided by the State. 
+
+*   **Images:** Images linked to this ReadMe file are located [here](./artifacts/Images/).
+
+
+*   **Section 508 Compliance Scorecard:** The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Results were captured in the [Section 508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) 
+
+*   **Digital Services Playbook:** We followed U.S. Digital Service playbook guidelines. The process is described in greater detail in [section](./artifacts/Digital Services Playlist/Digital_Services_Playlist.pdf).
+
+*   **Design Process:** Design notes, user testing notes, and wireframes can be found [here](./artifacts/Design Process/).
+
+*   **User Stories and Acceptance Criteria:** We expanded the vendor challenge user story to include additional scenarios and for each user story and we also developed acceptance criteria for all [User Stories](./artifacts/User Stories). 
+
+*   **Definition of Done:** We used a [checklist](./artifacts/Definition of Done Checklist/Definition_of_Done_Checkist.pdf) for the definition of done.
+
+*   **Meeting Pictures:** We captured images from one of our [daily standup meetings](./artifacts/Meeting Pictures/).
+
+*   **GitHub:** The prototype framework and libraries are included in GitHub, https://github.com/FEISystems/ca-adpq-prototype
+
+*   **Survey Results:** In addition to the interviews, we fielded a brief online survey to gather usability feedback. The survey can be found: https://www.surveymonkey.com/r/7DXQ58L.  Survey results are shown [here](./artifacts/Survey Results/Survey.pdf).
+
+*   **Test Scripts and Test Cases:** Quality Assurance (QA) activities included creating test cases (actors, preconditions, and test steps) as well as test scripts (actions, expected results, and test results in a Pass/Fail format) are shown [here](./artifacts/Test Cases/Test_Cases.xlxs).
+
