@@ -264,17 +264,18 @@ The code uses a multi-tier approach. The User Interface (UI) Layer consists of A
 ##  2.4 Technical Approach Requirements
 In the following sections, we address each of the technical requirements described in the RFI and reference the corresponding GitHub issue number.
 
-1.  Assigned one (1) leader and gave that person authority and responsibility and held that person accountable for the quality of the prototype submitted
+### a.  Assigned one (1) leader and gave that person authority and responsibility and held that person accountable for the quality of the prototype submitted
 
-    GitHub Issue #63
+GitHub Issue #63
 
-    When we assembled the team, the Product Manager, Mr. Terry Boswell, was given the authority and responsibility for the quality of the prototype submitted. 
+When we assembled the team, the Product Manager, Mr. Terry Boswell, was given the authority and responsibility for the quality of the prototype submitted. 
 
-2.  Assembled a multidisciplinary and collaborative team that includes, at a minimum, five (5) of the labor categories as identified in Attachment B: PQVP DS-AD Labor Category Descriptions
+### b.  Assembled a multidisciplinary and collaborative team that includes, at a minimum, five (5) of the labor categories as identified in Attachment B: PQVP DS-AD Labor Category Descriptions
 
-    GitHub Issue #64
+GitHub Issue #64
 
-    We assembled a multidisciplinary and collaborative team that included:
+We assembled a multidisciplinary and collaborative team that included:
+
 *   Leadership, Product Definition, and Requirements Team
     *   Product Manager – Terry Boswell
     *   Scrum Master – Claire Reinken 
@@ -290,19 +291,19 @@ In the following sections, we address each of the technical requirements describ
     *   DevOps Engineer – Ryan Chadwick
 
 
-3.  Understood what people needed, by including people in the prototype development and design process
+### c.  Understood what people needed, by including people in the prototype development and design process
 
-    GitHub Issue #46
+GitHub Issue #46
 
-    Axure, a rapid prototyping tool, was used to design the application including the required features sets. The rapid prototype contained the necessary screens and features with sufficient detail to be tested by people. As a result, we were able to gain a better understanding of how people used the application including their needs and any pain points encountered. The information gathered from the user testing allowed our team to improve the application in subsequent iterations. 
+Axure, a rapid prototyping tool, was used to design the application including the required features sets. The rapid prototype contained the necessary screens and features with sufficient detail to be tested by people. As a result, we were able to gain a better understanding of how people used the application including their needs and any pain points encountered. The information gathered from the user testing allowed our team to improve the application in subsequent iterations. 
 
-    [User Testing Notes](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf)
+[User Testing Notes](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf)
 
-    [Survey Results](./artifacts/Survey Results/Survey.pdf)
+[Survey Results](./artifacts/Survey Results/Survey.pdf)
 
-4.  Used at least a minimum of three (3) “user-centric design” techniques and/or tools
+### d.  Used at least a minimum of three (3) “user-centric design” techniques and/or tools
 
-    GitHub Issue #61
+GitHub Issue #61
 
 *   **Journey Maps:** Early in the requirements gathering phase, our team of Business Analysts and Interaction Designer/User Researcher/Usability Testers held a series of ideation sessions to gain a better understanding of the users’ needs and requirements. The journey map illustrates the users’ workflow and tasks they must complete in order to reach their goal. Our team of developers and designers use the [journey map](./artifacts/Design Process/Journey Maps/) as a reference for designing for the user’s needs. 
 
@@ -310,17 +311,17 @@ In the following sections, we address each of the technical requirements describ
 
 *   **User Testing:** To validate our designs and ensure that our application designing was consistent with user expectations and needs, we tested with users early and often. As a result of our testing, we were able to identify usability issues early and make corrections to the UI where necessary. The user testing allowed our team to better understand the users’ needs, and improve the application. We documented the [user testing feedback](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf). 
 
-5.  Used GitHub to document code commits
+### e.  Used GitHub to document code commits
 
-    GitHub Issue #68
+GitHub Issue #68
 
-    GitHub was used as our source control system. Tickets were associated with commits as they were executed, https://github.com/FEISystems/ca-adpq-prototype 
+GitHub was used as our source control system. Tickets were associated with commits as they were executed, https://github.com/FEISystems/ca-adpq-prototype 
 
-6.  Used Swagger to document the RESTful API, and provided a link to the Swagger API
+### f.  Used Swagger to document the RESTful API, and provided a link to the Swagger API
 
-    GitHub Issue #47
+GitHub Issue #47
 
-    Swagger was used to document the RESTful API. The links to the User Interface and JSON data are included below.
+Swagger was used to document the RESTful API. The links to the User Interface and JSON data are included below.
 
     User Interface:
     http://ca-adpq-prototype.eastus2.cloudapp.azure.com/swagger/index.html
@@ -328,13 +329,13 @@ In the following sections, we address each of the technical requirements describ
     JSON Data:
     http://ca-adpq-prototype.eastus2.cloudapp.azure.com/swagger/v1/swagger.json
 
-7.  Complied with Section 508 of the Americans with Disabilities Act and WCAG 2.0
+### g.  Complied with Section 508 of the Americans with Disabilities Act and WCAG 2.0
 
-    GitHub Issues #48, #120, #121, #122, #123, and #185
+GitHub Issues #48, #120, #121, #122, #123, and #185
 
-    Section 508 of the Rehabilitation Act of 1973, as amended (29 U.S.C. § 794 (d)) provides accessibility guidelines for the development, procurement, maintenance, or use of Electronic and Information Technology (EIT). The amendment mandates that federal agencies must give disabled employees and members of the public access to information that is comparable to access available to others (Section 508 Law and Related Laws and Policies. (n.d.). Retrieved from https://www.section508.gov/content/learn/laws-and-policies). Based on Section 508 accessibility requirements, the U.S. Access Board established standards and guidelines as to how all federal agencies can ensure Section 508 compliance for web-based applications and information, software applications, operating systems, computers, telecommunication, multimedia products, documentation, and more. At FEi, Section 508 compliance is not an afterthought, and our team advocates for users with disabilities at every stage. When validating applications and documentation for Section 508 compliance, we address the concerns of individuals with disabilities by using manual and automated testing techniques to confirm full accessibility and usability.
+Section 508 of the Rehabilitation Act of 1973, as amended (29 U.S.C. § 794 (d)) provides accessibility guidelines for the development, procurement, maintenance, or use of Electronic and Information Technology (EIT). The amendment mandates that federal agencies must give disabled employees and members of the public access to information that is comparable to access available to others (Section 508 Law and Related Laws and Policies. (n.d.). Retrieved from https://www.section508.gov/content/learn/laws-and-policies). Based on Section 508 accessibility requirements, the U.S. Access Board established standards and guidelines as to how all federal agencies can ensure Section 508 compliance for web-based applications and information, software applications, operating systems, computers, telecommunication, multimedia products, documentation, and more. At FEi, Section 508 compliance is not an afterthought, and our team advocates for users with disabilities at every stage. When validating applications and documentation for Section 508 compliance, we address the concerns of individuals with disabilities by using manual and automated testing techniques to confirm full accessibility and usability.
 
-    To ensure compliance without incurring refactoring costs, our team weaves Section 508 requirements into design, development, and testing at the beginning of every project. FEi also carefully considered the design of the prototype to ensure 508 compliance up to WCAG AA level through utilizing the following guidelines and technology: 
+To ensure compliance without incurring refactoring costs, our team weaves Section 508 requirements into design, development, and testing at the beginning of every project. FEi also carefully considered the design of the prototype to ensure 508 compliance up to WCAG AA level through utilizing the following guidelines and technology: 
 
 *   W3C accessibility recommendations
 *   WAI-ARIA (technology that makes advanced web applications accessible and usable to people with disabilities)
@@ -348,16 +349,233 @@ In the following sections, we address each of the technical requirements describ
 *   HTML elements (name, role, state, value)
 *   HTML markup that conveys logical hierarchy
 *   HTML tables (data, complex, simple, layout)
-*   Proper header, cell, row, and column associations
-*   Tables constructed to read logically from left to right and top to bottom
-*   Tables containing attributes to define meaning in the absence of context
-*   Layout, color, contrast, and cascading style sheets (CSS), including the disabling of CSS during testing
+    *   Proper header, cell, row, and column associations
+    *   Tables constructed to read logically from left to right and top to bottom
+    *   Tables containing attributes to define meaning in the absence of context
+    *   Layout, color, contrast, and cascading style sheets (CSS), including the disabling of CSS during testing
 *   Form fields (FIELDSET, LEGEND, TABINDEX), radio buttons, checkboxes, labels (with FOR attribute), title attribute, order
 *   Keyboard accessibility
-*   Logical tab order
-*   Accessible links
-*   Forms that can be navigated and completed
-*   Content that is accessible when displayed on hover
-*   Visual focus that moves with keyboard navigation
+    *   Logical tab order
+    *   Accessible links
+    *   Forms that can be navigated and completed
+    *   Content that is accessible when displayed on hover
+    *   Visual focus that moves with keyboard navigation
 
-    The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) for details. 
+The prototype was tested using the WAVE web accessibility tool and JAWS 16 screen reader. During initial testing, there were some errors that showed up when using WAVE as well as doing keyboard navigation and selection. There were no issues reported when testing with the JAWS 16 screen reader. Please refer to the [508 Compliance Scorecard](./artifacts/Section 508 Compliance/Section_508_Compliance_Scorecard.pdf) for details. 
+
+
+### h.  Created or used a design style guide and/or a pattern library
+
+GitHub Issue #49
+
+Our team used the U.S. Web Design Standards UI framework as a starting point for our style guide and pattern library. When using the U.S. Web Standards, our team of designers applied the styles creatively by adding our own variations of the styles. Where applicable, we updated the style guide to reflect our own variation on the U.S. Web Standards UI framework. 
+
+### i.  Performed usability tests with people 
+
+GitHub Issue #50
+
+We held several rounds of user testing to ensure that we were achieving a high degree of usability in our application. In this effort, we identified and recruited a group of people to participate in our testing. Utilizing the rapid prototype created, we asked our participants to complete a series of tasks. During the testing sessions, our observers collected notes on the users’ interaction with the application, including user feedback, thoughts, recommendations and pain points.
+As a result of our testing, our team was able to use the user feedback as a reference for improving our application subsequent iterations of the application development. 
+
+We documented the user testing feedback [here](./artifacts/Design Process/User Testing/User_Testing_Notes.pdf).
+
+### j.  Used an iterative approach, where feedback informed subsequent work or versions of the prototype
+
+GitHub Issue #51
+
+Our team used scrum, an Agile approach to iterative application development. Scrum provides a series of best practices and activities for planning and managing iterative development. At the end of our scrum iteration (known as a Sprint), Scrum provides a review and feedback activity called a sprint demo. During the sprint demo, the work in progress is demonstrated to our stakeholders and PO. The sprint demo allowed our team to provide feedback and comments and provided a good check point to ensure that the project kept moving in the right direction. The feedback and comments collected were documented as feature/bug backlog items and prioritized for implementation in subsequent sprints. 
+
+### k.  Created a prototype that works on multiple devices, and presents a responsive design
+
+GitHub Issue #52
+
+Our Frontend Web Developers initially created wireframes and screen mockups, see LINK ReadMe Repository | Wireframes and Prototyping, and discussed the view of web components and layout in different types of devices. Once the wireframes and Axure prototyping were completed, the team developed the interactive code with selected technologies and frameworks (U.S. Web Design Standards UI and AngularJS), and tested using different types of devices, such as PC, Phones, and Tablets; we also used browser built-in tools to simulate devices. The use of the U.S. Web Design Standard UI framework allowed our frontend code to be fully responsive and tested across multiple browsers and device sizes, as well as to support accessibility needs.
+The prototype has been tested using the following browsers: Internet Explorer 11, Google Chrome, and Firefox. In addition, the use of responsive web design desktop allows web pages to be viewed in response to the size of the device. FEi tested the prototype using the following devices and operating systems: PC (Windows 7 OS), Surface Pro (Windows 10), iPad (iOS9), Samsung Galaxy S5, and iPhone 6 (iOS9).
+
+### l.  Used at least five (5) modern and open-source technologies, regardless of architectural layer (frontend, backend, etc.) 
+
+GitHub Issue #52
+
+FEi’s prototype uses modern, open technologies, and we used Agile (Scrum) processes to manage, design, develop, test, and deploy the prototype. The following standards and guidance are used or referred to in this prototype.
+1.  Ubuntu Server 16.10
+2.  dotnet core
+3.  Docker Engine and Client
+4.  MySQL 8
+5.  AngularJS
+6.  CenturyLink/Watchtower
+
+### m.  Deployed the prototype on an Infrastructure as a Service (IaaS) or Platform as Service (PaaS) provider, and indicated which provider they used 
+
+GitHub Issue #54
+
+Azure provides simple CI that can deploy a project from GitHub to Azure App Service. To facilitate quick builds, we used this capability in two locations: internally and in Azure. Two instances of the prototype are hosted internally for QC purposes. These are hosted on our own virtual infrastructure and they are both tied into an automated CI/CD pipeline. The first instance always has the latest changes from the development branch. The second instance has the latest merges into the stable production branch.  Latest and greatest versus release candidate.
+
+### n.  Developed automated unit tests for their code
+
+GitHub Issue #55
+
+The FEi  Team used X-Unit to write unit tests for the ASP.Net Core Business Logic. Our unit tests can be found in https://github.com/FEISystems/ca-adpq-prototype/tree/master/ca_proto/ca_proto_tests.
+
+Unit Test Runner results are shown below.
+
+![Unit Test Runner results](./artifacts/Images/N_Developed_Automated_Unit_Tests.png?raw=true "Unit Test Runner results")
+
+### o.  Setup or used a continuous integration system to automate the running of tests and continuously deployed their code to their IaaS or PaaS provider 
+
+GitHub Issue #56
+
+The CI pipeline was set up to be simple and reliable. It uses two free tools that integrate with GitHub: AppVeyor and Docker Hub Automated Builds.
+
+GitHub is configured to use web hook to notify AppVeyor of a ‘push’. This event triggers AppVeyor to ‘checkout’ the related branch from GitHub. It will then run a build of the ca_proto and ca_proto_service projects as well as run the tests located in the ca_proto_tests project. The build is customized and controlled using a file called appveyor.yml which contains the build instructions for AppVeyor. After the build and test it will push the published release back to GitHub.
+
+This in turn triggers another web hook integration to Docker Hub Automated Builds. Docker Hub uses its cloud build service to ‘checkout’ the related branch from GitHub and build a Docker Image based on the Dockerfile contained in the branch. Once the Docker Image is built, it is placed into its Docker Hub repository.
+
+The final step, deployment, utilizes a Docker Container called Watchtower. This tool monitors Docker Hub repositories linked to Docker images in the local Docker Engine repository.  It will periodically check for newer versions of each image per tag. When it detects a new image it will pull it, stop related containers, update them, and then restart them.
+
+Project and repository links are listed below:
+
+*   AppVeyor Project:  https://ci.appveyor.com/project/ryan-chadwick-fei/ca-adpq-prototype
+
+*   Docker Hub Repository:  https://hub.docker.com/u/feidevops/
+
+*   Watchtower Docker Hub Repository:  https://hub.docker.com/r/centurylink/watchtower/
+
+*   Watchtower GitHub Repository:  https://github.com/v2tec/watchtower
+
+
+### p.  Setup or used configuration management
+
+GitHub Issue #57 
+
+Configuration management has been applied to the CI/CD pipeline, host provisioning, and a few other application points.  There are several configuration items to be noted, all of which are stored in GitHub giving them version control and history.
+
+Build Process configuration management can be found in AppVeyor and Docker build files.  These items are used directly by AppVeyor and Docker Hub when they check out the GitHub repository.  Configuration items for this process are:
+
+*   appveyor.yml – this configuration file controls the details of each build.  It is used by AppVeyor to define build environment and execution scripts.
+
+*  build_aspdotnet_core_latest.ps1 – this script is defined for use in the appveyor.yml configuration for the development branch
+
+*   build_aspdotnet_core_stable.ps1 – this script is defined for use in the appveyor.yml configuration for the QC branch
+
+*   build_aspdotnet_core_production.ps1 – this script is defined for use in the appveyor.yml configuration for the release branch
+
+*   devops/Dockerfiles/Dockerfile-latest – this Dockerfile denotes how Docker Hub Automated Builds should process the development branch output
+
+*   devops/Dockerfiles/Dockerfile-stable – this Dockerfile denotes how Docker Hub Automated Builds should process the QC branch output
+
+*   devops/Dockerfiles/Dockerfile-production – this Dockerfile denotes how Docker Hub Automated Builds should process the release branch output
+
+Since the prototype is hosted both internally and in Azure, separate scripts had to be created for each. SCVMM 2016 PowerShell scripts include the ability to recreate hosting internally on FEi Systems infrastructure. The Azure Resource Group template is used to provision the production host in the cloud. Configuration items for this process can be found in: 
+
+*   devops/vmm-2016 – for internal FEi scripts
+*   devops/Azure Resource Group Template – for Azure host provisioning
+
+Some portions of the monitoring configuration, specifically the Prometheus exporter, can scrape jobs, which can be found:
+
+*   devops/Prometheus.yml – this controls the frequency and scraping points for metrics collection to the Prometheus server
+
+### q.  Setup or used continuous monitoring 
+
+GitHub Issue #58
+
+Continuous monitoring has been implemented using Prometheus, which is an aggregation and analytics server.  Prometheus also supports Alerting, but this was not implemented due to time constraints.
+
+The Prometheus server gathers metrics from multiple locations. Each integration point is called an Exporter. We deployed four of these Exporters into our Production environment to monitor the application at different layers, including: 
+
+*   MySQL Exporter – database
+*   Collectd Exporter – host resources
+*   Node Exporter – more system resources and HTTP
+*   Containers Exporter – covers anything that implements libcontainer and includes Docker resource usage per container
+
+In order to create meaningful dashboards, we coupled Prometheus with Grafana. This tool allows for customized dashboards based on gathered metrics from Prometheus.
+
+Links for the tools in our Production environment and login information below:
+
+!!*Suggest to put screenshots here*
+
+**DockerDash**
+
+    http://ca-adpq-prototype.eastus2.cloudapp.azure.com:5050
+    admin/Letmein1!
+
+**Prometheus**
+
+    http://ca-adpq-prototype.eastus2.cloudapp.azure.com:9090/status
+
+**Grafana**
+
+    http://ca-adpq-prototype.eastus2.cloudapp.azure.com:3000/
+    admin  Letmein1!     - administrative user
+    monitor Letmein1!    - dashboard viewing only
+
+### r.  Deployed their software in an open source container, such as Docker (i.e., utilized operating-system-level virtualization) 
+
+GitHub Issue #59
+
+FEi deployed the Docker Hub Repository for our containers as below.
+    
+    https://hub.docker.com/u/feidevops/
+
+
+### s.  Provided sufficient documentation to install and run their prototype on another machine
+
+GitHub Issue #: 167 
+
+The following steps were used to install and configure Visual Studio Code:
+
+**Install Visual Studio Code**
+1.  Download the branch from Github, https://github.com/FEISystems/ca-adpq-prototype
+2.  Download and Install MySQL
+3.  Open MySQL Workbench
+4.  Create a database named CA
+5.  Execute the database creation ca_proto\ca_service\DbScripts\BuildDatabase.txt in MySQL Workbench
+6.  Open the prototype in Visual Studio Code
+7.  Modify the connection string in the ca_proto\ca_proto\appSetting.json file
+
+**Configure Visual Studio Code**
+1.  On the left side of VS Code, from the menu options, select the bottom icon which represents extensions. To run the prototype in VS Code you will need the C# extension to be installed.
+
+![VS Code Step 1](./artifacts/Images/S_Install_Doc_Step_1.png?raw=true "VS Code Step 1")
+ 
+
+2.  Once that extension is installed, go to the next menu icon up (Debug), and click on the Gear at the top (the tooltip will say “Configure or Fix launch.json”). 
+
+![VS Code Step 2](./artifacts/Images/S_Install_Doc_Step_2.png?raw=true "VS Code Step 2")
+
+
+3.  Select “.NET Core”, and VS Code will create a launch.json file. Once that is done, click the green “play” button. VS Code will show the following: 
+
+![VS Code Step 3](./artifacts/Images/S_Install_Doc_Step_3.png?raw=true "VS Code Step 3")
+
+
+4.  Select “Configure Task Runner,” then select “.NET Core” from the option list that follows. VS Code will create a “tasks.json” file. The tasks.json file needs to be modified to pass the location of the “project.json” file, modify the “args” property underneath the “tasks” property as follows: 
+
+![VS Code Step 4](./artifacts/Images/S_Install_Doc_Step_4.png?raw=true "VS Code Step 4")
+
+5.  Once this change is made, switch back to the “launch.json” file.  Under the entry for “.NET Core Launch (web)”, change the “program” and “cwd” attributes as follows: 
+
+![VS Code Step 5](./artifacts/Images/S_Install_Doc_Step_5.png?raw=true "VS Code Step 5")
+
+
+6.  The dependencies will then need to be restored. Go to the View | Integrated Terminal menu option. That should open a command prompt at the root of the repository. Change into the ca_proto directory and run “dotnet restore”: 
+
+![VS Code Step 6](./artifacts/Images/S_Install_Doc_Step_6.png?raw=true "VS Code Step 6")
+
+
+7.  Once this is done, go back to the Debug tab on the left, make sure that “.NET Core Launch (web)” is selected, and hit the play button.
+
+### t.  Prototype and underlying platforms used to create and run the prototype are openly licensed and free of charge 
+
+GitHub Issue #60
+
+The following platforms were used to create and run the prototype (these platforms 
+are openly licensed and free of charge):
+*   Visual Studio Code 1.9 (create)
+*   AppVeyor (create)
+*   Two Docker tools
+*   Docker Engine (local repository and container management) (run)
+*   Docker Hub (automated builds and remote repository) (create)
+*   MySQL 8 – specifically
+*   .Net Core 1.1.0 (create and run)
+*   Ubuntu Server 16.10 (run)
+
